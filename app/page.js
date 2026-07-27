@@ -66,7 +66,20 @@ const industries = [
   ["Hospitality", Building2], ["Industrial Applications", Beaker]
 ];
 
-const associates = ["CAMPCO", "Delta Nutritives", "Roquette", "Nitta Gelatin", "DÃ¶hler", "CP Kelco", "Calpro", "Ambuja Exports", "Fine Organics", "Shree Gluco", "Paramesu", "ANCHOR"];
+const associates = [
+  { name: "CAMPCO", logo: "/partners/campco.png" },
+  { name: "Delta Nutritives", logo: "/partners/delta.png" },
+  { name: "Roquette", logo: "/partners/roquette.png" },
+  { name: "Nitta Gelatin India Ltd.", logo: "/partners/nitta.png" },
+  { name: "Döhler", logo: "/partners/doehler.png" },
+  { name: "CP Kelco", logo: "/partners/cp-kelco.png" },
+  { name: "Calpro Specialities Pvt. Ltd.", logo: "/partners/calpro.png" },
+  { name: "Gujarat Ambuja Exports Ltd.", logo: "/partners/ambuja.png" },
+  { name: "Fine Organics", logo: "/partners/fine-organics.png" },
+  { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.png" },
+  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.png" },
+  { name: "Anchor", logo: null, detail: "In-house manufacturing brand" }
+];
 
 function Logo({ light = false }) {
   return (
@@ -229,9 +242,9 @@ export default function Home() {
       <section className="metrics">
         <div className="container metric-grid">
           {[
-            ["25+", "Years of ingredient expertise"], ["1000+", "B2B relationships"],
-            ["500+", "Quality products"], ["Pan India", "Reliable distribution"]
-          ].map(([n,l],i) => <div key={l}><small>0{i+1}</small><strong>{n}</strong><span>{l}</span></div>)}
+            [Clock3, "25+", "Years of", "Experience"], [Handshake, "1000+", "Happy", "B2B Clients"],
+            [PackageCheck, "500+", "Quality", "Products"], [Globe2, "Pan India", "Delivery", "Network"]
+          ].map(([Icon,n,line1,line2]) => <div key={n} className="metric-item"><span className="metric-icon"><Icon/></span><span className="metric-copy"><strong>{n}</strong><small>{line1}<br/>{line2}</small></span></div>)}
         </div>
       </section>
 
@@ -253,13 +266,13 @@ export default function Home() {
             <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
           <div className="product-grid">
-            {productGroups.slice(0,8).map((group, i) => {
+            {productGroups.slice(0,6).map((group, i) => {
               const Icon = group.icon;
               return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 <div className="card-top"><span className="card-no">0{i+1}</span><span className="card-icon"><Icon/></span></div>
-                <div className="ingredient-sphere"><span/><i/><b/></div>
+                <div className="category-photo"><img src="/ingredient-portfolio.png" alt="" style={{objectPosition: ["5% center","20% center","43% center","58% center","76% center","94% center"][i]}} /></div>
                 <h3>{group.name}</h3><p>{group.blurb}</p>
-                <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>Explore range <ArrowRight size={15}/></button>
+                <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>View Products <ArrowRight size={15}/></button>
               </article>
             })}
           </div>
@@ -270,27 +283,27 @@ export default function Home() {
       <section className="section industries" id="industries">
         <div className="container">
           <span className="eyebrow light-text">Industries we serve</span>
-          <div className="industry-intro"><h2>Built for the people<br/>who make <em>whatâ€™s next.</em></h2><p>From bakery and dairy to pharmaceuticals and industrial applications, we support production with consistent specifications and reliable availability.</p></div>
+          <div className="industry-intro"><h2>Ingredients That Power Diverse Industries</h2></div>
           <div className="industry-grid">
             {industries.map(([name, Icon], i) => <article key={name}><span>0{i+1}</span><Icon/><h3>{name}</h3><button onClick={() => openQuote(name)}>Discuss your application <ArrowRight size={14}/></button></article>)}
           </div>
+          <button className="btn primary industry-cta" onClick={() => openQuote("Industry enquiry")}>View All Industries <ArrowRight size={16}/></button>
         </div>
       </section>
 
       <section className="section about" id="about">
         <div className="container about-grid">
           <div className="about-visual">
-            <div className="lab-stage">
-              <div className="lab-ring r1"/><div className="lab-ring r2"/>
-              <div className="molecule m1"/><div className="molecule m2"/><div className="molecule m3"/>
-              <div className="glass-core"><span>V</span></div>
+            <div className="lab-stage about-video-stage">
+              <video src="/about-food-b2b.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Food ingredient applications and manufacturing"></video>
+              <div className="about-video-shade"></div>
             </div>
             <div className="about-caption"><span>Since 2001</span><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
           </div>
           <div className="about-copy">
             <span className="eyebrow">Why choose Vikranth Chemical Corporation?</span>
-            <h2>Distribution with a<br/><em>scientistâ€™s mindset.</em></h2>
-            <p className="lead">We donâ€™t simply move materials. We help businesses find ingredients that perform, arrive on time and make commercial sense.</p>
+            <h2>Distribution with a<br/><em>scientist's mindset.</em></h2>
+            <p className="lead">We don't simply move materials. We help businesses find ingredients that perform, arrive on time and make commercial sense.</p>
             <div className="value-list">
               {[
                 [ShieldCheck, "Quality without compromise", "Qualified sources and consistent global standards."],
@@ -306,8 +319,8 @@ export default function Home() {
 
       <section className="supplier-section" id="suppliers">
         <div className="container">
-          <div className="supplier-head"><div><span className="eyebrow">Our key associates</span><h2>Global manufacturers.<br/><em>One trusted partner.</em></h2></div><p>Access leading global and Indian ingredient manufacturers through a responsive local team that understands your commercial and technical requirements.</p></div>
-          <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((name,i) => <span key={`${name}-${i}`}>{name}</span>)}</div></div>
+          <div className="supplier-head"><div><span className="eyebrow">Trusted by leading brands</span><h2>Global manufacturers.<br/><em>One trusted partner.</em></h2></div><p>Access leading global and Indian ingredient manufacturers through a responsive local team that understands your commercial and technical requirements.</p></div>
+          <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((partner,i) => <div className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></div>)}</div></div>
           <div className="supplier-feature">
             <div><Globe2/><span>Worldwide sourcing</span><p>Access respected ingredient producers and specialized grades.</p></div>
             <div><Truck/><span>India-wide fulfillment</span><p>Commercial quantities delivered through an established network.</p></div>
