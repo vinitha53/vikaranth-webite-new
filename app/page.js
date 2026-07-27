@@ -200,7 +200,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="home">
-        <img className="hero-img" src="/hero-ingredients.png" alt="" />
+        <video className="hero-img" src="/vikranth-hero.mp4" poster="/hero-ingredients.png" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"></video>
         <div className="hero-shade"/>
         <div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
         <div className="container hero-content">
@@ -242,6 +242,15 @@ export default function Home() {
             <div><p>Navigate a portfolio built around real production needsâ€”from texture and shelf life to indulgence and nutrition.</p>
               <button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button>
             </div>
+          </div>
+          <div className="portfolio-visual">
+            <img src="/ingredient-portfolio.png" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" />
+            <div className="portfolio-overlay">
+              <span>Application-led sourcing</span>
+              <strong>From ingredient to finished product.</strong>
+              <button onClick={() => openQuote()}>Discuss your formulation <ArrowRight size={16}/></button>
+            </div>
+            <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
           <div className="product-grid">
             {productGroups.slice(0,8).map((group, i) => {
