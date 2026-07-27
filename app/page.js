@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -66,7 +66,7 @@ const industries = [
   ["Hospitality", Building2], ["Industrial Applications", Beaker]
 ];
 
-const associates = ["CAMPCO", "Delta Nutritives", "Roquette", "Nitta Gelatin", "Döhler", "CP Kelco", "Calpro", "Ambuja Exports", "Fine Organics", "Shree Gluco", "Paramesu", "ANCHOR"];
+const associates = ["CAMPCO", "Delta Nutritives", "Roquette", "Nitta Gelatin", "DÃ¶hler", "CP Kelco", "Calpro", "Ambuja Exports", "Fine Organics", "Shree Gluco", "Paramesu", "ANCHOR"];
 
 function Logo({ light = false }) {
   return (
@@ -116,6 +116,19 @@ export default function Home() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".section-head, .product-card, .industry-grid article, .about-visual, .about-copy, .supplier-head, .supplier-feature > div, .insight-grid article, .cta-inner");
+    nodes.forEach((node, index) => {
+      node.classList.add("reveal-item");
+      node.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 90}ms`);
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible"));
+    }, { threshold: 0.12 });
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = (quoteOpen || catalogOpen || menuOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -192,12 +205,12 @@ export default function Home() {
         <div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
         <div className="container hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker"><span/> B2B ingredient intelligence</span>
-            <h1>Ingredients<br/>engineered to<br/><em>move business.</em></h1>
-            <p>From cocoa and bakery systems to functional ingredients, we connect ambitious food makers with dependable global supply.</p>
+            <span className="hero-kicker"><span/> B2B ingredient solutions</span>
+            <h1>Reliable ingredients.<br/><em>Stronger business.</em></h1>
+            <p>A trusted importer, distributor and wholesaler of high-quality food ingredients and specialty chemicals—backed by responsive service and dependable pan-India supply.</p>
             <div className="hero-buttons">
-              <button className="btn gold" onClick={() => setCatalogOpen(true)}>Explore ingredients <ArrowRight size={17}/></button>
-              <a className="btn ghost" href="#about">Why Vikranth</a>
+              <button className="btn gold" onClick={() => setCatalogOpen(true)}>Explore products <ArrowRight size={17}/></button>
+              <a className="btn ghost" href="#about">Request a quote</a>
             </div>
             <div className="hero-trust">
               <span><ShieldCheck/> Quality assured</span><span><Truck/> Pan-India delivery</span><span><Headphones/> Technical guidance</span>
@@ -206,7 +219,7 @@ export default function Home() {
           <div className="hero-card">
             <span className="live-dot"/> Supply desk online
             <strong>Need a formulation-ready ingredient?</strong>
-            <p>Tell us your application. We’ll match the right grade and supplier.</p>
+            <p>Tell us your application. Weâ€™ll match the right grade and supplier.</p>
             <button onClick={() => openQuote()}>Start a requirement <ArrowRight/></button>
           </div>
         </div>
@@ -217,7 +230,7 @@ export default function Home() {
         <div className="container metric-grid">
           {[
             ["25+", "Years of ingredient expertise"], ["1000+", "B2B relationships"],
-            ["100+", "Specialty ingredients"], ["Pan India", "Reliable distribution"]
+            ["500+", "Quality products"], ["Pan India", "Reliable distribution"]
           ].map(([n,l],i) => <div key={l}><small>0{i+1}</small><strong>{n}</strong><span>{l}</span></div>)}
         </div>
       </section>
@@ -225,8 +238,8 @@ export default function Home() {
       <section className="section product-section" id="products">
         <div className="container">
           <div className="section-head">
-            <div><span className="eyebrow">Product architecture</span><h2>One partner.<br/><em>Every possibility.</em></h2></div>
-            <div><p>Navigate a portfolio built around real production needs—from texture and shelf life to indulgence and nutrition.</p>
+            <div><span className="eyebrow">Our product categories</span><h2>High-quality ingredients<br/><em>for every industry.</em></h2></div>
+            <div><p>Navigate a portfolio built around real production needsâ€”from texture and shelf life to indulgence and nutrition.</p>
               <button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button>
             </div>
           </div>
@@ -247,8 +260,8 @@ export default function Home() {
 
       <section className="section industries" id="industries">
         <div className="container">
-          <span className="eyebrow light-text">Industries we power</span>
-          <div className="industry-intro"><h2>Built for the people<br/>who make <em>what’s next.</em></h2><p>We understand formulation realities, production pressures and the importance of supply continuity.</p></div>
+          <span className="eyebrow light-text">Industries we serve</span>
+          <div className="industry-intro"><h2>Built for the people<br/>who make <em>whatâ€™s next.</em></h2><p>From bakery and dairy to pharmaceuticals and industrial applications, we support production with consistent specifications and reliable availability.</p></div>
           <div className="industry-grid">
             {industries.map(([name, Icon], i) => <article key={name}><span>0{i+1}</span><Icon/><h3>{name}</h3><button onClick={() => openQuote(name)}>Discuss your application <ArrowRight size={14}/></button></article>)}
           </div>
@@ -266,9 +279,9 @@ export default function Home() {
             <div className="about-caption"><span>Since 2001</span><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
           </div>
           <div className="about-copy">
-            <span className="eyebrow">The Vikranth difference</span>
-            <h2>Distribution with a<br/><em>scientist’s mindset.</em></h2>
-            <p className="lead">We don’t simply move materials. We help businesses find ingredients that perform, arrive on time and make commercial sense.</p>
+            <span className="eyebrow">Why choose Vikranth Chemical Corporation?</span>
+            <h2>Distribution with a<br/><em>scientistâ€™s mindset.</em></h2>
+            <p className="lead">We donâ€™t simply move materials. We help businesses find ingredients that perform, arrive on time and make commercial sense.</p>
             <div className="value-list">
               {[
                 [ShieldCheck, "Quality without compromise", "Qualified sources and consistent global standards."],
@@ -284,7 +297,7 @@ export default function Home() {
 
       <section className="supplier-section" id="suppliers">
         <div className="container">
-          <div className="supplier-head"><div><span className="eyebrow">Global expertise, local access</span><h2>Trusted suppliers.<br/><em>One reliable desk.</em></h2></div><p>We bring leading ingredient manufacturers closer to Indian food businesses through responsive distribution and local support.</p></div>
+          <div className="supplier-head"><div><span className="eyebrow">Our key associates</span><h2>Global manufacturers.<br/><em>One trusted partner.</em></h2></div><p>Access leading global and Indian ingredient manufacturers through a responsive local team that understands your commercial and technical requirements.</p></div>
           <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((name,i) => <span key={`${name}-${i}`}>{name}</span>)}</div></div>
           <div className="supplier-feature">
             <div><Globe2/><span>Worldwide sourcing</span><p>Access respected ingredient producers and specialized grades.</p></div>
@@ -296,7 +309,7 @@ export default function Home() {
 
       <section className="section insights" id="insights">
         <div className="container">
-          <div className="section-title-line"><div><span className="eyebrow">Ingredient intelligence</span><h2>Ideas for better<br/><em>formulation.</em></h2></div><a href="#contact">View all insights <ArrowRight size={16}/></a></div>
+          <div className="section-title-line"><div><span className="eyebrow">Technical resources</span><h2>Practical knowledge for<br/><em>better formulation.</em></h2></div><a href="#contact">View all insights <ArrowRight size={16}/></a></div>
           <div className="insight-grid">
             {[
               ["Texture systems", "How hydrocolloids shape stability, mouthfeel and shelf performance.", "06 min read", "01"],
@@ -309,21 +322,21 @@ export default function Home() {
 
       <section className="cta-section" id="contact">
         <div className="cta-bg"/><div className="container cta-inner">
-          <span className="eyebrow light-text">Let’s build your next product</span>
-          <h2>Your ingredient challenge<br/>starts a <em>conversation.</em></h2>
-          <p>Share the application, grade, quantity and destination. We’ll take it from there.</p>
+          <span className="eyebrow light-text">Letâ€™s build your next product</span>
+          <h2>Need bulk supply or<br/><em>a custom solution?</em></h2>
+          <p>Share the application, grade, quantity and destination. Weâ€™ll take it from there.</p>
           <div><button className="btn gold" onClick={() => openQuote()}>Request a quote <ArrowRight size={17}/></button><a className="btn ghost" href="tel:+914442221314"><Phone size={16}/> +91 444 222 1314</a></div>
         </div>
       </section>
 
       <footer>
         <div className="container footer-grid">
-          <div><Logo light/><p>Premium food ingredients and specialty chemicals, delivered with quality, clarity and care.</p><span className="iso"><BadgeCheck/> ISO 9001:2015</span></div>
+          <div><Logo light/><p>Leading importer, distributor and wholesaler of food ingredients and specialty chemicals for manufacturers across India.</p><span className="iso"><BadgeCheck/> ISO 9001:2015</span></div>
           <div><h4>Explore</h4><a href="#about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#suppliers">Suppliers</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map(g => <button key={g.name} onClick={() => setCatalogOpen(true)}>{g.name}</button>)}</div>
-          <div><h4>Contact</h4><a href="tel:+914442221314">+91 444 222 1314</a><a href="mailto:sales@vikranthchem.com">sales@vikranthchem.com</a><p>No. 12, Chemical House,<br/>Guindy Industrial Estate,<br/>Chennai — 600032</p></div>
+          <div><h4>Contact</h4><a href="tel:+914442221314">+91 444 222 1314</a><a href="mailto:sales@vikranthchem.com">sales@vikranthchem.com</a><p>No. 12, Chemical House,<br/>Guindy Industrial Estate,<br/>Chennai â€” 600032</p></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span>Quality ingredients. Stronger businesses.</span></div>
+        <div className="container footer-bottom"><span>Â© 2026 Vikranth Chemical Corporation</span><span>Quality ingredients. Stronger businesses.</span></div>
       </footer>
 
       <button className="whatsapp" onClick={() => openQuote("WhatsApp enquiry")} aria-label="Chat on WhatsApp"><MessageCircle/><span>Quick enquiry</span></button>
@@ -332,7 +345,7 @@ export default function Home() {
         <button className="modal-close" onClick={() => setCatalogOpen(false)}><X/></button>
         <div className="catalog-shell">
           <div className="catalog-header"><span className="eyebrow">Complete portfolio</span><h2>Find your ingredient.</h2>
-            <div className="search-box"><Search/><input autoFocus={catalogOpen} value={query} onChange={e => setQuery(e.target.value)} placeholder="Search cocoa, pectin, whey, syrup…"/>{query && <button onClick={() => setQuery("")}><X/></button>}</div>
+            <div className="search-box"><Search/><input autoFocus={catalogOpen} value={query} onChange={e => setQuery(e.target.value)} placeholder="Search cocoa, pectin, whey, syrupâ€¦"/>{query && <button onClick={() => setQuery("")}><X/></button>}</div>
           </div>
           <div className="catalog-body">
             {!query && <aside>{productGroups.map((g,i) => <button key={g.name} onClick={() => setActiveGroup(i)} className={activeGroup === i ? "active" : ""}>{g.name}<span>{Object.values(g.subgroups).flat().length}</span></button>)}</aside>}
@@ -353,7 +366,7 @@ export default function Home() {
         <aside>
           <button className="drawer-close" onClick={() => setQuoteOpen(false)}><X/></button>
           <span className="eyebrow">Priority response desk</span>
-          <h2>Tell us what<br/>you’re making.</h2>
+          <h2>Tell us what<br/>youâ€™re making.</h2>
           <p>Share a few details and our team will confirm availability, suitable grade and next steps.</p>
           <QuoteForm selected={selectedProduct} onDone={() => setQuoteOpen(false)}/>
           <div className="drawer-contact"><Phone/><span><small>Prefer to talk?</small><b>+91 444 222 1314</b></span></div>
