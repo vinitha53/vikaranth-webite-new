@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./sections.css";
 
 export const metadata = {
   title: "Vikranth Chemical Corporation | Ingredients That Build Your Business",

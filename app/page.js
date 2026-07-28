@@ -329,6 +329,52 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="testimonial-section" aria-labelledby="testimonial-title">
+        <div className="container testimonial-inner">
+          <span className="eyebrow">Customer testimonial</span>
+          <div className="testimonial-quote">
+            <span className="quote-mark" aria-hidden="true">“</span>
+            <blockquote id="testimonial-title">
+              Their technical expertise and ingredient solutions have helped us
+              formulate with greater confidence and consistency.
+            </blockquote>
+            <span className="quote-mark closing" aria-hidden="true">”</span>
+          </div>
+          <div className="testimonial-author">
+            <span className="author-avatar" aria-hidden="true">RM</span>
+            <div>
+              <strong>Ravi Menon</strong>
+              <span>Head of Product Development</span>
+              <span className="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</span>
+            </div>
+          </div>
+          <div className="testimonial-grid">
+            <article>
+              <span className="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote>
+                “Vikranth consistently helps us identify the right ingredient
+                grades while keeping supply timelines clear and dependable.”
+              </blockquote>
+              <footer>
+                <span className="author-avatar" aria-hidden="true">AS</span>
+                <div><strong>Anita Sharma</strong><span>Procurement Manager</span></div>
+              </footer>
+            </article>
+            <article>
+              <span className="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote>
+                “Their responsive team and application knowledge have made
+                ingredient sourcing faster, simpler and more reliable for us.”
+              </blockquote>
+              <footer>
+                <span className="author-avatar" aria-hidden="true">DK</span>
+                <div><strong>Deepak Kumar</strong><span>Operations Director</span></div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="section insights" id="insights">
         <div className="container">
           <div className="section-title-line"><div><span className="eyebrow">Technical resources</span><h2>Practical knowledge for<br/><em>better formulation.</em></h2></div><a href="#contact">View all insights <ArrowRight size={16}/></a></div>
@@ -338,6 +384,31 @@ export default function Home() {
               ["Bakery performance", "Choosing the right improver for softness, rise and production consistency.", "05 min read", "02"],
               ["Cocoa decisions", "Cocoa powder, mass or couverture? A practical sourcing guide.", "07 min read", "03"]
             ].map(([tag,title,time,no]) => <article key={no}><span className="article-no">{no}</span><small>{tag}</small><h3>{title}</h3><div><Clock3 size={14}/>{time}<button aria-label="Read article"><ArrowRight/></button></div></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section" id="faq" aria-labelledby="faq-heading">
+        <div className="container faq-layout">
+          <div className="faq-intro">
+            <span className="eyebrow">Frequently asked questions</span>
+            <h2 id="faq-heading">Answers to your<br/><em>formulation questions.</em></h2>
+            <button className="text-link" onClick={() => openQuote("Technical guidance")}>
+              Contact our technical team <ArrowRight size={16}/>
+            </button>
+          </div>
+          <div className="faq-list">
+            {[
+              ["How do you support new product formulation?", "We help identify suitable ingredients, grades and suppliers based on your application, process and commercial requirements."],
+              ["Can you help improve an existing formulation?", "Yes. Share the performance issue or target outcome and our team can suggest ingredient options for trials and evaluation."],
+              ["Which industries and applications do you serve?", "We support bakery, confectionery, dairy, beverages, nutraceuticals, pharmaceuticals, food manufacturing and other industrial applications."],
+              ["How can I request technical guidance or samples?", "Send us your application, required grade, approximate quantity and delivery city. Our team will confirm the most suitable next step."]
+            ].map(([question, answer]) => (
+              <details key={question}>
+                <summary>{question}<span aria-hidden="true">+</span></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
