@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -212,31 +212,47 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero" id="home">
-        <video className="hero-img" src="/vikranth-hero.mp4" poster="/hero-ingredients.png" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"></video>
+      <section
+        className="hero editorial-hero"
+        id="home"
+        onMouseMove={(event) => {
+          const bounds = event.currentTarget.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+          const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+          event.currentTarget.style.setProperty("--hero-ry", `${x * 7}deg`);
+          event.currentTarget.style.setProperty("--hero-rx", `${y * -5}deg`);
+        }}
+        onMouseLeave={(event) => {
+          event.currentTarget.style.setProperty("--hero-ry", "0deg");
+          event.currentTarget.style.setProperty("--hero-rx", "0deg");
+        }}
+      >
+        <div className="hero-video-stage" aria-hidden="true">
+          <video className="hero-img" src="/cream-pour-hero.mp4" autoPlay muted loop playsInline preload="auto" />
+        </div>
         <div className="hero-shade"/>
-        <div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
+        <div className="hero-title-scene">
+          <h1 aria-label="Discover premium ingredients">
+            <span className="hero-word hero-word-back">Discover</span>
+            <span className="hero-word hero-word-front">Ingredients</span>
+          </h1>
+        </div>
         <div className="container hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker"><span/> B2B ingredient solutions</span>
-            <h1>Reliable ingredients.<br/><em>Stronger business.</em></h1>
-            <p>A trusted importer, distributor and wholesaler of high-quality food ingredients and specialty chemicals—backed by responsive service and dependable pan-India supply.</p>
+            <span className="hero-kicker"><span/> B2B ingredient solutions <span/></span>
+            <p>Premium food ingredients and specialty chemicals, backed by dependable pan-India supply.</p>
             <div className="hero-buttons">
               <button className="btn gold" onClick={() => setCatalogOpen(true)}>Explore products <ArrowRight size={17}/></button>
-              <a className="btn ghost" href="#about">Request a quote</a>
+              <button className="btn hero-outline" onClick={() => openQuote()}>Request a quote <ArrowRight size={17}/></button>
             </div>
             <div className="hero-trust">
-              <span><ShieldCheck/> Quality assured</span><span><Truck/> Pan-India delivery</span><span><Headphones/> Technical guidance</span>
+              <span><ShieldCheck/> Quality assured</span>
+              <span><Truck/> Pan-India delivery</span>
+              <span><Headphones/> Technical support</span>
             </div>
           </div>
-          <div className="hero-card">
-            <span className="live-dot"/> Supply desk online
-            <strong>Need a formulation-ready ingredient?</strong>
-            <p>Tell us your application. Weâ€™ll match the right grade and supplier.</p>
-            <button onClick={() => openQuote()}>Start a requirement <ArrowRight/></button>
-          </div>
         </div>
-        <div className="scroll-cue"><span/> Scroll to discover</div>
+        <a className="hero-scroll" href="#products" aria-label="Scroll to products"><span/></a>
       </section>
 
       <section className="metrics">
@@ -270,7 +286,8 @@ export default function Home() {
               const Icon = group.icon;
               return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 <div className="card-top"><span className="card-no">0{i+1}</span><span className="card-icon"><Icon/></span></div>
-                <div className="category-photo"><img src="/ingredient-portfolio.png" alt="" style={{objectPosition: ["5% center","20% center","43% center","58% center","76% center","94% center"][i]}} /></div>
+                <span className="category-label">{["Bakery", "Chocolate & Confectionery", "Dairy", "Beverage", "Ice Cream", "Fruit"][i]}</span>
+                <div className="category-photo" aria-hidden="true" style={{"--panel-position": `${i * 20}%`}} />
                 <h3>{group.name}</h3><p>{group.blurb}</p>
                 <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>View Products <ArrowRight size={15}/></button>
               </article>
