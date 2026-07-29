@@ -287,17 +287,20 @@ export default function Home() {
       </section>
 
       <section className="section about" id="about">
-        <div className="container about-grid">
+        <div className="container">
+          <div className="about-section-head">
+            <span className="eyebrow">Why Vikranth?</span>
+            <h2>Ingredient Sourcing<br/><em>Made Simpler</em></h2>
+          </div>
+          <div className="about-grid">
           <div className="about-visual">
             <div className="lab-stage about-video-stage">
               <video src="/about-food-b2b.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Food ingredient applications and manufacturing"></video>
               <div className="about-video-shade"></div>
             </div>
-            <div className="about-caption"><span>Since 2001</span><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
+            <div className="about-caption"><span className="about-since"><BadgeCheck/><b>Since 2001</b></span><i/><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
           </div>
           <div className="about-copy">
-            <span className="eyebrow">Why Vikranth?</span>
-            <h2>Ingredient Sourcing<br/><em>Made Simpler</em></h2>
             <p className="lead">Ingredient sourcing designed for manufacturers, bakeries, processors and professional buyers.</p>
             <div className="value-list">
               {[
@@ -309,6 +312,7 @@ export default function Home() {
               ].map(([Icon,title,text]) => <div key={title}><span><Icon/></span><section><h3>{title}</h3><p>{text}</p></section></div>)}
             </div>
             <button className="btn dark" onClick={() => openQuote()}>Work with Vikranth <ArrowRight size={16}/></button>
+          </div>
           </div>
         </div>
       </section>
