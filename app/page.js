@@ -178,7 +178,6 @@ export default function Home() {
             <a href="#home" onClick={jump}>Home</a>
             <a href="#about" onClick={jump}>About</a>
             <button className="nav-product" onClick={() => setMegaOpen(v => !v)}>Products <ChevronDown size={14}/></button>
-            <a href="#applications" onClick={jump}>Applications</a>
             <a href="#industries" onClick={jump}>Industries</a>
             <a href="#suppliers" onClick={jump}>Suppliers</a>
             <a href="#insights" onClick={jump}>Blog</a>
@@ -250,17 +249,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="company-answer" aria-labelledby="company-answer-title">
-        <div className="container company-answer-grid">
-          <span className="answer-label">Your B2B food ingredient sourcing partner</span>
-          <div>
-            <h2 id="company-answer-title">Vikranth Chemical Corporation is a Chennai-based supplier, distributor and wholesaler of food ingredients.</h2>
-            <p>We serve bakeries, food manufacturers, confectionery businesses, beverage producers and industrial buyers. Tell us your product, application, quantity and delivery location—we will help you identify the right ingredient option.</p>
-          </div>
-          <button className="btn outline" onClick={() => openQuote("Company enquiry")}>Talk to our team <ArrowRight size={16}/></button>
-        </div>
-      </section>
-
       <section className="section product-section" id="products">
         <div className="container">
           <div className="section-head">
@@ -293,53 +281,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="application-section" id="applications">
-        <div className="container">
-          <div className="application-heading">
-            <div><span className="eyebrow">Search by application</span><h2>What Are<br/><em>You Making?</em></h2></div>
-            <p>Choose your finished product and our team will help identify ingredient options suited to the application and commercial requirement.</p>
-          </div>
-          <div className="application-grid">
-            {[
-              ["Bakery & Cakes", CakeSlice, "Ingredients for volume, softness, crumb structure, flavour and shelf-life performance."],
-              ["Chocolate & Confectionery", Sparkles, "Cocoa and chocolate ingredients for bars, coatings, fillings, cakes and desserts."],
-              ["Beverages", FlaskConical, "Fruit, flavour, sweetener and stabilizing solutions for consistent drinks."],
-              ["Dairy & Ice Cream", IceCreamBowl, "Ingredients for creaminess, body, stability and smooth texture."],
-              ["Biscuits & Cookies", Wheat, "Leavening, protein, sweetener and texture solutions for consistent production."],
-              ["Desserts & Fillings", CakeSlice, "Fruit preparations, chocolate solutions, glazes and functional ingredients."],
-              ["Nutraceuticals", HeartPulse, "Proteins, minerals and functional ingredients for nutrition-focused formulations."],
-              ["Food Manufacturing", Factory, "Versatile ingredients for processing, texture, stability and production consistency."]
-            ].map(([title, Icon, text]) => (
-              <button key={title} onClick={() => openQuote(title)}>
-                <span><Icon/></span><div><h3>{title}</h3><p>{text}</p></div><ArrowRight/>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="popular-section" aria-labelledby="popular-heading">
-        <div className="container">
-          <div className="popular-head"><div><span className="eyebrow">Frequently requested</span><h2 id="popular-heading">Popular<br/><em>Food Ingredients</em></h2></div><button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button></div>
-          <div className="popular-grid">
-            {["Cocoa Powder", "Cocoa Butter", "Cocoa Mass", "Choco Chips", "Cake Premix", "Fruit Fillings", "Liquid Glucose", "Baking Powder", "Skimmed Milk Powder", "Whey Protein", "Soya Lecithin", "Vital Wheat Gluten"].map((product, i) => (
-              <button key={product} onClick={() => openQuote(product)}><span>0{i + 1}</span><b>{product}</b><small>Request grade & pricing</small><ArrowRight/></button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section industries" id="industries">
-        <div className="container">
-          <span className="eyebrow light-text">Industries we support</span>
-          <div className="industry-intro"><h2>Ingredients for Growing Food Businesses</h2><p>From product selection to repeat supply, Vikranth supports businesses that depend on consistent ingredients and responsive service.</p></div>
-          <div className="industry-grid">
-            {industries.map(([name, Icon], i) => <article key={name}><span>0{i+1}</span><Icon/><h3>{name}</h3><button onClick={() => openQuote(name)}>Discuss your application <ArrowRight size={14}/></button></article>)}
-          </div>
-          <button className="btn primary industry-cta" onClick={() => openQuote("Industry enquiry")}>View All Industries <ArrowRight size={16}/></button>
-        </div>
-      </section>
-
       <section className="section about" id="about">
         <div className="container about-grid">
           <div className="about-visual">
@@ -364,6 +305,28 @@ export default function Home() {
             </div>
             <button className="btn dark" onClick={() => openQuote()}>Work with Vikranth <ArrowRight size={16}/></button>
           </div>
+        </div>
+      </section>
+
+      <section className="popular-section" aria-labelledby="popular-heading">
+        <div className="container">
+          <div className="popular-head"><div><span className="eyebrow">Frequently requested</span><h2 id="popular-heading">Popular<br/><em>Food Ingredients</em></h2></div><button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button></div>
+          <div className="popular-grid">
+            {["Cocoa Powder", "Cocoa Butter", "Cocoa Mass", "Choco Chips", "Cake Premix", "Fruit Fillings", "Liquid Glucose", "Baking Powder", "Skimmed Milk Powder", "Whey Protein", "Soya Lecithin", "Vital Wheat Gluten"].map((product, i) => (
+              <button key={product} onClick={() => openQuote(product)}><span>0{i + 1}</span><b>{product}</b><small>Request grade & pricing</small><ArrowRight/></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section industries" id="industries">
+        <div className="container">
+          <span className="eyebrow light-text">Industries we support</span>
+          <div className="industry-intro"><h2>Ingredients for Growing Food Businesses</h2><p>From product selection to repeat supply, Vikranth supports businesses that depend on consistent ingredients and responsive service.</p></div>
+          <div className="industry-grid">
+            {industries.map(([name, Icon], i) => <article key={name}><span>0{i+1}</span><Icon/><h3>{name}</h3><button onClick={() => openQuote(name)}>Discuss your application <ArrowRight size={14}/></button></article>)}
+          </div>
+          <button className="btn primary industry-cta" onClick={() => openQuote("Industry enquiry")}>View All Industries <ArrowRight size={16}/></button>
         </div>
       </section>
 
@@ -491,7 +454,12 @@ export default function Home() {
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>
 
-      <button className="whatsapp" onClick={() => openQuote("WhatsApp enquiry")} aria-label="Chat on WhatsApp"><MessageCircle/><span>Quick enquiry</span></button>
+      <button className="chatbot-fab" onClick={() => openQuote("Chatbot enquiry")} aria-label="Open ingredient chatbot">
+        <img src="/chatbot-chef.png" alt="" />
+      </button>
+      <a className="whatsapp-fab" href="https://wa.me/918754442924" target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp">
+        <MessageCircle />
+      </a>
 
       <div className={`catalog-modal ${catalogOpen ? "open" : ""}`} aria-hidden={!catalogOpen}>
         <button className="modal-close" onClick={() => setCatalogOpen(false)}><X/></button>

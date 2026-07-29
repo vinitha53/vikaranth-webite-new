@@ -1,9 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: { unoptimized: true },
-  output: "export",
-  distDir: "dist",
-  trailingSlash: true
-};
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+export default function nextConfig(phase) {
+  return {
+    images: { unoptimized: true },
+    output: "export",
+    // Keep the live preview isolated from production build output.
+    distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next" : "dist",
+    trailingSlash: true
+  };
+}
