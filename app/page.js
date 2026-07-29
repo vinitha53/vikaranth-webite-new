@@ -66,6 +66,19 @@ const industries = [
   ["Nutraceutical Companies", HeartPulse], ["Food-Processing Businesses", Factory]
 ];
 
+
+const popularShowcases = [
+  { name: "Bakery", groupIndex: 0, products: [["Cake Gel", "Commercial cakes & sponge systems", "5% center"], ["Cake Premix", "Consistent bakery production", "24% center"], ["Custard Powder", "Fillings, desserts & bakery", "48% center"], ["Baking Powder", "Cakes, biscuits & bakery", "76% center"]] },
+  { name: "Chocolate & Cocoa", groupIndex: 1, products: [["Cocoa Powder", "Bakery, beverages & desserts", "8% center"], ["Cocoa Butter", "Chocolate & confectionery", "28% center"], ["Cocoa Mass", "Couverture & premium chocolate", "53% center"], ["Choco Chips", "Bakery inclusions & toppings", "78% center"]] },
+  { name: "Dairy", groupIndex: 2, products: [["Whipping Cream", "Cakes, desserts & food service", "12% center"], ["Cream Cheese", "Bakery, desserts & savoury", "38% center"], ["Butter", "Bakery & confectionery", "66% center"], ["Skimmed Milk Powder", "Dairy, bakery & beverages", "88% center"]] },
+  { name: "Beverage", groupIndex: 3, products: [["Natural Flavours", "Beverage formulation", "6% center"], ["Chocolate Drink", "Hot and cold beverages", "31% center"], ["Fruit Crush", "Beverages & food service", "58% center"], ["Orange Oil", "Flavour systems & beverages", "86% center"]] },
+  { name: "Ice Cream", groupIndex: 4, products: [["Frozen Yogurt Premix", "Frozen dessert production", "8% center"], ["Panna Base", "Gelato & ice cream", "34% center"], ["French Vanilla", "Premium frozen desserts", "61% center"], ["Ice Cream Stabilizer", "Texture & melt control", "88% center"]] },
+  { name: "Fruit", groupIndex: 5, products: [["Fruit Filling", "Bakery & dessert fillings", "7% center"], ["Frozen Fruits", "Food service & processing", "32% center"], ["Fruit Purees", "Beverages, desserts & dairy", "60% center"], ["Glaze Gel", "Bakery finishing & decoration", "87% center"]] },
+  { name: "Stabilizers", groupIndex: 6, products: [["Genu Pectin", "Fruit, dairy & beverage systems", "7% center"], ["Xanthan Gum", "Viscosity & suspension", "31% center"], ["Guar Gum", "Texture & moisture control", "57% center"], ["Sodium CMC", "Stability & mouthfeel", "84% center"]] },
+  { name: "Sweeteners", groupIndex: 7, products: [["Liquid Glucose", "Confectionery & bakery", "8% center"], ["Sorbitol", "Sweetness & moisture retention", "34% center"], ["Invert Sugar", "Bakery, beverages & desserts", "61% center"], ["Maltodextrine Powder", "Body, solids & processing", "88% center"]] },
+  { name: "Functional", groupIndex: 8, products: [["GMS Flakes", "Emulsification & texture", "7% center"], ["Soya Lecithin", "Chocolate, bakery & processing", "33% center"], ["Whey Protein", "Nutrition & dairy systems", "59% center"], ["Vital Wheat Gluten", "Dough strength & structure", "86% center"]] },
+  { name: "Nutraceuticals", groupIndex: 9, products: [["Whey Protein", "Sports & wellness nutrition", "8% center"], ["Soya Protein", "Plant protein formulations", "34% center"], ["Gelatin 180 Bloom", "Capsules, gummies & nutrition", "61% center"], ["Ascorbic Acid", "Vitamin fortification", "88% center"]] }
+];
 const associates = [
   { name: "CAMPCO", logo: "/partners/campco.png" },
   { name: "Roquette Riddhi Siddhi", logo: "/partners/roquette.png" },
@@ -125,14 +138,22 @@ export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [query, setQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [activePopularCategory, setActivePopularCategory] = useState(1);
+  const [popularPaused, setPopularPaused] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, []);  useEffect(() => {
+    if (popularPaused) return;
+    const rotation = window.setTimeout(() => {
+      setActivePopularCategory(current => (current + 1) % popularShowcases.length);
+    }, 7000);
+    return () => window.clearTimeout(rotation);
+  }, [activePopularCategory, popularPaused]);
   useEffect(() => {
-    const nodes = document.querySelectorAll(".section-head, .product-card, .industry-grid article, .about-visual, .about-copy, .supplier-head, .supplier-feature > div, .insight-grid article, .cta-inner");
+    const nodes = document.querySelectorAll(".section-head, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .cta-inner");
     nodes.forEach((node, index) => {
       node.classList.add("reveal-item");
       node.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 90}ms`);
@@ -155,6 +176,8 @@ export default function Home() {
   const matches = query.trim() ? allProducts.filter(p =>
     `${p.item} ${p.subgroup} ${p.group}`.toLowerCase().includes(query.toLowerCase())
   ) : allProducts;
+
+  const popularShowcase = popularShowcases[activePopularCategory];
 
   const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setCatalogOpen(false); setMenuOpen(false); };
   const jump = () => { setMenuOpen(false); setMegaOpen(false); };
@@ -317,17 +340,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="popular-section" aria-labelledby="popular-heading">
+      <section
+        className={`popular-section ${popularPaused ? "is-paused" : ""}`}
+        aria-labelledby="popular-heading"
+        onMouseEnter={() => setPopularPaused(true)}
+        onMouseLeave={() => setPopularPaused(false)}
+        onFocusCapture={() => setPopularPaused(true)}
+        onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPopularPaused(false); }}
+      >
         <div className="container">
-          <div className="popular-head"><div><span className="eyebrow">Frequently requested</span><h2 id="popular-heading">Popular<br/><em>Food Ingredients</em></h2></div><button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button></div>
-          <div className="popular-grid">
-            {["Cocoa Powder", "Cocoa Butter", "Cocoa Mass", "Choco Chips", "Cake Premix", "Fruit Fillings", "Liquid Glucose", "Baking Powder", "Skimmed Milk Powder", "Whey Protein", "Soya Lecithin", "Vital Wheat Gluten"].map((product, i) => (
-              <button key={product} onClick={() => openQuote(product)}><span>0{i + 1}</span><b>{product}</b><small>Request grade & pricing</small><ArrowRight/></button>
+          <div className="popular-section-head">
+            <span className="eyebrow">Frequently requested</span>
+            <h2 id="popular-heading">Popular Food Ingredients</h2>
+          </div>
+          <div className="popular-category-nav" aria-label="Ingredient categories">
+            <div className="popular-category-scroll" role="tablist" aria-label="Automatically rotating ingredient categories">
+              {popularShowcases.map((showcase, index) => (
+                <button key={showcase.name} role="tab" aria-selected={activePopularCategory === index} className={activePopularCategory === index ? "active" : ""} onClick={() => setActivePopularCategory(index)}>
+                  {showcase.name}
+                </button>
+              ))}
+            </div>
+            <button className="popular-shop-all" onClick={() => { setActiveGroup(popularShowcase.groupIndex); setCatalogOpen(true); }}>View all {popularShowcase.name.toLowerCase()}</button>
+          </div>
+          <div className="popular-ingredient-showcase" key={popularShowcase.name} aria-live="polite">
+            {popularShowcase.products.map(([product, application, position], index) => (
+              <button className="popular-ingredient-card" style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`} onClick={() => openQuote(product)}>
+                <span className="popular-ingredient-image"><img src="/ingredient-portfolio.png" alt={`${product} for commercial food production`} style={{objectPosition: position}} /></span>
+                <strong>{product}</strong>
+                <small>{application}</small>
+              </button>
             ))}
           </div>
         </div>
       </section>
-
       <section className="section industries" id="industries">
         <div className="container">
           <span className="eyebrow light-text">Industries we support</span>
@@ -352,24 +398,27 @@ export default function Home() {
       </section>
 
       <section className="quality-section" id="quality" aria-labelledby="quality-heading">
-        <div className="container quality-grid">
-          <div className="quality-copy">
+        <div className="container">
+          <div className="quality-section-head">
             <span className="eyebrow">Quality-led sourcing</span>
-            <h2 id="quality-heading">Confidence in<br/><em>Every Ingredient</em></h2>
-            <p>We focus on dependable sourcing, appropriate product handling and clear ingredient information. Product specifications, certificates and supporting documents can be requested according to product and supplier availability.</p>
-            <button className="btn dark" onClick={() => openQuote("Product information")}>Request product information <ArrowRight size={16}/></button>
+            <h2 id="quality-heading">Confidence in Every Ingredient</h2>
           </div>
-          <div className="quality-cards">
-            {[
-              [ShieldCheck, "Established suppliers", "Ingredients sourced through established product networks."],
-              [PackageCheck, "Product information support", "Specifications and supporting documents on request."],
-              [BadgeCheck, "Hygienic handling and supply", "Appropriate care throughout commercial fulfilment."],
-              [Globe2, "Repeat requirement consistency", "Support for ongoing professional ingredient needs."]
-            ].map(([Icon, title, text]) => <article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}
+          <div className="quality-grid">
+            <div className="quality-copy">
+              <p>We focus on dependable sourcing, appropriate product handling and clear ingredient information. Product specifications, certificates and supporting documents can be requested according to product and supplier availability.</p>
+              <button className="btn dark" onClick={() => openQuote("Product information")}>Request product information <ArrowRight size={16}/></button>
+            </div>
+            <div className="quality-cards">
+              {[
+                [ShieldCheck, "Established suppliers", "Ingredients sourced through established product networks."],
+                [PackageCheck, "Product information support", "Specifications and supporting documents on request."],
+                [BadgeCheck, "Hygienic handling and supply", "Appropriate care throughout commercial fulfilment."],
+                [Globe2, "Repeat requirement consistency", "Support for ongoing professional ingredient needs."]
+              ].map(([Icon, title, text]) => <article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}
+            </div>
           </div>
         </div>
       </section>
-
       <section className="section insights" id="insights">
         <div className="container">
           <div className="section-title-line"><div><span className="eyebrow">Ingredient knowledge</span><h2>Practical Answers for<br/><em>Better Products</em></h2></div><a href="#contact">Explore ingredient guides <ArrowRight size={16}/></a></div>
@@ -409,14 +458,12 @@ export default function Home() {
       </section>
 
       <section className="faq-section" id="faq" aria-labelledby="faq-heading">
-        <div className="container faq-layout">
-          <div className="faq-intro">
+        <div className="container">
+          <div className="faq-section-head">
             <span className="eyebrow">Frequently asked questions</span>
-            <h2 id="faq-heading">Food Ingredient<br/><em>Supply Questions</em></h2>
-            <button className="text-link" onClick={() => openQuote("Technical guidance")}>
-              Contact our technical team <ArrowRight size={16}/>
-            </button>
+            <h2 id="faq-heading">Food Ingredient Supply Questions</h2>
           </div>
+          <div className="faq-layout">
           <div className="faq-list">
             {[
               ["Which food ingredients does Vikranth supply?", "Vikranth supplies bakery, cocoa, chocolate, dairy, beverage, protein, sweetener, starch, stabilizer and specialty food ingredients for B2B requirements."],
@@ -432,9 +479,12 @@ export default function Home() {
               </details>
             ))}
           </div>
+          <button className="text-link faq-contact" onClick={() => openQuote("Technical guidance")}>
+            Contact our technical team <ArrowRight size={16}/>
+          </button>
+          </div>
         </div>
       </section>
-
       <section className="cta-section" id="contact">
         <div className="cta-bg"/><div className="container cta-inner">
           <span className="eyebrow light-text">Tell us what you need</span>
