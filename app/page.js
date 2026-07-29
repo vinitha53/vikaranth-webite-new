@@ -5,54 +5,54 @@ import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
   ChevronDown, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
   Globe2, Handshake, Headphones, HeartPulse, IceCreamBowl, Leaf,
-  Mail, MapPin, Menu, MessageCircle, Milk, PackageCheck, Phone, Search,
+  Mail, MapPin, Menu, Milk, PackageCheck, Phone, Search,
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 
 const productGroups = [
-  { name: "Bakery Ingredients", icon: CakeSlice, accent: "#efb16f", blurb: "Performance-led systems for consistent crumb, rise and shelf life.", subgroups: {
+  { name: "Bakery Ingredients", icon: CakeSlice, accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP", "Baking Powder"],
     "Bakery Syrups": ["Corn Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
   }},
-  { name: "Chocolate & Confectionery", icon: Sparkles, accent: "#a76443", blurb: "Cocoa, couverture and chocolate solutions made for indulgence.", subgroups: {
+  { name: "Chocolate & Confectionery", icon: Sparkles, accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Beverage Solutions": ["Chocolate Drink"], "Couverture": ["Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3", "CB Plein Aroma Cocoa Powder"]
   }},
-  { name: "Dairy Ingredients", icon: Milk, accent: "#e8d8bb", blurb: "Cream, cheese, butter, milk and whey from trusted makers.", subgroups: {
+  { name: "Dairy Ingredients", icon: Milk, accent: "#e8d8bb", blurb: "Dairy ingredients including whipping cream, cream cheese, butter, milk powder and whey products for food manufacturers.", subgroups: {
     "Cream Products": ["Whipping Cream", "Cream Cheese"], "Butter Products": ["Butter"],
     "Milk Powders": ["Good Day Milk Powder", "Krishna Milk Powder"], "Whey Products": ["Amul Whey Powder"]
   }},
-  { name: "Beverage Ingredients", icon: FlaskConical, accent: "#d68d55", blurb: "Flavours, natural bases and fruit solutions for better beverages.", subgroups: {
+  { name: "Beverage Ingredients", icon: FlaskConical, accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"], "Fruit Ingredients": ["Fruit Crush"]
   }},
-  { name: "Ice Cream Ingredients", icon: IceCreamBowl, accent: "#f4cfc2", blurb: "Bases, flavours, toppings and stabilizers for a smoother scoop.", subgroups: {
+  { name: "Ice Cream Ingredients", icon: IceCreamBowl, accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Flavours": ["French Vanilla", "Cocoa Miscela"],
     "Toppings": ["Dessert Toppings"], "Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Fruit Processing", icon: Leaf, accent: "#c68556", blurb: "Fillings, purees, pectin and glazes with reliable fruit character.", subgroups: {
+  { name: "Fruit Processing", icon: Leaf, accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids & Stabilizers", icon: Beaker, accent: "#a97e56", blurb: "Texture systems engineered for viscosity, stability and mouthfeel.", subgroups: {
+  { name: "Hydrocolloids & Stabilizers", icon: Beaker, accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Sweeteners, Syrups & Starches", icon: Wheat, accent: "#d0a34f", blurb: "Sweetness, body and functional carbohydrates for every formulation.", subgroups: {
+  { name: "Sweeteners, Syrups & Starches", icon: Wheat, accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Sorbitol", "Aspartame"],
     "Starches": ["Maize Starch", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrine Powder"], "Syrups": ["Corn Syrup"]
   }},
-  { name: "Functional Ingredients", icon: CircleGauge, accent: "#b97547", blurb: "Emulsifiers, proteins and process aids for dependable performance.", subgroups: {
+  { name: "Functional Ingredients", icon: CircleGauge, accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
     "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Mono Stearate", "Finamul 90", "DMG", "PGMS", "SMS", "PGPR", "Soya Lecithin"],
     "Proteins": ["Whey Protein", "Whey Powder", "Soya Protein", "Vital Wheat Gluten", "Skimmed Milk Powder"],
     "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
-  { name: "Nutraceutical & Pharma", icon: HeartPulse, accent: "#bf8c6e", blurb: "Protein, gelatin, vitamin and mineral inputs for wellness systems.", subgroups: {
+  { name: "Nutraceutical & Pharma", icon: HeartPulse, accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
     "Protein Ingredients": ["Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate"]
   }},
-  { name: "Food Additives & Preservatives", icon: ShieldCheck, accent: "#956039", blurb: "A comprehensive shelf-life, flavour, colour and processing portfolio.", subgroups: {
+  { name: "Food Additives & Preservatives", icon: ShieldCheck, accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
     "Leavening": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP"],
@@ -295,11 +295,14 @@ export default function Home() {
             <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
           <div className="product-grid">
-            {productGroups.slice(0,8).map((group, i) => {
+            {productGroups.map((group, i) => {
               const Icon = group.icon;
               return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
-                <div className="card-top"><span className="card-no">0{i+1}</span><span className="card-icon"><Icon/></span></div>
-                <div className="category-photo"><img src="/ingredient-portfolio.png" alt="" style={{objectPosition: ["5% center","20% center","43% center","58% center","76% center","94% center"][i]}} /></div>
+                <div className="card-top"><span className="card-no">{String(i + 1).padStart(2, "0")}</span><span className="card-icon"><Icon/></span></div>
+                <div className="category-photo category-placeholder" aria-hidden="true">
+                  <Icon/>
+                  <span>Product image coming soon</span>
+                </div>
                 <h3>{group.name}</h3><p>{group.blurb}</p>
                 <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>View Products <ArrowRight size={15}/></button>
               </article>
@@ -517,7 +520,7 @@ export default function Home() {
         <img src="/chatbot-chef.png" alt="" />
       </button>
       <a className="whatsapp-fab" href="https://wa.me/918754442924" target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp">
-        <MessageCircle />
+        <img src="/whatsapp-branded.png" alt="" />
       </a>
 
       <div className={`catalog-modal ${catalogOpen ? "open" : ""}`} aria-hidden={!catalogOpen}>
