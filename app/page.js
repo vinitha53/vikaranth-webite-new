@@ -162,12 +162,23 @@ export default function Home() {
   return (
     <main>
       <div className="utility">
-        <div className="container utility-inner">
-          <span><BadgeCheck size={14}/> B2B Food Ingredient Supplier</span>
-          <span><MapPin size={14}/> Chennai</span>
-          <span className="utility-tag">Serving businesses across India</span>
-          <a href="tel:+918754442924"><Phone size={14}/> +91 87544 42924</a>
-          <a href="mailto:vikranth.chemicals@gmail.com"><Mail size={14}/> vikranth.chemicals@gmail.com</a>
+        <div className="utility-viewport">
+          <div className="utility-track">
+            <div className="utility-set">
+              <span><BadgeCheck size={14}/> B2B Food Ingredient Supplier</span>
+              <span><MapPin size={14}/> Chennai</span>
+              <span className="utility-tag">Serving businesses across India</span>
+              <a className="utility-contact" href="tel:+918754442924"><Phone size={14}/> +91 87544 42924</a>
+              <a className="utility-contact" href="mailto:vikranth.chemicals@gmail.com"><Mail size={14}/> vikranth.chemicals@gmail.com</a>
+            </div>
+            <div className="utility-set" aria-hidden="true">
+              <span><BadgeCheck size={14}/> B2B Food Ingredient Supplier</span>
+              <span><MapPin size={14}/> Chennai</span>
+              <span className="utility-tag">Serving businesses across India</span>
+              <span className="utility-contact"><Phone size={14}/> +91 87544 42924</span>
+              <span className="utility-contact"><Mail size={14}/> vikranth.chemicals@gmail.com</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -184,7 +195,7 @@ export default function Home() {
             <a href="#contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
-            <button className="search-trigger" onClick={() => setCatalogOpen(true)} aria-label="Search food ingredients"><Search size={19}/><span>Search ingredients</span></button>
+            <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
             <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
           </div>
         </div>
@@ -229,12 +240,6 @@ export default function Home() {
             <div className="hero-trust">
               <span><ShieldCheck/> Quality-led sourcing</span><span><Headphones/> Application-focused support</span><span><Truck/> Reliable business supply</span>
             </div>
-          </div>
-          <div className="hero-card">
-            <span className="live-dot"/> Supply desk online
-            <strong>Need the right food ingredient?</strong>
-            <p>Tell us your product, quantity and delivery city. We will help identify a suitable option.</p>
-            <button onClick={() => openQuote()}>Start a requirement <ArrowRight/></button>
           </div>
         </div>
         <div className="scroll-cue"><span/> Scroll to discover</div>
@@ -342,30 +347,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="testimonial-section" aria-labelledby="testimonial-title">
-        <div className="container testimonial-inner">
-          <span className="eyebrow">Built for business relationships</span>
-          <div className="testimonial-quote">
-            <blockquote id="testimonial-title">Trusted Where Consistency Matters</blockquote>
-          </div>
-          <p className="case-study-intro">We support food businesses with responsive communication, practical ingredient sourcing and dependable repeat requirements. Customer-approved results will be published here as they become available.</p>
-          <div className="testimonial-grid">
-            <article>
-              <small>Case study format</small>
-              <h3>Application-Based Ingredient Selection</h3>
-              <p><b>Challenge:</b> A food business requires an ingredient for a specific product or production issue.</p>
-              <p><b>Solution:</b> Vikranth identifies suitable product options and coordinates the commercial requirement.</p>
-              <p><b>Outcome:</b> The customer moves forward with product evaluation or repeat sourcing.</p>
-            </article>
-            <article>
-              <small>Publishing standard</small>
-              <h3>Genuine Results Only</h3>
-              <p>Vikranth publishes testimonials and measurable outcomes only after receiving customer approval. No invented names, ratings or performance claims are used.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section className="quality-section" id="quality" aria-labelledby="quality-heading">
         <div className="container quality-grid">
           <div className="quality-copy">
@@ -395,6 +376,30 @@ export default function Home() {
               ["Bakery guide", "Choosing Ingredients for Better Cake Texture", "Explore premixes, emulsifiers, proteins and leavening agents.", "03"],
               ["Texture guide", "How Stabilizers Improve Food Texture", "Understand consistency in dairy, beverages and desserts.", "04"]
             ].map(([tag,title,summary,no]) => <article key={no}><span className="article-no">{no}</span><small>{tag}</small><h3>{title}</h3><p>{summary}</p><div><button aria-label={`Read ${title}`}><ArrowRight/></button></div></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="testimonial-section" aria-labelledby="testimonial-title">
+        <div className="container testimonial-inner">
+          <span className="eyebrow">Built for business relationships</span>
+          <div className="testimonial-quote">
+            <blockquote id="testimonial-title">Trusted Where Consistency Matters</blockquote>
+          </div>
+          <p className="case-study-intro">We support food businesses with responsive communication, practical ingredient sourcing and dependable repeat requirements. Customer-approved results will be published here as they become available.</p>
+          <div className="testimonial-grid">
+            <article>
+              <small>Case study format</small>
+              <h3>Application-Based Ingredient Selection</h3>
+              <p><b>Challenge:</b> A food business requires an ingredient for a specific product or production issue.</p>
+              <p><b>Solution:</b> Vikranth identifies suitable product options and coordinates the commercial requirement.</p>
+              <p><b>Outcome:</b> The customer moves forward with product evaluation or repeat sourcing.</p>
+            </article>
+            <article>
+              <small>Publishing standard</small>
+              <h3>Genuine Results Only</h3>
+              <p>Vikranth publishes testimonials and measurable outcomes only after receiving customer approval. No invented names, ratings or performance claims are used.</p>
+            </article>
           </div>
         </div>
       </section>
