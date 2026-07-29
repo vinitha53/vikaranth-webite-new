@@ -214,7 +214,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="home">
-        <video className="hero-img" src="/vikranth-hero.mp4" poster="/hero-ingredients.png" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"></video>
+        <img className="hero-img hero-cake-cutout" src="/choco-paste-cutout.webp" alt="" decoding="async" fetchPriority="high" aria-hidden="true" />
         <div className="hero-shade"/>
         <div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
         <div className="container hero-content">
