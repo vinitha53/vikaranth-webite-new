@@ -1,5 +1,5 @@
 import "./globals.css";
-import "./sections.css";
+import "./sections-v2.css";
 
 const siteUrl = "https://www.vikranthchem.com";
 

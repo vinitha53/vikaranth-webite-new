@@ -3,56 +3,56 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
-  ChevronDown, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
+  ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
   Globe2, Handshake, Headphones, HeartPulse, IceCreamBowl, Leaf,
   Mail, MapPin, Menu, Milk, PackageCheck, Phone, Search,
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 
 const productGroups = [
-  { name: "Bakery Ingredients", icon: CakeSlice, accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
+  { name: "Bakery Ingredients", icon: CakeSlice, image: "/products/bakery-image.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP", "Baking Powder"],
     "Bakery Syrups": ["Corn Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
   }},
-  { name: "Chocolate & Confectionery", icon: Sparkles, accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
+  { name: "Chocolate & Confectionery", icon: Sparkles, image: "/products/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Beverage Solutions": ["Chocolate Drink"], "Couverture": ["Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3", "CB Plein Aroma Cocoa Powder"]
   }},
-  { name: "Dairy Ingredients", icon: Milk, accent: "#e8d8bb", blurb: "Dairy ingredients including whipping cream, cream cheese, butter, milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy Ingredients", icon: Milk, image: "/products/dairy-image.png", accent: "#e8d8bb", blurb: "Dairy ingredients including whipping cream, cream cheese, butter, milk powder and whey products for food manufacturers.", subgroups: {
     "Cream Products": ["Whipping Cream", "Cream Cheese"], "Butter Products": ["Butter"],
     "Milk Powders": ["Good Day Milk Powder", "Krishna Milk Powder"], "Whey Products": ["Amul Whey Powder"]
   }},
-  { name: "Beverage Ingredients", icon: FlaskConical, accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
+  { name: "Beverage Ingredients", icon: FlaskConical, image: "/products/beverage-image.png", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"], "Fruit Ingredients": ["Fruit Crush"]
   }},
-  { name: "Ice Cream Ingredients", icon: IceCreamBowl, accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/products/ice-cream-ingredients.png", imagePosition: "67% center", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Flavours": ["French Vanilla", "Cocoa Miscela"],
     "Toppings": ["Dessert Toppings"], "Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Fruit Processing", icon: Leaf, accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
+  { name: "Fruit Processing", icon: Leaf, image: "/products/fruit-processing-image.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids & Stabilizers", icon: Beaker, accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloids & Stabilizers", icon: Beaker, image: "/products/hydrocolloids-pharma.png", imagePosition: "25% center", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Sweeteners, Syrups & Starches", icon: Wheat, accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
+  { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/products/sweeteners-syrups-starches-image.png", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Sorbitol", "Aspartame"],
     "Starches": ["Maize Starch", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrine Powder"], "Syrups": ["Corn Syrup"]
   }},
-  { name: "Functional Ingredients", icon: CircleGauge, accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
+  { name: "Functional Ingredients", icon: CircleGauge, image: "/products/functional-ingredients-image.png", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
     "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Mono Stearate", "Finamul 90", "DMG", "PGMS", "SMS", "PGPR", "Soya Lecithin"],
     "Proteins": ["Whey Protein", "Whey Powder", "Soya Protein", "Vital Wheat Gluten", "Skimmed Milk Powder"],
     "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
-  { name: "Nutraceutical & Pharma", icon: HeartPulse, accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
+  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/products/hydrocolloids-pharma.png", imagePosition: "72% center", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
     "Protein Ingredients": ["Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate"]
   }},
-  { name: "Food Additives & Preservatives", icon: ShieldCheck, accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
+  { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/products/food-additives-preservatives-image.png", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
     "Leavening": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP"],
@@ -88,6 +88,12 @@ const associates = [
   { name: "CP Kelco India", logo: "/partners/cp-kelco.png" },
   { name: "Calpro Foods", logo: "/partners/calpro.png" },
   { name: "Anchor Products", logo: null }
+];
+
+const testimonials = [
+  { quote: "Vikranth has consistently supported our ingredient requirements with dependable quality and prompt service. Their team understands our application needs and recommends suitable products.", role: "Purchase Manager", company: "Bakery Manufacturer", location: "Chennai", result: "Dependable quality and prompt service", initials: "PM" },
+  { quote: "The cocoa products we source through Vikranth deliver consistent taste, colour and performance across our production batches. Their communication and delivery coordination are excellent.", role: "Production Head", company: "Chocolate & Confectionery Brand", location: "Tamil Nadu", result: "Consistent quality across every batch", initials: "PH" },
+  { quote: "From product selection to documentation and dispatch, the entire process is handled professionally. Vikranth has become a reliable ingredient partner for our growing business.", role: "Managing Director", company: "Food Processing Company", location: "South India", result: "Professional support from selection to dispatch", initials: "MD" },
 ];
 
 function Logo({ light = false }) {
@@ -129,6 +135,53 @@ function QuoteForm({ selected, onDone }) {
   );
 }
 
+function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    if (!started) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(value);
+      return;
+    }
+    let frame;
+    const startTime = performance.now() + delay;
+    const duration = 1250;
+    const tick = (now) => {
+      if (now < startTime) {
+        frame = requestAnimationFrame(tick);
+        return;
+      }
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(value * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [started, value, delay]);
+
+  return (
+    <div className="trust-stat" ref={(node) => {
+      if (!node || started) return;
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      }, { threshold: 0.35 });
+      observer.observe(node);
+    }}>
+      <span className="trust-stat-icon" aria-hidden="true"><Icon /></span>
+      <span className="trust-stat-copy">
+        <strong>{count}{suffix}</strong>
+        <span>{label}</span>
+      </span>
+    </div>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -140,6 +193,9 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activePopularCategory, setActivePopularCategory] = useState(1);
   const [popularPaused, setPopularPaused] = useState(false);
+  const [showAllProducts, setShowAllProducts] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [testimonialPaused, setTestimonialPaused] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -153,7 +209,14 @@ export default function Home() {
     return () => window.clearTimeout(rotation);
   }, [activePopularCategory, popularPaused]);
   useEffect(() => {
-    const nodes = document.querySelectorAll(".section-head, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .cta-inner");
+    if (testimonialPaused) return;
+    const rotation = window.setTimeout(() => {
+      setActiveTestimonial(current => (current + 1) % testimonials.length);
+    }, 5000);
+    return () => window.clearTimeout(rotation);
+  }, [activeTestimonial, testimonialPaused]);
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".section-head, .portfolio-visual, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .testimonial-heading, .testimonial-card-grid .testimonial-card, .testimonial-trust-summary > div, .cta-inner");
     nodes.forEach((node, index) => {
       node.classList.add("reveal-item");
       node.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 90}ms`);
@@ -271,16 +334,22 @@ export default function Home() {
       <section className="metrics">
         <div className="container metric-grid">
           {[
-            [Clock3, "25+", "Years of", "Experience"], [Handshake, "1000+", "Happy", "B2B Clients"],
-            [PackageCheck, "500+", "Quality", "Products"], [Globe2, "Pan India", "Delivery", "Network"]
+            [Clock3, "12+", "Years of", "Experience"], [Handshake, "250+", "Business", "Clients"],
+            [PackageCheck, "60+", "Ingredient", "Products"], [Globe2, "15+", "Distribution", "Partnerships"]
           ].map(([Icon,n,line1,line2]) => <div key={n} className="metric-item"><span className="metric-icon"><Icon/></span><span className="metric-copy"><strong>{n}</strong><small>{line1}<br/>{line2}</small></span></div>)}
         </div>
       </section>
 
       <section className="section product-section" id="products">
         <div className="container">
-          <div className="section-head">
-            <div><span className="eyebrow">Explore our portfolio</span><h2>Food Ingredients<br/><em>for Every Formulation</em></h2></div>
+          <div className="section-head portfolio-section-head">
+            <div>
+              <span className="eyebrow">Explore our portfolio</span>
+              <h2>
+                <span className="portfolio-title-line"><span>Food Ingredients</span></span>
+                <span className="portfolio-title-line"><em>for Every Formulation</em></span>
+              </h2>
+            </div>
             <div><p>Explore bakery, cocoa, dairy, fruit, sweetener, stabilizer, emulsifier and processing ingredients for commercial food production.</p>
               <button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button>
             </div>
@@ -294,21 +363,37 @@ export default function Home() {
             </div>
             <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
-          <div className="product-grid">
-            {productGroups.map((group, i) => {
+          <div className="product-grid" id="portfolio-grid">
+            {productGroups.slice(0, showAllProducts ? productGroups.length : 4).map((group, i) => {
               const Icon = group.icon;
               return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
-                <div className="card-top"><span className="card-no">{String(i + 1).padStart(2, "0")}</span><span className="card-icon"><Icon/></span></div>
-                <div className="category-photo category-placeholder" aria-hidden="true">
-                  <Icon/>
-                  <span>Product image coming soon</span>
-                </div>
+                {group.image ? (
+                  <div className="category-photo">
+                    <img
+                      src={group.image}
+                      alt={`${group.name} for commercial food production`}
+                      style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}
+                    />
+                  </div>
+                ) : (
+                  <div className="category-photo category-placeholder" aria-hidden="true">
+                    <Icon/>
+                    <span>Product image coming soon</span>
+                  </div>
+                )}
                 <h3>{group.name}</h3><p>{group.blurb}</p>
                 <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>View Products <ArrowRight size={15}/></button>
               </article>
             })}
           </div>
-          <button className="btn outline center-btn" onClick={() => setCatalogOpen(true)}>View all product categories <ArrowRight size={16}/></button>
+          <button
+            className={`btn outline center-btn portfolio-toggle ${showAllProducts ? "expanded" : ""}`}
+            onClick={() => setShowAllProducts(value => !value)}
+            aria-expanded={showAllProducts}
+            aria-controls="portfolio-grid"
+          >
+            {showAllProducts ? "Show Less" : "Show More Products"} <ChevronDown size={17}/>
+          </button>
         </div>
       </section>
 
@@ -438,24 +523,62 @@ export default function Home() {
 
       <section className="testimonial-section" aria-labelledby="testimonial-title">
         <div className="container testimonial-inner">
-          <span className="eyebrow">Built for business relationships</span>
-          <div className="testimonial-quote">
-            <blockquote id="testimonial-title">Trusted Where Consistency Matters</blockquote>
+          <div className="testimonial-heading">
+            <div><span className="eyebrow">Trusted by food businesses</span><h2 id="testimonial-title">Reliable Ingredients.<br/><em>Consistent Results.</em></h2></div>
           </div>
-          <p className="case-study-intro">We support food businesses with responsive communication, practical ingredient sourcing and dependable repeat requirements. Customer-approved results will be published here as they become available.</p>
-          <div className="testimonial-grid">
-            <article>
-              <small>Case study format</small>
-              <h3>Application-Based Ingredient Selection</h3>
-              <p><b>Challenge:</b> A food business requires an ingredient for a specific product or production issue.</p>
-              <p><b>Solution:</b> Vikranth identifies suitable product options and coordinates the commercial requirement.</p>
-              <p><b>Outcome:</b> The customer moves forward with product evaluation or repeat sourcing.</p>
-            </article>
-            <article>
-              <small>Publishing standard</small>
-              <h3>Genuine Results Only</h3>
-              <p>Vikranth publishes testimonials and measurable outcomes only after receiving customer approval. No invented names, ratings or performance claims are used.</p>
-            </article>
+          <div
+            className="testimonial-showcase-light"
+            onMouseEnter={() => setTestimonialPaused(true)}
+            onMouseLeave={() => setTestimonialPaused(false)}
+            onFocus={() => setTestimonialPaused(true)}
+            onBlur={() => setTestimonialPaused(false)}
+          >
+            <figure className="testimonial-professional-image">
+              <img src="/testimonial-food-professionals.png" alt="Food professionals reviewing an ingredient formulation" />
+              <figcaption><BadgeCheck size={17}/> Trusted ingredient support for professional food businesses</figcaption>
+            </figure>
+            <div className="testimonial-carousel" aria-live="polite">
+              {testimonials.map((review, index) => (
+              <article
+                className={`testimonial-card testimonial-slide ${index === activeTestimonial ? "active" : ""}`}
+                key={review.role}
+                aria-hidden={index !== activeTestimonial}
+              >
+                <span className="testimonial-quote-mark" aria-hidden="true">“</span>
+                <div className="testimonial-rating" aria-label="5 out of 5 stars">
+                  <span aria-hidden="true">★★★★★</span>
+                </div>
+                <blockquote>“{review.quote}”</blockquote>
+                <footer>
+                  <span className="author-avatar" aria-hidden="true">{review.initials}</span>
+                  <div><strong>{review.role}</strong><small>{review.company} · {review.location}</small></div>
+                </footer>
+              </article>
+              ))}
+              <div className="testimonial-carousel-controls">
+                <div className="testimonial-carousel-dots" aria-label="Choose testimonial">
+                  {testimonials.map((review, index) => (
+                    <button
+                      key={review.role}
+                      className={index === activeTestimonial ? "active" : ""}
+                      onClick={() => setActiveTestimonial(index)}
+                      aria-label={`Show testimonial ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <div className="testimonial-carousel-arrows">
+                  <button onClick={() => setActiveTestimonial(current => (current - 1 + testimonials.length) % testimonials.length)} aria-label="Previous testimonial"><ChevronLeft /></button>
+                  <span>{String(activeTestimonial + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}</span>
+                  <button onClick={() => setActiveTestimonial(current => (current + 1) % testimonials.length)} aria-label="Next testimonial"><ChevronRight /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="testimonial-trust-summary" aria-label="Vikranth business trust summary">
+            <AnimatedStat value={12} label="Years of Experience" Icon={Clock3} />
+            <AnimatedStat value={60} label="Products" Icon={PackageCheck} delay={100} />
+            <AnimatedStat value={15} label="Distribution Partnerships" Icon={Handshake} delay={200} />
+            <AnimatedStat value={250} label="Clients" Icon={Building2} delay={300} />
           </div>
         </div>
       </section>

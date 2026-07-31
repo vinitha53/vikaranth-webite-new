@@ -90,6 +90,9 @@ body .btn:before,body .btn:after{opacity:0;animation:none!important}body .btn:ho
 /* Portfolio placeholders for the eleven ingredient categories */
 .category-placeholder{position:relative;display:grid;place-items:center;background:linear-gradient(145deg,color-mix(in srgb,var(--accent),#fff 68%),#f8f1e8);color:#6f351b}.category-placeholder:before{content:"";position:absolute;inset:12px;border:1px dashed color-mix(in srgb,var(--accent),#6f351b 32%);border-radius:7px;opacity:.55}.category-placeholder>svg{width:42px;height:42px;stroke-width:1.45;transition:transform .45s ease}.category-placeholder>span{position:absolute;bottom:18px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#765847;opacity:.76}.product-card:hover .category-placeholder>svg{transform:translateY(-5px) scale(1.08) rotate(-3deg)}@media(max-width:700px){.product-card{min-height:430px}}
 
+/* Expandable three-column portfolio */
+.product-section .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1240px;margin:0 auto;gap:20px}.product-section .product-card{min-height:390px}.product-section .category-photo{height:auto;aspect-ratio:4/3}.product-section .product-card p,.product-section .product-card>button{opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease,visibility .3s}.product-section .product-card:hover p,.product-section .product-card:hover>button,.product-section .product-card:focus-within p,.product-section .product-card:focus-within>button{opacity:1;visibility:visible;transform:none}.portfolio-toggle svg{transition:transform .3s ease}.portfolio-toggle.expanded svg{transform:rotate(180deg)}@media(max-width:1050px){.product-section .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.product-section .product-grid{grid-template-columns:1fr}.product-section .product-card{min-height:430px}.product-section .product-card p,.product-section .product-card>button{opacity:1;visibility:visible;transform:none}}
+
 /* Premium orange CTA system */
 .btn{position:relative;isolation:isolate;overflow:hidden;border-radius:999px!important;padding:15px 28px!important;border:1px solid rgba(255,184,103,.7)!important;background:linear-gradient(135deg,#f36a28 0%,#d84a18 52%,#f47a31 100%)!important;color:#fff!important;box-shadow:0 9px 24px rgba(205,74,22,.28),inset 0 1px 0 rgba(255,255,255,.3);font-weight:800!important;letter-spacing:.015em!important;text-transform:none!important;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,filter .3s!important}.btn:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 12% 30%,rgba(255,238,176,.95) 0 1.2px,transparent 2px),radial-gradient(circle at 32% 72%,rgba(255,214,127,.85) 0 1px,transparent 2px),radial-gradient(circle at 52% 22%,rgba(255,245,205,.9) 0 1.1px,transparent 2px),radial-gradient(circle at 72% 66%,rgba(255,220,139,.85) 0 1.3px,transparent 2px),radial-gradient(circle at 89% 28%,rgba(255,246,207,.95) 0 1px,transparent 2px);background-size:66px 46px,82px 58px,72px 52px,94px 62px,78px 55px;opacity:.45;animation:ctaGlitter 3.2s linear infinite}.btn:after{content:"";position:absolute;inset:-50% auto -50% -35%;width:30%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:ctaSweep 3.4s ease-in-out infinite}.btn:hover{transform:translateY(-4px) scale(1.025)!important;filter:saturate(1.12) brightness(1.06);box-shadow:0 15px 34px rgba(205,74,22,.4),0 0 0 5px rgba(243,106,40,.12),inset 0 1px 0 rgba(255,255,255,.38)!important}.btn:active{transform:translateY(-1px) scale(.985)!important}.btn.outline{background:linear-gradient(135deg,#5a2312,#36150c)!important;border-color:#e98a42!important;box-shadow:0 9px 24px rgba(65,22,7,.24),0 0 0 1px rgba(233,138,66,.15)}.btn.ghost{background:linear-gradient(135deg,rgba(243,106,40,.92),rgba(192,56,16,.94))!important;border-color:rgba(255,190,119,.8)!important;backdrop-filter:blur(10px)}.btn svg{position:relative;z-index:1;filter:drop-shadow(0 1px 2px rgba(83,22,3,.25))}@keyframes ctaGlitter{0%{background-position:0 0,0 0,0 0,0 0,0 0;opacity:.32}50%{opacity:.72}100%{background-position:66px -46px,-82px 58px,72px 52px,-94px -62px,78px -55px;opacity:.32}}@keyframes ctaSweep{0%,35%{left:-45%;opacity:0}50%{opacity:.9}75%,100%{left:125%;opacity:0}}@media(prefers-reduced-motion:reduce){.btn:before,.btn:after{animation:none!important}.btn:before{opacity:.28}}
 /* Centered About heading matching the portfolio title treatment */
@@ -258,6 +261,31 @@ html{scroll-behavior:smooth}
 @media(hover:hover){.popular-ingredient-card:hover .popular-ingredient-image img{transform:scale(1.41);filter:saturate(1.08)}.popular-ingredient-card:hover strong{color:#8b3f1d}.popular-ingredient-card.is-visible:hover{transform:translateY(-5px)}}
 @media(max-width:1100px){.popular-category-nav{align-items:flex-start;flex-direction:column;gap:14px}.popular-category-scroll{width:100%}.popular-shop-all{align-self:flex-end}.popular-ingredient-showcase{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}}
 @media(max-width:620px){.popular-section{padding:42px 0 54px}.popular-category-nav{margin-bottom:22px}.popular-category-scroll{margin-right:calc((100vw - 100%)/-2);padding-right:18px;scroll-snap-type:x proximity}.popular-category-scroll button{padding:10px 16px;font-size:12px;scroll-snap-align:start}.popular-shop-all{align-self:flex-start;font-size:12px}.popular-ingredient-showcase{display:flex;gap:12px;overflow-x:auto;margin-right:calc((100vw - 100%)/-2);padding:0 18px 8px 0;scroll-snap-type:x mandatory;scrollbar-width:none}.popular-ingredient-showcase::-webkit-scrollbar{display:none}.popular-ingredient-card{flex:0 0 min(78vw,300px);scroll-snap-align:start}.popular-ingredient-card strong{font-size:14px}.popular-ingredient-card small{font-size:12px}}
+
+/* Keep the announcement strip and main navigation together while scrolling. */
+.utility{
+  height:44px;
+  position:sticky;
+  top:0;
+  z-index:40;
+}
+.utility+header,
+.utility+header:not(.scrolled),
+.utility+header.scrolled{
+  position:sticky;
+  top:44px;
+  height:84px;
+}
+@media(max-width:820px){
+  .utility{height:38px}
+  .utility+header,
+  .utility+header:not(.scrolled),
+  .utility+header.scrolled{
+    top:38px;
+    height:68px;
+  }
+  nav{inset:106px 0 0}
+}
 @media(prefers-reduced-motion:reduce){.popular-category-scroll,.popular-ingredient-showcase{scroll-behavior:auto}.popular-ingredient-image img,.popular-category-scroll button{transition:none!important}}
 /* Timed popular-category rotation feedback */
 .popular-category-scroll button{position:relative;overflow:hidden}
@@ -284,3 +312,25 @@ html{scroll-behavior:smooth}
 @media(max-width:820px){.popular-section-head{margin-bottom:38px}.popular-section-head h2{font-size:clamp(31px,6vw,43px)}}
 @media(max-width:540px){.popular-section-head{margin-bottom:30px}.popular-section-head .eyebrow{font-size:11px;margin-bottom:10px}.popular-section-head h2{font-size:29px;line-height:1.18}.popular-section-head:after{width:50px;margin-top:15px}}
 @media(prefers-reduced-motion:reduce){.popular-section-head.reveal-item .eyebrow,.popular-section-head.reveal-item h2{opacity:1;transform:none;animation:none!important}.popular-section-head.reveal-item:after{transform:scaleX(1);transition:none}}
+
+/* Readable four-card ingredient portfolio with richer motion */
+.product-section .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1240px;gap:20px}
+.product-section .product-card{min-height:440px;animation:ingredientCardIn .72s cubic-bezier(.16,1,.3,1) var(--delay,0ms) both;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .35s}
+.product-section .product-card h3{margin:40px 18px 12px;min-height:46px;font-size:17px;line-height:1.35;letter-spacing:-.015em}
+.product-section .product-card p{margin:0 18px 52px;font-size:14px;line-height:1.62;color:#5f5148;opacity:1;visibility:visible;transform:none}
+.product-section .product-card>button{left:18px;bottom:20px;font-size:13px;opacity:1;visibility:visible;transform:none;transition:gap .3s,color .3s,transform .3s}
+.product-section .product-card>button svg{transition:transform .3s}
+.product-section .category-photo{overflow:hidden}
+.product-section .category-photo img{transform:scale(1.12);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .45s}
+.product-section .card-icon{transition:transform .45s cubic-bezier(.16,1,.3,1),background .35s,box-shadow .35s}
+@media(hover:hover){
+  .product-section .product-card:hover{transform:translateY(-9px);border-color:#d8a46e;box-shadow:0 20px 38px rgba(67,32,13,.16)}
+  .product-section .product-card:hover .category-photo img{transform:scale(1.22);filter:saturate(1.08) contrast(1.03)}
+  .product-section .product-card:hover .card-icon{transform:translateY(-4px) rotate(-7deg) scale(1.08);background:#91451f;box-shadow:0 9px 18px rgba(63,27,10,.25)}
+  .product-section .product-card:hover>button{gap:12px;color:#a44d21;transform:translateX(2px)}
+  .product-section .product-card:hover>button svg{transform:translateX(4px)}
+}
+@keyframes ingredientCardIn{from{opacity:0;transform:translateY(28px) scale(.975)}to{opacity:1;transform:none}}
+@media(max-width:1050px){.product-section .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.product-section .product-grid{grid-template-columns:1fr}.product-section .product-card{min-height:430px}.product-section .product-card h3{font-size:18px}.product-section .product-card p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.product-section .product-card{animation:none!important}.product-section .product-card,.product-section .category-photo img,.product-section .card-icon,.product-section .product-card>button,.product-section .product-card>button svg{transition:none!important}}
