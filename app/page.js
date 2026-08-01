@@ -311,14 +311,25 @@ export default function Home() {
       </header>
 
       <section className="hero" id="home">
-        <img className="hero-img hero-cake-cutout" src="/choco-paste-cutout.webp" alt="" decoding="async" fetchPriority="high" aria-hidden="true" />
+        <video
+          className="hero-media"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-chocolate-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/hero-chocolate-ingredients.mp4" type="video/mp4" />
+        </video>
         <div className="hero-shade"/>
-        <div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
+        <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker"><span/> Food ingredient supplier in Chennai</span>
-            <h1>Food Ingredients That<br/><em>Build Better Products</em></h1>
-            <p>Source bakery, chocolate, dairy, beverage and specialty food ingredients through one dependable B2B partner.</p>
+            <span className="hero-kicker"><span/> Food ingredient supplier · Chennai</span>
+            <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
+            <p>Bakery, chocolate, dairy, beverage and specialty ingredients—sourced for reliable performance at production scale.</p>
             <div className="hero-buttons">
               <button className="btn gold" onClick={() => setCatalogOpen(true)}>Explore ingredients <ArrowRight size={17}/></button>
               <button className="btn ghost" onClick={() => openQuote()}>Request a quote</button>
