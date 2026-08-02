@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { industries } from "../data/catalog";
+import { DetailHeader,DetailFooter,styles } from "../components/DetailChrome";
+export const metadata={title:"Food Ingredient Industries | Vikranth Chemical Corporation",description:"Explore food ingredient solutions for bakery, chocolate, dairy, beverage, ice cream and specialty industries in Chennai."};
+export default function IndustriesPage(){return <main className={styles.page}><DetailHeader/><section className={styles.hero}><div className={styles.heroCopy}><small>Industries we support</small><h1>Ingredient Solutions for Growing Food Businesses</h1><p>Choose an industry to explore relevant products, applications and sourcing support.</p></div></section><div className={styles.content}><section className={styles.productGrid}>{industries.map(item=><Link className={styles.productCard} href={`/industries/${item.slug}`} key={item.slug}><img src={item.image} alt=""/><div><h3>{item.name}</h3><p>Explore solutions →</p></div></Link>)}</section></div><DetailFooter/></main>}

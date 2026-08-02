@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { products } from "../data/catalog";
+import { DetailHeader, DetailFooter, styles } from "../components/DetailChrome";
+export const metadata={title:"Food Ingredients in Chennai | Vikranth Chemical Corporation",description:"Explore Vikranth Chemical Corporation's food ingredient portfolio for bakery, chocolate, dairy, beverage and specialty applications."};
+export default function ProductsPage(){return <main className={styles.page}><DetailHeader/><section className={styles.hero}><div className={styles.heroCopy}><small>Complete ingredient portfolio</small><h1>Food Ingredients for Professional Production</h1><p>Explore canonical product pages with application guidance, sourcing information and documentation support.</p></div></section><div className={styles.content}><section className={styles.productGrid}>{products.map(item=><Link className={styles.productCard} href={`/products/${item.slug}`} key={item.slug}><img src={item.image} alt=""/><div><h3>{item.name}</h3><p>{item.category} →</p></div></Link>)}</section></div><DetailFooter/></main>}

@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
   ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
@@ -8,36 +8,39 @@ import {
   Mail, MapPin, Menu, Milk, PackageCheck, Phone, Search,
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
+import { slugify } from "./data/catalog";
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/products/bakery-image.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"],
-    "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP", "Baking Powder"],
+    "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"],
     "Bakery Syrups": ["Corn Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
   }},
   { name: "Chocolate & Confectionery", icon: Sparkles, image: "/products/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
-    "Chocolate Paste": ["Choco Paste"], "Beverage Solutions": ["Chocolate Drink"], "Couverture": ["Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3", "CB Plein Aroma Cocoa Powder"]
+    "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"],
+    "Couverture Chocolate — Callebaut": ["811", "823", "W2", "Bitter Chocolate 70-3"],
+    "Couverture Chocolate — Cacao Barry": ["CB Plein Aroma Cocoa Powder"]
   }},
   { name: "Dairy Ingredients", icon: Milk, image: "/products/dairy-image.png", accent: "#e8d8bb", blurb: "Dairy ingredients including whipping cream, cream cheese, butter, milk powder and whey products for food manufacturers.", subgroups: {
     "Cream Products": ["Whipping Cream", "Cream Cheese"], "Butter Products": ["Butter"],
     "Milk Powders": ["Good Day Milk Powder", "Krishna Milk Powder"], "Whey Products": ["Amul Whey Powder"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/products/beverage-image.png", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
-    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"], "Fruit Ingredients": ["Fruit Crush"]
+    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"], "Fruit Beverage Ingredients": ["Fruit Crush"]
   }},
   { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/products/ice-cream-ingredients.png", imagePosition: "67% center", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
-    "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Flavours": ["French Vanilla", "Cocoa Miscela"],
-    "Toppings": ["Dessert Toppings"], "Stabilizers": ["Ice Cream Stabilizer"]
+    "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Ice Cream Flavours": ["French Vanilla", "Cocoa Miscela"],
+    "Ice Cream Toppings": ["Dessert Toppings"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Fruit Processing", icon: Leaf, image: "/products/fruit-processing-image.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids & Stabilizers", icon: Beaker, image: "/products/hydrocolloids-pharma.png", imagePosition: "25% center", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
-    "Pectin": ["Genu Pectin"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
-    "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Stabilizers": ["Ice Cream Stabilizer"]
+  { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/products/hydrocolloids-pharma.png", imagePosition: "25% center", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+    "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
+    "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/products/sweeteners-syrups-starches-image.png", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Sorbitol", "Aspartame"],
@@ -55,9 +58,41 @@ const productGroups = [
   { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/products/food-additives-preservatives-image.png", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
-    "Leavening": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP"],
-    "Colours, Flavours & Extracts": ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"]
+    "Emulsifiers": ["DMG", "PGMS", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Mono Stearate", "Finamul 90"],
+    "Hydrocolloids": ["Xanthan Gum", "Guar Gum", "Sodium CMC"],
+    "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame", "Malt Extract Powder"],
+    "Starches & Functional Ingredients": ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Whey Powder", "Soya Protein", "Skimmed Milk Powder"],
+    "Leavening & Baking Ingredients": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"],
+    "Minerals & Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"],
+    "Colours, Flavours & Natural Extracts": ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"]
   }}
+];
+
+const industrySlugs = ["bakery-ingredients","chocolate-confectionery","dairy-ingredients","beverage-ingredients","ice-cream-ingredients","fruit-processing","hydrocolloids-stabilizers","sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma","food-additives-preservatives"];
+const productSlugAliases = { "811":"callebaut-811", "823":"callebaut-823", "w2":"callebaut-w2", "maltodextrine-powder":"maltodextrin-powder", "sorbitan-mono-stearate":"sorbitan-monostearate" };
+const canonicalProductSlug = (name) => productSlugAliases[slugify(name)] || slugify(name);
+const productCategories = productGroups.map((group, index) => ({
+  id: String(index + 1).padStart(2, "0"),
+  name: group.name,
+  description: group.blurb,
+  image: null,
+  thumbnail: null,
+  href: `/industries/${industrySlugs[index]}`
+}));
+
+const ecosystemImage = "/ingredient-portfolio.png";
+const ecosystemCategories = [
+  { number: "01", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 0 },
+  { number: "02", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 1 },
+  { number: "03", name: <>Dairy<br/>Ingredients</>, label: "Dairy Ingredients", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 2 },
+  { number: "04", name: <>Beverage<br/>Ingredients</>, label: "Beverage Ingredients", icon: FlaskConical, href: "/industries/beverage-ingredients", groupIndex: 3 },
+  { number: "05", name: <>Ice Cream<br/>Ingredients</>, label: "Ice Cream Ingredients", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 4 },
+  { number: "06", name: <>Fruit<br/>Processing</>, label: "Fruit Processing", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 5 },
+  { number: "07", name: <>Hydrocolloids &amp;<br/>Stabilizers</>, label: "Hydrocolloids & Stabilizers", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 6 },
+  { number: "08", name: <>Sweeteners, Syrups<br/>&amp; Starches</>, label: "Sweeteners, Syrups & Starches", icon: CircleGauge, href: "/industries/sweeteners-syrups-starches", groupIndex: 7 },
+  { number: "09", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 8 },
+  { number: "10", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 9 },
+  { number: "11", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 10 }
 ];
 
 const industries = [
@@ -81,14 +116,19 @@ const popularShowcases = [
 ];
 const associates = [
   { name: "CAMPCO", logo: "/partners/campco.png" },
-  { name: "Roquette Riddhi Siddhi", logo: "/partners/roquette.png" },
-  { name: "Döhler India", logo: "/partners/doehler.png" },
-  { name: "Nitta Gelatin India", logo: "/partners/nitta.png" },
   { name: "Delta Nutritives", logo: "/partners/delta.png" },
-  { name: "CP Kelco India", logo: "/partners/cp-kelco.png" },
-  { name: "Calpro Foods", logo: "/partners/calpro.png" },
-  { name: "Anchor Products", logo: null }
+  { name: "Roquette", logo: "/partners/roquette.png" },
+  { name: "Nitta Gelatin India", logo: "/partners/nitta.png" },
+  { name: "Döhler", logo: "/partners/doehler.png" },
+  { name: "CP Kelco", logo: "/partners/cp-kelco.png" },
+  { name: "Calpro Specialities Pvt. Ltd.", logo: "/partners/calpro.png" },
+  { name: "Gujarat Ambuja Exports Ltd.", logo: "/partners/ambuja.png" },
+  { name: "Fine Organics", logo: "/partners/fine-organics.png" },
+  { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.png" },
+  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.png" },
+  { name: "Anchor (In-house manufacturing brand)", logo: null }
 ];
+const partnerSlugs = ["campco","delta-nutritives","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd","anchor"];
 
 const testimonials = [
   { quote: "Vikranth has consistently supported our ingredient requirements with dependable quality and prompt service. Their team understands our application needs and recommends suitable products.", role: "Purchase Manager", company: "Bakery Manufacturer", location: "Chennai", result: "Dependable quality and prompt service", initials: "PM" },
@@ -182,10 +222,51 @@ function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
   );
 }
 
+function IngredientEcosystem() {
+  const renderCard = (category) => {
+    const Icon = category.icon;
+    return (
+      <a className="vcc-ecosystem-card" href={category.href} key={category.number} aria-label={`Explore ${category.label}`}>
+        <span className="vcc-ecosystem-number">{category.number}</span>
+        <Icon aria-hidden="true"/>
+        <span className="vcc-ecosystem-name">{category.name}</span>
+        <ArrowRight className="vcc-ecosystem-arrow" aria-hidden="true"/>
+      </a>
+    );
+  };
+
+  return (
+    <section className="vcc-ingredient-ecosystem" aria-labelledby="ecosystem-title">
+      <div className="vcc-ecosystem-heading">
+        <span className="vcc-ecosystem-eyebrow"><i/>The Vikranth Ingredient Ecosystem<i/></span>
+        <h2 id="ecosystem-title">Everything Your Product Needs</h2>
+        <p>Eleven focused portfolios. One dependable B2B ingredient partner.</p>
+      </div>
+      <div className="vcc-ecosystem-layout">
+        <svg className="vcc-ecosystem-connectors" viewBox="0 0 1400 610" preserveAspectRatio="none" aria-hidden="true">
+          <g>{[65,185,305,425,545].map((y, i) => <path key={`l-${y}`} d={`M 310 ${y} L ${355 + i * 4} ${y} L ${430 + i * 7} ${105 + i * 100}`}/>)}</g>
+          <g>{[55,155,255,355,455,555].map((y, i) => <path key={`r-${y}`} d={`M 1090 ${y} L ${1045 - i * 3} ${y} L ${970 - i * 5} ${82 + i * 89}`}/>)}</g>
+          <g>{[65,185,305,425,545].map(y => <circle key={`lc-${y}`} cx="310" cy={y} r="5"/>)}{[55,155,255,355,455,555].map(y => <circle key={`rc-${y}`} cx="1090" cy={y} r="5"/>)}</g>
+        </svg>
+        <div className="vcc-ecosystem-column vcc-ecosystem-left">{ecosystemCategories.slice(0, 5).map(renderCard)}</div>
+        <div className="vcc-ecosystem-centre">
+          <div className="vcc-ecosystem-image-wrap">
+            <img src={ecosystemImage} alt="Vikranth food ingredient portfolio featuring bakery, chocolate, dairy, beverage, fruit and specialty ingredients"/>
+            <div className="vcc-ecosystem-badge"><IceCreamBowl aria-hidden="true"/><strong>B2B</strong><span>Ingredient<br/>Portfolio</span><i/></div>
+          </div>
+          <a className="vcc-ecosystem-cta" href="/products">Explore All Products</a>
+        </div>
+        <div className="vcc-ecosystem-column vcc-ecosystem-right">{ecosystemCategories.slice(5).map(renderCard)}</div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
-  const [activeGroup, setActiveGroup] = useState(0);
+  const [activeGroup, setActiveGroup] = useState(1);
+  const [thumbnailStart, setThumbnailStart] = useState(0);
   const [catalogOpen, setCatalogOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -196,6 +277,7 @@ export default function Home() {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
+  const megaMenuRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -233,6 +315,27 @@ export default function Home() {
     return () => { document.body.style.overflow = ""; };
   }, [quoteOpen, catalogOpen, menuOpen]);
 
+  useEffect(() => {
+    if (!megaOpen) return;
+    const closeOnOutsideClick = (event) => {
+      if (!megaMenuRef.current?.contains(event.target)) setMegaOpen(false);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMegaOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [megaOpen]);
+
+  useEffect(() => {
+    if (activeGroup < thumbnailStart) setThumbnailStart(activeGroup);
+    if (activeGroup > thumbnailStart + 4) setThumbnailStart(activeGroup - 4);
+  }, [activeGroup, thumbnailStart]);
+
   const allProducts = useMemo(() => productGroups.flatMap((group, groupIndex) =>
     Object.entries(group.subgroups).flatMap(([subgroup, items]) => items.map(item => ({ item, subgroup, group: group.name, groupIndex })))
   ), []);
@@ -268,15 +371,15 @@ export default function Home() {
         </div>
       </div>
 
-      <header className={scrolled ? "scrolled" : ""}>
+      <header className={scrolled ? "scrolled" : ""} ref={megaMenuRef}>
         <div className="container nav-wrap">
           <Logo />
           <nav className={menuOpen ? "open" : ""}>
             <a href="#home" onClick={jump}>Home</a>
             <a href="#about" onClick={jump}>About</a>
-            <button className="nav-product" onClick={() => setMegaOpen(v => !v)}>Products <ChevronDown size={14}/></button>
+            <button className="nav-product" onClick={() => setMegaOpen(v => !v)} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
             <a href="#industries" onClick={jump}>Industries</a>
-            <a href="#suppliers" onClick={jump}>Suppliers</a>
+            <a href="/associates">Suppliers</a>
             <a href="#insights" onClick={jump}>Blog</a>
             <a href="#contact" onClick={jump}>Contact</a>
           </nav>
@@ -285,26 +388,41 @@ export default function Home() {
             <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
           </div>
         </div>
-        <div className={`mega-menu ${megaOpen ? "show" : ""}`}>
-          <div className="container mega-grid">
-            <div className="mega-list">
-              <span className="eyebrow">Explore 100+ ingredients</span>
-              {productGroups.map((group, i) => (
-                <button key={group.name} className={activeGroup === i ? "active" : ""} onMouseEnter={() => setActiveGroup(i)} onClick={() => setActiveGroup(i)}>
-                  <group.icon size={17}/>{group.name}<ChevronRight size={14}/>
-                </button>
-              ))}
-            </div>
-            <div className="mega-content">
-              <div className="mega-heading"><span className="icon-badge"><span>{(() => { const I = productGroups[activeGroup].icon; return <I/>; })()}</span></span>
-                <div><h3>{productGroups[activeGroup].name}</h3><p>{productGroups[activeGroup].blurb}</p></div>
-              </div>
-              <div className="mega-columns">
-                {Object.entries(productGroups[activeGroup].subgroups).map(([sub, items]) => (
-                  <div key={sub}><b>{sub}</b>{items.map(item => <button key={item} onClick={() => openQuote(item)}>{item}</button>)}</div>
+        <div id="products-mega-menu" className={`mega-menu vcc-products-mega-menu ${megaOpen ? "show" : ""}`} aria-hidden={!megaOpen}>
+          <div className="vcc-mega-grid">
+            <div className="vcc-mega-list">
+              <span className="vcc-mega-eyebrow">Find your ingredient category</span>
+              <h2>Built Around Your<br/>Application</h2>
+              <p>Browse all eleven portfolios and move directly<br/>to the ingredients your business needs.</p>
+              <div className="vcc-category-rows" role="listbox" aria-label="Product categories">
+                {productCategories.map((category, i) => (
+                  <button key={category.id} role="option" aria-selected={activeGroup === i} className={activeGroup === i ? "active" : ""} onMouseEnter={() => setActiveGroup(i)} onFocus={() => setActiveGroup(i)} onClick={() => setActiveGroup(i)}>
+                    <span>{category.id}</span><strong>{category.name}</strong>{activeGroup === i && <ArrowRight aria-hidden="true"/>}
+                  </button>
                 ))}
               </div>
-              <button className="text-link" onClick={() => { setMegaOpen(false); setCatalogOpen(true); }}>View complete product catalogue <ArrowRight size={15}/></button>
+            </div>
+            <div className="vcc-mega-preview" style={productCategories[activeGroup].image ? {backgroundImage: `url(${productCategories[activeGroup].image})`} : undefined}>
+              {!productCategories[activeGroup].image && <div className="vcc-main-placeholder" aria-hidden="true"><span>Main category image placeholder</span><small>{productCategories[activeGroup].name}</small></div>}
+              <div className="vcc-preview-overlay"/>
+              <div className="vcc-preview-copy">
+                <span>Selected category {productCategories[activeGroup].id}</span>
+                <h3>{productCategories[activeGroup].name}</h3>
+                <p>{productCategories[activeGroup].description}</p>
+                <a href={productCategories[activeGroup].href}>View Products</a>
+              </div>
+              <div className="vcc-thumbnails">
+                <button className="vcc-thumb-control" aria-label="Previous categories" disabled={thumbnailStart === 0} onClick={() => setThumbnailStart(start => Math.max(0, start - 1))}><ChevronLeft/></button>
+                <div className="vcc-thumb-track">
+                  {productCategories.slice(thumbnailStart, thumbnailStart + 5).map((category) => {
+                    const i = Number(category.id) - 1;
+                    return <button key={category.id} className={activeGroup === i ? "active" : ""} onClick={() => setActiveGroup(i)} aria-label={`Select ${category.name}`}>
+                      {category.thumbnail ? <img src={category.thumbnail} alt=""/> : <span>Category image {category.id}</span>}
+                    </button>;
+                  })}
+                </div>
+                <button className="vcc-thumb-control" aria-label="Next categories" disabled={thumbnailStart >= productCategories.length - 5} onClick={() => setThumbnailStart(start => Math.min(productCategories.length - 5, start + 1))}><ChevronRight/></button>
+              </div>
             </div>
           </div>
         </div>
@@ -331,7 +449,7 @@ export default function Home() {
             <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
             <p>Bakery, chocolate, dairy, beverage and specialty ingredients—sourced for reliable performance at production scale.</p>
             <div className="hero-buttons">
-              <button className="btn gold" onClick={() => setCatalogOpen(true)}>Explore ingredients <ArrowRight size={17}/></button>
+              <a className="btn gold" href="/products">Explore ingredients <ArrowRight size={17}/></a>
               <button className="btn ghost" onClick={() => openQuote()}>Request a quote</button>
             </div>
             <div className="hero-trust">
@@ -362,7 +480,7 @@ export default function Home() {
               </h2>
             </div>
             <div><p>Explore bakery, cocoa, dairy, fruit, sweetener, stabilizer, emulsifier and processing ingredients for commercial food production.</p>
-              <button className="text-link" onClick={() => setCatalogOpen(true)}>Search all ingredients <ArrowRight size={16}/></button>
+              <a className="text-link" href="/products">Search all ingredients <ArrowRight size={16}/></a>
             </div>
           </div>
           <div className="portfolio-visual">
@@ -380,29 +498,17 @@ export default function Home() {
               return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
                   <div className="category-photo">
-                    <img
-                      src={group.image}
-                      alt={`${group.name} for commercial food production`}
-                      style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}
-                    />
+                    <img src={group.image} alt={`${group.name} for commercial food production`} style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}/>
                   </div>
                 ) : (
-                  <div className="category-photo category-placeholder" aria-hidden="true">
-                    <Icon/>
-                    <span>Product image coming soon</span>
-                  </div>
+                  <div className="category-photo category-placeholder" aria-hidden="true"><Icon/><span>Product image coming soon</span></div>
                 )}
                 <h3>{group.name}</h3><p>{group.blurb}</p>
-                <button onClick={() => { setActiveGroup(i); setCatalogOpen(true); }}>View Products <ArrowRight size={15}/></button>
+                <a className="product-route" href={`/industries/${industrySlugs[i]}`}>View Products <ArrowRight size={15}/></a>
               </article>
             })}
           </div>
-          <button
-            className={`btn outline center-btn portfolio-toggle ${showAllProducts ? "expanded" : ""}`}
-            onClick={() => setShowAllProducts(value => !value)}
-            aria-expanded={showAllProducts}
-            aria-controls="portfolio-grid"
-          >
+          <button className={`btn outline center-btn portfolio-toggle ${showAllProducts ? "expanded" : ""}`} onClick={() => setShowAllProducts(value => !value)} aria-expanded={showAllProducts} aria-controls="portfolio-grid">
             {showAllProducts ? "Show Less" : "Show More Products"} <ChevronDown size={17}/>
           </button>
         </div>
@@ -460,15 +566,15 @@ export default function Home() {
                 </button>
               ))}
             </div>
-            <button className="popular-shop-all" onClick={() => { setActiveGroup(popularShowcase.groupIndex); setCatalogOpen(true); }}>View all {popularShowcase.name.toLowerCase()}</button>
+            <a className="popular-shop-all" href={`/industries/${industrySlugs[popularShowcase.groupIndex]}`}>View all {popularShowcase.name.toLowerCase()}</a>
           </div>
           <div className="popular-ingredient-showcase" key={popularShowcase.name} aria-live="polite">
             {popularShowcase.products.map(([product, application, position], index) => (
-              <button className="popular-ingredient-card" style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`} onClick={() => openQuote(product)}>
+              <a className="popular-ingredient-card" href={`/products/${canonicalProductSlug(product)}`} style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`}>
                 <span className="popular-ingredient-image"><img src="/ingredient-portfolio.png" alt={`${product} for commercial food production`} style={{objectPosition: position}} /></span>
                 <strong>{product}</strong>
                 <small>{application}</small>
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -487,7 +593,7 @@ export default function Home() {
       <section className="supplier-section" id="suppliers">
         <div className="container">
           <div className="supplier-head"><div><span className="eyebrow">Our product network</span><h2>Established Manufacturers.<br/><em>One Reliable Supplier.</em></h2></div><p>Explore a broader ingredient portfolio through a local team that understands your product and sourcing requirements.</p></div>
-          <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((partner,i) => <div className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></div>)}</div></div>
+          <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
           <div className="supplier-feature">
             <div><Globe2/><span>Worldwide sourcing</span><p>Access respected ingredient producers and specialized grades.</p></div>
             <div><Truck/><span>India-wide fulfillment</span><p>Commercial quantities delivered through an established network.</p></div>
@@ -531,6 +637,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <IngredientEcosystem/>
 
       <section className="testimonial-section" aria-labelledby="testimonial-title">
         <div className="container testimonial-inner">
@@ -644,7 +752,7 @@ export default function Home() {
         <div className="container footer-grid">
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
           <div><h4>Explore</h4><a href="#about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="#faq">FAQs</a></div>
-          <div><h4>Product families</h4>{productGroups.slice(0,5).map(g => <button key={g.name} onClick={() => setCatalogOpen(true)}>{g.name}</button>)}</div>
+          <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
@@ -668,9 +776,9 @@ export default function Home() {
             <section className="catalog-results">
               <div className="result-head"><span>{query ? `${matches.length} matches` : productGroups[activeGroup].name}</span><small>Tap any ingredient to request pricing</small></div>
               <div className="result-grid">
-                {(query ? matches : allProducts.filter(p => p.groupIndex === activeGroup)).map((p,i) => <button key={`${p.item}-${i}`} onClick={() => openQuote(p.item)}>
+                {(query ? matches : allProducts.filter(p => p.groupIndex === activeGroup)).map((p,i) => <a href={`/products/${canonicalProductSlug(p.item)}`} key={`${p.item}-${i}`} onClick={() => setCatalogOpen(false)}>
                   <span>{p.subgroup}</span><b>{p.item}</b><i><ArrowRight/></i>
-                </button>)}
+                </a>)}
               </div>
             </section>
           </div>

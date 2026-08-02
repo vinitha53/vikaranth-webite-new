@@ -6,7 +6,7 @@ export default function nextConfig(phase) {
     images: { unoptimized: true },
     output: "export",
     // Keep the live preview isolated from production build output.
-    distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next" : "dist",
+    distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next-dev" : "dist",
     trailingSlash: true
   };
 }

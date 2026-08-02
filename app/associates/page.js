@@ -1,0 +1,5 @@
+import Link from "next/link";
+import {partners} from "../data/partners";
+import {DetailHeader,DetailFooter,styles} from "../components/DetailChrome";
+export const metadata={title:"Ingredient Partners & Associates | Vikranth Chemical Corporation",description:"Explore Vikranth Chemical Corporation's ingredient partner and associate pages for current products, applications, documents and Chennai enquiries."};
+export default function AssociatesPage(){return <main className={styles.page}><DetailHeader/><section className={styles.hero}><div className={styles.heroCopy}><small>Our ingredient network</small><h1>Partner Ingredient Solutions</h1><p>Explore partner-specific product categories, relevant industries and a local Chennai enquiry route.</p></div></section><div className={styles.content}><section className={styles.partnerGrid}>{partners.map(partner=><Link href={`/associates/${partner.slug}`} className={styles.partnerTile} key={partner.slug}><div>{partner.logo?<img src={partner.logo} alt=""/>:<b>Anchor</b>}</div><h2>{partner.name}</h2><p>{partner.summary}</p><span>Explore partner →</span></Link>)}</section></div><DetailFooter/></main>}
