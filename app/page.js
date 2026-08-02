@@ -298,7 +298,7 @@ export default function Home() {
     return () => window.clearTimeout(rotation);
   }, [activeTestimonial, testimonialPaused]);
   useEffect(() => {
-    const nodes = document.querySelectorAll(".section-head, .portfolio-visual, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .testimonial-heading, .testimonial-card-grid .testimonial-card, .testimonial-trust-summary > div, .cta-inner");
+    const nodes = document.querySelectorAll(".section-head, .portfolio-visual, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .vcc-ecosystem-heading, .vcc-ecosystem-card, .vcc-ecosystem-centre, .testimonial-heading, .testimonial-card-grid .testimonial-card, .testimonial-trust-summary > div, .cta-inner");
     nodes.forEach((node, index) => {
       node.classList.add("reveal-item");
       node.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 90}ms`);
@@ -376,7 +376,7 @@ export default function Home() {
           <Logo />
           <nav className={menuOpen ? "open" : ""}>
             <a href="#home" onClick={jump}>Home</a>
-            <a href="#about" onClick={jump}>About</a>
+            <a href="/about" onClick={jump}>About</a>
             <button className="nav-product" onClick={() => setMegaOpen(v => !v)} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
             <a href="#industries" onClick={jump}>Industries</a>
             <a href="/associates">Suppliers</a>
@@ -751,7 +751,7 @@ export default function Home() {
       <footer>
         <div className="container footer-grid">
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
-          <div><h4>Explore</h4><a href="#about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="#faq">FAQs</a></div>
+          <div><h4>Explore</h4><a href="/about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="#faq">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p></div>
         </div>

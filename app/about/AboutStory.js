@@ -1,0 +1,33 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, BadgeCheck, Boxes, FileCheck2, Headphones, MapPin, PackageCheck, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./about.module.css";
+
+const frameCount = 174;
+const frameUrl = index => `/about-sequence/frame-${String(index + 1).padStart(3, "0")}.webp`;
+const chapters = [
+  [0,42,"Chennai roots. India-wide ambition.","Ingredients that move production forward.","Vikranth Chemical Corporation connects food businesses with bakery, chocolate, dairy, beverage and specialty ingredients selected around real production needs."],
+  [43,86,"Application-led sourcing","The right ingredient starts with the right questions.","We begin with your application, required function, grade, quantity and documentation needs—then help identify suitable options for evaluation."],
+  [87,130,"A dependable ingredient network","Established partners. Practical local support.","Our supplier relationships and Chennai enquiry route help professional buyers navigate availability, specifications, samples and repeat requirements."],
+  [131,173,"Built for business continuity","Responsive service beyond the first order.","From initial product matching to documentation and repeat supply conversations, our focus is clear communication and dependable support."],
+];
+
+function drawCover(canvas,image){const ctx=canvas.getContext("2d");const ratio=Math.min(window.devicePixelRatio||1,1.75);const width=canvas.clientWidth,height=canvas.clientHeight;if(canvas.width!==width*ratio||canvas.height!==height*ratio){canvas.width=width*ratio;canvas.height=height*ratio}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);const scale=Math.max(width/image.naturalWidth,height/image.naturalHeight),rw=image.naturalWidth*scale,rh=image.naturalHeight*scale;ctx.drawImage(image,(width-rw)/2,(height-rh)/2,rw,rh)}
+
+export default function AboutStory(){
+  const sectionRef=useRef(null),canvasRef=useRef(null),imagesRef=useRef([]),currentFrame=useRef(0);
+  const[loaded,setLoaded]=useState(0),[chapter,setChapter]=useState(0),[progress,setProgress]=useState(0);
+  useEffect(()=>{gsap.registerPlugin(ScrollTrigger);let cancelled=false;const images=Array.from({length:frameCount},(_,index)=>{const image=new Image();image.decoding="async";image.src=frameUrl(index);image.onload=()=>{if(cancelled)return;setLoaded(value=>Math.min(frameCount,value+1));if(index===0&&canvasRef.current)drawCover(canvasRef.current,image)};return image});imagesRef.current=images;const playhead={frame:0};const render=()=>{const frame=Math.max(0,Math.min(frameCount-1,Math.round(playhead.frame)));currentFrame.current=frame;setProgress((frame/(frameCount-1))*100);const image=images[frame];if(image?.complete&&image.naturalWidth&&canvasRef.current)drawCover(canvasRef.current,image);const next=chapters.findIndex(item=>frame>=item[0]&&frame<=item[1]);if(next>=0)setChapter(previous=>previous===next?previous:next)};const tween=gsap.to(playhead,{frame:frameCount-1,ease:"none",onUpdate:render,scrollTrigger:{trigger:sectionRef.current,start:"top top",end:"bottom bottom",scrub:.35,invalidateOnRefresh:true}});const resize=()=>{const image=images[currentFrame.current];if(image?.complete&&image.naturalWidth&&canvasRef.current)drawCover(canvasRef.current,image)};window.addEventListener("resize",resize,{passive:true});return()=>{cancelled=true;window.removeEventListener("resize",resize);tween.scrollTrigger?.kill();tween.kill()}},[]);
+  const active=chapters[chapter];
+  return <>
+    <section ref={sectionRef} className={styles.sequence} aria-label="The Vikranth story"><div className={styles.sticky}><canvas ref={canvasRef} className={styles.canvas}/><div className={styles.shade}/><div className={styles.progress} style={{"--progress":`${progress}%`}}/><div className={styles.storyCopy} key={chapter}><span>{active[2]}</span><h1>{active[3]}</h1><p>{active[4]}</p></div>{loaded<12&&<div className={styles.loader}><Sparkles/><span>Preparing the Vikranth story</span><small>{Math.round((loaded/12)*100)}%</small></div>}<div className={styles.scrollCue}>Scroll to explore <span/></div></div></section>
+    <section className={styles.intro}><div><span className={styles.eyebrow}>Who we are</span><h2>A B2B ingredient partner built around your application.</h2></div><div><p>Based in Chennai, Vikranth Chemical Corporation supports manufacturers, bakeries, food processors and professional buyers with focused ingredient portfolios and responsive enquiry support.</p><p>We help buyers move from a broad requirement to a clearer product conversation—covering application, grade, pack size, quantity, documentation, sample availability and supply expectations.</p></div></section>
+    <section className={styles.values}><div className={styles.sectionHeading}><span className={styles.eyebrow}>How we work</span><h2>Practical support at every sourcing stage.</h2></div><div className={styles.valueGrid}>{[[Boxes,"Focused portfolios","Eleven ingredient families spanning bakery, cocoa, dairy, beverages and functional systems."],[BadgeCheck,"Established network","A growing network of ingredient manufacturers, associates and supply relationships."],[FileCheck2,"Document support","Specifications, COA requests and supporting documents according to product availability."],[Headphones,"Responsive conversations","Clear enquiry support around applications, quantities, samples and next steps."]].map(([Icon,title,text],index)=><article key={title}><span>0{index+1}</span><Icon/><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className={styles.trust}><div className={styles.trustCopy}><span className={styles.eyebrow}>Why Vikranth</span><h2>Local access.<br/>Professional ingredient support.</h2><p>Our role is to make complex ingredient sourcing easier to navigate and more productive for growing food businesses.</p><Link href="/products">Explore our products <ArrowRight/></Link></div><div className={styles.trustGrid}>{[[MapPin,"Chennai-based enquiry route"],[ShieldCheck,"Quality-led sourcing"],[PackageCheck,"Commercial requirement support"],[Truck,"Supply conversations across India"]].map(([Icon,text])=><div key={text}><Icon/><b>{text}</b></div>)}</div></section>
+    <section className={styles.finalCta}><span>Start a conversation</span><h2>Tell us what your product needs.</h2><p>Share your application, required ingredient, quantity and delivery location.</p><Link href="/#contact">Request a Quote <ArrowRight/></Link></section>
+  </>;
+}
