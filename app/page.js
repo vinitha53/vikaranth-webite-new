@@ -571,7 +571,7 @@ export default function Home() {
           <div className="popular-ingredient-showcase" key={popularShowcase.name} aria-live="polite">
             {popularShowcase.products.map(([product, application, position], index) => (
               <a className="popular-ingredient-card" href={`/products/${canonicalProductSlug(product)}`} style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`}>
-                <span className="popular-ingredient-image"><img src="/ingredient-portfolio.png" alt={`${product} for commercial food production`} style={{objectPosition: position}} /></span>
+                <span className="popular-ingredient-image"><img src={product === "Cake Gel" ? "/popular-cake-gel.png" : product === "Cake Premix" ? "/popular-cake-premix.png" : product === "Custard Powder" ? "/popular-custard-powder.png" : "/ingredient-portfolio.png"} alt={`${product} for commercial food production`} style={{objectPosition: ["Cake Gel", "Cake Premix", "Custard Powder"].includes(product) ? "center" : position}} /></span>
                 <strong>{product}</strong>
                 <small>{application}</small>
               </a>

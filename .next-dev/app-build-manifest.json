@@ -12,11 +12,22 @@
       "static/css/app/associates/page.css",
       "static/chunks/app/associates/page.js"
     ],
+    "/industries/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/industries/[slug]/page.css",
+      "static/chunks/app/industries/[slug]/page.js"
+    ],
     "/associates/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/associates/[slug]/page.css",
       "static/chunks/app/associates/[slug]/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
     ],
     "/products/[slug]/page": [
       "static/chunks/webpack.js",
@@ -30,16 +41,11 @@
       "static/css/app/products/page.css",
       "static/chunks/app/products/page.js"
     ],
-    "/page": [
+    "/industries/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
-    "/industries/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/industries/[slug]/page.css",
-      "static/chunks/app/industries/[slug]/page.js"
+      "static/css/app/industries/page.css",
+      "static/chunks/app/industries/page.js"
     ]
   }
 }

@@ -407,6 +407,14 @@ html{scroll-behavior:smooth}
 .popular-shop-all,.popular-ingredient-card{text-decoration:none}
 .logo-track>.associate-logo{text-decoration:none}
 
+/* Uniform action typography and motion across the homepage. */
+.btn,.text-link,.product-route,.popular-shop-all,.vcc-products-mega-menu .vcc-preview-copy a,.vcc-ingredient-ecosystem .vcc-ecosystem-cta{font-family:'Segoe UI',Arial,sans-serif;font-size:14px;font-weight:600;line-height:1.2;transition:transform .22s ease,background-color .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease}
+.btn:hover,.text-link:hover,.product-route:hover,.popular-shop-all:hover,.vcc-products-mega-menu .vcc-preview-copy a:hover,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover{transform:translateY(-2px)}
+.btn svg,.text-link svg,.product-route svg,.vcc-products-mega-menu .vcc-preview-copy a svg,.vcc-ingredient-ecosystem .vcc-ecosystem-cta svg{transition:transform .22s ease}
+.btn:hover svg,.text-link:hover svg,.product-route:hover svg,.vcc-products-mega-menu .vcc-preview-copy a:hover svg,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover svg{transform:translateX(4px)}
+.btn:focus-visible,.text-link:focus-visible,.product-route:focus-visible,.popular-shop-all:focus-visible,.vcc-products-mega-menu .vcc-preview-copy a:focus-visible,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:focus-visible{outline:3px solid #d88743;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.btn,.text-link,.product-route,.popular-shop-all,.vcc-products-mega-menu .vcc-preview-copy a,.vcc-ingredient-ecosystem .vcc-ecosystem-cta,.btn svg,.text-link svg,.product-route svg{transition:none!important;transform:none!important}}
+
 /* Readable four-card ingredient portfolio with richer motion */
 .product-section .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1240px;gap:20px}
 .product-section .product-card{min-height:440px;animation:ingredientCardIn .72s cubic-bezier(.16,1,.3,1) var(--delay,0ms) both;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .35s}
@@ -428,3 +436,28 @@ html{scroll-behavior:smooth}
 @media(max-width:1050px){.product-section .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.product-section .product-grid{grid-template-columns:1fr}.product-section .product-card{min-height:430px}.product-section .product-card h3{font-size:18px}.product-section .product-card p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.product-section .product-card{animation:none!important}.product-section .product-card,.product-section .category-photo img,.product-section .card-icon,.product-section .product-card>button,.product-section .product-card>button svg{transition:none!important}}
+
+/* One navigation interaction language across every page. */
+header nav a,.nav-product{position:relative;transition:color .25s ease,transform .25s ease}
+header nav a::after,.nav-product::after{content:"";position:absolute;right:0;bottom:20px;left:0;height:2px;border-radius:2px;background:#a85227;transform:scaleX(0);transform-origin:center;transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+header nav a:hover,.nav-product:hover,header nav a:focus-visible,.nav-product:focus-visible{color:#a85227;transform:translateY(-1px)}
+header nav a:hover::after,.nav-product:hover::after,header nav a:focus-visible::after,.nav-product:focus-visible::after{transform:scaleX(1)}
+.logo .brand-logo-image{transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s ease}
+.logo:hover .brand-logo-image{filter:drop-shadow(0 7px 9px rgba(75,32,10,.18));transform:translateY(-2px) scale(1.02)}
+@media(max-width:900px){header nav a::after,.nav-product::after{bottom:7px}}
+@media(prefers-reduced-motion:reduce){header nav a,.nav-product,header nav a::after,.nav-product::after,.logo .brand-logo-image{transition:none!important;transform:none!important}}
+
+/* Reference capsule CTA used consistently across the homepage. */
+.btn,.vcc-ingredient-ecosystem .vcc-ecosystem-cta,.vcc-products-mega-menu .vcc-preview-copy a{position:relative;min-height:50px;padding:0 28px!important;border:1px solid #dc7a3a!important;border-radius:999px!important;background-image:linear-gradient(105deg,transparent 24%,rgba(255,226,177,.12) 38%,rgba(255,255,255,.68) 49%,rgba(255,211,145,.14) 60%,transparent 74%),linear-gradient(135deg,#a44317,#d46725)!important;background-position:180% 0,0 0!important;background-size:220% 100%,100% 100%!important;box-shadow:0 9px 20px rgba(116,48,18,.2),0 0 0 6px rgba(169,72,27,.08)!important;color:#fff!important;font-family:'Manrope','Segoe UI',Arial,sans-serif!important;font-size:14px!important;font-weight:800!important;line-height:1!important;letter-spacing:0!important;text-transform:none!important;text-decoration:none;transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,background-color .24s ease!important;animation:ctaGlitterFlow 2.8s linear infinite}
+.btn:hover,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover,.vcc-products-mega-menu .vcc-preview-copy a:hover{border-color:#efad75!important;background-image:linear-gradient(105deg,transparent 24%,rgba(255,226,177,.1) 38%,rgba(255,255,255,.7) 49%,rgba(255,211,145,.12) 60%,transparent 74%),linear-gradient(135deg,#54200c,#7b3214)!important;box-shadow:0 12px 26px rgba(73,28,9,.3),0 0 0 5px rgba(222,125,61,.1)!important;outline:1px dotted rgba(211,126,72,.95);outline-offset:4px;transform:translateY(-2px)}
+.btn svg,.vcc-ingredient-ecosystem .vcc-ecosystem-cta svg,.vcc-products-mega-menu .vcc-preview-copy a svg{transition:transform .24s ease}.btn:hover svg,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover svg,.vcc-products-mega-menu .vcc-preview-copy a:hover svg{transform:translateX(4px)}
+@keyframes ctaGlitterFlow{from{background-position:180% 0,0 0}to{background-position:-120% 0,0 0}}
+@media(prefers-reduced-motion:reduce){.btn,.vcc-ingredient-ecosystem .vcc-ecosystem-cta,.vcc-products-mega-menu .vcc-preview-copy a{animation:none!important}.btn svg,.vcc-ingredient-ecosystem .vcc-ecosystem-cta svg,.vcc-products-mega-menu .vcc-preview-copy a svg{transition:none!important}}
+
+/* Moving miniature dots outside the shared CTA on hover. */
+.btn,.vcc-ingredient-ecosystem .vcc-ecosystem-cta,.vcc-products-mega-menu .vcc-preview-copy a{overflow:visible!important}
+.btn::after,.vcc-ingredient-ecosystem .vcc-ecosystem-cta::after,.vcc-products-mega-menu .vcc-preview-copy a::after{content:"";position:absolute;inset:-7px;border:2px dotted rgba(220,126,68,.95);border-radius:999px;opacity:0;pointer-events:none;transform:rotate(0);transition:opacity .2s ease}
+.btn:hover,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover,.vcc-products-mega-menu .vcc-preview-copy a:hover{outline:0!important}
+.btn:hover::after,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::after,.vcc-products-mega-menu .vcc-preview-copy a:hover::after{opacity:1;animation:ctaDotTwinkle 1.25s ease-in-out infinite}
+@keyframes ctaDotTwinkle{0%,100%{opacity:.38;filter:brightness(.9)}50%{opacity:1;filter:brightness(1.35) drop-shadow(0 0 2px rgba(230,139,79,.65))}}
+@media(prefers-reduced-motion:reduce){.btn:hover::after,.vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::after,.vcc-products-mega-menu .vcc-preview-copy a:hover::after{animation:none!important}}

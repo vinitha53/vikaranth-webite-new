@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Mail, MapPin, Phone } from "lucide-react";
+import DetailHeaderClient from "./DetailHeaderClient";
 import styles from "./detail.module.css";
 
 export function DetailHeader() {
-  return <><div className={styles.utility}><span>Serving businesses across India</span><span>B2B Food Ingredient Supplier</span><span>Chennai</span></div><header className={styles.header}><Link href="/"><Image src="/logo-vikranth.png" width={150} height={58} alt="Vikranth Chemical Corporation"/></Link><nav><Link href="/">Home</Link><Link href="/#about">About</Link><Link href="/products">Products</Link><Link href="/industries">Industries</Link><Link href="/associates">Suppliers</Link><Link href="/#contact">Contact</Link></nav><Link className={styles.quote} href="/#contact">Request a Quote →</Link></header></>;
+  return <DetailHeaderClient/>;
 }
 
 export function DetailFooter() {
-  return <footer className={styles.footer}><div><Image src="/logo-vikranth.png" width={145} height={56} alt="Vikranth Chemical Corporation"/><p>Trusted B2B ingredient sourcing and application-focused support for food businesses across India.</p></div><div><b>Quick links</b><Link href="/">Home</Link><Link href="/products">Products</Link><Link href="/industries">Industries</Link><Link href="/associates">Suppliers</Link><Link href="/#contact">Contact</Link></div><div><b>Support</b><Link href="/#contact">Request a Quote</Link><Link href="/#contact">Ask for a Sample</Link><Link href="/#quality">Documentation Support</Link></div></footer>;
+  return <><section className={styles.contactStrip}><div><span>Start your ingredient enquiry</span><h2>Vikranth Chemical Corporation</h2></div><a href="tel:+918754442924"><Phone/><small>Phone</small><b>+91 87544 42924</b></a><a href="mailto:vikranth.chemicals@gmail.com"><Mail/><small>Email</small><b>vikranth.chemicals@gmail.com</b></a><a href="https://www.google.com/maps/search/?api=1&query=Vikranth+Chemical+Corporation+Chennai"><MapPin/><small>Location</small><b>Kolathur, Chennai 600099</b></a></section><footer className={styles.footer}><div><Image src="/logo-vikranth.png" width={160} height={62} alt="Vikranth Chemical Corporation"/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div><div><b>Explore</b><Link href="/#about">About</Link><Link href="/products">Products</Link><Link href="/industries">Industries</Link><Link href="/associates">Suppliers</Link><Link href="/#insights">Resources</Link></div><div><b>Product families</b><Link href="/industries/bakery-ingredients">Bakery Ingredients</Link><Link href="/industries/chocolate-confectionery">Chocolate & Confectionery</Link><Link href="/industries/dairy-ingredients">Dairy Ingredients</Link><Link href="/industries/beverage-ingredients">Beverage Ingredients</Link><Link href="/industries/ice-cream-ingredients">Ice Cream Ingredients</Link></div><div><b>Contact</b><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur, Chennai — 600099.</p></div><div className={styles.footerBottom}>© 2026 Vikranth Chemical Corporation · <Link href="/site-map">Sitemap</Link> · Privacy · Terms</div></footer></>;
 }
 
 export function PageCta({ title, product }) {
