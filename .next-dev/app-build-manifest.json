@@ -16,18 +16,6 @@
       "static/chunks/main-app.js",
       "static/css/app/industries/[slug]/page.css",
       "static/chunks/app/industries/[slug]/page.js"
-    ],
-    "/products/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/products/[slug]/page.css",
-      "static/chunks/app/products/[slug]/page.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/about/page.css",
-      "static/chunks/app/about/page.js"
     ]
   }
 }

@@ -1,0 +1,6 @@
+body{overflow-x:hidden}
+.statement h2{font-size:34px;overflow-wrap:anywhere}
+.story{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.story>*{min-width:0}
+.story-copy h2{font-size:34px;overflow-wrap:anywhere}
+.proof-grid article{min-width:0;overflow:hidden}
