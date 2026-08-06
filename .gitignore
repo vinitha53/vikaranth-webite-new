@@ -1,4 +1,4 @@
-.next
+﻿.next
 node_modules
 *.log
 .env*
@@ -6,3 +6,5 @@ node_modules
 
 dist/
 *-preview.png
+.next-dev/
+

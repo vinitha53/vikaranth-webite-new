@@ -9,6 +9,7 @@ import {
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import { slugify } from "./data/catalog";
+import { productImageByName } from "./data/partners";
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/products/bakery-image.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
@@ -75,8 +76,8 @@ const productCategories = productGroups.map((group, index) => ({
   id: String(index + 1).padStart(2, "0"),
   name: group.name,
   description: group.blurb,
-  image: null,
-  thumbnail: null,
+  image: `/products/${industrySlugs[index]}-v2.png`,
+  thumbnail: `/products/${industrySlugs[index]}-v1.png`,
   href: `/industries/${industrySlugs[index]}`
 }));
 
@@ -381,7 +382,7 @@ export default function Home() {
             <a href="#industries" onClick={jump}>Industries</a>
             <a href="/associates">Suppliers</a>
             <a href="#insights" onClick={jump}>Blog</a>
-            <a href="#contact" onClick={jump}>Contact</a>
+            <a href="/contact">Contact</a>
           </nav>
           <div className="nav-actions">
             <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
@@ -571,7 +572,7 @@ export default function Home() {
           <div className="popular-ingredient-showcase" key={popularShowcase.name} aria-live="polite">
             {popularShowcase.products.map(([product, application, position], index) => (
               <a className="popular-ingredient-card" href={`/products/${canonicalProductSlug(product)}`} style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`}>
-                <span className="popular-ingredient-image"><img src={product === "Cake Gel" ? "/popular-cake-gel.png" : product === "Cake Premix" ? "/popular-cake-premix.png" : product === "Custard Powder" ? "/popular-custard-powder.png" : "/ingredient-portfolio.png"} alt={`${product} for commercial food production`} style={{objectPosition: ["Cake Gel", "Cake Premix", "Custard Powder"].includes(product) ? "center" : position}} /></span>
+                <span className="popular-ingredient-image"><img src={product === "Cake Gel" ? "/popular-cake-gel.png" : product === "Cake Premix" ? "/popular-cake-premix.png" : product === "Custard Powder" ? "/popular-custard-powder.png" : productImageByName[product] || productGroups[popularShowcase.groupIndex].image} alt={`${product} for commercial food production`} style={{objectPosition: ["Cake Gel", "Cake Premix", "Custard Powder"].includes(product) ? "center" : position}} /></span>
                 <strong>{product}</strong>
                 <small>{application}</small>
               </a>
@@ -751,7 +752,7 @@ export default function Home() {
       <footer>
         <div className="container footer-grid">
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
-          <div><h4>Explore</h4><a href="/about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="#faq">FAQs</a></div>
+          <div><h4>Explore</h4><a href="/about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="#faq">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p></div>
         </div>
@@ -799,3 +800,4 @@ export default function Home() {
     </main>
   );
 }
+

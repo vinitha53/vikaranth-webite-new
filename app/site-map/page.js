@@ -17,7 +17,8 @@ export default function SiteMapPage() {
     ["Quality and compliance", "/#quality"],
     ["Technical resources", "/#insights"],
     ["Frequently asked questions", "/#faq"],
-    ["Request a quote", "/#contact"],
+    ["Contact and request a quote", "/contact"],
+    ["View or download brochure", "/brochure"],
   ];
 
   return (
