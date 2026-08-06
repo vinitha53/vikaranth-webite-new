@@ -18,5 +18,7 @@ export default function sitemap() {
     ...industries.map(({slug}) => ({ url: `${base}/industries/${slug}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 })),
     { url: `${base}/associates/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     ...partners.map(({slug}) => ({ url: `${base}/associates/${slug}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 })),
+    { url: `${base}/contact/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/brochure/`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 }

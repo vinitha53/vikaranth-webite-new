@@ -1,3 +1,5 @@
+import { productImageByName } from "./partners";
+
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
 export const industries = [
@@ -96,7 +98,7 @@ const productMap = new Map();
 industries.forEach((industry) => industry.products.forEach((name) => {
   const slug = slugify(name);
   if (!productMap.has(slug)) productMap.set(slug, {
-    slug, name, industrySlug: industry.slug, category: industry.name, image: industry.image,
+    slug, name, industrySlug: industry.slug, category: industry.name, image: productImageByName[name] || industry.image,
     summary: `${name} for consistent food production`,
     description: `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
   });

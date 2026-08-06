@@ -1,4 +1,4 @@
-import "./globals.css";
+﻿import "./globals.css";
 import "./sections-v2.css";
 
 const siteUrl = "https://www.vikranthchem.com";
@@ -8,7 +8,7 @@ export const metadata = {
   title: "Food Ingredients Supplier in Chennai, India | Vikranth",
   description: "Vikranth supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers, bakeries and food businesses across India.",
   alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     type: "website",
     url: "/",
@@ -31,20 +31,34 @@ export default function RootLayout({ children }) {
       "@type": ["Organization", "LocalBusiness"],
       "@id": `${siteUrl}/#organization`,
       name: "Vikranth Chemical Corporation",
+      alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       url: siteUrl,
       logo: `${siteUrl}/logo-vikranth.png`,
       description: "Vikranth Chemical Corporation imports, distributes and supplies food ingredients and specialty chemicals to manufacturers across India.",
       telephone: "+91-87544-42924",
       email: "vikranth.chemicals@gmail.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Saraswathy Enclave, Plot No. I & II, 4th Floor, Perambur–Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur",
-        addressLocality: "Chennai",
-        postalCode: "600099",
-        addressRegion: "Tamil Nadu",
-        addressCountry: "IN",
-      },
-      areaServed: { "@type": "Country", name: "India" },
+      address: [
+        {
+          "@type": "PostalAddress",
+          streetAddress: "Saraswathy Enclave, Plot No. I & II, 4th Floor, Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur",
+          addressLocality: "Chennai",
+          postalCode: "600099",
+          addressRegion: "Tamil Nadu",
+          addressCountry: "IN",
+        },
+        {
+          "@type": "PostalAddress",
+          streetAddress: "Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu",
+          addressLocality: "Chennai",
+          postalCode: "600110",
+          addressRegion: "Tamil Nadu",
+          addressCountry: "IN",
+        },
+      ],
+      contactPoint: [
+        { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "sales", areaServed: "IN", availableLanguage: ["en", "ta"] },
+        { "@type": "ContactPoint", telephone: "+91-97909-20252", contactType: "customer service", areaServed: "IN", availableLanguage: ["en", "ta"] },
+      ],      areaServed: { "@type": "Country", name: "India" },
     },
     {
       "@context": "https://schema.org",
@@ -52,6 +66,7 @@ export default function RootLayout({ children }) {
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
       name: "Vikranth Chemical Corporation",
+      alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       publisher: { "@id": `${siteUrl}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -64,22 +79,6 @@ export default function RootLayout({ children }) {
       "@type": "BreadcrumbList",
       itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }],
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        ["Which food ingredients does Vikranth supply?", "Vikranth supplies bakery, cocoa, chocolate, dairy, beverage, protein, sweetener, starch, stabilizer and specialty food ingredients for B2B requirements."],
-        ["Do you supply food ingredients outside Chennai?", "Vikranth is based in Chennai and supports business enquiries from different locations. Share your delivery city and quantity so the team can confirm availability and supply options."],
-        ["Can you help us select the right ingredient?", "Yes. Share your application, expected function, required grade and quantity. The team can help identify suitable product options for evaluation."],
-        ["Can we request product specifications or certificates?", "Product specifications and supporting documents can be requested. Availability depends on the selected ingredient and manufacturer."],
-        ["Do you support bulk ingredient requirements?", "Yes. Vikranth primarily supports manufacturers, bakeries, food processors and other professional buyers. Mention your approximate quantity when requesting a quotation."],
-        ["What information is needed for a quotation?", "Provide the ingredient name, grade or application, required quantity, delivery location, company name and contact information."],
-      ].map(([name, text]) => ({
-        "@type": "Question",
-        name,
-        acceptedAnswer: { "@type": "Answer", text },
-      })),
-    },
   ];
 
   return (
@@ -91,3 +90,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+
