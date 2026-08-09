@@ -2,92 +2,125 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Truck } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./associates.module.css";
+import cards from "./supplier-cards.module.css";
 
-const filters = [
-  ["all", "All"], ["bakery", "Bakery"], ["chocolate", "Chocolate"],
-  ["dairy", "Dairy"], ["beverage", "Beverage"], ["starch", "Starch & sweeteners"],
-];
-
-const partnerCategories = {
-  campco: ["bakery", "chocolate", "beverage"],
-  "delta-nutritives": ["bakery", "chocolate", "dairy"],
-  roquette: ["starch", "dairy"],
-  "nitta-gelatin-india-ltd": ["dairy", "chocolate"],
-  doehler: ["beverage", "dairy"],
-  "cp-kelco": ["beverage", "dairy"],
-  "calpro-specialities-pvt-ltd": ["chocolate", "dairy"],
-  "gujarat-ambuja-exports-ltd": ["starch", "bakery"],
-  "fine-organics": ["bakery", "chocolate"],
-  "shree-gluco-biotech-pvt-ltd": ["starch", "bakery"],
-  "paramesu-biotech-ltd": ["starch", "bakery"],
-  anchor: ["bakery"],
+const categoryLabels = {
+  campco: "Cocoa & chocolate",
+  "delta-nutritives": "Dessert & dairy",
+  roquette: "Plant-based ingredients",
+  "nitta-gelatin-india-ltd": "Gelatin solutions",
+  doehler: "Flavours & systems",
+  "cp-kelco": "Hydrocolloids",
+  "calpro-specialities-pvt-ltd": "Cocoa & dairy",
+  "gujarat-ambuja-exports-ltd": "Starch derivatives",
+  "fine-organics": "Food emulsifiers",
+  "shree-gluco-biotech-pvt-ltd": "Sweeteners",
+  "paramesu-biotech-ltd": "Maize starch",
+  anchor: "Bakery ingredients",
 };
 
 const cardCopy = {
-  campco: "CAMPCO cocoa & chocolate ingredient supplier in Chennai — for bakery, confectionery, dessert and beverage formulations.",
-  "delta-nutritives": "Delta Nutritives distributor in Chennai — dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredients.",
-  roquette: "Roquette supplier in India — plant-based ingredients, starches, sweeteners, proteins and select pharmaceutical-grade solutions.",
-  "nitta-gelatin-india-ltd": "Nitta Gelatin distributor in Chennai — gelatin solutions and related functional food applications.",
-  doehler: "Döhler supplier in India — natural ingredients, flavours and integrated food and beverage systems.",
-  "cp-kelco": "CP Kelco distributor in Chennai — nature-based hydrocolloids and formulation solutions for food manufacturers.",
-  "calpro-specialities-pvt-ltd": "Calpro Specialities supplier in Chennai — cocoa powders, dairy proteins and food ingredient solutions.",
-  "gujarat-ambuja-exports-ltd": "Gujarat Ambuja Exports distributor in India — sorbitol, starch derivatives and agro-processing ingredients.",
-  "fine-organics": "Fine Organics supplier in Chennai — specialty additives and food emulsifier solutions for manufacturers.",
-  "shree-gluco-biotech-pvt-ltd": "Shree Gluco Biotech distributor in India — starch-derived sweeteners and carbohydrate ingredients.",
-  "paramesu-biotech-ltd": "Paramesu Biotech supplier in Chennai — maize starch and starch derivative solutions.",
-  anchor: "Anchor by Vikranth — our in-house bakery and food manufacturing ingredient range, made and supplied from Chennai.",
+  campco: "Cocoa and chocolate ingredients for bakery, confectionery, dessert and beverage formulations.",
+  "delta-nutritives": "Dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient solutions.",
+  roquette: "Plant-based ingredients, starches, sweeteners, proteins and selected pharmaceutical solutions.",
+  "nitta-gelatin-india-ltd": "Gelatin solutions and functional ingredients for food, nutrition and pharmaceutical applications.",
+  doehler: "Natural ingredients, flavours and integrated food and beverage systems for modern formulations.",
+  "cp-kelco": "Nature-based hydrocolloids for texture, suspension, stability and formulation performance.",
+  "calpro-specialities-pvt-ltd": "Cocoa powders, dairy proteins and practical food ingredient solutions for manufacturers.",
+  "gujarat-ambuja-exports-ltd": "Sorbitol, starch derivatives and agro-processing ingredients for industrial applications.",
+  "fine-organics": "Specialty additives and food emulsifiers engineered for reliable processing performance.",
+  "shree-gluco-biotech-pvt-ltd": "Starch-derived sweeteners and carbohydrate ingredients for professional food production.",
+  "paramesu-biotech-ltd": "Maize starch and derivative solutions for bakery and wider food manufacturing needs.",
+  anchor: "Vikranth's in-house ingredient range for bakery and food manufacturing applications.",
 };
 
-const filterLabel = {
-  campco: "Cocoa & chocolate", "delta-nutritives": "Dessert & dairy", roquette: "Plant-based ingredients",
-  "nitta-gelatin-india-ltd": "Gelatin", doehler: "Flavours & systems", "cp-kelco": "Hydrocolloids",
-  "calpro-specialities-pvt-ltd": "Cocoa & dairy", "gujarat-ambuja-exports-ltd": "Starch derivatives",
-  "fine-organics": "Emulsifiers", "shree-gluco-biotech-pvt-ltd": "Sweeteners",
-  "paramesu-biotech-ltd": "Maize starch", anchor: "Bakery ingredients",
-};
+function updateCardTilt(event) {
+  if (!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  const card = event.currentTarget;
+  const bounds = card.getBoundingClientRect();
+  const x = (event.clientX - bounds.left) / bounds.width;
+  const y = (event.clientY - bounds.top) / bounds.height;
+  card.style.setProperty("--mx", `${x * 100}%`);
+  card.style.setProperty("--my", `${y * 100}%`);
+  card.style.setProperty("--rx", `${(0.5 - y) * 3.2}deg`);
+  card.style.setProperty("--ry", `${(x - 0.5) * 3.2}deg`);
+}
+
+function resetCardTilt(event) {
+  const card = event.currentTarget;
+  card.style.setProperty("--mx", "50%");
+  card.style.setProperty("--my", "50%");
+  card.style.setProperty("--rx", "0deg");
+  card.style.setProperty("--ry", "0deg");
+}
 
 export default function AssociatesClient({ partners, faqs }) {
   const pageRef = useRef(null);
-  const [filter, setFilter] = useState("all");
   const [openFaq, setOpenFaq] = useState(0);
 
-  const visiblePartners = useMemo(
-    () => partners.filter((partner) => filter === "all" || partnerCategories[partner.slug]?.includes(filter)),
-    [filter, partners]
-  );
-
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
 
     gsap.registerPlugin(ScrollTrigger);
     const scope = gsap.context(() => {
-      // Scroll: once-only section and partner-card reveals.
-      gsap.utils.toArray(`.${styles.sectionHead}`).forEach((heading) => {
-        gsap.from(heading, { opacity: 0, y: 20, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: heading, start: "top 85%", once: true } });
+      // A restrained scrub gives logos depth without distracting from directory use.
+      gsap.utils.toArray(`.${cards.logoFloat}`).forEach((logo) => {
+        gsap.fromTo(logo, { y: 8 }, {
+          y: -8,
+          ease: "none",
+          scrollTrigger: { trigger: logo.closest("a"), start: "top bottom", end: "bottom top", scrub: 0.7 },
+        });
       });
-      gsap.from(`.${styles.partnerCard}`, { opacity: 0, y: 20, duration: 0.52, stagger: 0.06, ease: "power3.out", scrollTrigger: { trigger: `.${styles.partnerGrid}`, start: "top 85%", once: true } });
+
+      gsap.utils.toArray(`.${styles.sectionHead}`).forEach((heading) => {
+        gsap.from(heading, { opacity: 0, y: 18, duration: 0.62, ease: "power3.out", scrollTrigger: { trigger: heading, start: "top 86%", once: true } });
+      });
     }, pageRef);
 
-    return () => {
-      scope.revert();
-    };
+    return () => scope.revert();
   }, [partners.length]);
 
   return (
     <div ref={pageRef} className={styles.page}>
-      <section className={styles.directory} aria-labelledby="partners-title">
-
-        <div className={styles.partnerGrid}>
-          {visiblePartners.map((partner) => <Link className={styles.partnerCard} href={`/associates/${partner.slug}`} key={partner.slug}>
-            <div className={styles.logoBox}>{partner.logo ? <Image src={partner.logo} alt={`${partner.name} logo — food ingredient supplier Chennai`} width={220} height={90} sizes="(max-width: 767px) 65vw, (max-width: 1279px) 28vw, 220px" /> : <span className={styles.anchorLogo}>ANCHOR<small>by Vikranth</small></span>}</div>
-            <span className={styles.cardCategory}>{filterLabel[partner.slug]}</span><h3>{partner.name}</h3><p>{cardCopy[partner.slug]}</p><span className={styles.explore}>Explore partner <ArrowRight /></span>
-          </Link>)}
+      <section className={`${styles.directory} ${cards.directory}`} aria-label="Ingredient supplier directory">
+        <div className={cards.grid}>
+          {partners.map((partner, index) => (
+            <Link
+              className={cards.card}
+              href={`/associates/${partner.slug}`}
+              key={partner.slug}
+              aria-label={`Explore ${partner.name} ingredients`}
+              onPointerMove={updateCardTilt}
+              onPointerLeave={resetCardTilt}
+            >
+              <span className={cards.spotlight} aria-hidden="true" />
+              <span className={cards.cardNumber}>{String(index + 1).padStart(2, "0")}</span>
+              <div className={cards.logoStage}>
+                <i className={cards.orbit} aria-hidden="true" />
+                <div className={cards.logoFloat}>
+                  {partner.logo ? (
+                    <Image src={partner.logo} fill sizes="(max-width: 639px) 70vw, (max-width: 1279px) 34vw, 280px" alt={`${partner.name} logo`} />
+                  ) : (
+                    <span className={cards.anchorLogo}>ANCHOR<small>by Vikranth</small></span>
+                  )}
+                </div>
+              </div>
+              <div className={cards.body}>
+                <div className={cards.copy}>
+                  <span className={cards.category}>{categoryLabels[partner.slug]}</span>
+                  <h3>{partner.name}</h3>
+                  <i className={cards.rule} aria-hidden="true" />
+                  <p>{cardCopy[partner.slug]}</p>
+                </div>
+                <span className={cards.explore}>Explore partner <ArrowRight /></span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
