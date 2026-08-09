@@ -29,14 +29,16 @@ const productGroups = [
     "Milk Powders": ["Good Day Milk Powder", "Krishna Milk Powder"], "Whey Products": ["Amul Whey Powder"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/products/beverage-image.png", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
-    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"], "Fruit Beverage Ingredients": ["Fruit Crush"]
+    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"],
+    "Fruit Beverage Ingredients": ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"]
   }},
   { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/products/ice-cream-ingredients.png", imagePosition: "67% center", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Ice Cream Flavours": ["French Vanilla", "Cocoa Miscela"],
     "Ice Cream Toppings": ["Dessert Toppings"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Fruit Processing", icon: Leaf, image: "/products/fruit-processing-image.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
-    "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
+    "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Ingredients", "Fruit Sweetness", "Fruit Crush"],
+    "Juices & Concentrates": ["Juice Concentrates", "NFC Juices"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
   { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/products/hydrocolloids-pharma.png", imagePosition: "25% center", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
@@ -44,22 +46,22 @@ const productGroups = [
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/products/sweeteners-syrups-starches-image.png", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
-    "Liquid Sweeteners": ["Liquid Glucose", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Sorbitol", "Aspartame"],
-    "Starches": ["Maize Starch", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrine Powder"], "Syrups": ["Corn Syrup"]
+    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame"],
+    "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Corn Syrup"]
   }},
   { name: "Functional Ingredients", icon: CircleGauge, image: "/products/functional-ingredients-image.png", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
-    "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Mono Stearate", "Finamul 90", "DMG", "PGMS", "SMS", "PGPR", "Soya Lecithin"],
-    "Proteins": ["Whey Protein", "Whey Powder", "Soya Protein", "Vital Wheat Gluten", "Skimmed Milk Powder"],
-    "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
+    "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"],
+    "Proteins": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein", "Full-Fat Soya Flour", "Vital Wheat Gluten", "Skimmed Milk Powder"],
+    "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Calcium Gluconate", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
   { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/products/hydrocolloids-pharma.png", imagePosition: "72% center", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
-    "Protein Ingredients": ["Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
-    "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate"]
+    "Protein Ingredients": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
+    "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"], "Sugar-Free Excipients": ["Isomalt", "SWEETPEARL® P 200 Maltitol"]
   }},
   { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/products/food-additives-preservatives-image.png", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
-    "Emulsifiers": ["DMG", "PGMS", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Mono Stearate", "Finamul 90"],
+    "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
     "Hydrocolloids": ["Xanthan Gum", "Guar Gum", "Sodium CMC"],
     "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame", "Malt Extract Powder"],
     "Starches & Functional Ingredients": ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Whey Powder", "Soya Protein", "Skimmed Milk Powder"],
@@ -111,7 +113,7 @@ const popularShowcases = [
   { name: "Ice Cream", groupIndex: 4, products: [["Frozen Yogurt Premix", "Frozen dessert production", "8% center"], ["Panna Base", "Gelato & ice cream", "34% center"], ["French Vanilla", "Premium frozen desserts", "61% center"], ["Ice Cream Stabilizer", "Texture & melt control", "88% center"]] },
   { name: "Fruit", groupIndex: 5, products: [["Fruit Filling", "Bakery & dessert fillings", "7% center"], ["Frozen Fruits", "Food service & processing", "32% center"], ["Fruit Purees", "Beverages, desserts & dairy", "60% center"], ["Glaze Gel", "Bakery finishing & decoration", "87% center"]] },
   { name: "Stabilizers", groupIndex: 6, products: [["Genu Pectin", "Fruit, dairy & beverage systems", "7% center"], ["Xanthan Gum", "Viscosity & suspension", "31% center"], ["Guar Gum", "Texture & moisture control", "57% center"], ["Sodium CMC", "Stability & mouthfeel", "84% center"]] },
-  { name: "Sweeteners", groupIndex: 7, products: [["Liquid Glucose", "Confectionery & bakery", "8% center"], ["Sorbitol", "Sweetness & moisture retention", "34% center"], ["Invert Sugar", "Bakery, beverages & desserts", "61% center"], ["Maltodextrine Powder", "Body, solids & processing", "88% center"]] },
+  { name: "Sweeteners", groupIndex: 7, products: [["Liquid Glucose", "Confectionery & bakery", "8% center"], ["Sorbitol", "Sweetness & moisture retention", "34% center"], ["Invert Sugar", "Bakery, beverages & desserts", "61% center"], ["Maltodextrin Powder", "Body, solids & processing", "88% center"]] },
   { name: "Functional", groupIndex: 8, products: [["GMS Flakes", "Emulsification & texture", "7% center"], ["Soya Lecithin", "Chocolate, bakery & processing", "33% center"], ["Whey Protein", "Nutrition & dairy systems", "59% center"], ["Vital Wheat Gluten", "Dough strength & structure", "86% center"]] },
   { name: "Nutraceuticals", groupIndex: 9, products: [["Whey Protein", "Sports & wellness nutrition", "8% center"], ["Soya Protein", "Plant protein formulations", "34% center"], ["Gelatin 180 Bloom", "Capsules, gummies & nutrition", "61% center"], ["Ascorbic Acid", "Vitamin fortification", "88% center"]] }
 ];

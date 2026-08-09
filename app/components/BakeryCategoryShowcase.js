@@ -49,7 +49,7 @@ export default function BakeryCategoryShowcase({ groups, products, categoryLabel
     </div>
     <div className={styles.bakeryRail} ref={railRef} style={{ "--visible-cards": Math.min(available.length, 4) }}>
       {available.map(product => <Link className={styles.bakeryProductCard} href={`/products/${product.slug}`} key={product.slug}>
-        <div className={styles.bakeryProductImage}><img src={productImages[product.name] || fallbackImage} alt={`${product.name} used for ${group.name}`}/><span>Available</span></div>
+        <div className={styles.bakeryProductImage}><img src={productImages[product.name] || product.image || fallbackImage} alt={`${product.name} used for ${group.name}`}/><span>Available</span></div>
         <h4>{product.name}</h4><p>Used in {group.name.toLowerCase()}</p><strong>View ingredient <span aria-hidden="true">→</span></strong>
       </Link>)}
     </div>
