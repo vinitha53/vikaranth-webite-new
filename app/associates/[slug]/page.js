@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { partners, getPartner } from "../../data/partners";
 import { getProduct, getIndustry, slugify } from "../../data/catalog";
@@ -14,9 +14,10 @@ export async function generateMetadata({ params }) {
   const partner = getPartner((await params).slug);
   if (!partner) return {};
 
-  const title = `${partner.name} Food Ingredients | Vikranth Chennai`;
-  const description = `Explore ${partner.name} food ingredient options through Vikranth in Chennai. Ask about current products, grades, documents, samples, bulk supply and India delivery.`;
-  const canonical = `/associates/${partner.slug}`;
+  const category = partner.summary.replace(/^./, (letter) => letter.toLowerCase());
+  const title = `${partner.name} Supplier in Chennai & Pan India | Vikranth Chemical Corporation`;
+  const description = `Buy ${partner.name} ${category} in Chennai through Vikranth. Supplying manufacturers across India. Request samples and pricing.`;
+  const canonical = `${siteUrl}/associates/${partner.slug}/`;
 
   return {
     title,
@@ -68,6 +69,14 @@ export default async function PartnerPage({ params }) {
       areaServed: [{ "@type": "City", name: "Chennai" }, { "@type": "Country", name: "India" }],
       serviceType: "B2B food ingredient sourcing",
       url: canonicalUrl,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Brand",
+      name: partner.name,
+      description: partner.summary,
+      url: canonicalUrl,
+      logo: partner.logo ? `${siteUrl}${partner.logo}` : `${siteUrl}/logo-vikranth.png`,
     },
     {
       "@context": "https://schema.org",
