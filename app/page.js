@@ -1,15 +1,16 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
   ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
   Globe2, Handshake, Headphones, HeartPulse, IceCreamBowl, Leaf,
-  Mail, MapPin, Menu, Milk, PackageCheck, Phone, Search,
+  Mail, MapPin, Menu, Milk, PackageCheck, Phone,
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import { slugify } from "./data/catalog";
 import { productImageByName } from "./data/partners";
+import GlobalSearch from "./components/GlobalSearch";
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/products/bakery-image.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
@@ -270,10 +271,8 @@ export default function Home() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeGroup, setActiveGroup] = useState(1);
   const [thumbnailStart, setThumbnailStart] = useState(0);
-  const [catalogOpen, setCatalogOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
-  const [query, setQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [activePopularCategory, setActivePopularCategory] = useState(1);
   const [popularPaused, setPopularPaused] = useState(false);
@@ -286,7 +285,8 @@ export default function Home() {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);  useEffect(() => {
+  }, []);
+  useEffect(() => {
     if (popularPaused) return;
     const rotation = window.setTimeout(() => {
       setActivePopularCategory(current => (current + 1) % popularShowcases.length);
@@ -314,9 +314,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = (quoteOpen || catalogOpen || menuOpen) ? "hidden" : "";
+    document.body.style.overflow = (quoteOpen || menuOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [quoteOpen, catalogOpen, menuOpen]);
+  }, [quoteOpen, menuOpen]);
 
   useEffect(() => {
     if (!megaOpen) return;
@@ -339,16 +339,9 @@ export default function Home() {
     if (activeGroup > thumbnailStart + 4) setThumbnailStart(activeGroup - 4);
   }, [activeGroup, thumbnailStart]);
 
-  const allProducts = useMemo(() => productGroups.flatMap((group, groupIndex) =>
-    Object.entries(group.subgroups).flatMap(([subgroup, items]) => items.map(item => ({ item, subgroup, group: group.name, groupIndex })))
-  ), []);
-  const matches = query.trim() ? allProducts.filter(p =>
-    `${p.item} ${p.subgroup} ${p.group}`.toLowerCase().includes(query.toLowerCase())
-  ) : allProducts;
-
   const popularShowcase = popularShowcases[activePopularCategory];
 
-  const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setCatalogOpen(false); setMenuOpen(false); };
+  const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setMenuOpen(false); };
   const jump = () => { setMenuOpen(false); setMegaOpen(false); };
 
   return (
@@ -377,7 +370,7 @@ export default function Home() {
       <header className={scrolled ? "scrolled" : ""} ref={megaMenuRef}>
         <div className="container nav-wrap">
           <Logo />
-          <nav className={menuOpen ? "open" : ""}>
+          <nav className={`home-nav ${menuOpen ? "open" : ""}`}>
             <a href="#home" onClick={jump}>Home</a>
             <a href="/about" onClick={jump}>About</a>
             <button className="nav-product" onClick={() => setMegaOpen(v => !v)} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
@@ -387,6 +380,7 @@ export default function Home() {
             <a href="/contact">Contact</a>
           </nav>
           <div className="nav-actions">
+            <GlobalSearch onOpen={() => { setMenuOpen(false); setMegaOpen(false); }}/>
             <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
             <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
           </div>
@@ -498,7 +492,7 @@ export default function Home() {
           <div className="product-grid" id="portfolio-grid">
             {productGroups.slice(0, showAllProducts ? productGroups.length : 4).map((group, i) => {
               const Icon = group.icon;
-              return <article className="product-card" key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
+              return <a className="product-card" href={`/industries/${industrySlugs[i]}`} aria-label={`View ${group.name} products`} key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
                   <div className="category-photo">
                     <img src={group.image} alt={`${group.name} for commercial food production`} style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}/>
@@ -506,9 +500,14 @@ export default function Home() {
                 ) : (
                   <div className="category-photo category-placeholder" aria-hidden="true"><Icon/><span>Product image coming soon</span></div>
                 )}
-                <h3>{group.name}</h3><p>{group.blurb}</p>
-                <a className="product-route" href={`/industries/${industrySlugs[i]}`}>View Products <ArrowRight size={15}/></a>
-              </article>
+                <span className="category-hover-overlay" aria-hidden="true"/>
+                <div className="category-card-content">
+                  <h3>{group.name}</h3>
+                  <span className="category-title-line" aria-hidden="true"/>
+                  <p>{group.blurb}</p>
+                  <span className="product-route">View Products <ArrowRight size={15}/></span>
+                </div>
+              </a>
             })}
           </div>
           <button className={`btn outline center-btn portfolio-toggle ${showAllProducts ? "expanded" : ""}`} onClick={() => setShowAllProducts(value => !value)} aria-expanded={showAllProducts} aria-controls="portfolio-grid">
@@ -767,26 +766,6 @@ export default function Home() {
       <a className="whatsapp-fab" href="https://wa.me/918754442924" target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp">
         <img src="/whatsapp-branded.png" alt="" />
       </a>
-
-      <div className={`catalog-modal ${catalogOpen ? "open" : ""}`} aria-hidden={!catalogOpen}>
-        <button className="modal-close" onClick={() => setCatalogOpen(false)}><X/></button>
-        <div className="catalog-shell">
-          <div className="catalog-header"><span className="eyebrow">Complete portfolio</span><h2>Find your ingredient.</h2>
-            <div className="search-box"><Search/><input autoFocus={catalogOpen} value={query} onChange={e => setQuery(e.target.value)} placeholder="Search cocoa, pectin, whey, syrupâ€¦"/>{query && <button onClick={() => setQuery("")}><X/></button>}</div>
-          </div>
-          <div className="catalog-body">
-            {!query && <aside>{productGroups.map((g,i) => <button key={g.name} onClick={() => setActiveGroup(i)} className={activeGroup === i ? "active" : ""}>{g.name}<span>{Object.values(g.subgroups).flat().length}</span></button>)}</aside>}
-            <section className="catalog-results">
-              <div className="result-head"><span>{query ? `${matches.length} matches` : productGroups[activeGroup].name}</span><small>Tap any ingredient to request pricing</small></div>
-              <div className="result-grid">
-                {(query ? matches : allProducts.filter(p => p.groupIndex === activeGroup)).map((p,i) => <a href={`/products/${canonicalProductSlug(p.item)}`} key={`${p.item}-${i}`} onClick={() => setCatalogOpen(false)}>
-                  <span>{p.subgroup}</span><b>{p.item}</b><i><ArrowRight/></i>
-                </a>)}
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
 
       <div className={`quote-drawer ${quoteOpen ? "open" : ""}`}>
         <button className="drawer-backdrop" onClick={() => setQuoteOpen(false)} aria-label="Close quote form"/>

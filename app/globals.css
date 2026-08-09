@@ -404,6 +404,7 @@ html{scroll-behavior:smooth}
 .result-grid>a b{font:600 12px/1.35 "Manrope"}
 .result-grid>a i{position:absolute;right:10px;bottom:8px;color:#b9a899}
 .result-grid>a svg{width:14px}
+.home-nav{margin-left:auto;margin-right:16px;gap:24px}@media(max-width:1100px) and (min-width:821px){.home-nav{margin-left:auto;margin-right:12px;gap:16px}.home-nav a,.home-nav .nav-product{font-size:10px}}@media(max-width:820px){.home-nav{margin:0;gap:0}}
 .popular-shop-all,.popular-ingredient-card{text-decoration:none}
 .logo-track>.associate-logo{text-decoration:none}
 

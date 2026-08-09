@@ -910,3 +910,159 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .hero-film-note{animation:none}
   .hero{background:#2a1008 url('/hero-chocolate-poster.jpg') center/cover no-repeat}
 }
+
+/* Compact product-category cards. Scoped to the homepage portfolio only. */
+.product-section .product-grid{align-items:stretch}
+.product-section .product-card{
+  position:relative;
+  display:block;
+  height:380px;
+  min-height:0;
+  padding:0;
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid #e1d4c4;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 7px 22px rgba(56,28,12,.08);
+  color:#24170f;
+  text-decoration:none;
+  cursor:pointer;
+  transform:none;
+  transition:transform 600ms cubic-bezier(.22,1,.36,1),border-color 450ms ease,box-shadow 600ms cubic-bezier(.22,1,.36,1);
+}
+.product-section .product-card:before,.product-section .product-card:after{display:none}
+.product-section .category-photo{
+  position:absolute;
+  z-index:0;
+  inset:0 0 auto;
+  width:100%;
+  height:58%;
+  aspect-ratio:auto;
+  overflow:hidden;
+  background:#eadfce;
+}
+.product-section .category-photo:after{content:"";position:absolute;inset:0;background:rgba(52,20,7,0);transition:background-color 600ms ease}
+.product-section .category-photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:none;
+  filter:none;
+  transition:transform 650ms cubic-bezier(.22,1,.36,1),filter 600ms ease;
+}
+.product-section .category-hover-overlay{
+  position:absolute;
+  z-index:1;
+  inset:20% 0 0;
+  pointer-events:none;
+  background:linear-gradient(to top,#3b1609 0%,#57240f 55%,rgba(59,22,9,.82) 78%,transparent 100%);
+  transform:translateY(100%);
+  transition:transform 620ms cubic-bezier(.22,1,.36,1);
+}
+.product-section .category-card-content{
+  position:absolute;
+  z-index:2;
+  inset:58% 0 0;
+  display:flex;
+  padding:20px 22px;
+  flex-direction:column;
+  background:#fff;
+  transition:top 620ms cubic-bezier(.22,1,.36,1),background-color 400ms ease;
+}
+.product-section .product-card h3{
+  position:relative;
+  z-index:auto;
+  min-height:0;
+  margin:0;
+  color:#24170f;
+  font:700 17px/1.3 'Manrope','Segoe UI',sans-serif;
+  letter-spacing:-.015em;
+  transition:color 350ms ease,transform 600ms cubic-bezier(.22,1,.36,1);
+}
+.product-section .product-card h3:after{display:none}
+.product-section .category-title-line{
+  position:relative;
+  display:block;
+  flex:0 0 auto;
+  width:46px;
+  height:3px;
+  margin:11px 0 10px;
+  overflow:hidden;
+  border-radius:99px;
+  background:#c7833e;
+  transform-origin:left center;
+  transition:width 620ms cubic-bezier(.22,1,.36,1),background-color 350ms ease;
+}
+.product-section .category-title-line:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:35%;
+  background:linear-gradient(90deg,transparent,rgba(255,232,167,.98),transparent);
+  transform:translateX(-150%);
+}
+.product-section .product-card p{
+  display:block;
+  margin:0;
+  overflow:hidden;
+  color:#6b5b50;
+  font-size:12.5px;
+  line-height:1.55;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  opacity:1;
+  visibility:visible;
+  filter:none;
+  transform:none;
+  transition:color 350ms ease,opacity 350ms ease,transform 600ms cubic-bezier(.22,1,.36,1);
+}
+.product-section .product-card .product-route{
+  position:static;
+  display:inline-flex;
+  margin-top:auto;
+  align-items:center;
+  align-self:flex-start;
+  gap:8px;
+  color:#8e421f;
+  font:700 12.5px/1.2 'Manrope','Segoe UI',sans-serif;
+  transition:color 350ms ease,gap 380ms ease;
+}
+.product-section .product-card .product-route svg{width:15px;transition:transform 380ms cubic-bezier(.22,1,.36,1)}
+.product-section .product-card:focus-visible{outline:3px solid #d88743;outline-offset:4px}
+
+@media(hover:hover) and (pointer:fine){
+  .product-section .product-card:hover,.product-section .product-card:focus-visible{
+    border-color:#bd7b42;
+    box-shadow:0 20px 40px rgba(63,28,10,.2);
+    transform:translateY(-6px);
+  }
+  .product-section .product-card:hover .category-hover-overlay,.product-section .product-card:focus-visible .category-hover-overlay{transform:translateY(0)}
+  .product-section .product-card:hover .category-photo img,.product-section .product-card:focus-visible .category-photo img{transform:translateY(-4px) scale(1.05);filter:saturate(1.04) contrast(1.03)}
+  .product-section .product-card:hover .category-photo:after,.product-section .product-card:focus-visible .category-photo:after{background:rgba(52,20,7,.12)}
+  .product-section .product-card:hover .category-card-content,.product-section .product-card:focus-visible .category-card-content{top:44%;background:transparent}
+  .product-section .product-card:hover h3,.product-section .product-card:focus-visible h3{color:#fff7ec;transform:translateY(-5px)}
+  .product-section .product-card:hover .category-title-line,.product-section .product-card:focus-visible .category-title-line{width:104px;background:#dea35d}
+  .product-section .product-card:hover .category-title-line:after,.product-section .product-card:focus-visible .category-title-line:after{animation:categoryLineSweep 750ms ease-out forwards}
+  .product-section .product-card:hover p,.product-section .product-card:focus-visible p{overflow:visible;color:#f1dfcc;text-overflow:clip;white-space:normal;transform:translateY(-2px)}
+  .product-section .product-card:hover .product-route,.product-section .product-card:focus-visible .product-route{gap:14px;color:#efb76f}
+  .product-section .product-card:hover .product-route svg,.product-section .product-card:focus-visible .product-route svg{transform:translateX(7px)}
+}
+@keyframes categoryLineSweep{from{transform:translateX(-150%)}to{transform:translateX(350%)}}
+@media(max-width:1050px){.product-section .product-card{height:365px}}
+@media(max-width:600px){
+  .product-section .product-card{height:350px}
+  .product-section .category-photo{height:57%}
+  .product-section .category-card-content{inset:57% 0 0;padding:17px 18px}
+  .product-section .product-card h3{font-size:16px}
+  .product-section .product-card p{font-size:12px}
+}
+@media(hover:none),(pointer:coarse){
+  .product-section .category-title-line{width:46px}
+  .product-section .product-card p{opacity:1;visibility:visible;filter:none;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .product-section .product-card,.product-section .category-photo img,.product-section .category-photo:after,.product-section .category-hover-overlay,.product-section .category-card-content,.product-section .product-card h3,.product-section .category-title-line,.product-section .product-card p,.product-section .product-card .product-route,.product-section .product-card .product-route svg{animation:none!important;transition:none!important}
+  .product-section .category-title-line:after{display:none}
+}

@@ -1,9 +1,19 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import styles from "./contact.module.css";
 
 export default function ContactForm() {
+  const messageRef = useRef(null);
+
+  useEffect(() => {
+    const requestedProduct = new URLSearchParams(window.location.search).get("product")?.trim().slice(0, 80);
+    if (requestedProduct && messageRef.current && !messageRef.current.value) {
+      messageRef.current.value = `I would like to enquire about ${requestedProduct}.`;
+    }
+  }, []);
+
   const submit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,7 +62,7 @@ export default function ContactForm() {
         <label>Required quantity<input name="quantity" placeholder="e.g. 500 kg" /></label>
         <label>Delivery location<input name="location" placeholder="City / PIN code" /></label>
       </div>
-      <label>Message<textarea name="message" rows="5" placeholder="Product, grade, application and documents required" required /></label>
+      <label>Message<textarea ref={messageRef} name="message" rows="5" placeholder="Product, grade, application and documents required" required /></label>
       <button type="submit">Prepare email <ArrowRight /></button>
       <small className={styles.privacy}><ShieldCheck /> Your details are used only for this enquiry.</small>
     </form>
