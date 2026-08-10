@@ -9,7 +9,7 @@ const productImages = {
   "Cake Life": "/popular-cake-premix.png",
   "Cake Premix": "/popular-cake-premix.png",
   "Custard Powder": "/popular-custard-powder.png",
-  "Frozen Croissant": "/products/bakery-image.png"
+  "Frozen Croissant": "/products/bakery-image.webp"
 };
 
 export default function BakeryCategoryShowcase({ groups, products, categoryLabel = "Bakery", fallbackImage = "/products/bakery-ingredients.webp" }) {

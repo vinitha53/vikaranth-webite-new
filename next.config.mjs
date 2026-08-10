@@ -6,7 +6,9 @@ export default function nextConfig(phase) {
     images: { unoptimized: true },
     output: "export",
     // Keep the live preview isolated from production build output.
-    distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next-dev" : "dist",
+    // A process-specific directory also prevents concurrent local previews
+    // from corrupting one another's compiled layout and paint layers.
+    distDir: phase === PHASE_DEVELOPMENT_SERVER ? `.next-dev-${process.pid}` : "dist",
     trailingSlash: true
   };
 }
