@@ -3,13 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
-  ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, Factory, FlaskConical,
+  ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, FlaskConical,
   Globe2, Handshake, Headphones, HeartPulse, IceCreamBowl, Leaf,
   Mail, MapPin, Menu, Milk, PackageCheck, Phone,
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
-import { slugify } from "./data/catalog";
-import { productImageByName } from "./data/partners";
 import GlobalSearch from "./components/GlobalSearch";
 
 const productGroups = [
@@ -73,8 +71,6 @@ const productGroups = [
 ];
 
 const industrySlugs = ["bakery-ingredients","chocolate-confectionery","dairy-ingredients","beverage-ingredients","ice-cream-ingredients","fruit-processing","hydrocolloids-stabilizers","sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma","food-additives-preservatives"];
-const productSlugAliases = { "811":"callebaut-811", "823":"callebaut-823", "w2":"callebaut-w2", "maltodextrine-powder":"maltodextrin-powder", "sorbitan-mono-stearate":"sorbitan-monostearate" };
-const canonicalProductSlug = (name) => productSlugAliases[slugify(name)] || slugify(name);
 const productCategories = productGroups.map((group, index) => ({
   id: String(index + 1).padStart(2, "0"),
   name: group.name,
@@ -99,25 +95,6 @@ const ecosystemCategories = [
   { number: "11", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 10 }
 ];
 
-const industries = [
-  ["Industrial Bakeries", CakeSlice], ["Cake & Dessert Manufacturers", Sparkles], ["Chocolate & Confectionery", Box],
-  ["Beverage Manufacturers", FlaskConical], ["Dairy & Ice Cream", Milk], ["Hotels & Commercial Kitchens", Building2],
-  ["Nutraceutical Companies", HeartPulse], ["Food-Processing Businesses", Factory]
-];
-
-
-const popularShowcases = [
-  { name: "Bakery", groupIndex: 0, products: [["Cake Gel", "Commercial cakes & sponge systems", "5% center"], ["Cake Premix", "Consistent bakery production", "24% center"], ["Custard Powder", "Fillings, desserts & bakery", "48% center"], ["Baking Powder", "Cakes, biscuits & bakery", "76% center"]] },
-  { name: "Chocolate & Cocoa", groupIndex: 1, products: [["Cocoa Powder", "Bakery, beverages & desserts", "8% center"], ["Cocoa Butter", "Chocolate & confectionery", "28% center"], ["Cocoa Mass", "Couverture & premium chocolate", "53% center"], ["Choco Chips", "Bakery inclusions & toppings", "78% center"]] },
-  { name: "Dairy", groupIndex: 2, products: [["Whipping Cream", "Cakes, desserts & food service", "12% center"], ["Cream Cheese", "Bakery, desserts & savoury", "38% center"], ["Butter", "Bakery & confectionery", "66% center"], ["Skimmed Milk Powder", "Dairy, bakery & beverages", "88% center"]] },
-  { name: "Beverage", groupIndex: 3, products: [["Natural Flavours", "Beverage formulation", "6% center"], ["Chocolate Drink", "Hot and cold beverages", "31% center"], ["Fruit Crush", "Beverages & food service", "58% center"], ["Orange Oil", "Flavour systems & beverages", "86% center"]] },
-  { name: "Ice Cream", groupIndex: 4, products: [["Frozen Yogurt Premix", "Frozen dessert production", "8% center"], ["Panna Base", "Gelato & ice cream", "34% center"], ["French Vanilla", "Premium frozen desserts", "61% center"], ["Ice Cream Stabilizer", "Texture & melt control", "88% center"]] },
-  { name: "Fruit", groupIndex: 5, products: [["Fruit Filling", "Bakery & dessert fillings", "7% center"], ["Frozen Fruits", "Food service & processing", "32% center"], ["Fruit Purees", "Beverages, desserts & dairy", "60% center"], ["Glaze Gel", "Bakery finishing & decoration", "87% center"]] },
-  { name: "Stabilizers", groupIndex: 6, products: [["Genu Pectin", "Fruit, dairy & beverage systems", "7% center"], ["Xanthan Gum", "Viscosity & suspension", "31% center"], ["Guar Gum", "Texture & moisture control", "57% center"], ["Sodium CMC", "Stability & mouthfeel", "84% center"]] },
-  { name: "Sweeteners", groupIndex: 7, products: [["Liquid Glucose", "Confectionery & bakery", "8% center"], ["Sorbitol", "Sweetness & moisture retention", "34% center"], ["Invert Sugar", "Bakery, beverages & desserts", "61% center"], ["Maltodextrin Powder", "Body, solids & processing", "88% center"]] },
-  { name: "Functional", groupIndex: 8, products: [["GMS Flakes", "Emulsification & texture", "7% center"], ["Soya Lecithin", "Chocolate, bakery & processing", "33% center"], ["Whey Protein", "Nutrition & dairy systems", "59% center"], ["Vital Wheat Gluten", "Dough strength & structure", "86% center"]] },
-  { name: "Nutraceuticals", groupIndex: 9, products: [["Whey Protein", "Sports & wellness nutrition", "8% center"], ["Soya Protein", "Plant protein formulations", "34% center"], ["Gelatin 180 Bloom", "Capsules, gummies & nutrition", "61% center"], ["Ascorbic Acid", "Vitamin fortification", "88% center"]] }
-];
 const associates = [
   { name: "CAMPCO", logo: "/partners/campco.png" },
   { name: "Delta Nutritives", logo: "/partners/delta.png" },
@@ -138,6 +115,13 @@ const testimonials = [
   { quote: "Vikranth has consistently supported our ingredient requirements with dependable quality and prompt service. Their team understands our application needs and recommends suitable products.", role: "Purchase Manager", company: "Bakery Manufacturer", location: "Chennai", result: "Dependable quality and prompt service", initials: "PM" },
   { quote: "The cocoa products we source through Vikranth deliver consistent taste, colour and performance across our production batches. Their communication and delivery coordination are excellent.", role: "Production Head", company: "Chocolate & Confectionery Brand", location: "Tamil Nadu", result: "Consistent quality across every batch", initials: "PH" },
   { quote: "From product selection to documentation and dispatch, the entire process is handled professionally. Vikranth has become a reliable ingredient partner for our growing business.", role: "Managing Director", company: "Food Processing Company", location: "South India", result: "Professional support from selection to dispatch", initials: "MD" },
+];
+
+const ingredientInsights = [
+  ["Cocoa guide", "How to Choose Cocoa Powder for Bakery Products", "Understand colour, flavour and application considerations.", "01"],
+  ["Cocoa ingredients", "Cocoa Powder, Cocoa Mass or Cocoa Butter?", "Learn the function of each cocoa ingredient.", "02"],
+  ["Bakery guide", "Choosing Ingredients for Better Cake Texture", "Explore premixes, emulsifiers, proteins and leavening agents.", "03"],
+  ["Texture guide", "How Stabilizers Improve Food Texture", "Understand consistency in dairy, beverages and desserts.", "04"]
 ];
 
 function Logo({ light = false }) {
@@ -226,6 +210,15 @@ function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
   );
 }
 
+function BotanicalCorners() {
+  return (
+    <div className="botanical-corners" aria-hidden="true">
+      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.png" alt="" /></span>
+      <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.png" alt="" /></span>
+    </div>
+  );
+}
+
 function IngredientEcosystem() {
   const renderCard = (category) => {
     const Icon = category.icon;
@@ -240,7 +233,8 @@ function IngredientEcosystem() {
   };
 
   return (
-    <section className="vcc-ingredient-ecosystem" aria-labelledby="ecosystem-title">
+    <section className="vcc-ingredient-ecosystem botanical-light-section" aria-labelledby="ecosystem-title">
+      <BotanicalCorners/>
       <div className="vcc-ecosystem-heading">
         <span className="vcc-ecosystem-eyebrow"><i/>The Vikranth Ingredient Ecosystem<i/></span>
         <h2 id="ecosystem-title">Everything Your Product Needs</h2>
@@ -274,25 +268,28 @@ export default function Home() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [scrolled, setScrolled] = useState(false);
-  const [activePopularCategory, setActivePopularCategory] = useState(1);
-  const [popularPaused, setPopularPaused] = useState(false);
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
   const megaMenuRef = useRef(null);
+  const featureMotionFrame = useRef(null);
+  const insightCarouselRef = useRef(null);
+  const insightTrackRef = useRef(null);
+  const insightControlTimer = useRef(null);
+  const supplierMarqueeRef = useRef(null);
+  const supplierTrackRef = useRef(null);
+  const supplierControlTimer = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  useEffect(() => {
-    if (popularPaused) return;
-    const rotation = window.setTimeout(() => {
-      setActivePopularCategory(current => (current + 1) % popularShowcases.length);
-    }, 7000);
-    return () => window.clearTimeout(rotation);
-  }, [activePopularCategory, popularPaused]);
+  useEffect(() => () => {
+    if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
+    if (insightControlTimer.current) window.clearTimeout(insightControlTimer.current);
+    if (supplierControlTimer.current) window.clearTimeout(supplierControlTimer.current);
+  }, []);
   useEffect(() => {
     if (testimonialPaused) return;
     const rotation = window.setTimeout(() => {
@@ -301,7 +298,8 @@ export default function Home() {
     return () => window.clearTimeout(rotation);
   }, [activeTestimonial, testimonialPaused]);
   useEffect(() => {
-    const nodes = document.querySelectorAll(".section-head, .portfolio-visual, .product-card, .popular-section-head, .popular-ingredient-card, .industry-grid article, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .vcc-ecosystem-heading, .vcc-ecosystem-card, .vcc-ecosystem-centre, .testimonial-heading, .testimonial-card-grid .testimonial-card, .testimonial-trust-summary > div, .cta-inner");
+    const nodes = document.querySelectorAll(".section-head, .portfolio-visual, .product-card, .about-section-head, .about-visual, .about-copy, .about .value-list > div, .quality-section-head, .faq-section-head, .quality-copy, .quality-cards article, .supplier-head, .supplier-feature > div, .insight-grid article, .vcc-ecosystem-heading, .vcc-ecosystem-card, .vcc-ecosystem-centre, .testimonial-heading, .testimonial-card-grid .testimonial-card, .testimonial-trust-summary > div, .cta-inner");
+    const botanicalNodes = document.querySelectorAll(".botanical-corners");
     nodes.forEach((node, index) => {
       node.classList.add("reveal-item");
       node.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 90}ms`);
@@ -309,8 +307,12 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible"));
     }, { threshold: 0.12 });
+    const botanicalObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-drawn"));
+    }, { threshold: 0.18 });
     nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    botanicalNodes.forEach((node) => botanicalObserver.observe(node));
+    return () => { observer.disconnect(); botanicalObserver.disconnect(); };
   }, []);
 
   useEffect(() => {
@@ -339,10 +341,53 @@ export default function Home() {
     if (activeGroup > thumbnailStart + 4) setThumbnailStart(activeGroup - 4);
   }, [activeGroup, thumbnailStart]);
 
-  const popularShowcase = popularShowcases[activePopularCategory];
-
   const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setMenuOpen(false); };
   const jump = () => { setMenuOpen(false); setMegaOpen(false); };
+  const updateFeatureSpotlight = (event) => {
+    const card = event.currentTarget;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      card.style.setProperty("--spotlight-opacity", "0");
+      return;
+    }
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    card.style.setProperty("--spotlight-opacity", "1");
+    if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
+    featureMotionFrame.current = requestAnimationFrame(() => {
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  };
+  const clearFeatureSpotlight = (event) => event.currentTarget.style.setProperty("--spotlight-opacity", "0");
+  const moveInsightCarousel = (direction) => {
+    const track = insightTrackRef.current;
+    const motion = track?.getAnimations().find(animation => animation.animationName === "insightCarouselRight");
+    if (!motion) {
+      const card = track?.querySelector("article");
+      insightCarouselRef.current?.scrollBy({ left: direction * ((card?.offsetWidth || 340) + 18), behavior: "smooth" });
+      return;
+    }
+    const duration = Number(motion.effect?.getTiming().duration) || 34000;
+    if (direction < 0 && Number(motion.currentTime) < duration) motion.currentTime = Number(motion.currentTime || 0) + duration;
+    motion.updatePlaybackRate(direction * 4.5);
+    if (insightControlTimer.current) window.clearTimeout(insightControlTimer.current);
+    insightControlTimer.current = window.setTimeout(() => motion.updatePlaybackRate(1), 720);
+  };
+  const moveSupplierCarousel = (direction) => {
+    const track = supplierTrackRef.current;
+    const motion = track?.getAnimations().find(animation => animation.animationName === "partnerFlowLTR");
+    if (!motion) {
+      const card = track?.querySelector(".associate-logo");
+      supplierMarqueeRef.current?.scrollBy({ left: direction * ((card?.offsetWidth || 205) + 46), behavior: "smooth" });
+      return;
+    }
+    const duration = Number(motion.effect?.getTiming().duration) || 40000;
+    if (direction < 0 && Number(motion.currentTime) < duration) motion.currentTime = Number(motion.currentTime || 0) + duration;
+    motion.updatePlaybackRate(direction * 4.5);
+    if (supplierControlTimer.current) window.clearTimeout(supplierControlTimer.current);
+    supplierControlTimer.current = window.setTimeout(() => motion.updatePlaybackRate(1), 720);
+  };
 
   return (
     <main>
@@ -466,7 +511,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section product-section" id="products">
+      <section className="section product-section botanical-light-section" id="products">
+        <BotanicalCorners/>
         <div className="container">
           <div className="section-head portfolio-section-head">
             <div>
@@ -516,7 +562,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section about" id="about">
+      <section className="section about botanical-light-section" id="about">
+        <BotanicalCorners/>
         <div className="container">
           <div className="about-section-head">
             <span className="eyebrow">Why Vikranth?</span>
@@ -539,7 +586,10 @@ export default function Home() {
                 [Beaker, "Application-Based Guidance", "Discuss your finished product and identify ingredients suited to your requirement."],
                 [Zap, "Responsive Quotations", "Receive clear support for availability, quantity and commercial enquiries."],
                 [PackageCheck, "Business-Focused Supply", "Practical sourcing for manufacturers, bakeries, processors and professional buyers."]
-              ].map(([Icon,title,text]) => <div key={title}><span><Icon/></span><section><h3>{title}</h3><p>{text}</p></section></div>)}
+              ].map(([Icon,title,text], index) => <div key={title} style={{"--value-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
+                <i className="value-card-orbit" aria-hidden="true"/><i className="value-card-corner" aria-hidden="true"/>
+                <span><Icon/></span><section><h3>{title}</h3><p>{text}</p></section>
+              </div>)}
             </div>
             <button className="btn dark" onClick={() => openQuote()}>Work with Vikranth <ArrowRight size={16}/></button>
           </div>
@@ -547,55 +597,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        className={`popular-section ${popularPaused ? "is-paused" : ""}`}
-        aria-labelledby="popular-heading"
-        onMouseEnter={() => setPopularPaused(true)}
-        onMouseLeave={() => setPopularPaused(false)}
-        onFocusCapture={() => setPopularPaused(true)}
-        onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPopularPaused(false); }}
-      >
-        <div className="container">
-          <div className="popular-section-head">
-            <span className="eyebrow">Frequently requested</span>
-            <h2 id="popular-heading">Popular Food Ingredients</h2>
-          </div>
-          <div className="popular-category-nav" aria-label="Ingredient categories">
-            <div className="popular-category-scroll" role="tablist" aria-label="Automatically rotating ingredient categories">
-              {popularShowcases.map((showcase, index) => (
-                <button key={showcase.name} role="tab" aria-selected={activePopularCategory === index} className={activePopularCategory === index ? "active" : ""} onClick={() => setActivePopularCategory(index)}>
-                  {showcase.name}
-                </button>
-              ))}
-            </div>
-            <a className="popular-shop-all" href={`/industries/${industrySlugs[popularShowcase.groupIndex]}`}>View all {popularShowcase.name.toLowerCase()}</a>
-          </div>
-          <div className="popular-ingredient-showcase" key={popularShowcase.name} aria-live="polite">
-            {popularShowcase.products.map(([product, application, position], index) => (
-              <a className="popular-ingredient-card" href={`/products/${canonicalProductSlug(product)}`} style={{"--swap-delay": `${index * 75}ms`}} key={`${popularShowcase.name}-${product}`}>
-                <span className="popular-ingredient-image"><img src={product === "Cake Gel" ? "/popular-cake-gel.png" : product === "Cake Premix" ? "/popular-cake-premix.png" : product === "Custard Powder" ? "/popular-custard-powder.png" : productImageByName[product] || productGroups[popularShowcase.groupIndex].image} alt={`${product} for commercial food production`} style={{objectPosition: ["Cake Gel", "Cake Premix", "Custard Powder"].includes(product) ? "center" : position}} /></span>
-                <strong>{product}</strong>
-                <small>{application}</small>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section industries" id="industries">
-        <div className="container">
-          <span className="eyebrow light-text">Industries we support</span>
-          <div className="industry-intro"><h2>Ingredients for Growing Food Businesses</h2><p>From product selection to repeat supply, Vikranth supports businesses that depend on consistent ingredients and responsive service.</p></div>
-          <div className="industry-grid">
-            {industries.map(([name, Icon], i) => <article key={name}><span>0{i+1}</span><Icon/><h3>{name}</h3><button onClick={() => openQuote(name)}>Discuss your application <ArrowRight size={14}/></button></article>)}
-          </div>
-          <button className="btn primary industry-cta" onClick={() => openQuote("Industry enquiry")}>View All Industries <ArrowRight size={16}/></button>
-        </div>
-      </section>
-
-      <section className="supplier-section" id="suppliers">
+      <section className="supplier-section botanical-light-section" id="suppliers">
+        <BotanicalCorners/>
         <div className="container">
           <div className="supplier-head"><div><span className="eyebrow">Our product network</span><h2>Established Manufacturers.<br/><em>One Reliable Supplier.</em></h2></div><p>Explore a broader ingredient portfolio through a local team that understands your product and sourcing requirements.</p></div>
-          <div className="logo-marquee"><div className="logo-track">{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
+          <div className="supplier-marquee-shell">
+            <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
+            <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
+          </div>
           <div className="supplier-feature">
             <div><Globe2/><span>Worldwide sourcing</span><p>Access respected ingredient producers and specialized grades.</p></div>
             <div><Truck/><span>India-wide fulfillment</span><p>Commercial quantities delivered through an established network.</p></div>
@@ -604,7 +614,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="quality-section" id="quality" aria-labelledby="quality-heading">
+      <section className="quality-section botanical-light-section" id="quality" aria-labelledby="quality-heading">
+        <BotanicalCorners/>
         <div className="container">
           <div className="quality-section-head">
             <span className="eyebrow">Quality-led sourcing</span>
@@ -612,30 +623,44 @@ export default function Home() {
           </div>
           <div className="quality-grid">
             <div className="quality-copy">
-              <p>We focus on dependable sourcing, appropriate product handling and clear ingredient information. Product specifications, certificates and supporting documents can be requested according to product and supplier availability.</p>
-              <button className="btn dark" onClick={() => openQuote("Product information")}>Request product information <ArrowRight size={16}/></button>
+              <span className="quality-copy-label"><ShieldCheck size={16}/> Sourcing assurance for professional buyers</span>
+              <p>Every requirement follows a clear sourcing path—from supplier alignment and available product documents to careful fulfilment and repeat-order support. Specifications, certificates and supporting information are coordinated according to product and supplier availability.</p>
+              <div className="quality-assurance-flow" aria-label="Our sourcing assurance process">
+                <span><b>01</b> Supplier aligned</span><i aria-hidden="true"/><span><b>02</b> Information checked</span><i aria-hidden="true"/><span><b>03</b> Supply coordinated</span>
+              </div>
+              <button className="btn dark quality-information-cta" onClick={() => openQuote("Product information request")}>Request Product Information <ArrowRight size={16}/></button>
             </div>
             <div className="quality-cards">
               {[
-                [ShieldCheck, "Established suppliers", "Ingredients sourced through established product networks."],
-                [PackageCheck, "Product information support", "Specifications and supporting documents on request."],
-                [BadgeCheck, "Hygienic handling and supply", "Appropriate care throughout commercial fulfilment."],
-                [Globe2, "Repeat requirement consistency", "Support for ongoing professional ingredient needs."]
-              ].map(([Icon, title, text]) => <article key={title}><Icon/><div><h3>{title}</h3><p>{text}</p></div></article>)}
+                [ShieldCheck, "Established supplier network", "Source through established Indian and international ingredient manufacturers."],
+                [PackageCheck, "Product information support", "Request available specifications, certificates and supporting product documents."],
+                [BadgeCheck, "Careful handling and fulfilment", "Product-aware coordination from commercial requirement through dispatch."],
+                [Globe2, "Repeat-order continuity", "Responsive support for recurring grades, pack sizes and professional requirements."]
+              ].map(([Icon, title, text], index) => <article key={title} style={{"--quality-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
+                <span className="quality-card-step" aria-hidden="true">0{index + 1}</span><i className="quality-card-glow" aria-hidden="true"/><span className="quality-icon"><Icon/></span><div><h3>{title}</h3><p>{text}</p></div>
+              </article>)}
             </div>
           </div>
         </div>
       </section>
-      <section className="section insights" id="insights">
+      <section className="section insights botanical-light-section" id="insights">
+        <BotanicalCorners/>
         <div className="container">
-          <div className="section-title-line"><div><span className="eyebrow">Ingredient knowledge</span><h2>Practical Answers for<br/><em>Better Products</em></h2></div><a href="#contact">Explore ingredient guides <ArrowRight size={16}/></a></div>
-          <div className="insight-grid">
-            {[
-              ["Cocoa guide", "How to Choose Cocoa Powder for Bakery Products", "Understand colour, flavour and application considerations.", "01"],
-              ["Cocoa ingredients", "Cocoa Powder, Cocoa Mass or Cocoa Butter?", "Learn the function of each cocoa ingredient.", "02"],
-              ["Bakery guide", "Choosing Ingredients for Better Cake Texture", "Explore premixes, emulsifiers, proteins and leavening agents.", "03"],
-              ["Texture guide", "How Stabilizers Improve Food Texture", "Understand consistency in dairy, beverages and desserts.", "04"]
-            ].map(([tag,title,summary,no]) => <article key={no}><span className="article-no">{no}</span><small>{tag}</small><h3>{title}</h3><p>{summary}</p><div><button aria-label={`Read ${title}`}><ArrowRight/></button></div></article>)}
+          <div className="section-title-line insight-section-title"><div className="insight-heading-copy"><span className="eyebrow">Ingredient knowledge</span><h2>Practical Answers for<br/><em>Better Products</em></h2></div><a href="#contact">Explore ingredient guides <ArrowRight size={16}/></a></div>
+          <div className="insight-carousel-shell">
+            <button className="insight-carousel-control previous" type="button" aria-label="Move ingredient guides left" aria-controls="ingredient-insight-track" onClick={() => moveInsightCarousel(-1)}><ChevronLeft/></button>
+            <div className="insight-carousel" ref={insightCarouselRef} aria-label="Ingredient knowledge guides">
+              <div className="insight-grid" id="ingredient-insight-track" ref={insightTrackRef}>
+                {[...ingredientInsights, ...ingredientInsights].map(([tag,title,summary,no], index) => {
+                  const duplicate = index >= ingredientInsights.length;
+                  return <article key={`${no}-${index}`} aria-hidden={duplicate ? "true" : undefined}>
+                    <span className="article-no">{no}</span><small>{tag}</small><h3>{title}</h3><p>{summary}</p>
+                    <div><button type="button" tabIndex={duplicate ? -1 : 0} aria-label={`Read ${title}`}><ArrowRight/></button></div>
+                  </article>;
+                })}
+              </div>
+            </div>
+            <button className="insight-carousel-control next" type="button" aria-label="Move ingredient guides right" aria-controls="ingredient-insight-track" onClick={() => moveInsightCarousel(1)}><ChevronRight/></button>
           </div>
         </div>
       </section>
@@ -704,7 +729,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="faq-section" id="faq" aria-labelledby="faq-heading">
+      <section className="faq-section botanical-light-section" id="faq" aria-labelledby="faq-heading">
+        <BotanicalCorners/>
         <div className="container">
           <div className="faq-section-head">
             <span className="eyebrow">Frequently asked questions</span>
@@ -741,7 +767,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact-strip" aria-label="Contact information">
+      <section className="contact-strip botanical-light-section botanical-light-compact" aria-label="Contact information">
+        <BotanicalCorners/>
         <div className="container contact-strip-grid">
           <div><span className="eyebrow">Start your ingredient enquiry</span><h2>Vikranth Chemical Corporation</h2></div>
           <a href="tel:+914425657360"><Phone/><span><small>Phone</small><b>044 2565 7360 / 044 2565 7369<br/>+91 87544 42924 / +91 97909 20252</b></span></a>
