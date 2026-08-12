@@ -19,8 +19,8 @@ export const partnerProductImages = {
     products: {
       "Cocoa Powder": "/partner-products/Campco/Cocoa Powder.webp",
       "Cocoa Butter": "/partner-products/Campco/Cocoa Butter.webp",
-      "Cocoa Mass": "/partner-products/Campco/Cocoa Mass.webp",
-      "Dark Chocolate": "/partner-products/campco-dark-chocolate.webp"
+      "Cocoa Mass": "/product-images/other-products/cocoa-mass.jpg",
+      "Dark Chocolate": "/partner-products/campco-dark-chocolate.jpg"
     }
   },
   "delta-nutritives": {
@@ -69,7 +69,18 @@ export const productImageByName = {
   ...Object.fromEntries(
     Object.values(partnerProductImages).flatMap(({products}) => Object.entries(products)).reverse()
   ),
-  "Choco Chips": "/partner-products/Campco/Choco Chips.webp",
+  "Choco Chips": "/product-images/other-products/choco-chips.jpg",
+  "White Chips": "/product-images/other-products/white-chips.png",
+  "Dark Chips": "/product-images/other-products/choco-chips.jpg",
+  "Milk Chips": "/product-images/other-products/milk-chips.png",
+  "Dark Chocomass": "/product-images/other-products/dark-chocomass.png",
+  "White Chocomass": "/product-images/other-products/white-chocomass.png",
+  "Milk Chocomass": "/product-images/other-products/milk-chocomass.png",
+  "Callebaut 811": "/product-images/other-products/callebaut-811.png",
+  "Callebaut 823": "/product-images/other-products/callebaut-823.jpg",
+  "Callebaut W2": "/product-images/other-products/callebaut-w2.png",
+  "CB Plein Aroma Cocoa Powder": "/product-images/other-products/cb-plein-aroma-cocoa-powder.jpg",
+  "Bitter Chocolate 70-3": "/product-images/other-products/bitter-chocolate-70-3.jpg",
   "Choco Paste": "/partner-products/Campco/Choco Paste.webp",
   "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.webp",
   "Calcium Propionate (CP)": "/product-images/calpro/calcium-propionate.webp",
@@ -89,6 +100,14 @@ export const productImageByName = {
   "Sorbic Acid": "/product-images/beverages/sorbic-acid.webp",
   "Xanthan Gum": "/product-images/beverages/xanthan-gum-200-mesh.webp",
   "Baking Powder": "/product-images/other-products/baking-powder.webp",
+  "Bread Yield Improver": "/product-images/other-products/bread-yield-improver.png",
+  "Cake Gel": "/product-images/other-products/cake-gel.png",
+  "Cake Life": "/product-images/other-products/cake-life.png",
+  "Corn Syrup": "/product-images/other-products/corn-syrup.png",
+  "Custard Powder": "/product-images/other-products/custard-powder.png",
+  "Frozen Croissant": "/product-images/other-products/frozen-croissant.jpg",
+  "White Chocolate": "/product-images/other-products/white-chocolate.jpg",
+  "Milk Chocolate": "/product-images/other-products/milk-chocolate.png",
   "Calcium Carbonate": "/product-images/other-products/calcium-carbonate.webp",
   "Calcium Chloride": "/product-images/other-products/calcium-chloride.webp",
   "Calcium Gluconate": "/product-images/other-products/calcium-gluconate.webp",
@@ -98,7 +117,7 @@ export const productImageByName = {
   "Isomalt": "/product-images/other-products/isomalt.webp",
   "Liquid Glucose": "/product-images/other-products/liquid-glucose.webp",
   "Malt Extract Powder": "/product-images/other-products/malt-extract-powder.webp",
-  "MACP (Mono Acid Calcium Phosphate)": "/product-images/other-products/mono-acid-calcium-phosphate.webp",
+  "MACP (Mono Acid Calcium Phosphate)": "/product-images/other-products/mono-acid-calcium-phosphate.png",
   "Orange Oil": "/product-images/other-products/orange-oil.webp",
   "Potassium Metabisulphite (KMS)": "/product-images/other-products/potassium-metabisulphite.webp",
   "Potato Starch": "/product-images/other-products/potato-starch.webp",
