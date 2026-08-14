@@ -237,7 +237,7 @@ export default function GlobalSearch({ onOpen }) {
   };
 
   return <>
-    <button ref={triggerRef} className={styles.trigger} type="button" onClick={openSearch} aria-label="Search the Vikranth website" aria-expanded={open} aria-controls="global-search-dialog">
+    <button suppressHydrationWarning ref={triggerRef} className={styles.trigger} type="button" onClick={openSearch} aria-label="Search the Vikranth website" aria-expanded={open} aria-controls="global-search-dialog">
       <Search aria-hidden="true"/><span>Search products…</span>
     </button>
     {open && <div className={styles.backdrop} onMouseDown={(event) => { if (event.target === event.currentTarget) closeSearch(); }}>

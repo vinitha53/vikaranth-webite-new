@@ -911,6 +911,42 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .hero{background:#2a1008 url('/hero-chocolate-poster.jpg') center/cover no-repeat}
 }
 
+/* Hero headline sits above the film while actions remain in the content flow. */
+.hero-content>h1{
+  position:absolute;
+  top:42px;
+  left:50%;
+  width:min(1100px,calc(100% - 40px));
+  margin:0;
+  transform:translateX(-50%);
+  text-align:center;
+}
+.hero-content>.hero-copy{
+  position:absolute;
+  top:270px;
+  left:50%;
+  width:max-content;
+  max-width:calc(100% - 40px);
+  transform:translateX(-50%);
+}
+.hero-content>.hero-copy .hero-buttons{justify-content:center}
+@media(max-width:820px){
+  .hero-content>h1{top:30px;width:calc(100% - 28px)}
+  .hero-content>.hero-copy{top:235px;max-width:calc(100% - 28px)}
+}
+@media(max-width:540px){
+  .hero-content>h1{top:24px;font-size:38px}
+  .hero-content>.hero-copy{top:160px;width:calc(100% - 28px)}
+}
+
+/* Preserve the supplied hero film's original colour and brightness. */
+.hero .hero-media{filter:none;transform:none}
+.hero .hero-shade{background:transparent}
+.hero .hero-grain{display:none}
+@media(max-width:1050px){.hero .hero-shade{background:transparent}}
+@media(max-width:820px){.hero .hero-shade{background:transparent}}
+@media(max-width:540px){.hero .hero-shade{background:transparent}}
+
 /* Compact product-category cards. Scoped to the homepage portfolio only. */
 .product-section .product-grid{align-items:stretch}
 .product-section .product-card{

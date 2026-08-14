@@ -486,16 +486,11 @@ export default function Home() {
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
+          <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
           <div className="hero-copy">
-            <span className="hero-kicker"><span/> Food ingredient supplier · Chennai</span>
-            <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
-            <p>Bakery, chocolate, dairy, beverage and specialty ingredients—sourced for reliable performance at production scale.</p>
             <div className="hero-buttons">
               <a className="btn gold" href="/products">Explore ingredients <ArrowRight size={17}/></a>
               <button className="btn ghost" onClick={() => openQuote()}>Request a quote</button>
-            </div>
-            <div className="hero-trust">
-              <span><ShieldCheck/> Quality-led sourcing</span><span><Headphones/> Application-focused support</span><span><Truck/> Reliable business supply</span>
             </div>
           </div>
         </div>
