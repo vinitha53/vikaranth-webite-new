@@ -104,10 +104,7 @@ export default async function PartnerPage({ params }) {
         <div className={styles.process}><div className={styles.processLine} />{[["01","Enquiry","Product, application and quantity"],["02","Technical review","Grade and suitability check"],["03","Sample & documents","Subject to availability"],["04","Quotation","Pack, MOQ, freight and lead time"],["05","Delivery planning","Confirmed for your destination"]].map(([number,title,text]) => <article className={styles.processStep} key={number}><span>{number}</span><strong>{title}</strong><p>{text}</p></article>)}</div>
       </div></section>
 
-      <section className={`${styles.section} ${styles.sectionCream}`} id="documents"><div className={styles.wrap}>
-        <header className={styles.sectionHead}><span className={styles.eyebrow}>Quality and documentation</span><h2>Request the information your team needs</h2></header>
-        <div className={styles.documentGrid}><article className={styles.documentCard}><FileCheck2 /><h3>Technical and quality documents</h3><p>Request available specifications, COA, SDS where applicable, allergen information, origin, storage, shelf life and relevant certificates for a named product.</p></article><article className={styles.documentCard}><PackageCheck /><h3>Commercial and logistics details</h3><p>Vikranth confirms pack size, MOQ, stock or indent status, sample policy, lead time, freight terms and delivery coverage before quotation.</p></article></div>
-      </div></section>
+
 
 
       <section className={styles.section} id="faq"><div className={styles.wrap}><header className={styles.sectionHead}><span className={styles.eyebrow}>Buyer questions</span><h2>Frequently asked questions about {partner.name}</h2></header><div className={styles.faqList}>{faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
