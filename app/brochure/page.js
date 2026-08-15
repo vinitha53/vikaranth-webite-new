@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { DetailFooter, DetailHeader } from "../components/DetailChrome";
-import Flipbook from "./Flipbook";
+import Image from "next/image";
+import ContactBrochureFlipbook from "../contact/ContactBrochureFlipbook";
 import styles from "./brochure.module.css";
 
 export const metadata = {
@@ -13,18 +12,14 @@ export const metadata = {
 export default function BrochurePage() {
   return (
     <main className={styles.page}>
-      <DetailHeader />
-      <section className={styles.heading}>
-        <div>
-          <Link href="/contact"><ArrowLeft /> Back to contact</Link>
-          <span>Interactive company brochure</span>
-          <h1>Turn the page on better ingredients.</h1>
-          <p>Explore our principal brands, Anchor products, food ingredients and additive categories. Use the on-screen arrows or your keyboard arrow keys to turn the pages.</p>
-        </div>
-        <div className={styles.headingNote}><b>04</b><span>Brochure pages<small>Optimized for desktop &amp; mobile</small></span></div>
+      <Link className={styles.homeLogo} href="/" aria-label="Return to Vikranth Chemical Corporation home page">
+        <Image src="/logo-vikranth.png" width={92} height={42} priority alt="Vikranth Chemical Corporation" />
+        <span>Home</span>
+      </Link>
+      <h1 className={styles.srOnly}>Vikranth Chemical Corporation interactive product brochure</h1>
+      <section className={styles.viewerWrap} aria-label="Full-page brochure viewer">
+        <ContactBrochureFlipbook standalone />
       </section>
-      <div className={styles.viewerWrap}><Flipbook /></div>
-      <DetailFooter />
     </main>
   );
 }

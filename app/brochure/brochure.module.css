@@ -5,6 +5,26 @@
 @keyframes mobileTurn{0%{opacity:.25;transform:translateX(20px) rotateY(-8deg)}100%{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.sheet,.book,.bookScaler,.pageArrow,.pageProgress button{transition:none}.mobilePage{animation:none}}
 
+/* Dedicated full-page viewer at /brochure/. */
+.page{position:relative;display:grid;width:100%;height:100svh;min-height:0;grid-template-rows:minmax(0,1fr);overflow:hidden;background:#e9e3dc}
+.topBar{position:relative;z-index:50;display:flex;min-width:0;padding:0 22px 0 28px;align-items:center;justify-content:space-between;gap:24px;border-bottom:2px solid #b86b32;background:linear-gradient(90deg,#241008,#3b1a0c 52%,#241008);box-shadow:0 5px 18px rgba(35,16,8,.2);color:#f7e8d7}
+.topBarCopy{display:flex;min-width:0;align-items:baseline;gap:14px;white-space:nowrap}
+.topBarCopy strong{font:750 13px/1.2 'Manrope','Segoe UI',sans-serif;letter-spacing:.02em}
+.topBarCopy span{overflow:hidden;color:#d4bba4;font:500 10px/1.2 'DM Sans','Segoe UI',sans-serif;text-overflow:ellipsis}
+.homeLogo{position:absolute;z-index:70;top:12px;left:14px;display:flex;height:50px;padding:4px 13px 4px 6px;align-items:center;gap:8px;border:1px solid rgba(113,51,21,.22);border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 8px 24px rgba(49,29,17,.14);color:#67341d;font:750 10px/1 'Manrope','Segoe UI',sans-serif;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;backdrop-filter:blur(10px)}
+.homeLogo img{display:block;width:auto;height:40px;object-fit:contain}
+.page>.viewerWrap{min-width:0;min-height:0;padding:0;background:#e9e3dc}
+.page>.viewerWrap>section{width:100%;height:100%;max-height:none;border:0;border-radius:0}
+.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media(max-width:760px),(max-height:680px){
+  .page>.viewerWrap{padding:0}
+  .page>.viewerWrap>section{border:0;border-radius:0}
+  .homeLogo{top:7px;left:7px;width:48px;height:44px;padding:3px;justify-content:center}
+  .homeLogo img{height:36px}
+  .homeLogo span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+}
+
 /* Refined flipbook alignment */
 .heading{padding-top:46px;padding-bottom:38px;align-items:center}.heading>div:first-child>a{margin-bottom:24px}.heading h1{max-width:720px}.heading p{margin-bottom:0}.headingNote{margin-top:22px}
 .viewerWrap{padding-top:28px}.viewerTopbar{padding-right:22px;padding-left:22px}.bookArea{min-height:650px;padding-top:26px;padding-bottom:26px}.bookScaler{width:min(850px,calc(100vw - 260px));margin:auto}.viewerBottom{padding-right:22px;padding-left:22px}.pageProgress{min-width:150px}.viewerLinks{min-width:150px}.viewerBottom>strong{text-align:center}

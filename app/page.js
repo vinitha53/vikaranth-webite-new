@@ -390,7 +390,7 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="home-page">
       <div className="utility">
         <div className="utility-viewport">
           <div className="utility-track">
@@ -415,19 +415,20 @@ export default function Home() {
       <header className={scrolled ? "scrolled" : ""} ref={megaMenuRef}>
         <div className="container nav-wrap">
           <Logo />
-          <nav className={`home-nav ${menuOpen ? "open" : ""}`}>
+          <nav id="home-navigation" className={`home-nav ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
             <a href="#home" onClick={jump}>Home</a>
             <a href="/about" onClick={jump}>About</a>
             <button className="nav-product" onClick={() => setMegaOpen(v => !v)} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
+            <a className="mobile-products-link" href="/products" onClick={jump}>Products</a>
             <a href="#industries" onClick={jump}>Industries</a>
-            <a href="/associates">Suppliers</a>
+            <a href="/associates" onClick={jump}>Suppliers</a>
             <a href="#insights" onClick={jump}>Blog</a>
-            <a href="/contact">Contact</a>
+            <a href="/contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
             <GlobalSearch onOpen={() => { setMenuOpen(false); setMegaOpen(false); }}/>
             <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
-            <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label="Open menu">{menuOpen ? <X/> : <Menu/>}</button>
+            <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="home-navigation">{menuOpen ? <X/> : <Menu/>}</button>
           </div>
         </div>
         <div id="products-mega-menu" className={`mega-menu vcc-products-mega-menu ${megaOpen ? "show" : ""}`} aria-hidden={!megaOpen}>
@@ -489,8 +490,8 @@ export default function Home() {
           <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
           <div className="hero-copy">
             <div className="hero-buttons">
-              <a className="btn gold" href="/products">Explore ingredients <ArrowRight size={17}/></a>
-              <button className="btn ghost" onClick={() => openQuote()}>Request a quote</button>
+              <a className="btn gold" href="/brochure/">Download Brochure <ArrowRight size={17}/></a>
+              <a className="btn ghost" href="/contact/">Contact</a>
             </div>
           </div>
         </div>

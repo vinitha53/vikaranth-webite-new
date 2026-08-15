@@ -9,3 +9,11 @@
 @media(max-width:760px){.viewer{height:clamp(600px,calc(100svh - 90px),820px)}.toolbar{top:8px;right:8px;left:8px;padding:5px 6px;justify-content:flex-start;overflow-x:auto}.toolbar button,.toolbar a{min-width:36px;height:34px}.toolbar i{display:none}.stage{height:auto;min-height:0}.panArea{width:calc(100% - 56px);height:calc(100% - 12px);padding-top:48px}.leftArrow{left:3px}.rightArrow{right:3px}.edgeArrow{width:36px;height:44px}.progressRow{padding:10px;gap:8px}.panel{top:58px;right:7px;width:calc(100% - 14px)}.thumbs{grid-template-columns:repeat(3,1fr)}.fallbackFullscreen .panel{top:58px}.fallbackFullscreen .stage{height:auto}}
 @media(max-width:420px){.heading h2{font-size:25px}.stage{min-height:440px}.thumbs{grid-template-columns:repeat(3,1fr)}}
 @media(prefers-reduced-motion:reduce){.bookScale,.edgeArrow{transition:none}.skeleton span{animation:none}}
+
+/* Dedicated /brochure viewer: full viewport with every tool kept accessible. */
+.standalone{height:100%;max-height:none;border:0;border-radius:0;box-shadow:none}
+.standalone .toolbar{top:12px;right:18px;max-width:calc(100% - 150px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+@media(max-width:760px){
+  .standalone{height:100%;max-height:none}
+  .standalone .toolbar{top:7px;right:7px;left:62px;max-width:none;padding-right:8px;padding-left:8px}
+}

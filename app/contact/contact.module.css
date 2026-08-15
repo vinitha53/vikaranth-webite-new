@@ -408,3 +408,85 @@
 .mascotEntranceMover .cocoaBeanPose{left:0}
 .enquiryAnimationStage>.journeyForm{transform-origin:50% 50%}
 .contactJourneyLoading{min-height:900px;background:#fbf3e9}
+
+/* Contact-only WhatsApp assistance section, directly below the enquiry form. */
+.whatsappCtaSection{position:relative;width:100%;padding:76px 24px;margin:48px 0 24px;overflow:hidden;border-block:1px solid #e5d2be;background:radial-gradient(circle at 84% 45%,rgba(212,126,63,.14),transparent 27%),linear-gradient(135deg,#fffaf3 0%,#f5e7d5 100%)}
+.whatsappCtaSection:before,.whatsappCtaSection:after{content:"";position:absolute;border:1px solid rgba(151,75,33,.1);border-radius:50%;pointer-events:none}
+.whatsappCtaSection:before{right:-110px;top:-190px;width:420px;height:420px;box-shadow:0 0 0 52px rgba(174,95,47,.025),0 0 0 104px rgba(174,95,47,.018)}
+.whatsappCtaSection:after{left:-130px;bottom:-210px;width:330px;height:330px}
+.whatsappCtaInner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);width:min(1180px,100%);margin:0 auto;align-items:center;gap:64px}
+.whatsappCtaCopy{min-width:0}
+.whatsappCtaEyebrow{display:flex;align-items:center;gap:10px;color:#a24d23;font:800 11px/1.2 'Manrope','Segoe UI',sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.whatsappCtaEyebrow:before{content:"";width:30px;height:2px;background:#ca753d}
+.whatsappCtaCopy h2{max-width:720px;margin:16px 0 17px;color:#2a170e;font:800 clamp(36px,4.2vw,56px)/1.06 'Manrope','Segoe UI',sans-serif;letter-spacing:-.045em;text-wrap:balance}
+.whatsappCtaCopy>p{max-width:670px;margin:0;color:#6d5b4f;font-size:15px;line-height:1.75}
+.whatsappCtaButton{display:inline-flex;min-height:54px;margin-top:28px;padding:0 23px;align-items:center;justify-content:center;gap:10px;border:1px solid #dc8147;border-radius:999px;background:linear-gradient(135deg,#7c3518,#b75524);box-shadow:0 11px 24px rgba(100,40,14,.2),inset 0 1px rgba(255,255,255,.18);color:#fff;font:800 13px/1 'Manrope','Segoe UI',sans-serif;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.whatsappCtaButton>img{width:27px;height:27px;flex:0 0 27px;border-radius:50%;object-fit:cover}
+.whatsappCtaButton>svg{width:17px;height:17px;transition:transform .25s ease}
+.whatsappCtaButton:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 15px 29px rgba(100,40,14,.27),inset 0 1px rgba(255,255,255,.2)}
+.whatsappCtaButton:hover>svg{transform:translateX(4px)}
+.whatsappCtaButton:active{transform:translateY(0)}
+.whatsappCtaButton:focus-visible,.whatsappQrCard:focus-visible{outline:3px solid #d88743;outline-offset:4px}
+.whatsappResponseNote{display:flex;margin-top:16px;align-items:center;gap:7px;color:#7d6a5d;font-size:11px;line-height:1.45}
+.whatsappResponseNote svg{width:15px;height:15px;color:#b85827;fill:rgba(184,88,39,.13)}
+.whatsappQrCard{justify-self:center;display:flex;width:min(100%,290px);padding:25px 25px 20px;align-items:center;flex-direction:column;border:1px solid rgba(117,59,28,.24);border-radius:20px;background:#fff;box-shadow:0 22px 50px rgba(78,36,14,.14);color:#4a2818;text-decoration:none;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.whatsappQrCard:hover{border-color:#bc7143;box-shadow:0 28px 58px rgba(78,36,14,.19);transform:translateY(-4px)}
+.whatsappQrImage{display:block;width:220px;max-width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#fff}
+.whatsappQrCard>span{display:flex;margin-top:15px;align-items:center;justify-content:center;gap:7px;color:#5e3926;font:750 11px/1.4 'Manrope','Segoe UI',sans-serif;text-align:center}
+.whatsappQrCard>span svg{width:17px;height:17px;color:#278b49}
+.brochureQrSection{margin-top:24px;background:radial-gradient(circle at 84% 45%,rgba(142,67,29,.12),transparent 27%),linear-gradient(135deg,#fffaf3 0%,#f3e3d0 100%)}
+.brochureButtonIcon{display:grid;width:27px;height:27px;flex:0 0 27px;place-items:center;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.12)}
+.brochureButtonIcon svg{width:15px;height:15px}
+.brochureQrCard>span svg{color:#9a481d}
+
+@media(max-width:900px){
+  .whatsappCtaSection{padding:58px 28px;margin-top:38px}
+  .whatsappCtaInner{grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr);gap:38px}
+  .whatsappCtaCopy h2{font-size:clamp(32px,5vw,43px)}
+  .whatsappQrCard{width:min(100%,250px);padding:22px 22px 18px}
+  .whatsappQrImage{width:185px}
+}
+
+@media(max-width:700px){
+  .whatsappCtaSection{padding:52px 24px 76px;margin:30px 0 12px}
+  .whatsappCtaInner{grid-template-columns:1fr;gap:38px}
+  .whatsappCtaCopy{text-align:center}
+  .whatsappCtaEyebrow{justify-content:center}
+  .whatsappCtaCopy h2{margin-inline:auto;font-size:clamp(30px,9.5vw,38px)}
+  .whatsappCtaCopy>p{margin-inline:auto;font-size:14px;line-height:1.68}
+  .whatsappCtaButton{display:flex;width:min(100%,360px);margin:25px auto 0}
+  .whatsappResponseNote{justify-content:center}
+  .whatsappQrCard{width:min(100%,250px)}
+  .whatsappQrImage{width:185px}
+}
+
+@media(max-width:390px){
+  .whatsappCtaSection{padding-inline:20px}
+  .whatsappCtaCopy h2{font-size:29px}
+  .whatsappQrCard{padding:19px 19px 17px}
+  .whatsappQrImage{width:175px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .whatsappCtaCopy,.whatsappQrCard{opacity:1!important;visibility:visible!important;transform:none!important;transition:none!important}
+  .whatsappCtaButton,.whatsappCtaButton>svg{transition:none!important}
+  .whatsappCtaButton:hover,.whatsappQrCard:hover{transform:none}
+}
+
+/* Match the office direction links to the shared Request a Quote CTA. */
+.officeGrid article{display:flex;flex-direction:column}
+.officeGrid article p{margin-bottom:26px}
+.officeGrid a{position:relative;bottom:auto;align-self:flex-start;isolation:isolate;min-height:50px;margin-top:auto;padding:0 28px!important;overflow:visible;align-items:center;justify-content:center;gap:8px;border:1px solid #dc7a3a!important;border-radius:999px!important;background-image:linear-gradient(105deg,transparent 24%,rgba(255,226,177,.12) 38%,rgba(255,255,255,.68) 49%,rgba(255,211,145,.14) 60%,transparent 74%),linear-gradient(135deg,#a44317,#d46725)!important;background-position:180% 0,0 0!important;background-size:220% 100%,100% 100%!important;box-shadow:0 9px 20px rgba(116,48,18,.2),0 0 0 6px rgba(169,72,27,.08)!important;color:#fff!important;font:800 14px/1 'Manrope','Segoe UI',Arial,sans-serif!important;letter-spacing:0;text-transform:none;transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease!important;animation:officeCtaGlitterFlow 2.8s linear infinite}
+.officeGrid a:before{content:"";position:absolute;z-index:-1;inset:-2px;width:42%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent);transform:translateX(-180%) skewX(-18deg);animation:officeCtaShine 2.8s ease-in-out infinite}
+.officeGrid a:after{content:"";position:absolute;inset:-7px;border:2px dotted rgba(220,126,68,.95);border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.officeGrid a svg{width:16px;height:16px;transition:transform .24s ease;animation:officeCtaArrow 1.25s ease-in-out infinite}
+.officeGrid a:hover{border-color:#efad75!important;background-image:linear-gradient(105deg,transparent 24%,rgba(255,226,177,.1) 38%,rgba(255,255,255,.7) 49%,rgba(255,211,145,.12) 60%,transparent 74%),linear-gradient(135deg,#54200c,#7b3214)!important;box-shadow:0 12px 26px rgba(73,28,9,.3),0 0 0 5px rgba(222,125,61,.1)!important;transform:translateY(-2px)}
+.officeGrid a:hover:after{opacity:1;animation:officeCtaDotTwinkle 1.25s ease-in-out infinite}
+.officeGrid a:hover svg{transform:translateX(4px)}
+.officeGrid a:active{transform:translateY(0)}
+.officeGrid a:focus-visible{outline:3px solid #d88743;outline-offset:4px}
+@keyframes officeCtaGlitterFlow{from{background-position:180% 0,0 0}to{background-position:-120% 0,0 0}}
+@keyframes officeCtaShine{0%,35%{transform:translateX(-180%) skewX(-18deg)}72%,100%{transform:translateX(400%) skewX(-18deg)}}
+@keyframes officeCtaArrow{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@keyframes officeCtaDotTwinkle{0%,100%{opacity:.38;filter:brightness(.9)}50%{opacity:1;filter:brightness(1.35) drop-shadow(0 0 2px rgba(230,139,79,.65))}}
+@media(prefers-reduced-motion:reduce){.officeGrid a,.officeGrid a:before,.officeGrid a:after,.officeGrid a svg{animation:none!important;transition:none!important}.officeGrid a:hover,.officeGrid a:hover svg{transform:none!important}}

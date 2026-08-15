@@ -20,7 +20,7 @@ const BookPage = forwardRef(function BookPage({ page, onError }, ref) {
   );
 });
 
-export default function ContactBrochureFlipbook() {
+export default function ContactBrochureFlipbook({ standalone = false }) {
   const bookRef = useRef(null);
   const viewerRef = useRef(null);
   const fullscreenButtonRef = useRef(null);
@@ -133,7 +133,7 @@ export default function ContactBrochureFlipbook() {
   const toggleSound = () => setMuted((value) => { localStorage.setItem("vcc-brochure-muted", String(!value)); return !value; });
 
   return (
-    <section id="product-brochure" className={`${styles.viewer} ${fallbackFullscreen ? styles.fallbackFullscreen : ""}`} ref={viewerRef} tabIndex="0" onKeyDown={onKeyDown} aria-label="Interactive imported ingredients brochure">
+    <section id="product-brochure" className={`${styles.viewer} ${standalone ? styles.standalone : ""} ${fallbackFullscreen ? styles.fallbackFullscreen : ""}`} ref={viewerRef} tabIndex="0" onKeyDown={onKeyDown} aria-label="Interactive imported ingredients brochure">
       <div className={styles.toolbar} role="toolbar" aria-label="Brochure tools">
         <button type="button" onClick={previous} disabled={page === 1 || turning} title="Previous page" aria-label="Previous page"><ChevronLeft /></button>
         <strong aria-label={`Page ${page} of ${TOTAL_PAGES}`}>{page} / {TOTAL_PAGES}</strong>

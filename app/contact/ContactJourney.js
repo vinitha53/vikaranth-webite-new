@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Clock3, MapPin } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import MascotCharacter from "./MascotCharacter";
 import ContactForm from "./ContactForm";
-import ContactBrochureFlipbook from "./ContactBrochureFlipbook";
+import WhatsAppContactCta from "./WhatsAppContactCta";
+import BrochureContactCta from "./BrochureContactCta";
 import styles from "./contact.module.css";
 
 gsap.registerPlugin(useGSAP);
@@ -20,6 +20,7 @@ const CHARACTER_ASSETS = [
 
 // Rightmost visible point of the presenting hand in the square front-pose asset.
 const PRESENTING_HAND_EDGE = 1104 / 1254;
+const WALK_SEQUENCE = [0, 1, 2, 1, 4, 5, 6, 5];
 
 let activeContactTimelines = 0;
 
@@ -90,7 +91,7 @@ export default function ContactJourney() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const paintWalkFrame = () => {
-      const frame = Math.floor(walkFrame.value) % 8;
+      const frame = WALK_SEQUENCE[Math.floor(walkFrame.value) % WALK_SEQUENCE.length];
       beanWalk.style.backgroundPosition = `${((frame % 4) / 3) * 100}% ${Math.floor(frame / 4) * 100}%`;
     };
 
@@ -183,8 +184,9 @@ export default function ContactJourney() {
         .to(mascot, { x: finalMascotX + Math.round(startFormX * .08), duration: 3.1, ease: "none" }, .1)
         .to(form, { x: Math.round(startFormX * .08), duration: 3.1, ease: "none" }, .1)
         .to(shadow, { x: Math.round(startFormX * .08), opacity: .2, duration: 3.1, ease: "none" }, .1)
-        .to(walkFrame, { value: 34, duration: 3.1, ease: "none", onUpdate: paintWalkFrame }, .1)
-        .to(mascot, { y: -4, rotation: .7, duration: .19375, repeat: 15, yoyo: true, ease: "sine.inOut" }, .1)
+        .to(walkFrame, { value: 32, duration: 3.1, ease: "steps(32)", onUpdate: paintWalkFrame }, .1)
+        .to(mascot, { y: -3, duration: .19375, repeat: 15, yoyo: true, ease: "sine.inOut" }, .1)
+        .call(() => { walkFrame.value = 1; paintWalkFrame(); }, null, 3.2)
         .to(mascot, { x: finalMascotX, y: 0, rotation: 0, duration: .4, ease: "power2.out" }, 3.2)
         .to(form, { x: 0, duration: .4, ease: "power2.out" }, 3.2)
         .to(shadow, { x: 0, duration: .4, ease: "power2.out" }, 3.2)
@@ -281,13 +283,8 @@ export default function ContactJourney() {
         </div>
       </div>
 
-      <div className={`${styles.journeyPanel} ${styles.brochureJourneyPanel}`} id="brochure">
-        <div className={styles.journeyBrochure}><ContactBrochureFlipbook /></div>
-        <div className={styles.brochureTrust}>
-          <span><Clock3 /><b>Quick response</b><small>Business-hour support</small></span>
-          <span><MapPin /><b>India-wide supply</b><small>Coordinated from Chennai</small></span>
-        </div>
-      </div>
+      <WhatsAppContactCta />
+      <BrochureContactCta />
     </section>
   );
 }
