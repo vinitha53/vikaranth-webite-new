@@ -99,10 +99,7 @@ export default async function PartnerPage({ params }) {
         <div className={styles.applicationGrid}>{content.applications.map((application, index) => { const industry = industryLinks[index % Math.max(industryLinks.length, 1)]; return industry ? <Link className={styles.applicationCard} href={`/industries/${industry.slug}`} key={application}><span>0{index + 1}</span><strong>{application}</strong><ArrowRight /></Link> : <article className={styles.applicationCard} key={application}><span>0{index + 1}</span><strong>{application}</strong></article>; })}</div>
       </div></section>
 
-      <section className={`${styles.section} ${styles.sectionDark}`} id="procurement"><div className={styles.wrap}>
-        <header className={styles.sectionHead}><span className={styles.eyebrow}>Procurement process</span><h2>From requirement to delivery planning</h2><p>Share the exact product, application, preferred grade or performance target, required quantity, delivery city and timeline.</p></header>
-        <div className={styles.process}><div className={styles.processLine} />{[["01","Enquiry","Product, application and quantity"],["02","Technical review","Grade and suitability check"],["03","Sample & documents","Subject to availability"],["04","Quotation","Pack, MOQ, freight and lead time"],["05","Delivery planning","Confirmed for your destination"]].map(([number,title,text]) => <article className={styles.processStep} key={number}><span>{number}</span><strong>{title}</strong><p>{text}</p></article>)}</div>
-      </div></section>
+
 
 
 
