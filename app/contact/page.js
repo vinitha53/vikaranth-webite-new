@@ -1,6 +1,7 @@
 import { ArrowRight, Building2, MapPin } from "lucide-react";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
 import ContactJourney from "./ContactJourney";
+import ContactScrollEffects from "./ContactScrollEffects";
 import styles from "./contact.module.css";
 
 export const metadata = {
@@ -14,14 +15,15 @@ const directions = "https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sr
 export default function ContactPage() {
   return (
     <main className={styles.page}>
+      <ContactScrollEffects />
       <DetailHeader />
       <ContactJourney />
 
-      <section className={styles.officeSection} id="offices">
-        <div className={styles.officeHeading}><span className={styles.eyebrow}>Visit or write to us</span><h2>Our Chennai offices</h2></div>
+      <section className={styles.officeSection} id="offices" data-contact-offices>
+        <div className={styles.officeHeading} data-contact-office-heading><span className={styles.eyebrow}>Visit or write to us</span><h2>Our Chennai offices</h2></div>
         <div className={styles.officeGrid}>
-          <article><Building2/><small>Sales office</small><h3>Vikranth Chemical Corporation</h3><p>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110.</p><a href={directions} target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
-          <article><MapPin/><small>Corporate enquiry address</small><h3>Saraswathy Enclave</h3><p>Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur, Chennai 600099.</p><a href="https://www.google.com/maps/search/?api=1&query=Saraswathy+Enclave+Lakshmipuram+Kolathur+Chennai+600099" target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
+          <article data-contact-office-card><Building2/><small>Sales office</small><h3>Vikranth Chemical Corporation</h3><p>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110.</p><a href={directions} target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
+          <article data-contact-office-card><MapPin/><small>Corporate enquiry address</small><h3>Saraswathy Enclave</h3><p>Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur, Chennai 600099.</p><a href="https://www.google.com/maps/search/?api=1&query=Saraswathy+Enclave+Lakshmipuram+Kolathur+Chennai+600099" target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
         </div>
       </section>
       <DetailFooter />

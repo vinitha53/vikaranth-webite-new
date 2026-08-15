@@ -29,14 +29,14 @@ export default function WhatsAppContactCta() {
       return undefined;
     }
 
-    gsap.set(copy, { autoAlpha: 0, y: 18 });
-    gsap.set(qr, { autoAlpha: 0, scale: .97, transformOrigin: "50% 50%" });
+    gsap.set(copy, { autoAlpha: 0, x: -42, y: 20 });
+    gsap.set(qr, { autoAlpha: 0, x: 50, y: 18, scale: .92, rotation: 2.5, transformOrigin: "50% 50%" });
 
     let revealTimeline;
     const reveal = () => {
-      revealTimeline = gsap.timeline({ defaults: { ease: "power2.out" } })
-        .to(copy, { autoAlpha: 1, y: 0, duration: .7 })
-        .to(qr, { autoAlpha: 1, scale: 1, duration: .65 }, "-=.54");
+      revealTimeline = gsap.timeline({ defaults: { ease: "power3.out" } })
+        .to(copy, { autoAlpha: 1, x: 0, y: 0, duration: .82 })
+        .to(qr, { autoAlpha: 1, x: 0, y: 0, scale: 1, rotation: 0, duration: .78, ease: "back.out(1.35)" }, "-=.58");
     };
 
     const observer = new IntersectionObserver(([entry]) => {

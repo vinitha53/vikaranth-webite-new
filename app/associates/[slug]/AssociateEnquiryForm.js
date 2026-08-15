@@ -45,7 +45,7 @@ export default function AssociateEnquiryForm({ supplier, products }) {
   }
 
   return (
-    <form className={styles.enquiryForm} onSubmit={submit} data-reveal>
+    <form className={styles.enquiryForm} onSubmit={submit} data-associate-reveal="right">
       <input type="hidden" name="supplier" value={supplier} />
       <input type="hidden" name="analytics_source" value="associate-detail-page" />
       <div className={styles.formProgress} aria-label={`Step ${step} of 3`}><span style={{ width: `${step * 33.333}%` }} /><b>Step {step} of 3</b></div>

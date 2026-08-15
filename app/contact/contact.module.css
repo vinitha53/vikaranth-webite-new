@@ -473,6 +473,8 @@
   .whatsappCtaButton:hover,.whatsappQrCard:hover{transform:none}
 }
 
+.officeGrid{perspective:1200px}
+
 /* Match the office direction links to the shared Request a Quote CTA. */
 .officeGrid article{display:flex;flex-direction:column}
 .officeGrid article p{margin-bottom:26px}

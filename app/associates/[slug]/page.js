@@ -63,6 +63,7 @@ export default async function PartnerPage({ params }) {
   return (
     <main className={styles.page} data-associate-page>
       <AssociateMotion />
+      <div className={styles.readingProgress} data-associate-progress aria-hidden="true" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <DetailHeader />
 
@@ -70,15 +71,15 @@ export default async function PartnerPage({ params }) {
         <div className={styles.wrap}>
           <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/associates">Associates</Link><span>/</span><span>{partner.name}</span></nav>
           <div className={styles.heroGrid}>
-            <div className={styles.heroCopy}>
+            <div className={styles.heroCopy} data-associate-reveal="left">
               <span className={styles.eyebrow}>{content.category}</span>
               <h1>{content.h1}</h1>
               <p>Explore selected {partner.name} {content.category.toLowerCase()} through Vikranth Chemical Corporation in Chennai. Share your application, required grade, quantity, delivery city and document needs so our team can confirm the relevant option.</p>
               <div className={styles.heroActions}><Link className={styles.primaryButton} href="#products">View products <ArrowRight /></Link><Link className={styles.secondaryButton} href="#enquiry">Request sample or quote <ArrowRight /></Link></div>
               <div className={styles.heroTrust}><span><BadgeCheck /> B2B enquiries</span><span><MapPin /> Chennai coordination</span><span><Truck /> Pan-India enquiries</span></div>
             </div>
-            <div className={styles.visual}>
-              <div className={styles.visualFrame}><img src={partner.image} alt={`${partner.name} ${content.category.toLowerCase()} for professional applications`} fetchPriority="high" /><div className={styles.visualTag}><small>Supplier portfolio</small><strong>{content.category}</strong></div></div>
+            <div className={styles.visual} data-associate-reveal="right">
+              <div className={styles.visualFrame}><img src={partner.image} alt={`${partner.name} ${content.category.toLowerCase()} for professional applications`} fetchPriority="high" data-associate-hero-image /><div className={styles.visualTag}><small>Supplier portfolio</small><strong>{content.category}</strong></div></div>
               <div className={styles.logoPlate}><img src={partner.logo} alt={`${partner.name} logo`} /></div>
             </div>
           </div>
@@ -87,16 +88,16 @@ export default async function PartnerPage({ params }) {
 
 
 
-      <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={styles.wrap}><div className={styles.aboutFeatureGrid}><div className={styles.aboutFeatureCopy}><span className={styles.eyebrow}>About the supplier</span><h2>Ingredients engineered for the right application.</h2><p>{content.about}</p><div className={styles.aboutSupplierLogo}><img src={partner.logo} alt={`${partner.name} logo`} /></div><a className={styles.aboutProfileLink} href="#products">View supplier profile <ArrowRight /></a></div><div className={styles.applicationFeatureGrid}>{content.applications.slice(0,4).map((application,index)=>{const applicationImage=Object.values(partner.productImages||{})[index]||partner.image;return <article className={styles.applicationFeatureCard} key={application}><img src={applicationImage} alt={`${partner.name} ${application}`} loading="lazy"/><div><h3>{application}</h3><p>{content.category} for professional applications.</p></div></article>})}</div></div><div className={styles.aboutAssurance}><ShieldCheck/><span>Grade, source, specification and documentation are confirmed before quotation.</span><a href="#enquiry">Discuss your application <ArrowRight /></a></div></div></section>
+      <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={styles.wrap}><div className={styles.aboutFeatureGrid}><div className={styles.aboutFeatureCopy} data-associate-reveal="left"><span className={styles.eyebrow}>About the supplier</span><h2>Ingredients engineered for the right application.</h2><p>{content.about}</p><div className={styles.aboutSupplierLogo}><img src={partner.logo} alt={`${partner.name} logo`} /></div><a className={styles.aboutProfileLink} href="#products">View supplier profile <ArrowRight /></a></div><div className={styles.applicationFeatureGrid} data-associate-stagger>{content.applications.slice(0,4).map((application,index)=>{const applicationImage=Object.values(partner.productImages||{})[index]||partner.image;return <article className={styles.applicationFeatureCard} key={application}><img src={applicationImage} alt={`${partner.name} ${application}`} loading="lazy"/><div><h3>{application}</h3><p>{content.category} for professional applications.</p></div></article>})}</div></div><div className={styles.aboutAssurance} data-associate-reveal="up"><ShieldCheck/><span>Grade, source, specification and documentation are confirmed before quotation.</span><a href="#enquiry">Discuss your application <ArrowRight /></a></div></div></section>
       <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
-        <header className={styles.enquiryRangeHeader}><div><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Compare available products and open each product page for grade, format, pack and documentation details.</p></div><a href="#enquiry">Discuss your requirement</a></header>
-        <div className={styles.productGrid}>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>
-              <div className={styles.productsAssurance}><ShieldCheck/><span>Exact grade, source, format, pack, MOQ and availability are confirmed for each enquiry.</span><b><em>01</em> — {String(productLinks.length).padStart(2,"0")}</b></div>
+        <header className={styles.enquiryRangeHeader} data-associate-reveal="up"><div><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Compare available products and open each product page for grade, format, pack and documentation details.</p></div><a href="#enquiry">Discuss your requirement</a></header>
+        <div className={styles.productGrid} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>
+              <div className={styles.productsAssurance} data-associate-reveal="up"><ShieldCheck/><span>Exact grade, source, format, pack, MOQ and availability are confirmed for each enquiry.</span><b><em>01</em> — {String(productLinks.length).padStart(2,"0")}</b></div>
 </div></section>
 
       <section className={`${styles.section} ${styles.sectionCream}`} id="applications"><div className={styles.wrap}>
-        <header className={styles.sectionHead}><span className={styles.eyebrow}>Application-led selection</span><h2>Where are {partner.name} ingredients used?</h2><p>Relevant applications are shown as starting points. Final suitability depends on the selected product and grade, formulation, process conditions, regulatory requirements and finished-product target.</p></header>
-        <div className={styles.applicationGrid}>{content.applications.map((application, index) => { const industry = industryLinks[index % Math.max(industryLinks.length, 1)]; return industry ? <Link className={styles.applicationCard} href={`/industries/${industry.slug}`} key={application}><span>0{index + 1}</span><strong>{application}</strong><ArrowRight /></Link> : <article className={styles.applicationCard} key={application}><span>0{index + 1}</span><strong>{application}</strong></article>; })}</div>
+        <header className={styles.sectionHead} data-associate-reveal="up"><span className={styles.eyebrow}>Application-led selection</span><h2>Where are {partner.name} ingredients used?</h2><p>Relevant applications are shown as starting points. Final suitability depends on the selected product and grade, formulation, process conditions, regulatory requirements and finished-product target.</p></header>
+        <div className={styles.applicationGrid} data-associate-stagger>{content.applications.map((application, index) => { const industry = industryLinks[index % Math.max(industryLinks.length, 1)]; return industry ? <Link className={styles.applicationCard} href={`/industries/${industry.slug}`} key={application}><span>0{index + 1}</span><strong>{application}</strong><ArrowRight /></Link> : <article className={styles.applicationCard} key={application}><span>0{index + 1}</span><strong>{application}</strong></article>; })}</div>
       </div></section>
 
 
@@ -104,10 +105,10 @@ export default async function PartnerPage({ params }) {
 
 
 
-      <section className={styles.section} id="faq"><div className={styles.wrap}><header className={styles.sectionHead}><span className={styles.eyebrow}>Buyer questions</span><h2>Frequently asked questions about {partner.name}</h2></header><div className={styles.faqList}>{faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
+      <section className={styles.section} id="faq"><div className={styles.wrap}><header className={styles.sectionHead} data-associate-reveal="up"><span className={styles.eyebrow}>Buyer questions</span><h2>Frequently asked questions about {partner.name}</h2></header><div className={styles.faqList} data-associate-stagger>{faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
 
       <section className={`${styles.section} ${styles.enquirySection}`} id="enquiry"><div className={`${styles.wrap} ${styles.enquiryGrid}`}>
-        <div className={`${styles.enquiryIntro} ${stickyFix.notSticky}`}><span className={styles.eyebrow}>Supplier-specific enquiry</span><h2>Need help selecting a {partner.name} product?</h2><p>Share your application, grade, quantity, delivery city and document needs. Request a quotation or ask about sample availability.</p><ul><li><Check /> Your entered details stay intact between steps</li><li><Check /> Supplier context is included automatically</li><li><Check /> Continue securely through WhatsApp</li></ul></div>
+        <div className={`${styles.enquiryIntro} ${stickyFix.notSticky}`} data-associate-reveal="left"><span className={styles.eyebrow}>Supplier-specific enquiry</span><h2>Need help selecting a {partner.name} product?</h2><p>Share your application, grade, quantity, delivery city and document needs. Request a quotation or ask about sample availability.</p><ul><li><Check /> Your entered details stay intact between steps</li><li><Check /> Supplier context is included automatically</li><li><Check /> Continue securely through WhatsApp</li></ul></div>
         <AssociateEnquiryForm supplier={partner.name} products={productLinks.map((product) => product.name)} />
       </div></section>
 

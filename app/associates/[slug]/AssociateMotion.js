@@ -1,19 +1,111 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function AssociateMotion() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const root = document.querySelector("[data-associate-page]");
     if (!root) return undefined;
 
-    gsap.registerPlugin(ScrollTrigger);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const scene = root.querySelector("[data-3d-scene]");
-    const sceneObserver = scene ? new IntersectionObserver(([entry]) => scene.toggleAttribute("data-active", entry.isIntersecting), { rootMargin: "100px" }) : null;
+    const progress = root.querySelector("[data-associate-progress]");
+    const hero = root.querySelector("section");
+    const heroImage = root.querySelector("[data-associate-hero-image]");
+    const revealItems = gsap.utils.toArray(root.querySelectorAll("[data-associate-reveal]"));
+    const staggerGroups = gsap.utils.toArray(root.querySelectorAll("[data-associate-stagger]"));
+    const observers = [];
+
+    const sceneObserver = scene ? new IntersectionObserver(([entry]) => {
+      scene.toggleAttribute("data-active", entry.isIntersecting);
+    }, { rootMargin: "100px" }) : null;
     if (scene && sceneObserver) sceneObserver.observe(scene);
+
+    if (reduced) {
+      gsap.set([...revealItems, ...staggerGroups.flatMap((group) => [...group.children])], { clearProps: "all" });
+      return () => sceneObserver?.disconnect();
+    }
+
+    const horizontalDistance = window.innerWidth < 700 ? 24 : 48;
+    revealItems.forEach((item) => {
+      const direction = item.dataset.associateReveal;
+      gsap.set(item, {
+        autoAlpha: 0,
+        x: direction === "left" ? -horizontalDistance : direction === "right" ? horizontalDistance : 0,
+        y: direction === "up" ? 44 : 18,
+        scale: direction === "up" ? .985 : 1,
+        willChange: "transform, opacity",
+      });
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        gsap.to(item, {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: .86,
+          ease: "power3.out",
+          clearProps: "transform,willChange",
+        });
+      }, { threshold: .14, rootMargin: "0px 0px -8% 0px" });
+      observer.observe(item);
+      observers.push(observer);
+    });
+
+    staggerGroups.forEach((group) => {
+      const children = [...group.children];
+      if (children.length === 0) return;
+      gsap.set(children, {
+        autoAlpha: 0,
+        y: 46,
+        scale: .965,
+        rotationX: 5,
+        transformOrigin: "50% 100%",
+        willChange: "transform, opacity",
+      });
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        gsap.to(children, {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          rotationX: 0,
+          duration: .78,
+          stagger: .09,
+          ease: "power3.out",
+          clearProps: "transform,willChange",
+        });
+      }, { threshold: .1, rootMargin: "0px 0px -7% 0px" });
+      observer.observe(group);
+      observers.push(observer);
+    });
+
+    const setProgress = progress ? gsap.quickSetter(progress, "scaleX") : null;
+    const moveHeroImage = heroImage ? gsap.quickTo(heroImage, "yPercent", { duration: .55, ease: "power2.out" }) : null;
+    let scrollFrame = 0;
+    const updateScrollEffects = () => {
+      scrollFrame = 0;
+      const scrollRange = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      setProgress?.(Math.min(window.scrollY / scrollRange, 1));
+      if (hero && heroImage) {
+        const heroBox = hero.getBoundingClientRect();
+        if (heroBox.bottom > 0 && heroBox.top < window.innerHeight) {
+          moveHeroImage?.(Math.min(window.scrollY / Math.max(hero.offsetHeight, 1), 1) * 7);
+        }
+      }
+    };
+    const requestScrollUpdate = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(updateScrollEffects);
+    };
+    updateScrollEffects();
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollUpdate);
 
     const pointerMove = (event) => {
       if (!scene || !window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
@@ -26,42 +118,15 @@ export default function AssociateMotion() {
     scene?.addEventListener("pointermove", pointerMove);
     scene?.addEventListener("pointerleave", pointerLeave);
 
-    if (reduced) {
-      return () => {
-        scene?.removeEventListener("pointermove", pointerMove);
-        scene?.removeEventListener("pointerleave", pointerLeave);
-        sceneObserver?.disconnect();
-      };
-    }
-
-    const sections = [...root.querySelectorAll("section")];
-    const hero = sections[0];
-    const heroCopy = hero?.querySelector("[class*='heroCopy']");
-    const heroVisual = hero?.querySelector("[class*='visual']");
-
-    const context = gsap.context(() => {
-      if (heroCopy) gsap.from(heroCopy.children, { y: 28, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.12 });
-      if (heroVisual) {
-        gsap.from(heroVisual, { y: 35, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 });
-        gsap.to(heroVisual.querySelector("img"), { yPercent: 8, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-      }
-
-      sections.slice(1).forEach((section) => {
-        const content = section.querySelector(".wrap") || section;
-        const heading = content.querySelector("header, [class*='aboutFeatureCopy']");
-        const cards = content.querySelectorAll("article, [class*='productCard'], [class*='applicationFeatureCard'], [class*='faqList'] details, [class*='enquiryForm']");
-        if (heading) gsap.from(heading, { y: 42, opacity: 0, duration: 0.75, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
-        if (cards.length) gsap.from(cards, { y: 34, opacity: 0, duration: 0.65, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 78%", once: true } });
-        else if (!heading) gsap.from(content, { y: 35, opacity: 0, duration: 0.75, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
-      });
-    }, root);
-
     return () => {
-      context.revert();
+      observers.forEach((observer) => observer.disconnect());
+      sceneObserver?.disconnect();
       scene?.removeEventListener("pointermove", pointerMove);
       scene?.removeEventListener("pointerleave", pointerLeave);
-      sceneObserver?.disconnect();
-      gsap.killTweensOf(scene);
+      window.removeEventListener("scroll", requestScrollUpdate);
+      window.removeEventListener("resize", requestScrollUpdate);
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      gsap.killTweensOf([scene, heroImage, ...revealItems, ...staggerGroups.flatMap((group) => [...group.children])].filter(Boolean));
     };
   }, []);
 
