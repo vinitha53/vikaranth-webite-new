@@ -6,3 +6,5 @@
 
 /* Light enquiry-range section matching the Food and functional gelatin page treatment. */
 .productsSection{background:#fdf9f4}.productsSection .productCard{background:#fff;color:var(--ink);box-shadow:0 12px 30px rgba(61,29,9,.08)}.productsSection .productCard:after{display:none}.productsSection .productCardContent small{color:#b65a25}.productsSection .productCardContent h3{color:var(--ink)}.productsSection .productCardContent span{color:#725f51}
+/* Light supplier-template hero matching the supplied cream reference. */
+.hero{background:#fdf9f4;color:#25150d}.hero:before{display:none}.breadcrumbs{color:#725f51}.hero h1{color:#25150d}.heroCopy>p{color:#725f51}.heroTrust span{color:#725f51}
