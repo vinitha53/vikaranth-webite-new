@@ -568,7 +568,7 @@ export default function Home() {
           <div className="about-grid">
           <div className="about-visual">
             <div className="lab-stage about-video-stage">
-              <video src="/about-food-b2b.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Food ingredient applications and manufacturing"></video>
+              <img src="/home-about.png" alt="Ingredient sourcing team reviewing food ingredients" loading="lazy"/>
               <div className="about-video-shade"></div>
             </div>
             <div className="about-caption"><span className="about-since"><BadgeCheck/><b>Since 2001</b></span><i/><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
