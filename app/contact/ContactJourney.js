@@ -18,6 +18,9 @@ const CHARACTER_ASSETS = [
   "/contact/cocoa-bean-front-blink.png",
 ];
 
+// Rightmost visible point of the presenting hand in the square front-pose asset.
+const PRESENTING_HAND_EDGE = 1104 / 1254;
+
 let activeContactTimelines = 0;
 
 const preloadCharacterAssets = () => Promise.all(CHARACTER_ASSETS.map((src) => new Promise((resolve, reject) => {
@@ -96,10 +99,15 @@ export default function ContactJourney() {
         return { finalMascotX: 0, startMascotX: -38, startFormX: 38 };
       }
       const stageBox = stage.getBoundingClientRect();
+      const mascotBox = mascot.getBoundingClientRect();
       const formBox = form.getBoundingClientRect();
       const formLeft = formBox.left - stageBox.left;
+      const renderedPoseSize = Math.min(mascotBox.width, mascotBox.height);
+      const renderedPoseLeft = mascotBox.left - stageBox.left + (mascotBox.width - renderedPoseSize) / 2;
+      const presentingHand = renderedPoseLeft + renderedPoseSize * PRESENTING_HAND_EDGE;
+      const finalMascotX = Math.round(formLeft - presentingHand - 8);
       const startFormX = Math.round(20 - formLeft);
-      return { finalMascotX: 0, startFormX, startMascotX: startFormX };
+      return { finalMascotX, startFormX, startMascotX: finalMascotX + startFormX };
     };
 
     const { finalMascotX, startMascotX, startFormX } = getPositions();
@@ -126,7 +134,7 @@ export default function ContactJourney() {
       const formBox = form.getBoundingClientRect();
       const mascotBox = mascot.getBoundingClientRect();
       const values = { formWidth: formBox.width, formHeight: formBox.height, mascotWidth: mascotBox.width, mascotHeight: mascotBox.height };
-      if (initial) return values;
+      if (!initial) return values;
       stage.dataset.lastAnimationCheckpoint = label;
       stage.dataset.formSizeStable = String(Math.abs(values.formWidth - initial.formWidth) < .5 && Math.abs(values.formHeight - initial.formHeight) < .5);
       stage.dataset.characterSizeStable = String(Math.abs(values.mascotWidth - initial.mascotWidth) < .5 && Math.abs(values.mascotHeight - initial.mascotHeight) < .5);
