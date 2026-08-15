@@ -1,5 +1,6 @@
 ﻿import "./globals.css";
 import "./sections-v2.css";
+import FloatingIconDock from "./components/FloatingIconDock";
 
 const siteUrl = "https://www.vikranthchem.com";
 
@@ -85,6 +86,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
+        <FloatingIconDock />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </body>
     </html>

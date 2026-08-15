@@ -1630,6 +1630,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page img,.home-page video{max-width:100%}
 .home-page .hero h1{text-wrap:balance;text-shadow:0 3px 18px rgba(18,6,2,.48)}
 .home-page .hero-buttons .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.home-page .footer-secondary-links{display:none}
 
 @media(min-width:1025px){
   .home-page .container{width:min(1280px,calc(100% - 56px))}
@@ -1758,4 +1759,207 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .metric-icon svg{width:23px;height:23px}
   .home-page .testimonial-carousel{min-height:530px}
   .home-page .testimonial-carousel .testimonial-slide{padding-inline:18px}
+}
+
+/* Homepage hero message: centered over the film on every viewport. */
+.home-page .hero-content>h1{
+  top:calc(50% - 96px);
+  width:min(1500px,calc(100% - 40px));
+  max-width:none;
+  transform:translate(-50%,-58%);
+  color:#fffdf8;
+  text-shadow:0 0 12px rgba(255,247,226,.38),0 4px 24px rgba(18,6,2,.68),0 0 42px rgba(239,174,99,.2);
+}
+.home-page .hero-content>h1 em{color:#ffc476;text-shadow:0 0 12px rgba(255,188,103,.46),0 3px 22px rgba(55,18,4,.62)}
+.home-page .hero-content>.hero-copy{
+  top:calc(50% + 138px);
+}
+@media(min-width:768px){
+  .home-page .hero-content>h1{
+    font-size:clamp(28px,4vw,60px);
+    white-space:nowrap;
+  }
+  .home-page .hero-content>.hero-copy{top:calc(50% + 76px)}
+}
+@media(max-width:767px){
+  .home-page .hero-content>h1{
+    top:calc(50% - 72px);
+    transform:translate(-50%,-64%);
+  }
+  .home-page .hero-content>.hero-copy{top:calc(50% + 116px)}
+}
+
+/* Homepage CTA standard: the hero Download Brochure button is the reference. */
+.home-page .btn,
+.home-page .hero .btn.ghost,
+.home-page .about .about-copy .btn.dark,
+.home-page .quality-section .quality-copy .btn.dark,
+.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta{
+  position:relative;
+  isolation:isolate;
+  min-height:50px;
+  padding:0 28px!important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  overflow:visible!important;
+  border:1px solid #dc7a3a!important;
+  border-radius:999px!important;
+  background-color:#a44317!important;
+  background-image:linear-gradient(135deg,#a44317,#d46725)!important;
+  background-position:0 0!important;
+  background-size:100% 100%!important;
+  box-shadow:0 9px 20px rgba(116,48,18,.2),0 0 0 6px rgba(169,72,27,.08),inset 0 1px 0 rgba(255,255,255,.25)!important;
+  color:#fff!important;
+  font:800 14px/1 'Manrope','Segoe UI',Arial,sans-serif!important;
+  letter-spacing:0!important;
+  text-decoration:none;
+  text-transform:none!important;
+  cursor:pointer;
+  animation:none!important;
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease,filter .24s ease!important;
+}
+.home-page .btn::before,
+.home-page .header-quote::before,
+.home-page .about .about-copy .btn.dark::before,
+.home-page .quality-section .quality-copy .btn.dark::before,
+.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:radial-gradient(circle at 12% 30%,rgba(255,238,176,.95) 0 1.2px,transparent 2px),radial-gradient(circle at 32% 72%,rgba(255,214,127,.85) 0 1px,transparent 2px),radial-gradient(circle at 52% 22%,rgba(255,245,205,.9) 0 1.1px,transparent 2px),radial-gradient(circle at 72% 66%,rgba(255,220,139,.85) 0 1.3px,transparent 2px),radial-gradient(circle at 89% 28%,rgba(255,246,207,.95) 0 1px,transparent 2px);
+  background-size:66px 46px,82px 58px,72px 52px,94px 62px,78px 55px;
+  opacity:.5;
+  transform:none;
+  animation:homeCtaGlitterFlow 6s linear infinite!important;
+}
+.home-page .btn::after,
+.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::after{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border:2px dotted rgba(220,126,68,.95);
+  border-radius:999px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+.home-page .btn:hover,
+.home-page .hero .btn.ghost:hover,
+.home-page .about .about-copy .btn.dark:hover,
+.home-page .quality-section .quality-copy .btn.dark:hover,
+.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover{
+  border-color:#efad75!important;
+  background-color:#3b2117!important;
+  background-image:linear-gradient(135deg,#32180f,#45251a 52%,#382017)!important;
+  box-shadow:0 13px 28px rgba(43,19,11,.42),0 0 0 5px rgba(181,104,55,.12),inset 0 1px 0 rgba(255,235,204,.16)!important;
+  filter:none!important;
+  outline:0!important;
+  transform:translateY(-2px)!important;
+}
+.home-page .btn:hover::before,
+.home-page .header-quote:hover::before,
+.home-page .about .about-copy .btn.dark:hover::before,
+.home-page .quality-section .quality-copy .btn.dark:hover::before,
+.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::before{animation:homeCtaGlitterHover 2.8s linear infinite!important}
+.home-page .btn:hover::after,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::after{opacity:.82;animation:ctaDotTwinkle 1.25s ease-in-out infinite}
+.home-page .btn svg,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta svg{position:relative;z-index:1;transition:transform .24s ease}
+.home-page .btn:hover svg,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover svg{transform:translateX(4px)}
+.home-page .btn:focus-visible,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:focus-visible{outline:3px solid #efad75!important;outline-offset:5px}
+.home-page .btn:active{transform:translateY(0) scale(.985)!important}
+.home-page .portfolio-toggle{
+  width:max-content;
+  margin-right:auto;
+  margin-left:auto;
+  display:flex;
+}
+
+/* Site-wide centered floating contact and social icon dock */
+.floating-site-dock{
+  position:fixed;
+  z-index:45;
+  top:50%;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  transform:translateY(-50%);
+}
+.floating-site-dock .floating-site-button{
+  position:relative;
+  inset:auto;
+  display:grid;
+  width:70px;
+  height:70px;
+  padding:0;
+  place-items:center;
+  overflow:hidden;
+  border:1px solid rgba(219,123,57,.62);
+  border-radius:50%;
+  background:#35170c;
+  box-shadow:0 9px 24px rgba(48,20,8,.24),0 0 0 3px rgba(222,126,61,.09);
+  text-decoration:none;
+  cursor:pointer;
+  animation:floatingIconEnter .48s cubic-bezier(.22,1,.36,1) both;
+  transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+}
+.floating-site-dock .floating-site-button:nth-child(2){animation-delay:.07s}
+.floating-site-dock .floating-site-button:nth-child(3){animation-delay:.14s}
+.floating-site-dock .floating-site-button:nth-child(4){animation-delay:.21s}
+.floating-site-dock .floating-site-button:nth-child(5){animation-delay:.28s}
+.floating-site-dock .floating-site-button:nth-child(6){animation-delay:.35s}
+.floating-site-dock .floating-site-button img{
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+.floating-site-dock .floating-site-chatbot img{
+  width:88%;
+  height:88%;
+  object-fit:contain;
+}
+.floating-site-dock .floating-site-button:hover{
+  filter:brightness(1.08);
+  transform:translateY(-3px) scale(1.07);
+  box-shadow:0 14px 31px rgba(48,20,8,.34),0 0 0 5px rgba(222,126,61,.14);
+}
+.floating-site-dock .floating-site-button:focus-visible{
+  outline:3px solid #e79b61;
+  outline-offset:3px;
+}
+@keyframes floatingIconEnter{
+  from{opacity:0;transform:scale(.55)}
+  to{opacity:1;transform:scale(1)}
+}
+@media(max-width:720px){
+  .floating-site-dock{right:7px;gap:8px}
+  .floating-site-dock .floating-site-button{width:50px;height:50px}
+}
+@media(max-height:700px) and (min-width:721px){
+  .floating-site-dock{right:12px;gap:7px}
+  .floating-site-dock .floating-site-button{width:56px;height:56px}
+}
+@media(prefers-reduced-motion:reduce){
+  .floating-site-dock .floating-site-button{animation:none}
+}
+@keyframes homeCtaGlitterFlow{
+  0%{background-position:0 0,0 0,0 0,0 0,0 0;opacity:.42}
+  50%{opacity:.72}
+  100%{background-position:66px -46px,-82px 58px,72px 52px,-94px -62px,78px -55px;opacity:.42}
+}
+@keyframes homeCtaGlitterHover{
+  0%{background-position:0 0,0 0,0 0,0 0,0 0;opacity:.7;filter:brightness(1)}
+  50%{opacity:1;filter:brightness(1.35) drop-shadow(0 0 2px rgba(255,192,112,.55))}
+  100%{background-position:66px -46px,-82px 58px,72px 52px,-94px -62px,78px -55px;opacity:.7;filter:brightness(1)}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-page .btn,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta{animation:none!important}
+  .home-page .btn::before,.home-page .btn::after,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::before,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::after{animation:none!important}
+  .home-page .btn:hover::after,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::after{opacity:.7}
 }

@@ -96,7 +96,7 @@ const ecosystemCategories = [
 ];
 
 const associates = [
-  { name: "CAMPCO", logo: "/partners/campco.png" },
+  { name: "CAMPCO", logo: "/partners/campco-heart.png" },
   { name: "Delta Nutritives", logo: "/partners/delta.png" },
   { name: "Roquette", logo: "/partners/roquette.png" },
   { name: "Nitta Gelatin India", logo: "/partners/nitta.png" },
@@ -487,7 +487,7 @@ export default function Home() {
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
-          <h1>Ingredients that turn<br/><em>ideas into products.</em></h1>
+          <h1>Your Product <em>Vision.</em> Our Ingredient<br/><em>Expertise.</em></h1>
           <div className="hero-copy">
             <div className="hero-buttons">
               <a className="btn gold" href="/brochure/">Download Brochure <ArrowRight size={17}/></a>
@@ -501,7 +501,7 @@ export default function Home() {
       <section className="metrics">
         <div className="container metric-grid">
           {[
-            [Clock3, "12+", "Years of", "Experience"], [Handshake, "250+", "Business", "Clients"],
+            [Clock3, "25+", "Years of", "Experience"], [Handshake, "250+", "Business", "Clients"],
             [PackageCheck, "60+", "Ingredient", "Products"], [Globe2, "15+", "Distribution", "Partnerships"]
           ].map(([Icon,n,line1,line2]) => <div key={n} className="metric-item"><span className="metric-icon"><Icon/></span><span className="metric-copy"><strong>{n}</strong><small>{line1}<br/>{line2}</small></span></div>)}
         </div>
@@ -527,7 +527,7 @@ export default function Home() {
             <div className="portfolio-overlay">
               <span>Application-led sourcing</span>
               <strong>From ingredient to finished product.</strong>
-              <button onClick={() => openQuote()}>Discuss your formulation <ArrowRight size={16}/></button>
+              <button className="btn gold" onClick={() => openQuote()}>Discuss your formulation <ArrowRight size={16}/></button>
             </div>
             <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
@@ -717,7 +717,7 @@ export default function Home() {
             </div>
           </div>
           <div className="testimonial-trust-summary" aria-label="Vikranth business trust summary">
-            <AnimatedStat value={12} label="Years of Experience" Icon={Clock3} />
+            <AnimatedStat value={25} label="Years of Experience" Icon={Clock3} />
             <AnimatedStat value={60} label="Products" Icon={PackageCheck} delay={100} />
             <AnimatedStat value={15} label="Distribution Partnerships" Icon={Handshake} delay={200} />
             <AnimatedStat value={250} label="Clients" Icon={Building2} delay={300} />
@@ -748,7 +748,7 @@ export default function Home() {
               </details>
             ))}
           </div>
-          <button className="text-link faq-contact" onClick={() => openQuote("Technical guidance")}>
+          <button className="btn gold faq-contact" onClick={() => openQuote("Technical guidance")}>
             Contact our technical team <ArrowRight size={16}/>
           </button>
           </div>
@@ -780,15 +780,8 @@ export default function Home() {
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
+        <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>
-
-      <button className="chatbot-fab" onClick={() => openQuote("Chatbot enquiry")} aria-label="Open ingredient chatbot">
-        <img src="/chatbot-chef.png" alt="" />
-      </button>
-      <a className="whatsapp-fab" href="https://wa.me/918754442924" target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp">
-        <img src="/whatsapp-branded.png" alt="" />
-      </a>
 
       <div className={`quote-drawer ${quoteOpen ? "open" : ""}`}>
         <button className="drawer-backdrop" onClick={() => setQuoteOpen(false)} aria-label="Close quote form"/>
