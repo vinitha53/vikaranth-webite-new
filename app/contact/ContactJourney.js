@@ -12,7 +12,7 @@ import styles from "./contact.module.css";
 gsap.registerPlugin(useGSAP);
 
 const CHARACTER_ASSETS = [
-  "/contact/cocoa-bean-side-walk-sprite.png",
+  "/contact/cocoa-bean-side-walk-sprite-transparent.png",
   "/contact/cocoa-bean-three-quarter.png",
   "/cocoa-bean-character.png",
   "/contact/cocoa-bean-front-blink.png",
@@ -20,7 +20,7 @@ const CHARACTER_ASSETS = [
 
 // Rightmost visible point of the presenting hand in the square front-pose asset.
 const PRESENTING_HAND_EDGE = 1104 / 1254;
-const WALK_SEQUENCE = [0, 1, 2, 3, 2, 1, 4, 5, 6, 7, 6, 5];
+const WALK_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7];
 
 let activeContactTimelines = 0;
 
@@ -184,17 +184,15 @@ export default function ContactJourney() {
         .to(mascot, { x: finalMascotX + Math.round(startFormX * .08), duration: 3.1, ease: "none" }, .1)
         .to(form, { x: Math.round(startFormX * .08), duration: 3.1, ease: "none" }, .1)
         .to(shadow, { x: Math.round(startFormX * .08), opacity: .2, duration: 3.1, ease: "none" }, .1)
-        .to(walkFrame, { value: 32, duration: 3.1, ease: "steps(32)", onUpdate: paintWalkFrame }, .1)
-        .to(mascot, { y: -3, duration: .19375, repeat: 15, yoyo: true, ease: "sine.inOut" }, .1)
-        .call(() => { walkFrame.value = 1; paintWalkFrame(); }, null, 3.2)
+        .to(walkFrame, { value: 24, duration: 3.1, ease: "steps(24)", onUpdate: paintWalkFrame }, .1)
+        .to(mascot, { y: -3, duration: .258333, repeat: 11, yoyo: true, ease: "sine.inOut" }, .1)
+        .to(walkFrame, { value: 27, duration: .4, ease: "steps(3)", onUpdate: paintWalkFrame }, 3.2)
         .to(mascot, { x: finalMascotX, y: 0, rotation: 0, duration: .4, ease: "power2.out" }, 3.2)
         .to(form, { x: 0, duration: .4, ease: "power2.out" }, 3.2)
         .to(shadow, { x: 0, duration: .4, ease: "power2.out" }, 3.2)
         .call(() => captureInvariant("3.2s", initialMetrics), null, 3.2)
-        .to(beanWalk, { opacity: 0, duration: .3, ease: "power1.inOut" }, 3.6)
-        .to(beanThreeQuarter, { opacity: 1, duration: .3, ease: "power1.inOut" }, 3.6)
-        .to(beanThreeQuarter, { opacity: 0, duration: .3, ease: "power1.inOut" }, 3.9)
-        .to(beanFront, { opacity: 1, duration: .3, ease: "power1.inOut" }, 3.9)
+        .to(beanWalk, { opacity: 0, duration: .6, ease: "power2.inOut" }, 3.6)
+        .to(beanFront, { opacity: 1, duration: .6, ease: "power2.inOut" }, 3.6)
         .call(() => captureInvariant("4.2s", initialMetrics), null, 4.2)
         .to(mascot, { y: -2, duration: .2, ease: "sine.out" }, 4.2)
         .to(mascot, { y: 0, duration: .2, ease: "sine.inOut" }, 4.4)

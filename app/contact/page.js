@@ -17,17 +17,11 @@ export default function ContactPage() {
       <DetailHeader />
       <ContactJourney />
 
-      <section className={styles.responseBar} aria-label="Enquiry support options">
-        <div><b>01</b><span><strong>Share your requirement</strong>Product, application and quantity</span></div>
-        <div><b>02</b><span><strong>Review the portfolio</strong>Brands, categories and solutions</span></div>
-        <div><b>03</b><span><strong>Talk to our team</strong>Quotation, sample and support</span></div>
-      </section>
-
       <section className={styles.officeSection} id="offices">
         <div className={styles.officeHeading}><span className={styles.eyebrow}>Visit or write to us</span><h2>Our Chennai offices</h2></div>
         <div className={styles.officeGrid}>
-          <article><Building2/><small>Sales office</small><h3>Vikranth Chemical Corporation</h3><p>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110.</p><a href={directions} target="_blank" rel="noreferrer">Get directions <ArrowRight /></a></article>
-          <article><MapPin/><small>Corporate enquiry address</small><h3>Saraswathy Enclave</h3><p>Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur, Chennai 600099.</p><a href="https://www.google.com/maps/search/?api=1&query=Saraswathy+Enclave+Lakshmipuram+Kolathur+Chennai+600099" target="_blank" rel="noreferrer">Get directions <ArrowRight /></a></article>
+          <article><Building2/><small>Sales office</small><h3>Vikranth Chemical Corporation</h3><p>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110.</p><a href={directions} target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
+          <article><MapPin/><small>Corporate enquiry address</small><h3>Saraswathy Enclave</h3><p>Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur, Chennai 600099.</p><a href="https://www.google.com/maps/search/?api=1&query=Saraswathy+Enclave+Lakshmipuram+Kolathur+Chennai+600099" target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
         </div>
       </section>
       <DetailFooter />
