@@ -676,7 +676,7 @@ export default function Home() {
             onBlur={() => setTestimonialPaused(false)}
           >
             <figure className="testimonial-professional-image">
-              <img src="/testimonial-food-professionals.png" alt="Food professionals reviewing an ingredient formulation" />
+              <img src="/home-testimonial.png" alt="Food professionals reviewing ingredient samples" loading="lazy" />
               <figcaption><BadgeCheck size={17}/> Trusted ingredient support for professional food businesses</figcaption>
             </figure>
             <div className="testimonial-carousel" aria-live="polite">
