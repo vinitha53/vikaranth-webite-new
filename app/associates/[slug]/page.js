@@ -92,7 +92,7 @@ export default async function PartnerPage({ params }) {
         <div className={styles.ecosystem} aria-label={`${partner.name} application ecosystem`}><div className={styles.scene} data-3d-scene><div className={styles.sceneRing} /><div className={styles.sceneRing} /><div className={styles.sceneLogo}><img src={partner.logo} alt="" /></div>{content.applications.slice(0, 4).map((application) => <span className={styles.sceneLabel} key={application}>{application}</span>)}</div></div>
       </div></section>
 
-      <section className={styles.section} id="products"><div className={styles.wrap}>
+      <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
         <header className={styles.sectionHead}><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Product cards link to individual product pages. Exact grade, format, pack, MOQ and current commercial availability are confirmed for each requirement.</p></header>
         <div className={styles.productGrid}>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>
       </div></section>
