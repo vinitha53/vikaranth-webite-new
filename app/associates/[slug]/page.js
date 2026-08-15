@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, BadgeCheck, Check, FileCheck2, MapPin, PackageCheck, SearchCheck, Truck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check, FileCheck2, MapPin, PackageCheck, SearchCheck, ShieldCheck, Truck } from "lucide-react";
 import { partners, getPartner } from "../../data/partners";
 import { getProduct, getIndustry, slugify } from "../../data/catalog";
 import { getAssociateContent } from "../../data/associate-content";
@@ -87,11 +87,7 @@ export default async function PartnerPage({ params }) {
 
 
 
-      <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={`${styles.wrap} ${styles.aboutGrid}`}>
-        <article className={styles.answerCard}><span className={styles.eyebrow}>About the supplier</span><h2>What does {partner.name} offer?</h2><p>{content.about}</p><div className={styles.answerNote}><SearchCheck /> Product, grade and relationship details are confirmed before quotation.</div></article>
-        <div className={styles.ecosystem} aria-label={`${partner.name} application ecosystem`}><div className={styles.scene} data-3d-scene><div className={styles.sceneRing} /><div className={styles.sceneRing} /><div className={styles.sceneLogo}><img src={partner.logo} alt="" /></div>{content.applications.slice(0, 4).map((application) => <span className={styles.sceneLabel} key={application}>{application}</span>)}</div></div>
-      </div></section>
-
+      <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={styles.wrap}><div className={styles.aboutFeatureGrid}><div className={styles.aboutFeatureCopy}><span className={styles.eyebrow}>About the supplier</span><h2>Ingredients engineered for the right application.</h2><p>{content.about}</p><div className={styles.aboutSupplierLogo}><img src={partner.logo} alt={`${partner.name} logo`} /><strong>{partner.name}</strong></div><a className={styles.aboutProfileLink} href="#products">View supplier profile <ArrowRight /></a></div><div className={styles.applicationFeatureGrid}>{content.applications.slice(0,4).map((application,index)=>{const applicationImage=Object.values(partner.productImages||{})[index]||partner.image;return <article className={styles.applicationFeatureCard} key={application}><img src={applicationImage} alt={`${partner.name} ${application}`} loading="lazy"/><div><h3>{application}</h3><p>{content.category} for professional applications.</p></div></article>})}</div></div><div className={styles.aboutAssurance}><ShieldCheck/><span>Grade, source, specification and documentation are confirmed before quotation.</span><a href="#enquiry">Discuss your application <ArrowRight /></a></div></div></section>
       <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
         <header className={styles.sectionHead}><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Product cards link to individual product pages. Exact grade, format, pack, MOQ and current commercial availability are confirmed for each requirement.</p></header>
         <div className={styles.productGrid}>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>
