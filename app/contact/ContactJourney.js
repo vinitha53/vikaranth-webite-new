@@ -20,7 +20,7 @@ const CHARACTER_ASSETS = [
 
 // Rightmost visible point of the presenting hand in the square front-pose asset.
 const PRESENTING_HAND_EDGE = 1104 / 1254;
-const WALK_SEQUENCE = [0, 1, 2, 1, 4, 5, 6, 5];
+const WALK_SEQUENCE = [0, 1, 2, 3, 2, 1, 4, 5, 6, 7, 6, 5];
 
 let activeContactTimelines = 0;
 
