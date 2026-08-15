@@ -85,7 +85,7 @@ export default async function PartnerPage({ params }) {
         </div>
       </section>
 
-      <nav className={styles.subnav} aria-label="Supplier page sections"><div className={styles.wrap}><a href="#about">About</a><a href="#products">Products</a><a href="#applications">Applications</a><a href="#procurement">How enquiry works</a><a href="#documents">Documents</a><a href="#faq">FAQ</a><a href="#enquiry">Enquire</a></div></nav>
+
 
       <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={`${styles.wrap} ${styles.aboutGrid}`}>
         <article className={styles.answerCard}><span className={styles.eyebrow}>About the supplier</span><h2>What does {partner.name} offer?</h2><p>{content.about}</p><div className={styles.answerNote}><SearchCheck /> Product, grade and relationship details are confirmed before quotation.</div></article>
