@@ -984,6 +984,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   width:100%;
   height:100%;
   object-fit:cover;
+  object-position:center center;
   transform:none;
   filter:none;
   transition:transform 650ms cubic-bezier(.22,1,.36,1),filter 600ms ease;

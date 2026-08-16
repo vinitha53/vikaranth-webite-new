@@ -31,7 +31,7 @@ const productGroups = [
     "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"],
     "Fruit Beverage Ingredients": ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"]
   }},
-  { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", imagePosition: "67% center", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Ice Cream Flavours": ["French Vanilla", "Cocoa Miscela"],
     "Ice Cream Toppings": ["Dessert Toppings"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
@@ -40,7 +40,7 @@ const productGroups = [
     "Juices & Concentrates": ["Juice Concentrates", "NFC Juices"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", imagePosition: "25% center", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
@@ -53,7 +53,7 @@ const productGroups = [
     "Proteins": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein", "Full-Fat Soya Flour", "Vital Wheat Gluten", "Skimmed Milk Powder"],
     "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Calcium Gluconate", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
-  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma.webp", imagePosition: "72% center", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
+  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma.webp", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
     "Protein Ingredients": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"], "Sugar-Free Excipients": ["Isomalt", "SWEETPEARL® P 200 Maltitol"]
   }},
@@ -537,7 +537,7 @@ export default function Home() {
               return <a className="product-card" href={`/industries/${industrySlugs[i]}`} aria-label={`View ${group.name} products`} key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
                   <div className="category-photo">
-                    <img src={group.image} alt={`${group.name} for commercial food production`} loading="lazy" decoding="async" style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}/>
+                    <img src={group.image} alt={`${group.name} for commercial food production`} loading="lazy" decoding="async"/>
                   </div>
                 ) : (
                   <div className="category-photo category-placeholder" aria-hidden="true"><Icon/><span>Product image coming soon</span></div>

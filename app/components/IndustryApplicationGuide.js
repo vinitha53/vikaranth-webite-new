@@ -32,12 +32,12 @@ export default function IndustryApplicationGuide({ industry, content }) {
         const Icon = icons[index % icons.length];
         const tags = tagsFrom(description);
         return <article key={name} className={styles.applicationCard}>
-          <div className={styles.applicationCardTop}><span>{String(index + 1).padStart(2, "0")}</span><small>Explore</small></div>
+          <div className={styles.applicationCardTop}><span>{String(index + 1).padStart(2, "0")}</span></div>
           <Icon />
           <h3>{name}</h3>
           <p>{description}</p>
           <div>{tags.map((tag) => <em key={tag}>{tag}</em>)}</div>
-          <ArrowRight className={styles.applicationArrow} size={28} />
+          
         </article>;
       })}
     </div>
