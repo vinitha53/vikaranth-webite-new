@@ -186,3 +186,9 @@
 @media(prefers-reduced-motion:reduce){
   .industryPage .productSection,.industryPage .applicationShowcase,.industryPage .procurementSection,.industryPage .partnerSection,.industryPage .faqSection,.industryPage .sectionHeading,.industryPage .bakeryGroupHeading,.industryPage .applicationIntro,.industryPage .procurementCopy,.industryPage .faqIntro,.industryPage .bakeryTab,.industryPage .bakeryTabActive,.industryPage .bakeryProductCard,.industryPage .applicationCard,.industryPage .partnerTile,.industryPage .faqList details,.industryPage .sliderProgress i b{animation:none!important;transform:none!important;opacity:1!important}
 }
+
+/* Tighten spacing between the product portfolio and following guide on industry pages. */
+.industryPage .productSection{padding-bottom:34px}
+.industryPage .productSection + .applicationShowcase{padding-top:42px}
+.industryPage .productSection .autoPlayNote{margin-top:14px;margin-bottom:0}
+@media(max-width:700px){.industryPage .productSection{padding-bottom:24px}.industryPage .productSection + .applicationShowcase{padding-top:30px}}
