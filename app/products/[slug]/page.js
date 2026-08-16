@@ -10,6 +10,9 @@ import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
 
 const siteUrl = "https://www.vikranthchem.com";
+const supplierOverviewByProduct = {
+  "Cake Gel": "Vikranth supports bakeries, cake manufacturers and food businesses sourcing cake gel in Chennai and across India. Cake gel is commonly evaluated as an emulsifying aid for sponge cakes, cupcakes and other aerated bakery products where batter stability, volume, texture and batch consistency are important. Share your recipe, process, required pack size, monthly quantity and delivery location so the team can confirm the available grade, documents, sample options and commercial quotation.",
+};
 const benefitsByIndustry = {
   "bakery-ingredients": ["Batch consistency", "Texture and structure support", "Process-fit selection", "Commercial bakery scale"],
   "chocolate-confectionery": ["Flavour and colour selection", "Texture and flow support", "Application-fit formats", "Repeatable production"],
@@ -43,8 +46,8 @@ export function generateStaticParams() { return products.map(({ slug }) => ({ sl
 export async function generateMetadata({ params }) {
   const product = getProduct((await params).slug);
   if (!product) return {};
-  const title = `${product.name} Supplier in Chennai & India | Bulk B2B | Vikranth`;
-  const description = `Buy ${product.name} from a B2B food ingredients supplier in Chennai. Enquire for available grades, pack sizes, samples, documents and bulk pricing.`;
+  const title = `${product.name} Supplier in Chennai and Pan India | Vikranth`;
+  const description = `${product.name} supplier in Chennai for Pan-India B2B requirements. Enquire for available grades, pack sizes, samples, documents, delivery and bulk pricing.`;
   const canonical = `/products/${product.slug}/`;
   return {
     title, description,
@@ -65,6 +68,7 @@ export default async function ProductPage({ params }) {
   const benefits = benefitsByIndustry[product.industrySlug] || ["Application-fit selection", "Process support", "Consistent sourcing", "Technical coordination"];
   const faq = buildProductFaqs(product, industry, applications);
   const productPartners = partnersForProduct(product.name);
+  const supplierOverview = supplierOverviewByProduct[product.name] || `Vikranth supports professional buyers sourcing ${product.name} in Chennai and across India. Share your application, required function, grade, pack size, quantity, documentation needs and delivery location so the team can confirm a suitable available option, current lead time and commercial quotation.`;
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
   const description = `${product.name} for ${industry.name.toLowerCase()} and professional food production. Vikranth Chemical Corporation supports B2B enquiries from Chennai for available grades, pack sizes, samples, documents and bulk quotations.`;
   const structuredData = [
@@ -74,7 +78,7 @@ export default async function ProductPage({ params }) {
       { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products` },
       { "@type": "ListItem", position: 3, name: product.name, item: canonicalUrl },
     ] },
-    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai`, description, about: { "@id": `${canonicalUrl}#service` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
+    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai and Pan India`, description, about: { "@id": `${canonicalUrl}#service` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
   const whatsapp = `https://wa.me/918754442924?text=${encodeURIComponent(`Hi, I need a quotation for ${product.name}.`)}`;
@@ -92,7 +96,7 @@ export default async function ProductPage({ params }) {
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy} data-hero-copy>
               <span className={styles.eyebrow}>{product.category}</span>
-              <h1>{product.name} <em>supplier</em> in Chennai & India</h1>
+              <h1>{product.name} <em>supplier</em> in Chennai and across India</h1>
               <p>{product.name} for {industry.name.toLowerCase()} and professional food production. Tell us your application, required grade and quantity so our B2B team can confirm a suitable available option.</p>
               <div className={styles.actions}>
                 <a className={styles.whatsappButton} href="#quote"><MessageCircle /> Request a quote</a>
@@ -123,6 +127,7 @@ export default async function ProductPage({ params }) {
       <section className={styles.uses} aria-labelledby="uses-title"><div className={styles.wrap}>
         <header className={styles.sectionHeading} data-heading><span className={styles.eyebrow}>Benefits and applications</span><h2 id="uses-title">Evaluate <em>{product.name}</em> for your formulation</h2></header>
         <p className={styles.answer} data-reveal>{product.description} Final suitability depends on the selected grade, recipe, process, dosage and finished-product requirements. Validate the ingredient in your own formulation.</p>
+        <aside className={styles.technicalNote} data-reveal><MapPin /><div><strong>{product.name} supply from Chennai to Pan India</strong><p>{supplierOverview}</p></div></aside>
         <div className={styles.benefitGrid} data-stagger>{benefits.map((benefit, index) => <article key={benefit}><span>0{index + 1}</span><strong>{benefit}</strong><p>Confirm this function against the selected grade and manufacturer documentation.</p></article>)}</div>
         <h3 className={styles.applicationTitle}>Common application starting points</h3><div className={styles.useList} data-stagger>{applications.map((application) => <div key={application}><span /><strong>{application}</strong></div>)}</div>
         <aside className={styles.technicalNote}><ShieldCheck /><div><strong>Technical buyer note</strong><p>Dosage, storage, shelf life, composition and performance are manufacturer- and grade-specific. Request the current specification and validate the ingredient in a controlled formulation trial before scale-up.</p></div></aside>

@@ -76,6 +76,12 @@ export default function ContactJourney() {
     const shadow = shadowRef.current;
     if (!stage || !mascot || !form || !bubble || !shadow) return undefined;
 
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      gsap.set(form, { x: 0, y: 0, scale: 1, opacity: 1, clearProps: "transform,willChange" });
+      stage.dataset.animationMode = "static";
+      return undefined;
+    }
+
     const beanWalk = mascot.querySelector("[data-cocoa-walk]");
     const beanThreeQuarter = mascot.querySelector("[data-cocoa-three-quarter]");
     const beanFront = mascot.querySelector("[data-cocoa-front]");

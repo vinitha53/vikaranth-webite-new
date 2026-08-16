@@ -127,7 +127,7 @@ const ingredientInsights = [
 function Logo({ light = false }) {
   return (
     <a className={`logo ${light ? "light" : ""}`} href="#home" aria-label="Vikranth home">
-      <img className="brand-logo-image" src="/logo-vikranth.png" alt="VCC — Vikranth Chemical Corporation" />
+      <img className="brand-logo-image" src="/logo-vikranth.png" alt="VCC — Vikranth Chemical Corporation" width="156" height="73" decoding="async" />
     </a>
   );
 }
@@ -213,8 +213,8 @@ function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
 function BotanicalCorners() {
   return (
     <div className="botanical-corners" aria-hidden="true">
-      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.png" alt="" /></span>
-      <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.png" alt="" /></span>
+      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.png" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
+      <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.png" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
     </div>
   );
 }
@@ -249,7 +249,7 @@ function IngredientEcosystem() {
         <div className="vcc-ecosystem-column vcc-ecosystem-left">{ecosystemCategories.slice(0, 5).map(renderCard)}</div>
         <div className="vcc-ecosystem-centre">
           <div className="vcc-ecosystem-image-wrap">
-            <img src={ecosystemImage} alt="Vikranth food ingredient portfolio featuring bakery, chocolate, dairy, beverage, fruit and specialty ingredients"/>
+            <img src={ecosystemImage} alt="Vikranth food ingredient portfolio featuring bakery, chocolate, dairy, beverage, fruit and specialty ingredients" loading="lazy" decoding="async"/>
             <div className="vcc-ecosystem-badge"><IceCreamBowl aria-hidden="true"/><strong>B2B</strong><span>Ingredient<br/>Portfolio</span><i/></div>
           </div>
           <a className="vcc-ecosystem-cta" href="/products">Explore All Products</a>
@@ -460,7 +460,7 @@ export default function Home() {
                   {productCategories.slice(thumbnailStart, thumbnailStart + 5).map((category) => {
                     const i = Number(category.id) - 1;
                     return <button key={category.id} className={activeGroup === i ? "active" : ""} onClick={() => setActiveGroup(i)} aria-label={`Select ${category.name}`}>
-                      {category.thumbnail ? <img src={category.thumbnail} alt=""/> : <span>Category image {category.id}</span>}
+                      {category.thumbnail ? <img src={category.thumbnail} alt="" loading="lazy" decoding="async"/> : <span>Category image {category.id}</span>}
                     </button>;
                   })}
                 </div>
@@ -478,7 +478,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/hero-chocolate-poster.jpg"
           aria-hidden="true"
         >
@@ -523,7 +523,7 @@ export default function Home() {
             </div>
           </div>
           <div className="portfolio-visual">
-            <img src="/ingredient-portfolio.png" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" />
+            <img src="/ingredient-portfolio.png" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" width="1821" height="864" loading="lazy" decoding="async" />
             <div className="portfolio-overlay">
               <span>Application-led sourcing</span>
               <strong>From ingredient to finished product.</strong>
@@ -537,7 +537,7 @@ export default function Home() {
               return <a className="product-card" href={`/industries/${industrySlugs[i]}`} aria-label={`View ${group.name} products`} key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
                   <div className="category-photo">
-                    <img src={group.image} alt={`${group.name} for commercial food production`} style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}/>
+                    <img src={group.image} alt={`${group.name} for commercial food production`} loading="lazy" decoding="async" style={group.imagePosition ? { objectPosition: group.imagePosition } : undefined}/>
                   </div>
                 ) : (
                   <div className="category-photo category-placeholder" aria-hidden="true"><Icon/><span>Product image coming soon</span></div>
@@ -568,7 +568,7 @@ export default function Home() {
           <div className="about-grid">
           <div className="about-visual">
             <div className="lab-stage about-video-stage">
-              <img src="/home-about.png" alt="Ingredient sourcing team reviewing food ingredients" loading="lazy"/>
+              <img src="/home-about.png" alt="Ingredient sourcing team reviewing food ingredients" width="1448" height="1086" loading="lazy" decoding="async"/>
               <div className="about-video-shade"></div>
             </div>
             <div className="about-caption"><span className="about-since"><BadgeCheck/><b>Since 2001</b></span><i/><p>Built on dependable relationships, transparent trade and technical curiosity.</p></div>
@@ -599,7 +599,7 @@ export default function Home() {
           <div className="supplier-head"><div><span className="eyebrow">Our product network</span><h2>Established Manufacturers.<br/><em>One Reliable Supplier.</em></h2></div><p>Explore a broader ingredient portfolio through a local team that understands your product and sourcing requirements.</p></div>
           <div className="supplier-marquee-shell">
             <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
-            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" loading="lazy" decoding="async" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
             <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
           </div>
           <div className="supplier-feature">
@@ -676,7 +676,7 @@ export default function Home() {
             onBlur={() => setTestimonialPaused(false)}
           >
             <figure className="testimonial-professional-image">
-              <img src="/home-testimonial.png" alt="Food professionals reviewing ingredient samples" loading="lazy" />
+              <img src="/home-testimonial.png" alt="Food professionals reviewing ingredient samples" width="1122" height="1402" loading="lazy" decoding="async" />
               <figcaption><BadgeCheck size={17}/> Trusted ingredient support for professional food businesses</figcaption>
             </figure>
             <div className="testimonial-carousel" aria-live="polite">
@@ -780,7 +780,7 @@ export default function Home() {
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
+        <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>
 
       <div className={`quote-drawer ${quoteOpen ? "open" : ""}`}>

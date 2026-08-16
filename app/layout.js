@@ -1,4 +1,4 @@
-﻿import "./globals.css";
+import "./globals.css";
 import "./sections-v2.css";
 import FloatingIconDock from "./components/FloatingIconDock";
 
@@ -56,6 +56,12 @@ export default function RootLayout({ children }) {
           addressCountry: "IN",
         },
       ],
+      sameAs: [
+        "https://in.linkedin.com/company/vikranth-chemical-corporation",
+        "https://www.facebook.com/search/top?q=Vikranth%20Chemical%20Corporation",
+        "https://www.instagram.com/explore/search/keyword/?q=vikranth%20chemical%20corporation",
+      ],
+      knowsAbout: ["Bakery ingredients", "Chocolate ingredients", "Dairy ingredients", "Beverage ingredients", "Hydrocolloids", "Food additives", "Nutraceutical ingredients"],
       contactPoint: [
         { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "sales", areaServed: "IN", availableLanguage: ["en", "ta"] },
         { "@type": "ContactPoint", telephone: "+91-97909-20252", contactType: "customer service", areaServed: "IN", availableLanguage: ["en", "ta"] },

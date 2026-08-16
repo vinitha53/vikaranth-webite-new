@@ -1884,15 +1884,20 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   z-index:45;
   top:50%;
   right:20px;
+  bottom:auto !important;
+  left:auto !important;
+  width:max-content;
+  margin:0 !important;
   display:flex;
   flex-direction:column;
   gap:11px;
   transform:translateY(-50%);
 }
-.floating-site-dock .floating-site-button{
+.floating-site-dock .floating-site-button,.floating-site-chatbot{
   position:relative;
   inset:auto;
   display:grid;
+  flex:0 0 auto;
   width:70px;
   height:70px;
   padding:0;
@@ -1912,24 +1917,25 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .floating-site-dock .floating-site-button:nth-child(4){animation-delay:.21s}
 .floating-site-dock .floating-site-button:nth-child(5){animation-delay:.28s}
 .floating-site-dock .floating-site-button:nth-child(6){animation-delay:.35s}
-.floating-site-dock .floating-site-button img{
+.floating-site-dock .floating-site-button img,.floating-site-chatbot img{
   display:block;
   width:100%;
   height:100%;
   border-radius:50%;
   object-fit:cover;
 }
-.floating-site-dock .floating-site-chatbot img{
+.floating-site-chatbot{position:fixed;z-index:46;right:20px;bottom:max(20px,env(safe-area-inset-bottom));}
+.floating-site-chatbot img{
   width:88%;
   height:88%;
   object-fit:contain;
 }
-.floating-site-dock .floating-site-button:hover{
+.floating-site-dock .floating-site-button:hover,.floating-site-chatbot:hover{
   filter:brightness(1.08);
   transform:translateY(-3px) scale(1.07);
   box-shadow:0 14px 31px rgba(48,20,8,.34),0 0 0 5px rgba(222,126,61,.14);
 }
-.floating-site-dock .floating-site-button:focus-visible{
+.floating-site-dock .floating-site-button:focus-visible,.floating-site-chatbot:focus-visible{
   outline:3px solid #e79b61;
   outline-offset:3px;
 }
@@ -1938,15 +1944,26 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   to{opacity:1;transform:scale(1)}
 }
 @media(max-width:720px){
-  .floating-site-dock{right:7px;gap:8px}
-  .floating-site-dock .floating-site-button{width:50px;height:50px}
+  .floating-site-dock{right:14px;gap:8px}
+  .floating-site-chatbot{right:14px;bottom:max(14px,env(safe-area-inset-bottom));}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:50px;height:50px}
 }
 @media(max-height:700px) and (min-width:721px){
   .floating-site-dock{right:12px;gap:7px}
-  .floating-site-dock .floating-site-button{width:56px;height:56px}
+  .floating-site-chatbot{right:14px;bottom:14px;}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:56px;height:56px}
+}
+@media(max-width:420px){
+  .floating-site-dock{right:10px;gap:6px}
+  .floating-site-chatbot{right:10px;bottom:max(12px,env(safe-area-inset-bottom));}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:46px;height:46px}
+}
+@media(max-height:560px){
+  .floating-site-dock{gap:5px}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:44px;height:44px}
 }
 @media(prefers-reduced-motion:reduce){
-  .floating-site-dock .floating-site-button{animation:none}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{animation:none}
 }
 @keyframes homeCtaGlitterFlow{
   0%{background-position:0 0,0 0,0 0,0 0,0 0;opacity:.42}
@@ -1962,4 +1979,45 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .btn,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta{animation:none!important}
   .home-page .btn::before,.home-page .btn::after,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::before,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta::after{animation:none!important}
   .home-page .btn:hover::after,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover::after{opacity:.7}
+}
+
+
+/* Final mobile header and hero visibility safeguard. */
+@media(max-width:1024px){
+  .home-page .header-quote{display:inline-flex!important;flex:0 0 auto;min-height:46px;padding:0 18px!important;border-radius:999px;font-size:13px}
+  .home-page .menu-trigger{display:grid!important;flex:0 0 46px}
+  .home-page .nav-actions{min-width:0;flex-shrink:0}
+  .home-page .hero-content>h1{z-index:4;display:block!important;opacity:1!important;visibility:visible!important}
+  .home-page .hero-content>.hero-copy{z-index:4}
+}
+@media(max-width:767px){
+  .home-page .hero-content>h1{top:clamp(92px,14svh,118px);transform:translateX(-50%);font-size:clamp(34px,10.8vw,44px)}
+  .home-page .hero-content>.hero-copy{top:clamp(300px,44svh,370px)}
+}
+@media(max-width:390px){
+  .home-page .menu-trigger{flex-basis:42px;width:42px;height:42px}
+  .home-page .hero-content>h1{top:88px;font-size:32px}
+  .home-page .hero-content>.hero-copy{top:285px}
+}
+
+
+/* Unified responsive header sizing. */
+@media(max-width:767px){
+  .home-page .nav-wrap{gap:8px}
+  .home-page .logo{margin-right:auto}
+  .home-page .nav-actions{gap:7px}
+  .home-page .header-quote{min-height:44px;padding-inline:14px!important;font-size:12px}
+  .home-page .header-quote svg{width:15px;height:15px}
+}
+@media(max-width:520px){
+  .home-page .brand-logo-image,.home-page>header.scrolled .brand-logo-image{height:43px}
+  .home-page .search-trigger,.home-page .menu-trigger{width:40px;height:40px}
+  .home-page .header-quote{min-height:40px;padding-inline:11px!important;font-size:11px}
+  .home-page .nav-actions{gap:5px}
+}
+@media(max-width:390px){
+  .home-page .brand-logo-image,.home-page>header.scrolled .brand-logo-image{height:39px}
+  .home-page .search-trigger,.home-page .menu-trigger{width:38px;height:38px;flex-basis:38px}
+  .home-page .header-quote{min-height:38px;padding-inline:9px!important;font-size:10px;gap:5px}
+  .home-page .header-quote svg{width:13px;height:13px}
 }

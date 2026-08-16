@@ -60,7 +60,7 @@ export default function WhatsAppContactCta() {
           <h2 id="whatsapp-contact-title">Connect With Us on WhatsApp</h2>
           <p>Need help choosing the right food ingredient? Chat with the VCC team for product details, availability, quotations and business enquiries.</p>
           <a className={styles.whatsappCtaButton} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Chat with Vikranth Chemical Corporation on WhatsApp in a new tab">
-            <img src="/whatsapp-branded.png" alt="" aria-hidden="true" />
+            <img src="/whatsapp-branded.png" alt="" width="70" height="70" loading="lazy" decoding="async" aria-hidden="true" />
             <span>Chat With Us</span>
             <ArrowRight aria-hidden="true" />
           </a>
@@ -68,7 +68,7 @@ export default function WhatsAppContactCta() {
         </div>
 
         <a className={styles.whatsappQrCard} ref={qrRef} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Open a WhatsApp chat with Vikranth Chemical Corporation in a new tab">
-          <img className={styles.whatsappQrImage} src="/contact/vcc-whatsapp-qr.png" alt="Scan to chat with Vikranth Chemical Corporation on WhatsApp" width="984" height="984" />
+          <img className={styles.whatsappQrImage} src="/contact/vcc-whatsapp-qr.png" alt="Scan to chat with Vikranth Chemical Corporation on WhatsApp" width="984" height="984" loading="lazy" decoding="async" />
           <span><MessageCircle aria-hidden="true" /> Scan to chat on WhatsApp</span>
         </a>
       </div>
