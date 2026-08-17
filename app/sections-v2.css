@@ -2022,3 +2022,14 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .header-quote{min-height:38px;padding-inline:9px!important;font-size:10px;gap:5px}
   .home-page .header-quote svg{width:13px;height:13px}
 }
+
+/* Floating ingredient chatbot */
+.ingredient-chat-panel{position:fixed;z-index:47;right:20px;bottom:104px;width:min(360px,calc(100vw - 32px));overflow:hidden;border:1px solid #e3b284;border-radius:18px;background:#fffaf6;box-shadow:0 22px 56px rgba(47,20,8,.28);font-family:'Manrope','Segoe UI',sans-serif;animation:ingredientChatOpen .26s cubic-bezier(.22,1,.36,1) both}
+.ingredient-chat-panel header{display:flex;padding:17px 18px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#35170c,#6e3218);color:#fff}
+.ingredient-chat-panel header span{display:block;font-size:14px;font-weight:800}.ingredient-chat-panel header small{display:block;margin-top:3px;color:#f1cba7;font-size:10px}.ingredient-chat-panel header button{width:29px;height:29px;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:transparent;color:#fff;font-size:23px;line-height:1;cursor:pointer}
+.ingredient-chat-messages{display:grid;max-height:250px;gap:9px;overflow:auto;padding:16px}.ingredient-chat-messages p{max-width:88%;margin:0;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.5}.ingredient-chat-messages .bot{justify-self:start;border:1px solid #ead8c5;background:#fff;color:#3b261c;border-bottom-left-radius:3px}.ingredient-chat-messages .user{justify-self:end;background:#c85b20;color:#fff;border-bottom-right-radius:3px}
+.ingredient-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 13px}.ingredient-chat-quick button{padding:7px 9px;border:1px solid #dc9c69;border-radius:999px;background:#fff;color:#9f481d;font:700 10px 'Manrope','Segoe UI',sans-serif;cursor:pointer}.ingredient-chat-quick button:hover{background:#fff0e3}
+.ingredient-chat-panel form{display:flex;gap:8px;padding:13px 16px;border-top:1px solid #eadccc;background:#fff}.ingredient-chat-panel input{min-width:0;flex:1;padding:10px 11px;border:1px solid #ddc6b2;border-radius:8px;outline:0;color:#302017;font:12px 'Manrope','Segoe UI',sans-serif}.ingredient-chat-panel input:focus{border-color:#c85b20;box-shadow:0 0 0 3px rgba(200,91,32,.12)}.ingredient-chat-panel form button{border:0;border-radius:8px;background:#c85b20;color:#fff;padding:0 13px;font:800 11px 'Manrope','Segoe UI',sans-serif;cursor:pointer}
+@keyframes ingredientChatOpen{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:720px){.ingredient-chat-panel{right:14px;bottom:76px}.ingredient-chat-messages{max-height:210px}}
+@media(max-width:420px){.ingredient-chat-panel{right:10px;bottom:68px;width:calc(100vw - 20px)}}
