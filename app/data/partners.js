@@ -79,7 +79,21 @@ const catalogProductImages = {
   "Ice Cream Stabilizer": "/product-images/catalog/ice-cream-stabilizer.png",
   "Maize Starch": "/product-images/catalog/maize-starch.png",
   "Panna Base": "/product-images/catalog/panna-base.png",
-  "SWEETPEARL® P 200 Maltitol": "/product-images/catalog/sweetpearl-p-200-maltitol.png"
+  "SWEETPEARL® P 200 Maltitol": "/product-images/catalog/sweetpearl-p-200-maltitol.png",
+  "Acetic Acid": "/product-images/catalog/acetic-acid.png",
+  "Ammonium Bicarbonate": "/product-images/catalog/ammonium-bicarbonate.png",
+  "Ascorbic Acid": "/product-images/catalog/ascorbic-acid.png",
+  "Black Cocoa Powder": "/product-images/catalog/black-cocoa-powder.png",
+  "Citric Acid Anhydrous": "/product-images/catalog/citric-acid-anhydrous.png",
+  "Citric Acid Monohydrate": "/product-images/catalog/citric-acid-monohydrate.png",
+  "Full-Fat Soya Flour": "/product-images/catalog/full-fat-soya-flour.png",
+  "Orange Oil": "/product-images/catalog/orange-oil.png",
+  "PGPR": "/product-images/catalog/pgpr.png",
+  "Propylene Glycol (PG)": "/product-images/catalog/propylene-glycol-pg.png",
+  "Skimmed Milk Powder": "/product-images/catalog/skimmed-milk-powder.png",
+  "SMS": "/product-images/catalog/sms.png",
+  "Soya Protein": "/product-images/catalog/soya-protein.png",
+  "Whey Powder": "/product-images/catalog/whey-powder.png"
 };
 
 Object.values(partnerProductImages).forEach(({ products }) => {
