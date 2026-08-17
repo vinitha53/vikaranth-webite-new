@@ -65,6 +65,29 @@ export const partnerProductImages = {
   }
 };
 
+const catalogProductImages = {
+  "Amaze Ice Cream Stabilizer": "/product-images/catalog/amaze-ice-cream-stabilizer.png",
+  "Aspartame": "/product-images/catalog/aspartame.png",
+  "Cocoa Miscela": "/product-images/catalog/cocoa-miscela.png",
+  "Cream Cheese": "/product-images/catalog/cream-cheese.png",
+  "Finamul 90": "/product-images/catalog/finamul-90.png",
+  "French Vanilla": "/product-images/catalog/french-vanilla.png",
+  "Frozen Yogurt Premix": "/product-images/catalog/frozen-yogurt-premix.png",
+  "Glaze Gel": "/product-images/catalog/glaze-gel.png",
+  "GMS Flakes": "/product-images/catalog/gms-flakes.png",
+  "GMS Powder": "/product-images/catalog/gms-powder.png",
+  "Ice Cream Stabilizer": "/product-images/catalog/ice-cream-stabilizer.png",
+  "Maize Starch": "/product-images/catalog/maize-starch.png",
+  "Panna Base": "/product-images/catalog/panna-base.png",
+  "SWEETPEARL® P 200 Maltitol": "/product-images/catalog/sweetpearl-p-200-maltitol.png"
+};
+
+Object.values(partnerProductImages).forEach(({ products }) => {
+  Object.keys(products).forEach((name) => {
+    if (catalogProductImages[name]) products[name] = catalogProductImages[name];
+  });
+});
+
 export const productImageByName = {
   "Whipping Cream": "/product-images/dairy/whipping-cream.png",
   "Cream Cheese": "/product-images/dairy/cream-cheese.png",
@@ -133,8 +156,8 @@ export const productImageByName = {
   "Sorbitan Monostearate": "/product-images/other-products/sorbitan-monostearate.webp",
   "Sorbitol 70% Solution": "/product-images/other-products/sorbitol-70-percent-solution.webp",
   "Soya Lecithin": "/product-images/other-products/soya-lecithin.webp",
-  "SWEETPEARL® P 200 Maltitol": "/product-images/other-products/sweetpearl-p-200-maltitol.webp",
-  "Vital Wheat Gluten": "/product-images/other-products/vital-wheat-gluten.webp"
+  "Vital Wheat Gluten": "/product-images/other-products/vital-wheat-gluten.webp",
+  ...catalogProductImages
 };
 
 partners.forEach(partner => {
