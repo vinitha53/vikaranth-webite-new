@@ -66,6 +66,12 @@ export const partnerProductImages = {
 };
 
 export const productImageByName = {
+  "Whipping Cream": "/product-images/dairy/whipping-cream.png",
+  "Cream Cheese": "/product-images/dairy/cream-cheese.png",
+  "Butter": "/product-images/dairy/butter.png",
+  "Good Day Milk Powder": "/product-images/dairy/good-day-milk-powder.png",
+  "Krishna Milk Powder": "/product-images/dairy/krishna-milk-powder.png",
+  "Amul Whey Powder": "/product-images/dairy/amul-whey-powder.png",
   ...Object.fromEntries(
     Object.values(partnerProductImages).flatMap(({products}) => Object.entries(products)).reverse()
   ),
