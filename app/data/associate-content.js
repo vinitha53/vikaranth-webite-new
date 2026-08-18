@@ -1,7 +1,7 @@
 export const associateContent = {
   campco: {
     title: "CAMPCO Cocoa Supplier in Chennai & India | Vikranth",
-    description: "Enquire for CAMPCO cocoa powder, cocoa butter, cocoa mass and chocolate ingredients through Vikranth in Chennai. Samples, documents and bulk supply support.",
+    description: "Enquire for CAMPCO cocoa products, choco paste, choco chips, chocomass, chocolate drink and dark, milk or white chocolate through Vikranth in Chennai.",
     h1: "CAMPCO Cocoa & Chocolate Ingredients Supplier in Chennai",
     category: "Cocoa and chocolate ingredients",
     about: "CAMPCO is a cooperative associated with cocoa sourcing and processing in southern India. For professional food manufacturers, the relevant portfolio includes core cocoa and chocolate ingredients used in bakery, confectionery, desserts, ice cream and beverages. Vikranth can coordinate product matching and commercial enquiries for the CAMPCO products it currently supplies.",

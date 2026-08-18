@@ -1,5 +1,5 @@
 export const partners = [
-  {slug:"campco",name:"CAMPCO",logo:"/partners/campco-heart.png",image:"/industries/chocolate-confectionery.webp",summary:"cocoa and chocolate ingredient options for bakery, confectionery, desserts and beverage formulations",about:"CAMPCO is associated with cocoa and chocolate products. Exact catalogue, grade, pack size and commercial availability must be confirmed from current supplier documentation.",products:["Cocoa Powder","Cocoa Butter","Cocoa Mass","Dark Chocolate"],industries:["chocolate-confectionery","bakery-ingredients"]},
+  {slug:"campco",name:"CAMPCO",logo:"/partners/campco-heart.png",image:"/industries/chocolate-confectionery.webp",summary:"cocoa and chocolate ingredient options for bakery, confectionery, desserts and beverage formulations",about:"CAMPCO is associated with cocoa and chocolate products. Exact catalogue, grade, pack size and commercial availability must be confirmed from current supplier documentation.",products:["Cocoa Powder","Cocoa Butter","Cocoa Mass","Choco Paste","White Chips","Milk Chips","Dark Chips","White Chocomass","Milk Chocomass","Dark Chocomass","Chocolate Drink","White Chocolate","Milk Chocolate","Dark Chocolate"],industries:["chocolate-confectionery","bakery-ingredients"]},
   {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:["Frozen Fruits","Fruit Purees","Fruit Filling","Dessert Toppings"],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
   {slug:"roquette",name:"Roquette",logo:"/partners/roquette.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"plant-based ingredients, starches, sweeteners, proteins and selected pharmaceutical solutions",about:"Roquette is known for plant-based ingredient solutions across food, nutrition and pharmaceutical applications. Availability is confirmed against the current approved catalogue.",products:["Liquid Glucose","Dextrose Monohydrate","Glucose D","High Maltose Syrups","Maize Starch Powder","Maltodextrin Powder","Sorbitol 70% Solution","Sorbitol","Maize Starch","Whey Protein"],industries:["sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma"]},
   {slug:"nitta-gelatin-india-ltd",name:"Nitta Gelatin India Ltd.",logo:"/partners/nitta.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"gelatin solutions and related functional applications",about:"Nitta Gelatin India is associated with gelatin solutions for food, nutraceutical and selected pharmaceutical uses. Bloom strength, grade and documents require product-specific confirmation.",products:["Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom"],industries:["hydrocolloids-stabilizers","nutraceutical-pharma"]},
@@ -20,6 +20,16 @@ export const partnerProductImages = {
       "Cocoa Powder": "/partner-products/Campco/Cocoa Powder.webp",
       "Cocoa Butter": "/partner-products/Campco/Cocoa Butter.webp",
       "Cocoa Mass": "/product-images/other-products/cocoa-mass.jpg",
+      "Choco Paste": "/partner-products/Campco/Choco Paste.webp",
+      "White Chips": "/product-images/other-products/white-chips.png",
+      "Milk Chips": "/product-images/other-products/milk-chips.png",
+      "Dark Chips": "/partner-products/Campco/Choco Chips.webp",
+      "White Chocomass": "/product-images/other-products/white-chocomass.png",
+      "Milk Chocomass": "/product-images/other-products/milk-chocomass.png",
+      "Dark Chocomass": "/product-images/other-products/dark-chocomass.png",
+      "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.webp",
+      "White Chocolate": "/product-images/other-products/white-chocolate.jpg",
+      "Milk Chocolate": "/product-images/other-products/milk-chocolate.png",
       "Dark Chocolate": "/partner-products/campco-dark-chocolate.jpg"
     }
   },
@@ -146,7 +156,7 @@ export const productImageByName = {
   "Bread Yield Improver": "/product-images/other-products/bread-yield-improver.png",
   "Cake Gel": "/product-images/other-products/cake-gel.png",
   "Cake Life": "/product-images/other-products/cake-life.png",
-  "Corn Syrup": "/product-images/other-products/corn-syrup.png",
+  "Cake Syrup": "/product-images/other-products/corn-syrup.png",
   "Custard Powder": "/product-images/other-products/custard-powder.png",
   "Frozen Croissant": "/product-images/other-products/frozen-croissant.jpg",
   "White Chocolate": "/product-images/other-products/white-chocolate.jpg",

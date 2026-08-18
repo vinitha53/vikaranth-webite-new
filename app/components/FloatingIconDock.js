@@ -44,7 +44,7 @@ export default function FloatingIconDock() {
       </div>
 
       {chatOpen && <section className="ingredient-chat-panel" role="dialog" aria-modal="false" aria-label="Vikranth ingredient chatbot">
-        <header><div><span>VCC Ingredient Assistant</span><small>Online · B2B support</small></div><button type="button" onClick={() => setChatOpen(false)} aria-label="Close chatbot">×</button></header>
+        <header><div><span>VCC Ingredient Assistant</span><small>Online Â· B2B support</small></div><button type="button" onClick={() => setChatOpen(false)} aria-label="Close chatbot">Ã—</button></header>
         <div className="ingredient-chat-messages" aria-live="polite">{messages.map((message, index) => <p className={message.from} key={`${message.from}-${index}`}>{message.text}</p>)}</div>
         <div className="ingredient-chat-quick">{quickQuestions.map((question) => <button type="button" key={question} onClick={() => addMessage(question)}>{question}</button>)}</div>
         <form onSubmit={(event) => { event.preventDefault(); addMessage(draft); }}><input ref={inputRef} value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Type your requirement..." aria-label="Your ingredient requirement" /><button type="submit">Send</button></form>

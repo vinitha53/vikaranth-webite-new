@@ -6,15 +6,15 @@ import { ChevronLeft, ChevronRight, Download, Expand, Grid2X2, Minimize2, Rotate
 import { brochureSearchIndex } from "./brochureSearchIndex";
 import styles from "./ContactBrochureFlipbook.module.css";
 
-const TOTAL_PAGES = 28;
-const PDF_URL = "/brochures/imported-brochure.pdf";
-const pageImage = (page) => `/brochures/imported-pages/imported-page-${String(page).padStart(2, "0")}.webp`;
+const TOTAL_PAGES = 4;
+const PDF_URL = "/brochures/vcc-product-brochure.pdf";
+const pageImage = (page) => `/brochures/pages/vcc-page-${page}.webp`;
 
 const BookPage = forwardRef(function BookPage({ page, onError }, ref) {
   const isCover = page === 1 || page === TOTAL_PAGES;
   return (
     <div ref={ref} className={`${styles.page} ${isCover ? styles.hardPage : ""}`} data-density={isCover ? "hard" : "soft"}>
-      <img src={pageImage(page)} alt={`Imported ingredients brochure page ${page}`} loading={page <= 3 ? "eager" : "lazy"} decoding="async" draggable="false" onError={onError} />
+      <img src={pageImage(page)} alt={`VCC product brochure page ${page}`} loading={page <= 3 ? "eager" : "lazy"} decoding="async" draggable="false" onError={onError} />
       <span aria-hidden="true">{page}</span>
     </div>
   );
@@ -133,7 +133,7 @@ export default function ContactBrochureFlipbook({ standalone = false }) {
   const toggleSound = () => setMuted((value) => { localStorage.setItem("vcc-brochure-muted", String(!value)); return !value; });
 
   return (
-    <section id="product-brochure" className={`${styles.viewer} ${standalone ? styles.standalone : ""} ${fallbackFullscreen ? styles.fallbackFullscreen : ""}`} ref={viewerRef} tabIndex="0" onKeyDown={onKeyDown} aria-label="Interactive imported ingredients brochure">
+    <section id="product-brochure" className={`${styles.viewer} ${standalone ? styles.standalone : ""} ${fallbackFullscreen ? styles.fallbackFullscreen : ""}`} ref={viewerRef} tabIndex="0" onKeyDown={onKeyDown} aria-label="Interactive VCC product brochure">
       <div className={styles.toolbar} role="toolbar" aria-label="Brochure tools">
         <button type="button" onClick={previous} disabled={page === 1 || turning} title="Previous page" aria-label="Previous page"><ChevronLeft /></button>
         <strong aria-label={`Page ${page} of ${TOTAL_PAGES}`}>{page} / {TOTAL_PAGES}</strong>

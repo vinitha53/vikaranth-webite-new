@@ -3,24 +3,24 @@ import { productImageByName } from "./partners";
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
 export const industries = [
-  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Corn Syrup","Calcium Propionate (CP)","Sodium Propionate","Frozen Croissant"]),
+  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate","Frozen Croissant"]),
   group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink","Callebaut 811","Callebaut 823","Callebaut W2","Bitter Chocolate 70-3","CB Plein Aroma Cocoa Powder"]),
   group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Whipping Cream","Cream Cheese","Butter","Good Day Milk Powder","Krishna Milk Powder","Amul Whey Powder"]),
   group("beverage-ingredients", "Beverage Ingredients", "Beverage Ingredients", "/industries/beverage-ingredients.webp", "Flavours, bases and fruit ingredients for consistent commercial beverage formulation.", ["Flavours & Natural Ingredients","Fruit Ingredients","Fruit Sweetness","Juice Concentrates","NFC Juices","Chocolate Drink","Fruit Crush","Sodium CMC Stabilizer Grade","Sodium CMC Thick Shake Grade"]),
   group("ice-cream-ingredients", "Ice Cream Ingredients", "Ice Cream Ingredients", "/industries/ice-cream-ingredients.webp", "Bases, flavours, toppings and stabilizers for smooth texture, body and reliable frozen-dessert batches.", ["Frozen Yogurt Premix","Panna Base","French Vanilla","Cocoa Miscela","Dessert Toppings","Ice Cream Stabilizer","Amaze Ice Cream Stabilizer"]),
   group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, purees, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Ingredients","Fruit Sweetness","Juice Concentrates","NFC Juices","Fruit Crush","Frozen Fruits","Fruit Purees","Genu Pectin","Glaze Gel"]),
   group("hydrocolloids-stabilizers", "Hydrocolloids & Stabilizers", "Hydrocolloids, Gums & Stabilizers", "/industries/hydrocolloids-stabilizers.webp", "Hydrocolloids and gums for viscosity control, stability, texture and mouthfeel.", ["Genu Pectin","GENU® Pectin MRS 115","Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom","Xanthan Gum","Guar Gum","Sodium CMC","Sodium Alginate FG","Ice Cream Stabilizer"]),
-  group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Syrups","Sorbitol 70% Solution","Invert Sugar","Sorbitol","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Maltodextrin Powder","Corn Syrup","CLEARAM® CH 20 20"]),
+  group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Syrups","Sorbitol 70% Solution","Invert Sugar","Sorbitol","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Maltodextrin Powder","Cake Syrup","CLEARAM® CH 20 20"]),
   group("functional-ingredients", "Functional Ingredients", "Functional Ingredients", "/industries/functional-ingredients.webp", "Emulsifiers, proteins and processing aids for dependable texture, structure and production efficiency.", ["GMS Flakes","GMS Powder","Sorbitan Monostearate","Finamul 90","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Full-Fat Soya Flour","Vital Wheat Gluten","Skimmed Milk Powder","Calcium Carbonate","Calcium Chloride","Calcium Gluconate","Sodium Citrate","Propylene Glycol (PG)","Refined Glycerine"]),
   group("nutraceutical-pharma", "Nutraceutical & Pharma", "Nutraceutical & Pharma Ingredients", "/industries/nutraceutical-pharma.webp", "Protein, gelatin, vitamin and mineral ingredients subject to application and grade verification.", ["Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Gelatin 120 Bloom","Gelatin 180 Bloom","Sorbitol","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame","Dextrose Monohydrate","Maltodextrin Powder","Skimmed Milk Powder","Calcium Carbonate","Calcium Gluconate","Ascorbic Acid","Refined Glycerine","Propylene Glycol (PG)"]),
   group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Malic Acid","Acetic Acid","Ascorbic Acid","Malt Extract Powder","Ammonium Bicarbonate","Baking Powder","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"])
 ];
 
 export const bakeryProductGroups = [
-  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Corn Syrup"] },
+  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
   { name: "Bread", description: "Ingredients for making bread, buns, pav and rolls with dependable dough performance, yield, texture and freshness.", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate", "Baking Powder"] },
-  { name: "Biscuits, Cookies & Crackers", description: "Leavening and sweetening ingredients used in biscuits, cookies and cracker production.", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder", "Corn Syrup"] },
-  { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Frozen Croissant", "Custard Powder", "Corn Syrup"] }
+  { name: "Biscuits, Cookies & Crackers", description: "Leavening and sweetening ingredients used in biscuits, cookies and cracker production.", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder", "Cake Syrup"] },
+  { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Frozen Croissant", "Custard Powder", "Cake Syrup"] }
 ];
 
 export const chocolateProductGroups = [
@@ -66,8 +66,8 @@ export const hydrocolloidProductGroups = [
 ];
 
 export const sweetenerProductGroups = [
-  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Dextrose Monohydrate", "Corn Syrup", "Sorbitol 70% Solution"] },
-  { name: "Beverages & Syrups", description: "Ingredients for sweetness, solids and body in beverages, concentrates, drink mixes and flavoured syrups.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Aspartame", "Dextrose Monohydrate", "Maltodextrin Powder", "Corn Syrup"] },
+  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Dextrose Monohydrate", "Cake Syrup", "Sorbitol 70% Solution"] },
+  { name: "Beverages & Syrups", description: "Ingredients for sweetness, solids and body in beverages, concentrates, drink mixes and flavoured syrups.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Aspartame", "Dextrose Monohydrate", "Maltodextrin Powder", "Cake Syrup"] },
   { name: "Sugar-Free & Reduced Sugar", description: "Alternative sweetening ingredients for reduced-sugar, sugar-free and calorie-managed formulations.", ingredients: ["Sorbitol", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame", "Maltodextrin Powder"] },
   { name: "Texture, Body & Thickening", description: "Starches and carbohydrates for viscosity, binding, bulking, crispness and processing performance.", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch", "Maltodextrin Powder", "Dextrose Monohydrate", "CLEARAM® CH 20 20"] }
 ];
@@ -112,7 +112,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"] },
     { name: "Bread Ingredients", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate"] },
     { name: "Leavening Agents", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"] },
-    { name: "Bakery Syrups & Frozen", ingredients: ["Corn Syrup", "Frozen Croissant"] }
+    { name: "Bakery Syrups & Frozen", ingredients: ["Cake Syrup", "Frozen Croissant"] }
   ],
   "chocolate-confectionery": [
     { name: "Cocoa Products", ingredients: ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"] },
@@ -161,7 +161,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Sweeteners", ingredients: ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Aspartame"] },
     { name: "Starches", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch"] },
     { name: "Carbohydrates", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "CLEARAMÂ® CH 20 20"] },
-    { name: "Syrups", ingredients: ["Corn Syrup"] }
+    { name: "Syrups", ingredients: ["Cake Syrup"] }
   ],
   "functional-ingredients": [
     { name: "Emulsifiers", ingredients: ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"] },

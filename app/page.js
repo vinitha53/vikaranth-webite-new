@@ -16,7 +16,7 @@ const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"],
-    "Bakery Syrups": ["Corn Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
+    "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
   }},
   { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
@@ -48,7 +48,7 @@ const productGroups = [
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame"],
-    "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Corn Syrup"]
+    "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
   { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
     "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"],
