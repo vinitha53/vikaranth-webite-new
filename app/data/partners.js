@@ -27,7 +27,7 @@ export const partnerProductImages = {
       "White Chocomass": "/product-images/other-products/white-chocomass.png",
       "Milk Chocomass": "/product-images/other-products/milk-chocomass.png",
       "Dark Chocomass": "/product-images/other-products/dark-chocomass.png",
-      "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.webp",
+      "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.png",
       "White Chocolate": "/product-images/other-products/white-chocolate.jpg",
       "Milk Chocolate": "/product-images/other-products/milk-chocolate.png",
       "Dark Chocolate": "/partner-products/campco-dark-chocolate.jpg"
@@ -135,7 +135,7 @@ export const productImageByName = {
   "CB Plein Aroma Cocoa Powder": "/product-images/other-products/cb-plein-aroma-cocoa-powder.jpg",
   "Bitter Chocolate 70-3": "/product-images/other-products/bitter-chocolate-70-3.jpg",
   "Choco Paste": "/partner-products/Campco/Choco Paste.webp",
-  "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.webp",
+  "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.png",
   "Calcium Propionate (CP)": "/product-images/calpro/calcium-propionate.webp",
   "Caramel": "/product-images/beverages/caramel.webp",
   "Invert Sugar": "/product-images/beverages/invert-sugar.webp",

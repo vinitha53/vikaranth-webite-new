@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./detail.module.css";
 
 const productImages = {
@@ -15,6 +16,7 @@ const productImages = {
 export default function BakeryCategoryShowcase({ groups, products, categoryLabel = "Bakery", fallbackImage = "/products/bakery-ingredients.webp" }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const tabsRef = useRef(null);
 
   const group = groups[active];
   const available = group.ingredients.map(name => products.find(product => product.name === name)).filter(Boolean);
@@ -27,11 +29,24 @@ export default function BakeryCategoryShowcase({ groups, products, categoryLabel
     return () => window.clearInterval(timer);
   }, [paused, groups.length]);
 
-  const chooseCategory = index => setActive(index);
+  const chooseCategory = index => {
+    const next = Math.max(0, Math.min(groups.length - 1, index));
+    setActive(next);
+    window.requestAnimationFrame(() => {
+      const tabs = tabsRef.current;
+      const tab = tabs?.children[next];
+      if (!tabs || !tab) return;
+      tabs.scrollTo({ left: tab.offsetLeft - (tabs.clientWidth - tab.clientWidth) / 2, behavior: "smooth" });
+    });
+  };
 
   return <section className={styles.bakeryShowcase} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)}>
-    <div className={styles.bakeryTabs} role="tablist" aria-label={`${categoryLabel} product categories`}>
-      {groups.map((item, index) => <button className={index === active ? styles.bakeryTabActive : styles.bakeryTab} type="button" role="tab" aria-selected={index === active} key={item.name} onClick={() => chooseCategory(index)}>{item.name}</button>)}
+    <div className={styles.bakeryTabsBar}>
+      <button className={styles.bakeryTabArrow} type="button" onClick={() => chooseCategory(active - 1)} disabled={active === 0} aria-label="Previous category" title="Previous category"><ChevronLeft /></button>
+      <div className={styles.bakeryTabs} ref={tabsRef} role="tablist" aria-label={`${categoryLabel} product categories`}>
+        {groups.map((item, index) => <button className={index === active ? styles.bakeryTabActive : styles.bakeryTab} type="button" role="tab" aria-selected={index === active} key={item.name} onClick={() => chooseCategory(index)}>{item.name}</button>)}
+      </div>
+      <button className={styles.bakeryTabArrow} type="button" onClick={() => chooseCategory(active + 1)} disabled={active === groups.length - 1} aria-label="Next category" title="Next category"><ChevronRight /></button>
     </div>
     <div className={styles.bakeryGroupHeading}>
       <div><span>Available ingredients for</span><h3>{group.name}</h3><p>{group.description}</p></div>
