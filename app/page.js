@@ -713,35 +713,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="quality-section botanical-light-section" id="quality" aria-labelledby="quality-heading">
-        <BotanicalCorners/>
-        <div className="container">
-          <div className="quality-section-head">
-            <span className="eyebrow">Quality-led sourcing</span>
-            <h2 id="quality-heading">Confidence in Every Ingredient</h2>
-          </div>
-          <div className="quality-grid">
-            <div className="quality-copy">
-              <span className="quality-copy-label"><ShieldCheck size={16}/> Sourcing assurance for professional buyers</span>
-              <p>Every requirement follows a clear sourcing path—from supplier alignment and available product documents to careful fulfilment and repeat-order support. Specifications, certificates and supporting information are coordinated according to product and supplier availability.</p>
-              <div className="quality-assurance-flow" aria-label="Our sourcing assurance process">
-                <span><b>01</b> Supplier aligned</span><i aria-hidden="true"/><span><b>02</b> Information checked</span><i aria-hidden="true"/><span><b>03</b> Supply coordinated</span>
-              </div>
-              <button className="btn dark quality-information-cta" onClick={() => openQuote("Product information request")}>Request Product Information <ArrowRight size={16}/></button>
-            </div>
-            <div className="quality-cards">
-              {[
-                [ShieldCheck, "Established supplier network", "Source through established Indian and international ingredient manufacturers."],
-                [PackageCheck, "Product information support", "Request available specifications, certificates and supporting product documents."],
-                [BadgeCheck, "Careful handling and fulfilment", "Product-aware coordination from commercial requirement through dispatch."],
-                [Globe2, "Repeat-order continuity", "Responsive support for recurring grades, pack sizes and professional requirements."]
-              ].map(([Icon, title, text], index) => <article key={title} style={{"--quality-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
-                <span className="quality-card-step" aria-hidden="true">0{index + 1}</span><i className="quality-card-glow" aria-hidden="true"/><span className="quality-icon"><Icon/></span><div><h3>{title}</h3><p>{text}</p></div>
-              </article>)}
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="section insights botanical-light-section" id="insights">
         <BotanicalCorners/>
         <div className="container">
