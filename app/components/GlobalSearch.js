@@ -14,6 +14,7 @@ import {
   functionalProductGroups,
   hydrocolloidProductGroups,
   iceCreamProductGroups,
+  getProductHref,
   industries,
   nutraceuticalProductGroups,
   products,
@@ -149,15 +150,14 @@ export const rankSearchResults = (rawQuery) => {
     .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
 };
 
-const productHref = (name) => `/products/${products.find((product) => product.name === name)?.slug}`;
 const popularSearches = [
   ["Bakery Ingredients", "/industries/bakery-ingredients"],
   ["Chocolate & Confectionery", "/industries/chocolate-confectionery"],
-  ["Cocoa Powder", productHref("Cocoa Powder")],
-  ["Dark Choco Chips", productHref("Dark Chips")],
-  ["Cake Gel", productHref("Cake Gel")],
-  ["Baking Powder", productHref("Baking Powder")],
-  ["Calcium Propionate", productHref("Calcium Propionate (CP)")],
+  ["Cocoa Powder", getProductHref("Cocoa Powder")],
+  ["Dark Choco Chips", getProductHref("Dark Chips")],
+  ["Cake Gel", getProductHref("Cake Gel")],
+  ["Baking Powder", getProductHref("Baking Powder")],
+  ["Calcium Propionate", getProductHref("Calcium Propionate (CP)")],
   ["Beverage Ingredients", "/industries/beverage-ingredients"],
   ["Dairy Ingredients", "/industries/dairy-ingredients"],
   ["Request a Quote", "/contact#enquiry"],

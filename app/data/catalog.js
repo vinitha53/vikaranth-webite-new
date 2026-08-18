@@ -93,6 +93,97 @@ export const additiveProductGroups = [
   { name: "Colour, Flavour & Sauces", description: "Ingredients for adding colour, aroma, flavour depth and application-ready character to foods and sauces.", ingredients: ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] }
 ];
 
+export const productGroupsByIndustrySlug = {
+  "bakery-ingredients": bakeryProductGroups,
+  "chocolate-confectionery": chocolateProductGroups,
+  "dairy-ingredients": dairyProductGroups,
+  "beverage-ingredients": beverageProductGroups,
+  "ice-cream-ingredients": iceCreamProductGroups,
+  "fruit-processing": fruitProductGroups,
+  "hydrocolloids-stabilizers": hydrocolloidProductGroups,
+  "sweeteners-syrups-starches": sweetenerProductGroups,
+  "functional-ingredients": functionalProductGroups,
+  "nutraceutical-pharma": nutraceuticalProductGroups,
+  "food-additives-preservatives": additiveProductGroups
+};
+
+export const productMenuGroupsByIndustrySlug = {
+  "bakery-ingredients": [
+    { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"] },
+    { name: "Bread Ingredients", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate"] },
+    { name: "Leavening Agents", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"] },
+    { name: "Bakery Syrups & Frozen", ingredients: ["Corn Syrup", "Frozen Croissant"] }
+  ],
+  "chocolate-confectionery": [
+    { name: "Cocoa Products", ingredients: ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"] },
+    { name: "Chocolate Range", ingredients: ["Dark Chocolate", "Milk Chocolate", "White Chocolate"] },
+    { name: "Choco Chips", ingredients: ["White Chips", "Dark Chips", "Milk Chips"] },
+    { name: "Chocomass", ingredients: ["White Chocomass", "Dark Chocomass", "Milk Chocomass"] },
+    { name: "Chocolate Paste", ingredients: ["Choco Paste"] },
+    { name: "Chocolate Beverage Solutions", ingredients: ["Chocolate Drink"] },
+    { name: "Couverture Chocolate - Callebaut", ingredients: ["Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3"] },
+    { name: "Couverture Chocolate - Cacao Barry", ingredients: ["CB Plein Aroma Cocoa Powder"] }
+  ],
+  "dairy-ingredients": [
+    { name: "Cream Products", ingredients: ["Whipping Cream", "Cream Cheese"] },
+    { name: "Butter Products", ingredients: ["Butter"] },
+    { name: "Milk Powders", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder"] },
+    { name: "Whey Products", ingredients: ["Amul Whey Powder"] }
+  ],
+  "beverage-ingredients": [
+    { name: "Beverage Flavours", ingredients: ["Flavours & Natural Ingredients"] },
+    { name: "Beverage Bases", ingredients: ["Chocolate Drink"] },
+    { name: "Fruit Beverage Ingredients", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"] },
+    { name: "Beverage Stabilizers", ingredients: ["Sodium CMC Stabilizer Grade", "Sodium CMC Thick Shake Grade"] }
+  ],
+  "ice-cream-ingredients": [
+    { name: "Ice Cream Bases", ingredients: ["Frozen Yogurt Premix", "Panna Base"] },
+    { name: "Ice Cream Flavours", ingredients: ["French Vanilla", "Cocoa Miscela"] },
+    { name: "Ice Cream Toppings", ingredients: ["Dessert Toppings"] },
+    { name: "Ice Cream Stabilizers", ingredients: ["Ice Cream Stabilizer", "Amaze Ice Cream Stabilizer"] }
+  ],
+  "fruit-processing": [
+    { name: "Fruit Fillings", ingredients: ["Fruit Filling"] },
+    { name: "Fruit Preparations", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Fruit Crush"] },
+    { name: "Juices & Concentrates", ingredients: ["Juice Concentrates", "NFC Juices"] },
+    { name: "Frozen Fruits & Purees", ingredients: ["Frozen Fruits", "Fruit Purees"] },
+    { name: "Gelling Agents", ingredients: ["Genu Pectin"] },
+    { name: "Glazes & Toppings", ingredients: ["Glaze Gel"] }
+  ],
+  "hydrocolloids-stabilizers": [
+    { name: "Pectin", ingredients: ["Genu Pectin", "GENUÂ® Pectin MRS 115"] },
+    { name: "Gelatin", ingredients: ["Gelatin 120 Bloom", "Gelatin 160 Bloom", "Gelatin 180 Bloom"] },
+    { name: "Food Gums", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG"] },
+    { name: "Ice Cream Stabilizers", ingredients: ["Ice Cream Stabilizer"] }
+  ],
+  "sweeteners-syrups-starches": [
+    { name: "Liquid Sweeteners", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"] },
+    { name: "Sweeteners", ingredients: ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Aspartame"] },
+    { name: "Starches", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch"] },
+    { name: "Carbohydrates", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "CLEARAMÂ® CH 20 20"] },
+    { name: "Syrups", ingredients: ["Corn Syrup"] }
+  ],
+  "functional-ingredients": [
+    { name: "Emulsifiers", ingredients: ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"] },
+    { name: "Proteins", ingredients: ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein", "Full-Fat Soya Flour", "Vital Wheat Gluten", "Skimmed Milk Powder"] },
+    { name: "Processing Ingredients", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Calcium Gluconate", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"] }
+  ],
+  "nutraceutical-pharma": [
+    { name: "Protein Ingredients", ingredients: ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"] },
+    { name: "Gelatin", ingredients: ["Gelatin 120 Bloom", "Gelatin 180 Bloom"] },
+    { name: "Vitamins & Minerals", ingredients: ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"] },
+    { name: "Sugar-Free Excipients", ingredients: ["Sorbitol", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Aspartame"] },
+    { name: "Carriers", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "Skimmed Milk Powder", "Refined Glycerine", "Propylene Glycol (PG)"] }
+  ],
+  "food-additives-preservatives": [
+    { name: "Preservatives", ingredients: ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Sodium Propionate", "Potassium Metabisulphite (KMS)"] },
+    { name: "Acidulants", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"] },
+    { name: "Leavening & Baking Ingredients", ingredients: ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
+    { name: "Colours, Flavours & Natural Extracts", ingredients: ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] },
+    { name: "Texture & Processing", ingredients: ["Malt Extract Powder"] }
+  ]
+};
+
 export const slugify = (value) => value.toLowerCase().replace(/&/g, "and").replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const productMap = new Map();
@@ -106,5 +197,8 @@ industries.forEach((industry) => industry.products.forEach((name) => {
 }));
 
 export const products = [...productMap.values()];
+const normalizeProductLookup = (value) => slugify(String(value).replace(/Ã‚Â®|Â®/g, "registered"));
+const productSlugByLookup = new Map(products.map((product) => [normalizeProductLookup(product.name), product.slug]));
+export const getProductHref = (name) => `/products/${productSlugByLookup.get(normalizeProductLookup(name)) || slugify(name)}`;
 export const getProduct = (slug) => products.find((item) => item.slug === slug);
 export const getIndustry = (slug) => industries.find((item) => item.slug === slug);

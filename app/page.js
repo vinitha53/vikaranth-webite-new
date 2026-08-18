@@ -9,6 +9,8 @@ import {
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import GlobalSearch from "./components/GlobalSearch";
+import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
+import { partners } from "./data/partners";
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
@@ -263,6 +265,8 @@ function IngredientEcosystem() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+  const [industryMegaOpen, setIndustryMegaOpen] = useState(false);
+  const [supplierMegaOpen, setSupplierMegaOpen] = useState(false);
   const [activeGroup, setActiveGroup] = useState(1);
   const [thumbnailStart, setThumbnailStart] = useState(0);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -321,12 +325,20 @@ export default function Home() {
   }, [quoteOpen, menuOpen]);
 
   useEffect(() => {
-    if (!megaOpen) return;
+    if (!megaOpen && !industryMegaOpen && !supplierMegaOpen) return;
     const closeOnOutsideClick = (event) => {
-      if (!megaMenuRef.current?.contains(event.target)) setMegaOpen(false);
+      if (!megaMenuRef.current?.contains(event.target)) {
+        setMegaOpen(false);
+        setIndustryMegaOpen(false);
+        setSupplierMegaOpen(false);
+      }
     };
     const closeOnEscape = (event) => {
-      if (event.key === "Escape") setMegaOpen(false);
+      if (event.key === "Escape") {
+        setMegaOpen(false);
+        setIndustryMegaOpen(false);
+        setSupplierMegaOpen(false);
+      }
     };
     document.addEventListener("pointerdown", closeOnOutsideClick);
     document.addEventListener("keydown", closeOnEscape);
@@ -334,7 +346,7 @@ export default function Home() {
       document.removeEventListener("pointerdown", closeOnOutsideClick);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [megaOpen]);
+  }, [megaOpen, industryMegaOpen, supplierMegaOpen]);
 
   useEffect(() => {
     if (activeGroup < thumbnailStart) setThumbnailStart(activeGroup);
@@ -342,7 +354,7 @@ export default function Home() {
   }, [activeGroup, thumbnailStart]);
 
   const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setMenuOpen(false); };
-  const jump = () => { setMenuOpen(false); setMegaOpen(false); };
+  const jump = () => { setMenuOpen(false); setMegaOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); };
   const updateFeatureSpotlight = (event) => {
     const card = event.currentTarget;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -388,6 +400,9 @@ export default function Home() {
     if (supplierControlTimer.current) window.clearTimeout(supplierControlTimer.current);
     supplierControlTimer.current = window.setTimeout(() => motion.updatePlaybackRate(1), 720);
   };
+  const activeMegaCategory = productCategories[activeGroup] || productCategories[0];
+  const activeMegaIndustry = industries[activeGroup] || industries[0];
+  const activeMegaGroups = productMenuGroupsByIndustrySlug[activeMegaIndustry.slug] || [{ name: "Ingredients", ingredients: activeMegaIndustry.products }];
 
   return (
     <main className="home-page">
@@ -418,54 +433,123 @@ export default function Home() {
           <nav id="home-navigation" className={`home-nav ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
             <a href="#home" onClick={jump}>Home</a>
             <a href="/about" onClick={jump}>About</a>
-            <button className="nav-product" onClick={() => setMegaOpen(v => !v)} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
+            <button className="nav-product" onClick={() => { setMegaOpen(v => !v); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
             <a className="mobile-products-link" href="/products" onClick={jump}>Products</a>
-            <a href="#industries" onClick={jump}>Industries</a>
-            <a href="/associates" onClick={jump}>Suppliers</a>
+            <button className="nav-product nav-industry" onClick={() => { setIndustryMegaOpen(v => !v); setMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={industryMegaOpen} aria-controls="industries-mega-menu">Industries <ChevronDown size={14}/></button>
+            <a className="mobile-products-link" href="/industries" onClick={jump}>Industries</a>
+            <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu">Suppliers <ChevronDown size={14}/></button>
+            <a className="mobile-products-link" href="/associates" onClick={jump}>Suppliers</a>
             <a href="#insights" onClick={jump}>Blog</a>
             <a href="/contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
-            <GlobalSearch onOpen={() => { setMenuOpen(false); setMegaOpen(false); }}/>
+            <GlobalSearch onOpen={() => { setMenuOpen(false); setMegaOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }}/>
             <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
             <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="home-navigation">{menuOpen ? <X/> : <Menu/>}</button>
           </div>
         </div>
-        <div id="products-mega-menu" className={`mega-menu vcc-products-mega-menu ${megaOpen ? "show" : ""}`} aria-hidden={!megaOpen}>
-          <div className="vcc-mega-grid">
-            <div className="vcc-mega-list">
-              <span className="vcc-mega-eyebrow">Find your ingredient category</span>
-              <h2>Built Around Your<br/>Application</h2>
-              <p>Browse all eleven portfolios and move directly<br/>to the ingredients your business needs.</p>
-              <div className="vcc-category-rows" role="listbox" aria-label="Product categories">
-                {productCategories.map((category, i) => (
-                  <button key={category.id} role="option" aria-selected={activeGroup === i} className={activeGroup === i ? "active" : ""} onMouseEnter={() => setActiveGroup(i)} onFocus={() => setActiveGroup(i)} onClick={() => setActiveGroup(i)}>
-                    <span>{category.id}</span><strong>{category.name}</strong>{activeGroup === i && <ArrowRight aria-hidden="true"/>}
+        <div id="products-mega-menu" className={`mega-menu vcc-products-mega-menu latest-mega-menu ${megaOpen ? "show" : ""}`} aria-hidden={!megaOpen}>
+          <span className="latest-mega-pointer" aria-hidden="true"/>
+          <div className="latest-mega-surface">
+            <aside className="latest-mega-selector" aria-label="Product categories">
+              <div className="latest-mega-selector-head">
+                <Wheat aria-hidden="true"/>
+                <div>
+                  <span>Product Categories</span>
+                  <small>{productCategories.length} industries</small>
+                </div>
+                <p>Ingredients organised by industry.</p>
+              </div>
+              <div className="latest-mega-selector-list">
+                {productCategories.map((category, index) => (
+                  <button
+                    key={category.id}
+                    className={activeGroup === index ? "active" : ""}
+                    type="button"
+                    onMouseEnter={() => setActiveGroup(index)}
+                    onFocus={() => setActiveGroup(index)}
+                    onClick={() => setActiveGroup(index)}
+                  >
+                    <small aria-hidden="true">{String(index + 1).padStart(2, "0")}</small>
+                    <span>{category.name}</span>
+                    <ChevronRight aria-hidden="true"/>
                   </button>
                 ))}
               </div>
-            </div>
-            <div className="vcc-mega-preview" style={productCategories[activeGroup].image ? {backgroundImage: `url(${productCategories[activeGroup].image})`} : undefined}>
-              {!productCategories[activeGroup].image && <div className="vcc-main-placeholder" aria-hidden="true"><span>Main category image placeholder</span><small>{productCategories[activeGroup].name}</small></div>}
-              <div className="vcc-preview-overlay"/>
-              <div className="vcc-preview-copy">
-                <span>Selected category {productCategories[activeGroup].id}</span>
-                <h3>{productCategories[activeGroup].name}</h3>
-                <p>{productCategories[activeGroup].description}</p>
-                <a href={productCategories[activeGroup].href}>View Products</a>
-              </div>
-              <div className="vcc-thumbnails">
-                <button className="vcc-thumb-control" aria-label="Previous categories" disabled={thumbnailStart === 0} onClick={() => setThumbnailStart(start => Math.max(0, start - 1))}><ChevronLeft/></button>
-                <div className="vcc-thumb-track">
-                  {productCategories.slice(thumbnailStart, thumbnailStart + 5).map((category) => {
-                    const i = Number(category.id) - 1;
-                    return <button key={category.id} className={activeGroup === i ? "active" : ""} onClick={() => setActiveGroup(i)} aria-label={`Select ${category.name}`}>
-                      {category.thumbnail ? <img src={category.thumbnail} alt="" loading="lazy" decoding="async"/> : <span>Category image {category.id}</span>}
-                    </button>;
-                  })}
+            </aside>
+            <section className="latest-mega-product-panel" aria-live="polite">
+              <div className="latest-mega-product-head">
+                <div>
+                  <span>Ingredients for</span>
+                  <h2>{activeMegaCategory.name}</h2>
+                  <p>{activeMegaCategory.description}</p>
                 </div>
-                <button className="vcc-thumb-control" aria-label="Next categories" disabled={thumbnailStart >= productCategories.length - 5} onClick={() => setThumbnailStart(start => Math.min(productCategories.length - 5, start + 1))}><ChevronRight/></button>
+                <a href={activeMegaCategory.href} onClick={jump}>Explore category <ArrowRight aria-hidden="true"/></a>
               </div>
+              <div className="latest-mega-product-groups">
+                {activeMegaGroups.map((group) => (
+                  <div className="latest-mega-product-group" key={group.name}>
+                    <h3>{group.name}</h3>
+                    <div>
+                      {group.ingredients.map((product) => (
+                        <a key={`${group.name}-${product}`} href={getProductHref(product)} onClick={jump}>
+                          <span>{product}</span>
+                          <ArrowRight aria-hidden="true"/>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+        <div id="industries-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu ${industryMegaOpen ? "show" : ""}`} aria-hidden={!industryMegaOpen}>
+          <span className="latest-mega-pointer industry-mega-pointer" aria-hidden="true"/>
+          <div className="industry-menu-surface">
+            <div className="industry-menu-head">
+              <Building2 aria-hidden="true"/>
+              <div><span>Industries We Serve</span><h2>Explore by industry</h2></div>
+              <small>{industries.length} industries</small>
+            </div>
+            <div className="industry-menu-grid" aria-label="Industries">
+              {productCategories.map((industry, index) => {
+                const IndustryIcon = productGroups[index]?.icon || Building2;
+                return (
+                  <a key={industry.id} href={industry.href} onClick={jump}>
+                    <IndustryIcon className="industry-item-icon" aria-hidden="true"/>
+                    <span>{industry.name}</span>
+                    <ArrowRight className="industry-item-arrow" aria-hidden="true"/>
+                  </a>
+                );
+              })}
+              <a className="industry-menu-all" href="/industries" onClick={jump}>
+                <span>View all industries</span>
+                <ArrowRight aria-hidden="true"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="suppliers-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu supplier-mega-menu ${supplierMegaOpen ? "show" : ""}`} aria-hidden={!supplierMegaOpen}>
+          <span className="latest-mega-pointer supplier-mega-pointer" aria-hidden="true"/>
+          <div className="industry-menu-surface">
+            <div className="industry-menu-head">
+              <Handshake aria-hidden="true"/>
+              <div><span>Supplier Network</span><h2>Explore by supplier</h2></div>
+              <small>{partners.length} suppliers</small>
+            </div>
+            <div className="industry-menu-grid" aria-label="Suppliers">
+              {partners.map((partner) => (
+                <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}>
+                  {partner.logo ? <img className="supplier-item-logo" src={partner.logo} alt="" loading="lazy" decoding="async"/> : <span className="supplier-item-logo supplier-item-logo-fallback" aria-hidden="true">A</span>}
+                  <span>{partner.name}</span>
+                  <ArrowRight className="industry-item-arrow" aria-hidden="true"/>
+                </a>
+              ))}
+              <a className="industry-menu-all" href="/associates" onClick={jump}>
+                <span>View all suppliers</span>
+                <ArrowRight aria-hidden="true"/>
+              </a>
             </div>
           </div>
         </div>
@@ -599,7 +683,7 @@ export default function Home() {
           <div className="supplier-head"><div><span className="eyebrow">Our product network</span><h2>Established Manufacturers.<br/><em>One Reliable Supplier.</em></h2></div><p>Explore a broader ingredient portfolio through a local team that understands your product and sourcing requirements.</p></div>
           <div className="supplier-marquee-shell">
             <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
-            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...associates,...associates].map((partner,i) => <a href={`/associates/${partnerSlugs[i % partnerSlugs.length]}`} className="associate-logo" key={`${partner.name}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" loading="lazy" decoding="async" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.detail && <small>{partner.detail}</small>}</span></a>)}</div></div>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" loading="lazy" decoding="async" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.summary && <small>{partner.summary}</small>}</span></a>)}</div></div>
             <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
           </div>
           <div className="supplier-feature">
