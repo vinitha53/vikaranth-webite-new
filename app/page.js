@@ -109,7 +109,7 @@ const associates = [
   { name: "Fine Organics", logo: "/partners/fine-organics.png" },
   { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.png" },
   { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.png" },
-  { name: "Anchor (In-house manufacturing brand)", logo: null }
+  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.webp" }
 ];
 const partnerSlugs = ["campco","delta-nutritives","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd","anchor"];
 
@@ -283,6 +283,9 @@ export default function Home() {
   const supplierMarqueeRef = useRef(null);
   const supplierTrackRef = useRef(null);
   const supplierControlTimer = useRef(null);
+  const customerMarqueeRef = useRef(null);
+  const customerTrackRef = useRef(null);
+  const customerControlTimer = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -293,6 +296,7 @@ export default function Home() {
     if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
     if (insightControlTimer.current) window.clearTimeout(insightControlTimer.current);
     if (supplierControlTimer.current) window.clearTimeout(supplierControlTimer.current);
+    if (customerControlTimer.current) window.clearTimeout(customerControlTimer.current);
   }, []);
   useEffect(() => {
     if (testimonialPaused) return;
@@ -404,6 +408,21 @@ export default function Home() {
   const activeMegaIndustry = industries[activeGroup] || industries[0];
   const activeMegaGroups = productMenuGroupsByIndustrySlug[activeMegaIndustry.slug] || [{ name: "Ingredients", ingredients: activeMegaIndustry.products }];
 
+
+  const moveCustomerCarousel = (direction) => {
+    const track = customerTrackRef.current;
+    const motion = track?.getAnimations().find(animation => animation.animationName === "homeTrustedCustomerFlow");
+    if (!motion) {
+      const card = track?.querySelector(".home-customer-logo");
+      customerMarqueeRef.current?.scrollBy({ left: direction * ((card?.offsetWidth || 205) + 46), behavior: "smooth" });
+      return;
+    }
+    const duration = Number(motion.effect?.getTiming().duration) || 34000;
+    if (direction < 0 && Number(motion.currentTime) < duration) motion.currentTime = Number(motion.currentTime || 0) + duration;
+    motion.updatePlaybackRate(direction * 4.5);
+    if (customerControlTimer.current) window.clearTimeout(customerControlTimer.current);
+    customerControlTimer.current = window.setTimeout(() => motion.updatePlaybackRate(1), 720);
+  };
   return (
     <main className="home-page">
       <div className="utility">
@@ -683,7 +702,7 @@ export default function Home() {
           <div className="supplier-head"><div><span className="eyebrow">Our product network</span><h2>Established Manufacturers.<br/><em>One Reliable Supplier.</em></h2></div><p>Explore a broader ingredient portfolio through a local team that understands your product and sourcing requirements.</p></div>
           <div className="supplier-marquee-shell">
             <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
-            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt="" loading="lazy" decoding="async" /> : <span className="anchor-mark">A</span>}<span><b>{partner.name}</b>{partner.summary && <small>{partner.summary}</small>}</span></a>)}</div></div>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" /> : <span className="anchor-mark" aria-label={`${partner.name} logo`}>A</span>}</a>)}</div></div>
             <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
           </div>
           <div className="supplier-feature">
@@ -746,6 +765,41 @@ export default function Home() {
       </section>
 
       <IngredientEcosystem/>
+
+      <section className="home-trusted-customers botanical-light-section" aria-labelledby="home-trusted-customers-title">
+        <BotanicalCorners/>
+        <div className="home-trusted-customers-heading">
+          <span id="home-trusted-customers-title" className="eyebrow">Trusted Customers</span>
+        </div>
+        <div className="home-customer-carousel-shell">
+          <button className="home-customer-carousel-control previous" type="button" aria-label="Move trusted customers left" aria-controls="home-customer-logo-track" onClick={() => moveCustomerCarousel(-1)}><ChevronLeft/></button>
+          <div className="home-customer-marquee" ref={customerMarqueeRef} aria-label="Trusted customer logos">
+            <div className="home-customer-marquee-track" id="home-customer-logo-track" ref={customerTrackRef}>
+            {[
+              ["hershey.jpg", "The Hershey Company"],
+              ["cavinkare.jpg", "CavinKare"],
+              ["milka.jpg", "Milka"],
+              ["lotte.jpg", "Lotte"],
+              ["a2b.png", "A2B Indian Veg Restaurant"],
+              ["nilgiris.png", "Nilgiris"],
+              ["amrutanjan.png", "Amrutanjan"],
+              ["hershey.jpg", "The Hershey Company"],
+              ["cavinkare.jpg", "CavinKare"],
+              ["milka.jpg", "Milka"],
+              ["lotte.jpg", "Lotte"],
+              ["a2b.png", "A2B Indian Veg Restaurant"],
+              ["nilgiris.png", "Nilgiris"],
+              ["amrutanjan.png", "Amrutanjan"]
+            ].map(([logo, name], index) => (
+              <div className="home-customer-logo" key={`${name}-${index}`}>
+                <img src={`/trusted-customers/${logo}`} alt={`${name} logo`} loading="lazy" />
+              </div>
+            ))}
+            </div>
+          </div>
+          <button className="home-customer-carousel-control next" type="button" aria-label="Move trusted customers right" aria-controls="home-customer-logo-track" onClick={() => moveCustomerCarousel(1)}><ChevronRight/></button>
+        </div>
+      </section>
 
       <section className="testimonial-section" aria-labelledby="testimonial-title">
         <div className="container testimonial-inner">

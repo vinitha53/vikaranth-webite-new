@@ -133,7 +133,6 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
                   <option>General enquiry</option>
                   <option>Product / quotation</option>
                   <option>Technical support</option>
-                  <option>Partnership</option>
                   <option>Feedback</option>
                 </select>
                 <Check className={styles.validTick} aria-hidden="true" />
