@@ -213,3 +213,7 @@
 .industryPage .productSection + .applicationShowcase{padding-top:42px}
 .industryPage .productSection .autoPlayNote{margin-top:14px;margin-bottom:0}
 @media(max-width:700px){.industryPage .productSection{padding-bottom:24px}.industryPage .productSection + .applicationShowcase{padding-top:30px}}
+
+/* Catalog range tabs must remain fully bright at every scroll position. */
+.productSection[data-range-section="true"]{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+.productSection[data-range-section="true"] *{filter:none}

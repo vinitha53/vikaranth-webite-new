@@ -38,3 +38,4 @@
 .sectionHeading{--heading-line-scale:1;position:static;top:auto;left:auto;right:auto;z-index:auto;height:auto;background:none;border-bottom:0;max-width:1120px;margin:0 auto 42px;text-align:center}.sectionHeading .eyebrow{margin-bottom:17px;text-align:center}.sectionHeading h2{max-width:none!important;margin:0!important;text-align:center}.sectionHeading:after{display:block;width:64px;height:2px;margin:24px auto 0;content:"";border-radius:2px;background:#c35a27;transform:scaleX(var(--heading-line-scale));transform-origin:center}
 @media(max-width:700px){.sectionHeading{margin-bottom:32px}.sectionHeading:after{width:52px;margin-top:19px}}
 @media(prefers-reduced-motion:reduce){.sectionHeading{--heading-line-scale:1!important}}
+.principalBrand{display:block;color:#3d2114;font-size:10px;font-weight:900;line-height:1.15}.partnerLogos strong small{display:block;margin-top:3px;color:#98715b;font-size:8px;font-weight:700;line-height:1.15}

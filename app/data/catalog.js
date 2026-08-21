@@ -1,4 +1,5 @@
 import { productImageByName } from "./partners";
+import { approvedRangeProducts } from "./catalog-ranges";
 
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
@@ -195,13 +196,20 @@ export const productMenuGroupsByIndustrySlug = {
 
 export const slugify = (value) => value.toLowerCase().replace(/&/g, "and").replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+approvedRangeProducts.forEach((item) => {
+  const industry = industries.find((entry) => entry.slug === item.industrySlug);
+  if (industry && !industry.products.includes(item.name)) industry.products.push(item.name);
+});
+
 const productMap = new Map();
 industries.forEach((industry) => industry.products.forEach((name) => {
   const slug = slugify(name);
+  const approved = approvedRangeProducts.find((item) => item.name === name);
   if (!productMap.has(slug)) productMap.set(slug, {
     slug, name, industrySlug: industry.slug, category: industry.name, image: productImageByName[name] || industry.image,
+    brand: approved?.brand, range: approved?.range, packs: approved?.packs,
     summary: `${name} for consistent food production`,
-    description: `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
+    description: approved?.description || `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
   });
 }));
 

@@ -4,9 +4,11 @@ import { ArrowRight, BadgeCheck, Check, FileCheck2, MapPin, PackageCheck, Search
 import { partners, getPartner } from "../../data/partners";
 import { getProduct, getIndustry, slugify } from "../../data/catalog";
 import { getAssociateContent } from "../../data/associate-content";
+import { productsForRangeSupplier } from "../../data/catalog-ranges";
 import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import AssociateMotion from "./AssociateMotion";
 import AssociateEnquiryForm from "./AssociateEnquiryForm";
+import RangeCatalog from "../../components/RangeCatalog";
 import styles from "./associate-detail.module.css";
 import stickyFix from "./associate-sticky-fix.module.css";
 import heroFix from "./associate-hero-fix.module.css";
@@ -35,7 +37,10 @@ export default async function PartnerPage({ params }) {
   const partner = getPartner((await params).slug);
   if (!partner) notFound();
   const content = getAssociateContent(partner.slug, partner);
-  const productLinks = partner.products.map((name) => getProduct(slugify(name))).filter(Boolean);
+  const baseProductLinks = partner.products.map((name) => getProduct(slugify(name))).filter(Boolean);
+  const rangeProductLinks = productsForRangeSupplier(partner.slug).map((item) => getProduct(slugify(item.name))).filter(Boolean);
+  const productLinks = [...new Map([...baseProductLinks, ...rangeProductLinks].map((item) => [item.slug, item])).values()];
+  const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives";
   const industryLinks = partner.industries.map(getIndustry).filter(Boolean);
   const canonicalUrl = `${siteUrl}/associates/${partner.slug}/`;
   const productNames = partner.products.join(", ");
@@ -91,7 +96,7 @@ export default async function PartnerPage({ params }) {
       <section className={`${styles.section} ${styles.sectionCream}`} id="about"><div className={styles.wrap}><div className={styles.aboutFeatureGrid}><div className={styles.aboutFeatureCopy} data-associate-reveal="left"><span className={styles.eyebrow}>About the supplier</span><h2>Ingredients engineered for the right application.</h2><p>{content.about}</p><div className={styles.aboutSupplierLogo}><img src={partner.logo} alt={`${partner.name} logo`} /></div><a className={styles.aboutProfileLink} href="#products">View supplier profile <ArrowRight /></a></div><div className={styles.applicationFeatureGrid} data-associate-stagger>{content.applications.slice(0,4).map((application,index)=>{const applicationImage=Object.values(partner.productImages||{})[index]||partner.image;return <article className={styles.applicationFeatureCard} key={application}><img src={applicationImage} alt={`${partner.name} ${application}`} loading="lazy"/><div><h3>{application}</h3><p>{content.category} for professional applications.</p></div></article>})}</div></div><div className={styles.aboutAssurance} data-associate-reveal="up"><ShieldCheck/><span>Grade, source, specification and documentation are confirmed before quotation.</span><a href="#enquiry">Discuss your application <ArrowRight /></a></div></div></section>
       <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
         <header className={styles.enquiryRangeHeader} data-associate-reveal="up"><div><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Compare available products and open each product page for grade, format, pack and documentation details.</p></div><a href="#enquiry">Discuss your requirement</a></header>
-        <div className={styles.productGrid} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>
+        {hasApprovedRange ? <RangeCatalog products={productLinks} indianNames={partner.slug === "campco" ? productLinks.map((item) => item.name) : []} supplierMode /> : <div className={styles.productGrid} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3><span>View product details <ArrowRight /></span></div></Link>)}</div>}
               <div className={styles.productsAssurance} data-associate-reveal="up"><ShieldCheck/><span>Exact grade, source, format, pack, MOQ and availability are confirmed for each enquiry.</span><b><em>01</em> — {String(productLinks.length).padStart(2,"0")}</b></div>
 </div></section>
 

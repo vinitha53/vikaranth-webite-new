@@ -5,7 +5,7 @@ import { products, getProduct, getIndustry } from "../../data/catalog";
 import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import ProductQuoteForm from "../../components/ProductQuoteForm";
 import { buildProductFaqs } from "../../data/product-faqs";
-import { partnersForProduct } from "../../data/partners";
+import { getPartner, partnersForProduct } from "../../data/partners";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
 
@@ -67,12 +67,14 @@ export default async function ProductPage({ params }) {
   const applications = applicationsByIndustry[product.industrySlug] || ["Professional food production", "Product formulation", "Process development", "Commercial manufacturing"];
   const benefits = benefitsByIndustry[product.industrySlug] || ["Application-fit selection", "Process support", "Consistent sourcing", "Technical coordination"];
   const faq = buildProductFaqs(product, industry, applications);
-  const productPartners = partnersForProduct(product.name);
+  const mappedPartners = partnersForProduct(product.name);
+  const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
+  const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
   const supplierOverview = supplierOverviewByProduct[product.name] || `Vikranth supports professional buyers sourcing ${product.name} in Chennai and across India. Share your application, required function, grade, pack size, quantity, documentation needs and delivery location so the team can confirm a suitable available option, current lead time and commercial quotation.`;
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
   const description = `${product.name} for ${industry.name.toLowerCase()} and professional food production. Vikranth Chemical Corporation supports B2B enquiries from Chennai for available grades, pack sizes, samples, documents and bulk quotations.`;
   const structuredData = [
-    { "@context": "https://schema.org", "@type": "Service", "@id": `${canonicalUrl}#service`, name: `${product.name} B2B sourcing and enquiry support`, image: `${siteUrl}${product.image}`, description, serviceType: "B2B food ingredient sourcing", areaServed: { "@type": "Country", name: "India" }, provider: { "@id": `${siteUrl}/#organization` }, url: canonicalUrl },
+    { "@context": "https://schema.org", "@type": "Service", "@id": `${canonicalUrl}#service`, name: `${product.name} B2B sourcing and enquiry support`, image: `${siteUrl}${product.image}`, description, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), serviceType: "B2B food ingredient sourcing", areaServed: { "@type": "Country", name: "India" }, provider: { "@id": `${siteUrl}/#organization` }, url: canonicalUrl },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products` },
@@ -95,7 +97,7 @@ export default async function ProductPage({ params }) {
           <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/products">Products</Link><span>/</span><span>{product.name}</span></nav>
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy} data-hero-copy>
-              <span className={styles.eyebrow}>{product.category}</span>
+              <span className={styles.eyebrow}>{product.brand ? `${product.brand} · ${product.category}` : product.category}</span>
               <h1>{product.name} <em>supplier</em> in Chennai and across India</h1>
               <p>{product.name} for {industry.name.toLowerCase()} and professional food production. Tell us your application, required grade and quantity so our B2B team can confirm a suitable available option.</p>
               <div className={styles.actions}>
@@ -114,7 +116,7 @@ export default async function ProductPage({ params }) {
               <div className={styles.partnerPanel} data-partner-badge>
                 <span>{productPartners.length ? (productPartners.length > 1 ? "Available partner brands" : "Product partner") : "Supplied by"}</span>
                 <div className={styles.partnerLogos}>
-                  {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}`} key={partner.slug} title={`View ${partner.name}`}><img src={partner.logo} alt={`${partner.name} logo`} /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.png" alt="Vikranth Chemical Corporation" /><strong>Vikranth sourced</strong></div>}
+                  {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}`} key={partner.slug} title={`View ${partner.name}`}><img src={partner.logo} alt={`${partner.name} supplier logo`} /><strong>{product.brand && product.brand !== partner.name ? <><span className={styles.principalBrand}>{product.brand}</span><small>via {partner.name}</small></> : partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.png" alt="Vikranth Chemical Corporation" /><strong>Vikranth sourced</strong></div>}
                 </div>
               </div>
             </div>
