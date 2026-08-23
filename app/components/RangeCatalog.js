@@ -16,10 +16,10 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   if (!ranges.length) return null;
 
   return <div className={styles.catalog} data-range-catalog>
-    <div className={styles.tabs} data-single={ranges.length === 1 ? "true" : undefined} role="tablist" aria-label="Product origin range">
+    {ranges.length === 2 && <div className={styles.tabs} role="tablist" aria-label="Product origin range">
       <button type="button" role="tab" aria-selected={active === "indian"} onClick={() => selectRange("indian")}>Indian Range <small>Celebré / CAMPCO</small></button>
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>Delta international brands</small></button>
-    </div>
+    </div>}
     <div className={styles.categorySection}>
       <div className={styles.filterHeading}><div><small>Browse by usage</small><h3>Find the right ingredient category</h3></div><p>Select an application category to quickly narrow {inRange.length} {rangeLabel.toLowerCase()} products.</p></div>
       <div className={styles.categoryRail} role="group" aria-label={`Filter ${rangeLabel.toLowerCase()} products by usage category`}>
