@@ -207,7 +207,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
   const approved = approvedRangeProducts.find((item) => item.name === name);
   if (!productMap.has(slug)) productMap.set(slug, {
     slug, name, industrySlug: industry.slug, category: industry.name, image: productImageByName[name] || industry.image,
-    brand: approved?.brand, range: approved?.range, packs: approved?.packs,
+    brand: approved?.brand, range: approved?.range, packs: approved?.packs, usageCategory: approved?.usageCategory,
     summary: `${name} for consistent food production`,
     description: approved?.description || `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
   });
