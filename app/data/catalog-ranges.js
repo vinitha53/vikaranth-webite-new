@@ -18,7 +18,12 @@ const rows = [
   ["Celebre / CAMPCO","indian","fruit-processing","Celebre IQF Fruits|Celebre Fruit Purees"],
 ];
 const categories={"chocolate-confectionery":"Chocolate & Confectionery","bakery-ingredients":"Bakery Ingredients","fruit-processing":"Fruit Processing","ice-cream-ingredients":"Ice Cream Ingredients","dairy-ingredients":"Dairy Ingredients","functional-ingredients":"Functional Ingredients"};
-const usageCategoryFor = (industrySlug, name) => {
+const usageCategoryFor = (industrySlug, name, range) => {
+  const indianRules = {
+    "bakery-ingredients": [["Cake & Bakery Premixes", /cake mix|waffle mix|plum cake premix/i], ["Fondants & Glazes", /fondant|glaze/i]],
+    "ice-cream-ingredients": [["Ice Cream Premixes", /.*/]],
+    "fruit-processing": [["Frozen Fruits", /iqf|frozen/i], ["Fruit Purees", /puree/i]],
+  };
   const rules = {
     "chocolate-confectionery": [["Cocoa Ingredients", /cocoa powder|cocoa mass|cocoa nibs|mycryo cocoa butter/i], ["Pralines, Pastes & Fillings", /praline|paste|gianduja|caramel fill|cara crakine|feuilletine/i], ["Decorations & Inclusions", /crispearls|truffle shells/i], ["Reduced-Sugar Chocolate", /malchoc/i], ["Single-Origin Couverture", /ecuador|sao thome|madagascar|arriba|java|tanzanie|saint domingue|venezuela|ghana|alto el sol/i], ["Milk & White Couverture", /milk couverture|white couverture|alunga milk|lactee barry|zephyr caramel|blanc satin/i], ["Dark Couverture", /dark couverture|excellence dark|extra-bitter|favorites mi-amere/i], ["Speciality Couverture", /.*/]],
     "bakery-ingredients": [["Flours", /flour/i], ["Pastry Sheets & Dough", /sheet|patti|filo|paratha|dough/i], ["Frozen & Ready-to-Bake", /croissant|chocolate roll|cinnamon whirl/i], ["Mixes, Grains & Improvers", /.*/]],
@@ -27,7 +32,8 @@ const usageCategoryFor = (industrySlug, name) => {
     "dairy-ingredients": [["Dairy & Ice Cream Products", /cream|mascarpone|sculpture/i], ["Professional Butter", /butter/i], ["Other Dairy Ingredients", /.*/]],
     "functional-ingredients": [["Fruit Inclusions", /raspberr|strawberr|pineapple|passion fruit|yocrispy/i], ["Whipping & Aeration", /potatowhip/i], ["Pectins & Texture", /pectin/i], ["Functional Ingredients", /.*/]],
   };
-  return (rules[industrySlug] || [[categories[industrySlug] || "Other Ingredients", /.*/]]).find(([, pattern]) => pattern.test(name))?.[0] || "Other Ingredients";
+  const selectedRules = range === "indian" ? indianRules[industrySlug] : rules[industrySlug];
+  return (selectedRules || [[categories[industrySlug] || "Other Ingredients", /.*/]]).find(([, pattern]) => pattern.test(name))?.[0] || "Other Ingredients";
 };
-export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name),packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
+export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name,range),packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
 export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"):[];
