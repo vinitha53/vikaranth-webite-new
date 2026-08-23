@@ -217,3 +217,4 @@
 /* Catalog range tabs must remain fully bright at every scroll position. */
 .productSection[data-range-section="true"]{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
 .productSection[data-range-section="true"] *{filter:none}
+.industryPage .productSection,.industryPage .productSection .sectionHeading{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
