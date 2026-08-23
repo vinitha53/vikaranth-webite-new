@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import MascotCharacter from "./MascotCharacter";
@@ -50,12 +50,13 @@ export default function ContactJourney() {
   const bubbleRef = useRef(null);
   const shadowRef = useRef(null);
   const timelineRef = useRef(null);
-  const [mounted, setMounted] = useState(false);
+  // Render the complete enquiry content on the server so search engines and
+  // no-JavaScript visitors receive the H1 and RFQ form in the first response.
+  const mounted = true;
   const [mascotState, setMascotState] = useState("idle");
   const [formMessage, setFormMessage] = useState("Fill me! Tell us what you need.");
   const [formActive, setFormActive] = useState(false);
 
-  useEffect(() => setMounted(true), []);
 
   const react = (state, text) => {
     setFormActive(true);
@@ -257,16 +258,12 @@ export default function ContactJourney() {
     };
   }, { scope: stageRef, dependencies: [mounted], revertOnUpdate: true });
 
-  if (!mounted) {
-    return <section className={`${styles.contactJourney} ${styles.contactJourneyLoading}`} aria-busy="true" aria-label="Loading contact form" />;
-  }
-
   return (
     <section className={styles.contactJourney}>
       <div className={styles.journeySectionHeading}>
         <span>Contact Vikranth</span>
-        <h1>Fill me in</h1>
-        <p>Share a few details and we&apos;ll route your message to the right person.</p>
+        <h1>Contact Vikranth for a Food Ingredient Quotation</h1>
+        <p>Share the ingredient, application, quantity, delivery location and documents needed so the team can review the right commercial next step.</p>
         <i aria-hidden="true" />
       </div>
 

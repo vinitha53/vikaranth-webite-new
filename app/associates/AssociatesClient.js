@@ -62,6 +62,9 @@ function resetCardTilt(event) {
 export default function AssociatesClient({ partners, faqs }) {
   const pageRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("All portfolios");
+  const categoryOptions = ["All portfolios", ...new Set(Object.values(categoryLabels))];
+  const visiblePartners = activeCategory === "All portfolios" ? partners : partners.filter((partner) => categoryLabels[partner.slug] === activeCategory);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
@@ -87,9 +90,26 @@ export default function AssociatesClient({ partners, faqs }) {
 
   return (
     <div ref={pageRef} className={styles.page}>
+      <section className={styles.hero} aria-labelledby="supplier-title">
+        <div className={styles.heroArt} aria-hidden="true"><i/><i/><i/></div>
+        <div className={styles.heroCopy}>
+          <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>Suppliers</span></nav>
+          <span className={styles.eyebrow}>Manufacturer and supplier directory</span>
+          <h1 id="supplier-title"><span className={styles.heroLine}>Ingredient Manufacturers</span><span className={styles.heroLine}>and Supplier Portfolios</span></h1>
+          <p>Explore product portfolios available for enquiry through Vikranth. The exact manufacturer, source, grade, availability and commercial relationship are confirmed for each requirement.</p>
+          <div className={styles.heroActions}><a href="#supplier-directory">Explore portfolios <ArrowRight /></a><Link href="/contact#enquiry">Send an ingredient enquiry</Link></div>
+        </div>
+        <div className={styles.trustStrip} aria-label="Directory guidance"><div><strong>{partners.length}</strong><span>Portfolio pages</span></div><div><strong>Product-led</strong><span>Enquiry routing</span></div><div><strong>Per product</strong><span>Document checks</span></div><div><strong>Transparent</strong><span>Relationship wording</span></div></div>
+      </section>
       <section className={`${styles.directory} ${cards.directory}`} aria-label="Ingredient supplier directory">
+        <div className={styles.sectionHead} id="supplier-directory"><span>Supplier portfolios</span><h2>Browse by ingredient specialism</h2><p>A logo identifies a portfolio for enquiry; it does not by itself claim an authorised distributorship. Relationship type and territory are confirmed against current documentation.</p></div>
+        <div className={styles.filters} aria-label="Filter supplier portfolios">
+          {categoryOptions.map((category) => <button type="button" className={activeCategory === category ? styles.activeFilter : ""} aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} key={category}>{category}</button>)}
+        </div>
         <div className={cards.grid}>
-          {partners.map((partner, index) => (
+          {visiblePartners.map((partner) => {
+            const index = partners.findIndex((item) => item.slug === partner.slug);
+            return (
             <Link
               className={cards.card}
               href={`/associates/${partner.slug}`}
@@ -120,7 +140,8 @@ export default function AssociatesClient({ partners, faqs }) {
                 <span className={cards.explore}>Explore partner <ArrowRight /></span>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -132,7 +153,7 @@ export default function AssociatesClient({ partners, faqs }) {
         })}</div>
       </section>
 
-      <section className={styles.finalCta}><div><Truck /><div><span>Chennai based · Pan India supply</span><h2>Start your ingredient enquiry</h2><p>Share the product, grade, application, quantity and delivery city. Our team will confirm the practical next step.</p></div><div className={styles.finalActions}><Link href="/contact#enquiry">Request a quote <ArrowRight /></Link><a href="https://wa.me/918754442924" target="_blank" rel="noreferrer">WhatsApp us</a></div></div></section>
+      <section className={styles.finalCta}><div><Truck /><div><span>Chennai based · Delivery confirmed per enquiry</span><h2>Start your ingredient enquiry</h2><p>Share the product, grade, application, quantity and delivery city. Our team will confirm the practical next step.</p></div><div className={styles.finalActions}><Link href="/contact#enquiry">Request a quote <ArrowRight /></Link><a href="https://wa.me/918754442924" target="_blank" rel="noreferrer">WhatsApp us</a></div></div></section>
     </div>
   );
 }

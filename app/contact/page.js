@@ -2,19 +2,27 @@ import { ArrowRight, Building2, MapPin } from "lucide-react";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
 import ContactJourney from "./ContactJourney";
 import ContactScrollEffects from "./ContactScrollEffects";
+import CoreSeoContent from "../components/CoreSeoContent";
+import { coreContent } from "../data/core-content";
 import styles from "./contact.module.css";
 
 export const metadata = {
   title: "Contact Vikranth Chemical Corporation | Chennai",
-  description: "Contact Vikranth Chemical Corporation in Chennai for food ingredient quotations, samples, product documents and supply enquiries.",
+  description: "Contact Vikranth in Chennai for food ingredient quotations, samples, product documents, bulk requirements and delivery enquiries.",
   alternates: { canonical: "/contact/" },
 };
 
 const directions = "https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sri+Sai+Ram+Street+Jyothi+Nagar+Ponnimmanmedu+Chennai+600110";
 
 export default function ContactPage() {
+  const schema = [
+    { "@context": "https://schema.org", "@type": "ContactPage", "@id": "https://www.vikranthchem.com/contact/#webpage", url: "https://www.vikranthchem.com/contact/", name: "Contact Vikranth for a Food Ingredient Quotation", description: metadata.description, about: { "@id": "https://www.vikranthchem.com/#organization" } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.vikranthchem.com/contact/" }] },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: coreContent.contact.faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+  ];
   return (
     <main className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <ContactScrollEffects />
       <DetailHeader />
       <ContactJourney />
@@ -26,6 +34,7 @@ export default function ContactPage() {
           <article data-contact-office-card><MapPin/><small>Corporate enquiry address</small><h3>Saraswathy Enclave</h3><p>Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur, Chennai 600099.</p><a href="https://www.google.com/maps/search/?api=1&query=Saraswathy+Enclave+Lakshmipuram+Kolathur+Chennai+600099" target="_blank" rel="noreferrer"><MapPin className={styles.directionPin} aria-hidden="true" />Get directions <ArrowRight className={styles.directionArrow} /></a></article>
         </div>
       </section>
+      <CoreSeoContent content={coreContent.contact} />
       <DetailFooter />
     </main>
   );

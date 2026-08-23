@@ -157,16 +157,16 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Glazes & Toppings", ingredients: ["Glaze Gel"] }
   ],
   "hydrocolloids-stabilizers": [
-    { name: "Pectin", ingredients: ["Genu Pectin", "GENUÂ® Pectin MRS 115"] },
+    { name: "Pectin", ingredients: ["Genu Pectin", "GENU® Pectin MRS 115"] },
     { name: "Gelatin", ingredients: ["Gelatin 120 Bloom", "Gelatin 160 Bloom", "Gelatin 180 Bloom"] },
     { name: "Food Gums", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG"] },
     { name: "Ice Cream Stabilizers", ingredients: ["Ice Cream Stabilizer"] }
   ],
   "sweeteners-syrups-starches": [
     { name: "Liquid Sweeteners", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"] },
-    { name: "Sweeteners", ingredients: ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Aspartame"] },
+    { name: "Sweeteners", ingredients: ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame"] },
     { name: "Starches", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch"] },
-    { name: "Carbohydrates", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "CLEARAMÂ® CH 20 20"] },
+    { name: "Carbohydrates", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "CLEARAM® CH 20 20"] },
     { name: "Syrups", ingredients: ["Cake Syrup"] }
   ],
   "functional-ingredients": [
@@ -178,7 +178,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Protein Ingredients", ingredients: ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"] },
     { name: "Gelatin", ingredients: ["Gelatin 120 Bloom", "Gelatin 180 Bloom"] },
     { name: "Vitamins & Minerals", ingredients: ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"] },
-    { name: "Sugar-Free Excipients", ingredients: ["Sorbitol", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Aspartame"] },
+    { name: "Sugar-Free Excipients", ingredients: ["Sorbitol", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame"] },
     { name: "Carriers", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "Skimmed Milk Powder", "Refined Glycerine", "Propylene Glycol (PG)"] }
   ],
   "food-additives-preservatives": [
@@ -214,7 +214,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
 }));
 
 export const products = [...productMap.values()];
-const normalizeProductLookup = (value) => slugify(String(value).replace(/Ã‚Â®|Â®/g, "registered"));
+const normalizeProductLookup = (value) => slugify(String(value).replace(/®/g, "registered"));
 const productSlugByLookup = new Map(products.map((product) => [normalizeProductLookup(product.name), product.slug]));
 export const getProductHref = (name) => `/products/${productSlugByLookup.get(normalizeProductLookup(name)) || slugify(name)}`;
 export const getProduct = (slug) => products.find((item) => item.slug === slug);

@@ -74,13 +74,14 @@ export default async function ProductPage({ params }) {
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
   const description = `${product.name} for ${industry.name.toLowerCase()} and professional food production. Vikranth Chemical Corporation supports B2B enquiries from Chennai for available grades, pack sizes, samples, documents and bulk quotations.`;
   const structuredData = [
+    { "@context": "https://schema.org", "@type": "Product", "@id": `${canonicalUrl}#product`, name: product.name, image: `${siteUrl}${product.image}`, description, category: product.category, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), url: canonicalUrl },
     { "@context": "https://schema.org", "@type": "Service", "@id": `${canonicalUrl}#service`, name: `${product.name} B2B sourcing and enquiry support`, image: `${siteUrl}${product.image}`, description, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), serviceType: "B2B food ingredient sourcing", areaServed: { "@type": "Country", name: "India" }, provider: { "@id": `${siteUrl}/#organization` }, url: canonicalUrl },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products` },
       { "@type": "ListItem", position: 3, name: product.name, item: canonicalUrl },
     ] },
-    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai and Pan India`, description, about: { "@id": `${canonicalUrl}#service` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
+    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai and Pan India`, description, about: { "@id": `${canonicalUrl}#product` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
   const whatsapp = `https://wa.me/918754442924?text=${encodeURIComponent(`Hi, I need a quotation for ${product.name}.`)}`;
