@@ -218,3 +218,27 @@
 .productSection[data-range-section="true"]{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
 .productSection[data-range-section="true"] *{filter:none}
 .industryPage .productSection,.industryPage .productSection .sectionHeading{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+
+/* Reliable navigation from tablet to small mobile on every shared-header page. */
+@media(max-width:1100px){
+  .header{position:relative;height:72px;padding:0 14px}
+  .headerInner{width:100%;gap:8px}
+  .brand{margin-right:auto}
+  .brand img{height:48px!important}
+  .header .headerInner>nav{position:absolute;z-index:130;top:72px;right:-14px;left:-14px;display:flex;max-height:calc(100dvh - 72px);margin:0;padding:12px 18px 28px;overflow-y:auto;overscroll-behavior:contain;align-items:stretch;flex-direction:column;gap:0;border-top:1px solid #e4d9c8;background:#fffdf9;box-shadow:0 22px 38px rgba(43,24,16,.2);visibility:hidden;opacity:0;transform:translateY(-8px);pointer-events:none}
+  .header .headerInner>nav.navOpen{visibility:visible;opacity:1;transform:none;pointer-events:auto}
+  .header nav a{min-height:48px;padding:14px 10px;border-bottom:1px solid #eadfd3;font-size:14px}
+  .productsTrigger{display:none}
+  .mobileProductsLink{display:block!important;color:#2b2019!important}
+  .megaMenu{display:none!important}
+  .menuButton{display:grid;flex:0 0 42px}
+  .quote{min-height:42px;margin:0;padding:0 13px;font-size:11px}
+}
+@media(max-width:620px){
+  .header{height:64px;padding:0 10px}
+  .header .headerInner>nav{top:64px;right:-10px;left:-10px;max-height:calc(100dvh - 64px)}
+  .brand img{height:42px!important}
+  .quote{display:none!important}
+  .menuButton{width:40px;height:40px}
+}
+@media(max-width:380px){.brand img{height:38px!important}.headerInner>button:not(.menuButton),.menuButton{width:38px;height:38px;min-width:38px}}
