@@ -106,6 +106,44 @@ const catalogProductImages = {
   "Whey Powder": "/product-images/catalog/whey-powder.png"
 };
 
+const bakeryProductImages = {
+  "Best Brown Bread Mix": "/product-images/bakery/Best Brown Bread Mix.png",
+  "Cake Premix": "/product-images/bakery/Cake Premix.png",
+  "Classic Cake Mix Range": "/product-images/bakery/Classic Cake Mix Range.png",
+  "Croissant Eggless 30 g": "/product-images/bakery/Croissant Eggless.png",
+  "Croissant Eggless 50 g": "/product-images/bakery/Croissant Eggless.png",
+  "Croissant Eggless 70 g": "/product-images/bakery/Croissant Eggless.png",
+  "Dia Baguette": "/product-images/bakery/Dia Baguette.png",
+  "Eggless Molten Lava Cake Mix": "/product-images/bakery/Eggless Molten Lava Cake Mix.png",
+  "Grainex": "/product-images/bakery/Grainex.png",
+  "Hot Glaze Fruit": "/product-images/bakery/Hot Glaze Fruit.png",
+  "Hot Glaze Neutral": "/product-images/bakery/Hot Glaze Neutral.png",
+  "Kraftkorn": "/product-images/bakery/Kraftkorn.png",
+  "Mini Chocolate Roll Eggless 33 g": "/product-images/bakery/Mini Chocolate Roll Eggless 33 g.png",
+  "Mini Cinnamon Whirl Eggless 33 g": "/product-images/bakery/Mini Cinnamon Whirl Eggless 33 g.png",
+  "Neapolitan Pizza Flour": "/product-images/bakery/Neapolitan Pizza Flour.png",
+  "Neropan": "/product-images/bakery/Neropan.png",
+  "Pane Luciane": "/product-images/bakery/Pane Luciane.png",
+  "Plum Cake Premix": "/product-images/bakery/Plum Cake Premix.png",
+  "Puff Dough Square": "/product-images/bakery/Puff Dough Square.png",
+  "Puff Paratha": "/product-images/bakery/Puff Paratha.png",
+  "Red Fruit Croquant": "/product-images/bakery/Red Fruit Croquant.png",
+  "Red Velvet Cake Mix": "/product-images/bakery/Red Velvet Cake Mix.png",
+  "Roggenfix": "/product-images/bakery/Roggenfix.png",
+  "Samosa Patti 250 g": "/product-images/bakery/Samosa Patti.png",
+  "Samosa Patti 500 g": "/product-images/bakery/Samosa Patti.png",
+  "Shredded Filo (Kunafa)": "/product-images/bakery/Shredded Filo (Kunafa).png",
+  "Sima Cake Mix": "/product-images/bakery/Sima Cake Mix.png",
+  "Spring Roll Sheets 10x10": "/product-images/bakery/Spring Roll Sheets 10x10.png",
+  "Spring Roll Sheets 6x6": "/product-images/bakery/Spring Roll Sheets 6x6.png",
+  "Spring Roll Sheets 8x8": "/product-images/bakery/Spring Roll Sheets 8x8.png",
+  "Sugar Paste / Rolling Fondant": "/product-images/bakery/Sugar Paste  Rolling Fondant.png",
+  "T45 Special Flour for Baguette": "/product-images/bakery/T45 Special Flour for Baguette.png",
+  "T55 Strong Flour for Ciabatta": "/product-images/bakery/T55 Strong Flour for Ciabatta.png",
+  "Thin Filo (Baklava)": "/product-images/bakery/Thin Filo (Baklava).png",
+  "VX2T Improver": "/product-images/bakery/VX2T Improver.png",
+  "Waffle Mix": "/product-images/bakery/Waffle Mix.png"
+};
 Object.values(partnerProductImages).forEach(({ products }) => {
   Object.keys(products).forEach((name) => {
     if (catalogProductImages[name]) products[name] = catalogProductImages[name];
@@ -181,7 +219,8 @@ export const productImageByName = {
   "Sorbitol 70% Solution": "/product-images/other-products/sorbitol-70-percent-solution.webp",
   "Soya Lecithin": "/product-images/other-products/soya-lecithin.webp",
   "Vital Wheat Gluten": "/product-images/other-products/vital-wheat-gluten.webp",
-  ...catalogProductImages
+  ...catalogProductImages,
+  ...bakeryProductImages
 };
 
 partners.forEach(partner => {
@@ -195,4 +234,3 @@ partners.forEach(partner => {
 export const getPartner=(slug)=>partners.find(partner=>partner.slug===slug);
 export const partnersForProduct=(name)=>partners.filter(partner=>partner.products.includes(name));
 export const partnersForIndustry=(slug)=>partners.filter(partner=>partner.industries.includes(slug));
-
