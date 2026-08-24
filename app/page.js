@@ -32,32 +32,27 @@ const homeFaqs = [
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
-    "Cake Ingredients": ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"],
+    "Cake Ingredients": ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"],
-    "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"], "Frozen Bakery": ["Frozen Croissant"]
+    "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"]
   }},
   { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
-    "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"],
-    "Couverture Chocolate — Callebaut": ["811", "823", "W2", "Bitter Chocolate 70-3"],
-    "Couverture Chocolate — Cacao Barry": ["CB Plein Aroma Cocoa Powder"]
+    "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy Ingredients", icon: Milk, image: "/industries/dairy-ingredients.webp", accent: "#e8d8bb", blurb: "Dairy ingredients including whipping cream, cream cheese, butter, milk powder and whey products for food manufacturers.", subgroups: {
-    "Cream Products": ["Whipping Cream", "Cream Cheese"], "Butter Products": ["Butter"],
+  { name: "Dairy Ingredients", icon: Milk, image: "/industries/dairy-ingredients.webp", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+    "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"],
     "Milk Powders": ["Good Day Milk Powder", "Krishna Milk Powder"], "Whey Products": ["Amul Whey Powder"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
-    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"],
-    "Fruit Beverage Ingredients": ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"]
+    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
   { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
-    "Ice Cream Bases": ["Frozen Yogurt Premix", "Panna Base"], "Ice Cream Flavours": ["French Vanilla", "Cocoa Miscela"],
-    "Ice Cream Toppings": ["Dessert Toppings"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
+    "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Fruit Processing", icon: Leaf, image: "/industries/fruit-processing.webp", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
-    "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Ingredients", "Fruit Sweetness", "Fruit Crush"],
-    "Juices & Concentrates": ["Juice Concentrates", "NFC Juices"], "Frozen Fruits & Purees": ["Frozen Fruits", "Fruit Purees"],
+    "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
   { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
@@ -83,10 +78,11 @@ const productGroups = [
     "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
     "Hydrocolloids": ["Xanthan Gum", "Guar Gum", "Sodium CMC"],
     "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame", "Malt Extract Powder"],
-    "Starches & Functional Ingredients": ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Whey Powder", "Soya Protein", "Skimmed Milk Powder"],
+    "Starches & Functional Ingredients": ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Soya Protein"],
     "Leavening & Baking Ingredients": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"],
     "Minerals & Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"],
-    "Colours, Flavours & Natural Extracts": ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"]
+    "Colours, Flavours & Natural Extracts": ["Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"],
+    "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }}
 ];
 
@@ -127,7 +123,7 @@ const associates = [
   { name: "Fine Organics", logo: "/partners/fine-organics.png" },
   { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.png" },
   { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.png" },
-  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.webp" }
+  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.png" }
 ];
 const partnerSlugs = ["campco","delta-nutritives","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd","anchor"];
 

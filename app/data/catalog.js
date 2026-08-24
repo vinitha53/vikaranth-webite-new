@@ -4,59 +4,56 @@ import { approvedRangeProducts } from "./catalog-ranges";
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
 export const industries = [
-  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate","Frozen Croissant"]),
-  group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink","Callebaut 811","Callebaut 823","Callebaut W2","Bitter Chocolate 70-3","CB Plein Aroma Cocoa Powder"]),
-  group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Whipping Cream","Cream Cheese","Butter","Good Day Milk Powder","Krishna Milk Powder","Amul Whey Powder"]),
-  group("beverage-ingredients", "Beverage Ingredients", "Beverage Ingredients", "/industries/beverage-ingredients.webp", "Flavours, bases and fruit ingredients for consistent commercial beverage formulation.", ["Flavours & Natural Ingredients","Fruit Ingredients","Fruit Sweetness","Juice Concentrates","NFC Juices","Chocolate Drink","Fruit Crush","Sodium CMC Stabilizer Grade","Sodium CMC Thick Shake Grade"]),
-  group("ice-cream-ingredients", "Ice Cream Ingredients", "Ice Cream Ingredients", "/industries/ice-cream-ingredients.webp", "Bases, flavours, toppings and stabilizers for smooth texture, body and reliable frozen-dessert batches.", ["Frozen Yogurt Premix","Panna Base","French Vanilla","Cocoa Miscela","Dessert Toppings","Ice Cream Stabilizer","Amaze Ice Cream Stabilizer"]),
-  group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, purees, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Ingredients","Fruit Sweetness","Juice Concentrates","NFC Juices","Fruit Crush","Frozen Fruits","Fruit Purees","Genu Pectin","Glaze Gel"]),
+  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Eggless Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate"]),
+  group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink"]),
+  group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose","Good Day Milk Powder","Krishna Milk Powder","Amul Whey Powder"]),
+  group("beverage-ingredients", "Beverage Ingredients", "Beverage Ingredients", "/industries/beverage-ingredients.webp", "Flavours, bases and stabilizers for consistent commercial beverage formulation.", ["Flavours & Natural Ingredients","Chocolate Drink","Sodium CMC Stabilizer Grade","Sodium CMC Thick Shake Grade"]),
+  group("ice-cream-ingredients", "Ice Cream Ingredients", "Ice Cream Ingredients", "/industries/ice-cream-ingredients.webp", "Bases, flavours, toppings and stabilizers for smooth texture, body and reliable frozen-dessert batches.", ["Ice Cream Stabilizer","Amaze Ice Cream Stabilizer"]),
+  group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Crush","Genu Pectin","Glaze Gel"]),
   group("hydrocolloids-stabilizers", "Hydrocolloids & Stabilizers", "Hydrocolloids, Gums & Stabilizers", "/industries/hydrocolloids-stabilizers.webp", "Hydrocolloids and gums for viscosity control, stability, texture and mouthfeel.", ["Genu Pectin","GENU® Pectin MRS 115","Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom","Xanthan Gum","Guar Gum","Sodium CMC","Sodium Alginate FG","Ice Cream Stabilizer"]),
   group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Syrups","Sorbitol 70% Solution","Invert Sugar","Sorbitol","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Maltodextrin Powder","Cake Syrup","CLEARAM® CH 20 20"]),
   group("functional-ingredients", "Functional Ingredients", "Functional Ingredients", "/industries/functional-ingredients.webp", "Emulsifiers, proteins and processing aids for dependable texture, structure and production efficiency.", ["GMS Flakes","GMS Powder","Sorbitan Monostearate","Finamul 90","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Full-Fat Soya Flour","Vital Wheat Gluten","Skimmed Milk Powder","Calcium Carbonate","Calcium Chloride","Calcium Gluconate","Sodium Citrate","Propylene Glycol (PG)","Refined Glycerine"]),
   group("nutraceutical-pharma", "Nutraceutical & Pharma", "Nutraceutical & Pharma Ingredients", "/industries/nutraceutical-pharma.webp", "Protein, gelatin, vitamin and mineral ingredients subject to application and grade verification.", ["Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Gelatin 120 Bloom","Gelatin 180 Bloom","Sorbitol","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame","Dextrose Monohydrate","Maltodextrin Powder","Skimmed Milk Powder","Calcium Carbonate","Calcium Gluconate","Ascorbic Acid","Refined Glycerine","Propylene Glycol (PG)"]),
-  group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Malic Acid","Acetic Acid","Ascorbic Acid","Fumaric Acid","Tartaric Acid","Boric Acid","Phosphoric Acid","Formic Acid","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Xanthan Gum","Guar Gum","Sodium CMC","Sorbitol 70% Solution","Invert Sugar","Aspartame","Sucralose","Acesulfame K","Saccharin","Isomalt","Maltitol","Sucrose","Potato Starch","Vital Wheat Gluten","Whey Protein","Soya Protein","Ammonium Bicarbonate","Baking Powder","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Calcium Carbonate","Calcium Chloride","Sodium Citrate","Propylene Glycol (PG)","Refined Glycerine","Skimmed Milk Powder","Whey Powder","Malt Extract Powder","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"])
+  group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Malic Acid","Acetic Acid","Ascorbic Acid","Fumaric Acid","Tartaric Acid","Boric Acid","Phosphoric Acid","Formic Acid","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Xanthan Gum","Guar Gum","Sodium CMC","Sorbitol 70% Solution","Invert Sugar","Aspartame","Sucralose","Acesulfame K","Saccharin","Isomalt","Maltitol","Sucrose","Potato Starch","Vital Wheat Gluten","Whey Protein","Soya Protein","Ammonium Bicarbonate","Baking Powder","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Calcium Carbonate","Calcium Chloride","Sodium Citrate","Propylene Glycol (PG)","Refined Glycerine","Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose","Malt Extract Powder","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"])
 ];
 
 export const bakeryProductGroups = [
-  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
+  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
   { name: "Bread", description: "Ingredients for making bread, buns, pav and rolls with dependable dough performance, yield, texture and freshness.", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate", "Baking Powder"] },
   { name: "Biscuits, Cookies & Crackers", description: "Leavening and sweetening ingredients used in biscuits, cookies and cracker production.", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder", "Cake Syrup"] },
-  { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Frozen Croissant", "Custard Powder", "Cake Syrup"] }
+  { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Custard Powder", "Cake Syrup"] }
 ];
 
 export const chocolateProductGroups = [
-  { name: "Chocolate & Couverture", description: "Ingredients for making dark, milk, white and premium couverture chocolate products.", ingredients: ["Cocoa Butter", "Cocoa Mass", "Dark Chocolate", "Milk Chocolate", "White Chocolate", "Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3"] },
+  { name: "Chocolate & Couverture", description: "Ingredients for making dark, milk, white and premium couverture chocolate products.", ingredients: ["Cocoa Butter", "Cocoa Mass", "Dark Chocolate", "Milk Chocolate", "White Chocolate"] },
   { name: "Chips & Inclusions", description: "Chocolate chips and inclusions for cookies, cakes, muffins, desserts and bakery toppings.", ingredients: ["White Chips", "Dark Chips", "Milk Chips"] },
   { name: "Fillings, Coatings & Paste", description: "Chocolate ingredients for bakery fillings, spreads, coatings, moulding and confectionery applications.", ingredients: ["White Chocomass", "Dark Chocomass", "Milk Chocomass", "Choco Paste"] },
-  { name: "Cocoa & Chocolate Drinks", description: "Cocoa and chocolate ingredients for beverages, desserts, bakery mixes and flavour applications.", ingredients: ["Cocoa Powder", "Chocolate Drink", "CB Plein Aroma Cocoa Powder"] }
+  { name: "Cocoa & Chocolate Drinks", description: "Cocoa and chocolate ingredients for beverages, desserts, bakery mixes and flavour applications.", ingredients: ["Cocoa Powder", "Chocolate Drink"] }
 ];
 
 export const dairyProductGroups = [
-  { name: "Cakes & Desserts", description: "Dairy ingredients for making cakes, cheesecakes, mousse, puddings and chilled desserts.", ingredients: ["Whipping Cream", "Cream Cheese", "Butter", "Good Day Milk Powder"] },
-  { name: "Bakery Products", description: "Ingredients for richness, flavour, browning, softness and dairy solids in breads, cakes, cookies and pastries.", ingredients: ["Butter", "Good Day Milk Powder", "Krishna Milk Powder", "Amul Whey Powder"] },
-  { name: "Creams & Fillings", description: "Dairy ingredients for making cake frosting, cream fillings, cheesecake filling and dessert toppings.", ingredients: ["Whipping Cream", "Cream Cheese", "Butter"] },
+  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
+  { name: "Cakes & Desserts", description: "Dairy ingredients for making cakes, cheesecakes, mousse, puddings and chilled desserts.", ingredients: ["Good Day Milk Powder"] },
+  { name: "Bakery Products", description: "Ingredients for richness, flavour, browning, softness and dairy solids in breads, cakes, cookies and pastries.", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder", "Amul Whey Powder"] },
   { name: "Dairy Drinks & Mixes", description: "Milk and whey ingredients for beverages, premixes, nutrition products and dairy-based formulations.", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder", "Amul Whey Powder"] }
 ];
 
 export const beverageProductGroups = [
-  { name: "Fruit Beverages", description: "Ingredients for making fruit drinks, coolers, mocktails, shakes and juice-based beverages.", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush", "Flavours & Natural Ingredients"] },
+  { name: "Fruit Beverages", description: "Flavour ingredients for making fruit drinks, coolers, mocktails, shakes and juice-based beverages.", ingredients: ["Flavours & Natural Ingredients"] },
   { name: "Chocolate Beverages", description: "Ingredients for making hot chocolate, cold chocolate, milkshakes and chocolate drink mixes.", ingredients: ["Chocolate Drink", "Flavours & Natural Ingredients"] },
-  { name: "Flavoured Drinks", description: "Flavour systems and fruit ingredients for soft drinks, milk beverages, syrups and food-service drinks.", ingredients: ["Flavours & Natural Ingredients", "Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"] },
+  { name: "Flavoured Drinks", description: "Flavour systems for soft drinks, milk beverages, syrups and food-service drinks.", ingredients: ["Flavours & Natural Ingredients"] },
   { name: "Stabilizers & Texture", description: "Application-specific CMC grades for body, suspension and a consistent texture in beverage systems.", ingredients: ["Sodium CMC Stabilizer Grade", "Sodium CMC Thick Shake Grade"] }
 ];
 
 export const iceCreamProductGroups = [
-  { name: "Ice Cream & Gelato", description: "Ingredients for making smooth ice cream and gelato with consistent flavour, body and texture.", ingredients: ["Panna Base", "French Vanilla", "Cocoa Miscela", "Ice Cream Stabilizer", "Amaze Ice Cream Stabilizer"] },
-  { name: "Frozen Yogurt", description: "Premix and supporting ingredients for making creamy frozen yogurt and soft-serve products.", ingredients: ["Frozen Yogurt Premix", "Dessert Toppings", "Ice Cream Stabilizer"] },
-  { name: "Sundaes & Desserts", description: "Flavour bases and toppings for sundaes, plated desserts, shakes and frozen dessert service.", ingredients: ["Dessert Toppings", "French Vanilla", "Cocoa Miscela"] },
-  { name: "Bases & Texture", description: "Functional ingredients for improving body, creaminess, stability and melt resistance in frozen desserts.", ingredients: ["Panna Base", "Frozen Yogurt Premix", "Ice Cream Stabilizer"] }
+  { name: "Stabilizers & Texture", description: "Functional ingredients for improving body, creaminess, stability and melt resistance in frozen desserts.", ingredients: ["Ice Cream Stabilizer", "Amaze Ice Cream Stabilizer"] }
 ];
 
 export const fruitProductGroups = [
-  { name: "Bakery Fillings", description: "Fruit ingredients for making pie fillings, cake layers, pastries, tarts and filled bakery products.", ingredients: ["Fruit Filling", "Fruit Ingredients", "Fruit Purees", "Genu Pectin", "Glaze Gel"] },
-  { name: "Fruit Beverages", description: "Fruit bases for making juices, coolers, smoothies, milkshakes, mocktails and beverage concentrates.", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush", "Fruit Purees", "Frozen Fruits"] },
-  { name: "Jams & Preserves", description: "Fruit and texturizing ingredients for making jams, jellies, preserves and fruit preparations.", ingredients: ["Fruit Purees", "Frozen Fruits", "Genu Pectin"] },
-  { name: "Desserts & Toppings", description: "Fruit ingredients for desserts, yogurt, ice cream, cheesecake toppings and decorative finishing.", ingredients: ["Fruit Filling", "Fruit Crush", "Frozen Fruits", "Fruit Purees", "Glaze Gel"] }
+  { name: "Bakery Fillings", description: "Fruit ingredients for making pie fillings, cake layers, pastries, tarts and filled bakery products.", ingredients: ["Fruit Filling", "Genu Pectin", "Glaze Gel"] },
+  { name: "Fruit Beverages", description: "Fruit products for making juices, coolers, smoothies, milkshakes and mocktails.", ingredients: ["Fruit Crush"] },
+  { name: "Jams & Preserves", description: "Texturizing ingredients for making jams, jellies and preserves.", ingredients: ["Genu Pectin"] },
+  { name: "Desserts & Toppings", description: "Fruit ingredients for desserts, yogurt, ice cream, cheesecake toppings and decorative finishing.", ingredients: ["Fruit Filling", "Fruit Crush", "Glaze Gel"] }
 ];
 
 export const hydrocolloidProductGroups = [
@@ -96,7 +93,7 @@ export const additiveProductGroups = [
   { name: "Starches & Functional Ingredients", description: "Starches, proteins and functional ingredients for structure, binding, nutrition and processing performance.", ingredients: ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Soya Protein"] },
   { name: "Leavening & Baking Ingredients", description: "Leavening and baking ingredients for cakes, biscuits, cookies, crackers and other bakery products.", ingredients: ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
   { name: "Minerals & Processing Ingredients", description: "Minerals, carriers and processing ingredients for formulation and production requirements.", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"] },
-  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder"] }
+  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
 ];
 
 export const productGroupsByIndustrySlug = {
@@ -115,10 +112,10 @@ export const productGroupsByIndustrySlug = {
 
 export const productMenuGroupsByIndustrySlug = {
   "bakery-ingredients": [
-    { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Cake Premix", "Custard Powder"] },
+    { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Custard Powder"] },
     { name: "Bread Ingredients", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate"] },
     { name: "Leavening Agents", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"] },
-    { name: "Bakery Syrups & Frozen", ingredients: ["Cake Syrup", "Frozen Croissant"] }
+    { name: "Bakery Syrups", ingredients: ["Cake Syrup"] }
   ],
   "chocolate-confectionery": [
     { name: "Cocoa Products", ingredients: ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"] },
@@ -127,32 +124,23 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Chocomass", ingredients: ["White Chocomass", "Dark Chocomass", "Milk Chocomass"] },
     { name: "Chocolate Paste", ingredients: ["Choco Paste"] },
     { name: "Chocolate Beverage Solutions", ingredients: ["Chocolate Drink"] },
-    { name: "Couverture Chocolate - Callebaut", ingredients: ["Callebaut 811", "Callebaut 823", "Callebaut W2", "Bitter Chocolate 70-3"] },
-    { name: "Couverture Chocolate - Cacao Barry", ingredients: ["CB Plein Aroma Cocoa Powder"] }
   ],
   "dairy-ingredients": [
-    { name: "Cream Products", ingredients: ["Whipping Cream", "Cream Cheese"] },
-    { name: "Butter Products", ingredients: ["Butter"] },
+    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
     { name: "Milk Powders", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder"] },
     { name: "Whey Products", ingredients: ["Amul Whey Powder"] }
   ],
   "beverage-ingredients": [
     { name: "Beverage Flavours", ingredients: ["Flavours & Natural Ingredients"] },
     { name: "Beverage Bases", ingredients: ["Chocolate Drink"] },
-    { name: "Fruit Beverage Ingredients", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Juice Concentrates", "NFC Juices", "Fruit Crush"] },
     { name: "Beverage Stabilizers", ingredients: ["Sodium CMC Stabilizer Grade", "Sodium CMC Thick Shake Grade"] }
   ],
   "ice-cream-ingredients": [
-    { name: "Ice Cream Bases", ingredients: ["Frozen Yogurt Premix", "Panna Base"] },
-    { name: "Ice Cream Flavours", ingredients: ["French Vanilla", "Cocoa Miscela"] },
-    { name: "Ice Cream Toppings", ingredients: ["Dessert Toppings"] },
     { name: "Ice Cream Stabilizers", ingredients: ["Ice Cream Stabilizer", "Amaze Ice Cream Stabilizer"] }
   ],
   "fruit-processing": [
     { name: "Fruit Fillings", ingredients: ["Fruit Filling"] },
-    { name: "Fruit Preparations", ingredients: ["Fruit Ingredients", "Fruit Sweetness", "Fruit Crush"] },
-    { name: "Juices & Concentrates", ingredients: ["Juice Concentrates", "NFC Juices"] },
-    { name: "Frozen Fruits & Purees", ingredients: ["Frozen Fruits", "Fruit Purees"] },
+    { name: "Fruit Preparations", ingredients: ["Fruit Crush"] },
     { name: "Gelling Agents", ingredients: ["Genu Pectin"] },
     { name: "Glazes & Toppings", ingredients: ["Glaze Gel"] }
   ],
@@ -190,7 +178,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Starches & Functional Ingredients", ingredients: ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Soya Protein"] },
     { name: "Leavening & Baking Ingredients", ingredients: ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
     { name: "Minerals & Processing Ingredients", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"] },
-    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder"] }
+    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
   ]
 };
 

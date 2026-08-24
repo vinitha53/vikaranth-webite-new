@@ -8,9 +8,8 @@ import styles from "./detail.module.css";
 const productImages = {
   "Cake Gel": "/product-images/other-products/cake-gel.png",
   "Cake Life": "/product-images/other-products/cake-life.png",
-  "Cake Premix": "/popular-cake-premix.png",
-  "Custard Powder": "/product-images/other-products/custard-powder.png",
-  "Frozen Croissant": "/product-images/other-products/frozen-croissant.jpg"
+  "Eggless Cake Premix": "/popular-cake-premix.png",
+  "Custard Powder": "/product-images/other-products/custard-powder.png"
 };
 
 export default function BakeryCategoryShowcase({ groups, products, categoryLabel = "Bakery", fallbackImage = "/products/bakery-ingredients.webp" }) {

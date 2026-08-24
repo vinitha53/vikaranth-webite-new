@@ -1,16 +1,16 @@
 export const partners = [
   {slug:"campco",name:"CAMPCO",logo:"/partners/campco-heart.png",image:"/industries/chocolate-confectionery.webp",summary:"cocoa and chocolate ingredient options for bakery, confectionery, desserts and beverage formulations",about:"CAMPCO is associated with cocoa and chocolate products. Exact catalogue, grade, pack size and commercial availability must be confirmed from current supplier documentation.",products:["Cocoa Powder","Cocoa Butter","Cocoa Mass","Choco Paste","White Chips","Milk Chips","Dark Chips","White Chocomass","Milk Chocomass","Dark Chocomass","Chocolate Drink","White Chocolate","Milk Chocolate","Dark Chocolate"],industries:["chocolate-confectionery","bakery-ingredients"]},
-  {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:["Frozen Fruits","Fruit Purees","Fruit Filling","Dessert Toppings"],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
+  {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:["Fruit Filling"],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
   {slug:"roquette",name:"Roquette",logo:"/partners/roquette.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"plant-based ingredients, starches, sweeteners, proteins and selected pharmaceutical solutions",about:"Roquette is known for plant-based ingredient solutions across food, nutrition and pharmaceutical applications. Availability is confirmed against the current approved catalogue.",products:["Liquid Glucose","Dextrose Monohydrate","Glucose D","High Maltose Syrups","Maize Starch Powder","Maltodextrin Powder","Sorbitol 70% Solution","Sorbitol","Maize Starch","Whey Protein"],industries:["sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma"]},
   {slug:"nitta-gelatin-india-ltd",name:"Nitta Gelatin India Ltd.",logo:"/partners/nitta.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"gelatin solutions and related functional applications",about:"Nitta Gelatin India is associated with gelatin solutions for food, nutraceutical and selected pharmaceutical uses. Bloom strength, grade and documents require product-specific confirmation.",products:["Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom"],industries:["hydrocolloids-stabilizers","nutraceutical-pharma"]},
-  {slug:"doehler",name:"Döhler",logo:"/partners/doehler.webp",image:"/industries/beverage-ingredients.webp",summary:"natural ingredients, fruit products and integrated food and beverage systems",about:"Döhler develops natural ingredient and application systems for food and beverage markets. Vikranth provides a Chennai enquiry route subject to current range and supply confirmation.",products:["Flavours & Natural Ingredients","Fruit Ingredients","Fruit Sweetness","Juice Concentrates","NFC Juices","Fruit Crush","Fruit Purees","Orange Oil"],industries:["beverage-ingredients","fruit-processing"]},
+  {slug:"doehler",name:"Döhler",logo:"/partners/doehler.webp",image:"/industries/beverage-ingredients.webp",summary:"natural ingredients, fruit products and integrated food and beverage systems",about:"Döhler develops natural ingredient and application systems for food and beverage markets. Vikranth provides a Chennai enquiry route subject to current range and supply confirmation.",products:["Flavours & Natural Ingredients","Fruit Crush","Orange Oil"],industries:["beverage-ingredients","fruit-processing"]},
   {slug:"cp-kelco",name:"CP Kelco",logo:"/partners/cp-kelco.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"nature-based hydrocolloids and formulation solutions",about:"CP Kelco is associated with nature-based hydrocolloid solutions for viscosity, suspension, stabilization and texture. Exact grades and applications must be verified.",products:["Genu Pectin","GENU® Pectin MRS 115","Xanthan Gum","Sodium CMC","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)"],industries:["hydrocolloids-stabilizers","fruit-processing","beverage-ingredients","functional-ingredients"]},
   {slug:"calpro-specialities-pvt-ltd",name:"Calpro Specialities Pvt. Ltd.",logo:"/partners/calpro.webp",image:"/industries/dairy-ingredients.webp",summary:"cocoa, dairy, bakery and functional food ingredient solutions",about:"Calpro supplies food ingredient solutions across cocoa, dairy, bakery and functional applications. Publish only the products supported by current catalogue and written partner documentation.",products:["Cocoa Powder","Whey Protein","Whey Powder","Skimmed Milk Powder","Amaze Ice Cream Stabilizer","Calcium Propionate (CP)","Sodium Propionate","Vital Wheat Gluten"],industries:["bakery-ingredients","chocolate-confectionery","dairy-ingredients","ice-cream-ingredients","functional-ingredients","food-additives-preservatives"]},
   {slug:"gujarat-ambuja-exports-ltd",name:"Gujarat Ambuja Exports Ltd.",logo:"/partners/ambuja.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"sorbitol, starch derivatives and agro-processing ingredients",about:"Gujarat Ambuja Exports is associated with starch-derived and agro-processing ingredient solutions. Product grade, pack and current availability require confirmation.",products:["Sorbitol 70% Solution","Sorbitol","Maize Starch","Liquid Glucose"],industries:["sweeteners-syrups-starches","functional-ingredients"]},
   {slug:"fine-organics",name:"Fine Organics",logo:"/partners/fine-organics.webp",image:"/industries/functional-ingredients.webp",summary:"specialty additives and food emulsifier solutions",about:"Fine Organics is associated with specialty additive and emulsifier solutions for food processing. Selection depends on formulation, process, grade and documentation requirements.",products:["GMS Flakes","GMS Powder","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Sorbitan Monostearate"],industries:["functional-ingredients","bakery-ingredients","chocolate-confectionery"]},
   {slug:"shree-gluco-biotech-pvt-ltd",name:"Shree Gluco Biotech Pvt. Ltd.",logo:"/partners/shree-gluco.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"starch-derived sweeteners and carbohydrate ingredients",about:"Shree Gluco Biotech is associated with starch-derived sweeteners and carbohydrate ingredients for professional food applications. Current specifications must be confirmed.",products:["Liquid Glucose","Dextrose Monohydrate","Maltodextrin Powder","Maize Starch"],industries:["sweeteners-syrups-starches","bakery-ingredients"]},
   {slug:"paramesu-biotech-ltd",name:"Paramesu Biotech Ltd.",logo:"/partners/paramesu.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"maize starch and starch derivative solutions",about:"Paramesu Biotech is associated with maize starch and derivative solutions. Current catalogue, grade, pack size and partner documentation must be checked before publication.",products:["Maize Starch","Liquid Glucose","Dextrose Monohydrate","Maltodextrin Powder"],industries:["sweeteners-syrups-starches","bakery-ingredients"]},
-  {slug:"anchor",name:"Anchor",logo:"/partners/anchor.webp",image:"/industries/bakery-ingredients.webp",summary:"Vikranth's in-house food ingredient range for bakery and food manufacturing applications",about:"Anchor is Vikranth Chemical Corporation's in-house manufacturing brand. Only products, grades, pack sizes and application notes supported by current internal specifications and production records are presented.",products:["Cake Gel","Cake Premix","Custard Powder","Baking Powder"],industries:["bakery-ingredients","functional-ingredients"]}
+  {slug:"anchor",name:"Anchor",logo:"/partners/anchor.png",image:"/industries/bakery-ingredients.webp",summary:"Vikranth's in-house food ingredient range for bakery and food manufacturing applications",about:"Anchor is Vikranth Chemical Corporation's in-house manufacturing brand. Only products, grades, pack sizes and application notes supported by current internal specifications and production records are presented.",products:["Cake Gel","Eggless Cake Premix","Custard Powder","Baking Powder"],industries:["bakery-ingredients","functional-ingredients"]}
 ];
 
 export const partnerProductImages = {
@@ -35,7 +35,7 @@ export const partnerProductImages = {
   },
   "delta-nutritives": {
     hero: "/partner-products/delta-frozen-fruits.webp",
-    products: {"Frozen Fruits":"/partner-products/delta-frozen-fruits.webp","Fruit Purees":"/partner-products/delta-fruit-purees.webp","Fruit Filling":"/partner-products/delta-fruit-filling.webp","Dessert Toppings":"/partner-products/delta-dessert-toppings.webp"}
+    products: {"Fruit Filling":"/partner-products/delta-fruit-filling.webp"}
   },
   roquette: {
     hero: "/product-images/roquette/liquid-glucose.webp",
@@ -47,7 +47,7 @@ export const partnerProductImages = {
   },
   doehler: {
     hero: "/product-images/doehler/fruit-ingredients.webp",
-    products: {"Flavours & Natural Ingredients":"/partner-products/doehler-flavours.webp","Fruit Ingredients":"/product-images/doehler/fruit-ingredients.webp","Fruit Sweetness":"/product-images/doehler/fruit-sweetness.webp","Juice Concentrates":"/product-images/doehler/juice-concentrates.webp","NFC Juices":"/product-images/doehler/nfc-juices.webp","Fruit Crush":"/partner-products/doehler-flavours.webp","Fruit Purees":"/product-images/doehler/fruit-purees.webp","Orange Oil":"/partner-products/doehler-flavours.webp"}
+    products: {"Flavours & Natural Ingredients":"/partner-products/doehler-flavours.webp","Fruit Crush":"/partner-products/doehler-flavours.webp","Orange Oil":"/partner-products/doehler-flavours.webp"}
   },
   "cp-kelco": {
     hero: "/product-images/cp-kelco/genu-pectin-mrs-115.webp",
@@ -78,17 +78,12 @@ export const partnerProductImages = {
 const catalogProductImages = {
   "Amaze Ice Cream Stabilizer": "/product-images/catalog/amaze-ice-cream-stabilizer.png",
   "Aspartame": "/product-images/catalog/aspartame.png",
-  "Cocoa Miscela": "/product-images/catalog/cocoa-miscela.png",
-  "Cream Cheese": "/product-images/catalog/cream-cheese.png",
   "Finamul 90": "/product-images/catalog/finamul-90.png",
-  "French Vanilla": "/product-images/catalog/french-vanilla.png",
-  "Frozen Yogurt Premix": "/product-images/catalog/frozen-yogurt-premix.png",
   "Glaze Gel": "/product-images/catalog/glaze-gel.png",
   "GMS Flakes": "/product-images/catalog/gms-flakes.png",
   "GMS Powder": "/product-images/catalog/gms-powder.png",
   "Ice Cream Stabilizer": "/product-images/catalog/ice-cream-stabilizer.png",
   "Maize Starch": "/product-images/catalog/maize-starch.png",
-  "Panna Base": "/product-images/catalog/panna-base.png",
   "SWEETPEARL® P 200 Maltitol": "/product-images/catalog/sweetpearl-p-200-maltitol.png",
   "Acetic Acid": "/product-images/catalog/acetic-acid.png",
   "Ammonium Bicarbonate": "/product-images/catalog/ammonium-bicarbonate.png",
@@ -151,9 +146,6 @@ Object.values(partnerProductImages).forEach(({ products }) => {
 });
 
 export const productImageByName = {
-  "Whipping Cream": "/product-images/dairy/whipping-cream.png",
-  "Cream Cheese": "/product-images/dairy/cream-cheese.png",
-  "Butter": "/product-images/dairy/butter.png",
   "Good Day Milk Powder": "/product-images/dairy/good-day-milk-powder.png",
   "Krishna Milk Powder": "/product-images/dairy/krishna-milk-powder.png",
   "Amul Whey Powder": "/product-images/dairy/amul-whey-powder.png",
@@ -167,11 +159,6 @@ export const productImageByName = {
   "Dark Chocomass": "/product-images/other-products/dark-chocomass.png",
   "White Chocomass": "/product-images/other-products/white-chocomass.png",
   "Milk Chocomass": "/product-images/other-products/milk-chocomass.png",
-  "Callebaut 811": "/product-images/other-products/callebaut-811.png",
-  "Callebaut 823": "/product-images/other-products/callebaut-823.jpg",
-  "Callebaut W2": "/product-images/other-products/callebaut-w2.png",
-  "CB Plein Aroma Cocoa Powder": "/product-images/other-products/cb-plein-aroma-cocoa-powder.jpg",
-  "Bitter Chocolate 70-3": "/product-images/other-products/bitter-chocolate-70-3.jpg",
   "Choco Paste": "/partner-products/Campco/Choco Paste.webp",
   "Chocolate Drink": "/partner-products/Campco/Chocolate Drink.png",
   "Calcium Propionate (CP)": "/product-images/calpro/calcium-propionate.webp",
@@ -196,7 +183,6 @@ export const productImageByName = {
   "Cake Life": "/product-images/other-products/cake-life.png",
   "Cake Syrup": "/product-images/other-products/corn-syrup.png",
   "Custard Powder": "/product-images/other-products/custard-powder.png",
-  "Frozen Croissant": "/product-images/other-products/frozen-croissant.jpg",
   "White Chocolate": "/product-images/other-products/white-chocolate.jpg",
   "Milk Chocolate": "/product-images/other-products/milk-chocolate.png",
   "Calcium Carbonate": "/product-images/other-products/calcium-carbonate.webp",
