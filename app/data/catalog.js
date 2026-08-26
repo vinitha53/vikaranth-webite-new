@@ -6,7 +6,7 @@ const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, 
 export const industries = [
   group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Eggless Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate"]),
   group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink"]),
-  group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose","Good Day Milk Powder","Krishna Milk Powder","Amul Whey Powder"]),
+  group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose"]),
   group("beverage-ingredients", "Beverage Ingredients", "Beverage Ingredients", "/industries/beverage-ingredients.webp", "Flavours, bases and stabilizers for consistent commercial beverage formulation.", ["Flavours & Natural Ingredients","Chocolate Drink","Sodium CMC Stabilizer Grade","Sodium CMC Thick Shake Grade"]),
   group("ice-cream-ingredients", "Ice Cream Ingredients", "Ice Cream Ingredients", "/industries/ice-cream-ingredients.webp", "Bases, flavours, toppings and stabilizers for smooth texture, body and reliable frozen-dessert batches.", ["Ice Cream Stabilizer","Amaze Ice Cream Stabilizer"]),
   group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Crush","Genu Pectin","Glaze Gel"]),
@@ -32,10 +32,7 @@ export const chocolateProductGroups = [
 ];
 
 export const dairyProductGroups = [
-  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
-  { name: "Cakes & Desserts", description: "Dairy ingredients for making cakes, cheesecakes, mousse, puddings and chilled desserts.", ingredients: ["Good Day Milk Powder"] },
-  { name: "Bakery Products", description: "Ingredients for richness, flavour, browning, softness and dairy solids in breads, cakes, cookies and pastries.", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder", "Amul Whey Powder"] },
-  { name: "Dairy Drinks & Mixes", description: "Milk and whey ingredients for beverages, premixes, nutrition products and dairy-based formulations.", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder", "Amul Whey Powder"] }
+  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
 ];
 
 export const beverageProductGroups = [
@@ -126,9 +123,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Chocolate Beverage Solutions", ingredients: ["Chocolate Drink"] },
   ],
   "dairy-ingredients": [
-    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
-    { name: "Milk Powders", ingredients: ["Good Day Milk Powder", "Krishna Milk Powder"] },
-    { name: "Whey Products", ingredients: ["Amul Whey Powder"] }
+    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
   ],
   "beverage-ingredients": [
     { name: "Beverage Flavours", ingredients: ["Flavours & Natural Ingredients"] },
@@ -195,7 +190,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
   const approved = approvedRangeProducts.find((item) => item.name === name);
   if (!productMap.has(slug)) productMap.set(slug, {
     slug, name, industrySlug: industry.slug, category: industry.name, image: productImageByName[name] || industry.image,
-    brand: approved?.brand, range: approved?.range, packs: approved?.packs, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[industry.slug]?.find((group) => group.ingredients.includes(name))?.name || industry.name,
+    brand: approved?.brand, range: approved?.range, packs: approved?.packs, brochureCategory: approved?.brochureCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[industry.slug]?.find((group) => group.ingredients.includes(name))?.name || industry.name,
     summary: `${name} for consistent food production`,
     description: approved?.description || `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
   });

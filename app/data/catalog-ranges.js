@@ -18,6 +18,24 @@ const rows = [
   ["Celebre / CAMPCO","indian","fruit-processing","Celebre IQF Fruits|Celebre Fruit Purees"],
 ];
 const categories={"chocolate-confectionery":"Chocolate & Confectionery","bakery-ingredients":"Bakery Ingredients","fruit-processing":"Fruit Processing","ice-cream-ingredients":"Ice Cream Ingredients","dairy-ingredients":"Dairy Ingredients","functional-ingredients":"Functional Ingredients"};
+// One main Delta category per product. These are the category names used by
+// Delta's ingredient navigation and represented by the matching PDF sections.
+const brochureCategoryFor = (brand) => ({
+  Callebaut: "Premium Chocolate",
+  "Mona Lisa": "Premium Chocolate",
+  "Cacao Barry": "Premium Chocolate",
+  "Molino Dallagiovanna": "Italian Pizza Flour",
+  "DLA Naturals": "Fruit Fillings",
+  MEC3: "Premium Ice Cream",
+  "Elle & Vire Professionnel": "Dairy",
+  Corman: "Dairy",
+  DIRA: "Frozen Fruits & Purees",
+  Switz: "Bakery Ingredients",
+  "CSM / Ulmer Spatz": "European Bread Concentrate - CSM",
+  ARYZTA: "Bakery Ingredients",
+  Sosa: "Fine Ingredients For Modern Gastronomy - Sosa",
+  "Les Vergers Boiron": "Frozen Fruits & Purees",
+})[brand];
 const usageCategoryFor = (industrySlug, name, range) => {
   const indianRules = {
     "bakery-ingredients": [["Cake & Bakery Premixes", /cake mix|waffle mix|plum cake premix/i], ["Fondants & Glazes", /fondant|glaze/i]],
@@ -35,5 +53,5 @@ const usageCategoryFor = (industrySlug, name, range) => {
   const selectedRules = range === "indian" ? indianRules[industrySlug] : rules[industrySlug];
   return (selectedRules || [[categories[industrySlug] || "Other Ingredients", /.*/]]).find(([, pattern]) => pattern.test(name))?.[0] || "Other Ingredients";
 };
-export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name,range),packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
-export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"):[];
+export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name,range),brochureCategory:range==="imported"?brochureCategoryFor(brand,name):undefined,packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
+export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"&&item.brochureCategory):[];
