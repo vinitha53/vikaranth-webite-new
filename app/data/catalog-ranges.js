@@ -3,7 +3,7 @@ const rows = [
   ["Mona Lisa","imported","chocolate-confectionery","Dark Chocolate Crispearls|Milk Chocolate Crispearls|White Chocolate Crispearls|Salted Caramel Crispearls|Ruby Chocolate Crispearls|Mini Crispearls Mix"],
   ["Cacao Barry","imported","chocolate-confectionery","Tanzanie (75%)|Saint Domingue (70%)|Venezuela (72%)|Ghana (40%)|Alunga Milk Organic (41%)|Alto El Sol (65%)|Ocoa (70%)|Inaya (65%)|Lactee Barry (35.3%)|Zephyr Caramel (35%)|Excellence Dark (55%)|Extra-bitter Guayaquil (64%)|Favorites Mi-Amere (58%)|Blanc Satin (29.2%)|Plein Arome Cocoa Powder|CB Grand Caraque Cocoa Mass|Extra Brute Cocoa Powder|Cara Crakine|Praline Feuilletine"],
   ["Molino Dallagiovanna","imported","bakery-ingredients","Neapolitan Pizza Flour|T55 Strong Flour for Ciabatta|T45 Special Flour for Baguette"],
-  ["DLA Naturals","imported","fruit-processing","Apple Filling|Apple Cinnamon Filling|Bakers Cream Vanilla|Bakers Cream Cinnamon|Banana Filling|Blueberry Filling|Coconut Filling|Dark Cherry Filling|Passion Fruit Filling|Pineapple Filling|Raspberry Filling|Red Cherry Filling|Strawberry Filling|Tropical Filling"],
+  ["DLA Naturals","imported","fruit-processing","Fruit Filling|Apple Filling|Apple Cinnamon Filling|Bakers Cream Vanilla|Bakers Cream Cinnamon|Banana Filling|Blueberry Filling|Coconut Filling|Dark Cherry Filling|Passion Fruit Filling|Pineapple Filling|Raspberry Filling|Red Cherry Filling|Strawberry Filling|Tropical Filling"],
   ["MEC3","imported","ice-cream-ingredients","Baklava Paste|Baklava Pistachio Cream|Baklava Walnut Cream|Barazek Cream|Instacrumble Pistacchio|Instacrumble Limone GF|Kulfi Cream|Mastic Paste|Cappuccino Paste|Crema Chocomilky|Sticky Toffee|Quella Amarena Crunchy|Quella Mango & Passion Crunchy|Saffron Cream|Variegato Dubai Chocolate|Velvet Blueberry|Pistacchio Copa D'Oro|Pure Sicily Pistachio|Cookies Black|Cookies Spicy|Mandorla|Vanilla Madagaskar|French Vanilla MEC3|Base 6|Neutralin|Panna Base MEC3|Base 50|Base Alba|Base Frutta Frutta|Gelmix|Mec Fibra Plus|Softin|Base Divina|Copertura Caramello|Copertura Fondente|Copertura Fragola|Copertura Limone|Copertura Nocciola|Copertura Pistachio|Covering Stracciatella|Quella|Quella Crunchy|Quella Dark|Quella Ruby|Quella Pistacchio Crunchy|Quella Vaniglia|Quella Arancia E Mandorle"],
   ["Elle & Vire Professionnel","imported","dairy-ingredients","Excellence Whipping Cream 35.3%|Extra Dry Butter 84%|UHT Mascarpone"],
   ["Corman","imported","dairy-ingredients","Corman Dairy Butter 82%|Corman Sculpture Whipping Speciality"],
@@ -31,11 +31,60 @@ const brochureCategoryFor = (brand) => ({
   Corman: "Dairy",
   DIRA: "Frozen Fruits & Purees",
   Switz: "Bakery Ingredients",
-  "CSM / Ulmer Spatz": "European Bread Concentrate - CSM",
+  "CSM / Ulmer Spatz": "European Bread Concentrates",
   ARYZTA: "Bakery Ingredients",
-  Sosa: "Fine Ingredients For Modern Gastronomy - Sosa",
+  Sosa: "Modern Gastronomy Ingredients",
   "Les Vergers Boiron": "Frozen Fruits & Purees",
 })[brand];
+
+// Delta's brochure sometimes provides a subcategory (or a brand heading)
+// beneath the main category. Use that more specific heading when it exists;
+// otherwise retain the main brochure category as the catalogue heading.
+const brochureDisplayCategoryFor = (brand, name) => {
+  const mainCategory = brochureCategoryFor(brand);
+  const rulesByBrand = {
+    Callebaut: [
+      ["Cocoa Ingredients", /cocoa nibs|mycryo cocoa butter/i],
+      ["Pralines, Pastes & Fillings", /praline|paste|gianduja|caramel fill|paillete feuilletine/i],
+      ["Decorations & Inclusions", /truffle shells/i],
+      ["Reduced-Sugar Chocolate", /malchoc/i],
+      ["Single-Origin Couverture", /ecuador|sao thome|madagascar|arriba|java/i],
+      ["Milk & White Couverture", /milk couverture|white couverture/i],
+      ["Dark Couverture", /dark couverture/i],
+      ["Speciality Couverture", /gold chocolate|ruby chocolate/i],
+    ],
+    "Mona Lisa": [["Decorations & Inclusions", /.*/]],
+    "Cacao Barry": [
+      ["Cocoa Ingredients", /cocoa powder|cocoa mass/i],
+      ["Pralines, Pastes & Fillings", /cara crakine|praline feuilletine/i],
+      ["Milk & White Couverture", /ghana|lactee barry|zephyr caramel|blanc satin/i],
+      ["Dark Couverture", /excellence dark|extra-bitter|favorites mi-amere/i],
+      ["Single-Origin Couverture", /tanzanie|saint domingue|venezuela|alto el sol|ocoa/i],
+      ["Speciality Couverture", /alunga milk|inaya/i],
+    ],
+    MEC3: [
+      ["Gelato Bases & Functional Ingredients", /base 6|neutralin|panna base|base 50|base alba|base frutta|gelmix|mec fibra plus|softin|base divina/i],
+      ["Copertura Dips & Coverings", /copertura|covering stracciatella/i],
+      ["Creams, Pastes & Specialities", /quella amarena|quella mango|variegato dubai/i],
+      ["Quella Toppings", /^quella/i],
+      ["Flavours & Nut Pastes", /pistacchio copa|pure sicily pistachio|cookies black|cookies spicy|mandorla|vanilla madagaskar|french vanilla/i],
+      ["Creams, Pastes & Specialities", /.*/],
+    ],
+    DIRA: [
+      ["Frozen Fruits", /frozen/i],
+      ["Fruit Purees", /puree/i],
+    ],
+    "Les Vergers Boiron": [["Les Vergers Boiron Purees", /.*/]],
+    Switz: [["Switz Frozen Dough & Sheets", /.*/]],
+    ARYZTA: [["ARYZTA Frozen Bakery Products", /.*/]],
+    Sosa: [["Sosa Ingredients", /.*/]],
+    "Elle & Vire Professionnel": [["Elle & Vire Professionnel", /.*/]],
+    Corman: [["Corman", /.*/]],
+    "Molino Dallagiovanna": [["Molino Dallagiovanna", /.*/]],
+  };
+
+  return rulesByBrand[brand]?.find(([, pattern]) => pattern.test(name))?.[0] || mainCategory;
+};
 const usageCategoryFor = (industrySlug, name, range) => {
   const indianRules = {
     "bakery-ingredients": [["Cake & Bakery Premixes", /cake mix|waffle mix|plum cake premix/i], ["Fondants & Glazes", /fondant|glaze/i]],
@@ -53,5 +102,5 @@ const usageCategoryFor = (industrySlug, name, range) => {
   const selectedRules = range === "indian" ? indianRules[industrySlug] : rules[industrySlug];
   return (selectedRules || [[categories[industrySlug] || "Other Ingredients", /.*/]]).find(([, pattern]) => pattern.test(name))?.[0] || "Other Ingredients";
 };
-export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name,range),brochureCategory:range==="imported"?brochureCategoryFor(brand,name):undefined,packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
+export const approvedRangeProducts=rows.flatMap(([brand,range,industrySlug,names])=>names.split("|").map(name=>({name,brand,range,industrySlug,category:categories[industrySlug],usageCategory:usageCategoryFor(industrySlug,name,range),brochureCategory:range==="imported"?brochureCategoryFor(brand):undefined,brochureDisplayCategory:range==="imported"?brochureDisplayCategoryFor(brand,name):undefined,packs:"Pack size confirmed on enquiry",description:`${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`})));
 export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"&&item.brochureCategory):[];
