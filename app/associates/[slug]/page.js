@@ -43,7 +43,7 @@ export default async function PartnerPage({ params }) {
   const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives";
   const industryLinks = partner.industries.map(getIndustry).filter(Boolean);
   const canonicalUrl = `${siteUrl}/associates/${partner.slug}/`;
-  const productNames = partner.products.join(", ");
+  const productNames = productLinks.map((product) => product.name).join(", ");
   const applicationNames = content.applications.join(", ");
   const faq = [
     [`Can I buy ${partner.name} ingredients through Vikranth in Chennai?`, `Vikranth accepts B2B enquiries in Chennai for selected ${partner.name} products. Availability depends on the current supply arrangement, product, grade, pack size, MOQ and delivery location. Share your company, application, quantity and timeline so the team can confirm the appropriate next step.`],

@@ -81,7 +81,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
                 ? <span className={styles.brandLogoBadge} title={product.brand} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand]} alt={`${product.brand} logo`} loading="lazy"/></span>
                 : <span>{product.brand || (active === "indian" ? "Indian range" : "Imported range")}</span>}
             </div>
-            <div><small>{categoryFor(product)}</small><h3>{product.name}</h3>{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>
+            <div><small>{categoryFor(product)}</small><h3>{product.name}</h3>{product.cocoaPercentage && <p>{product.cocoaPercentage}</p>}{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>
           </Link>)}</div>
           <button className={styles.collapseButton} type="button" onClick={event => collapseInPlace(event, groupKey)}>Collapse {group.category}<span aria-hidden="true">↑</span></button>
         </div>

@@ -177,7 +177,15 @@ export const productMenuGroupsByIndustrySlug = {
   ]
 };
 
-export const slugify = (value) => value.toLowerCase().replace(/&/g, "and").replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+export const slugify = (value) => value
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .toLowerCase()
+  .replace(/&/g, "and")
+  .replace(/\((malchoc[^)]*)\)/g, "$1")
+  .replace(/\([^)]*\)/g, "")
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-|-$/g, "");
 
 approvedRangeProducts.forEach((item) => {
   const industry = industries.find((entry) => entry.slug === item.industrySlug);
@@ -190,7 +198,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
   const approved = approvedRangeProducts.find((item) => item.name === name);
   if (!productMap.has(slug)) productMap.set(slug, {
     slug, name, industrySlug: industry.slug, category: industry.name, image: productImageByName[name] || industry.image,
-    brand: approved?.brand, range: approved?.range, packs: approved?.packs, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[industry.slug]?.find((group) => group.ingredients.includes(name))?.name || industry.name,
+    brand: approved?.brand, range: approved?.range, packs: approved?.packs, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[industry.slug]?.find((group) => group.ingredients.includes(name))?.name || industry.name,
     summary: `${name} for consistent food production`,
     description: approved?.description || `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
   });
