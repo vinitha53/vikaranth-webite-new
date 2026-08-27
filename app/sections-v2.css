@@ -1950,10 +1950,9 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   to{opacity:1;transform:scale(1)}
 }
 @media(max-width:720px){
-  .floating-site-dock{gap:8px}
-  .floating-site-dock-left{left:14px!important}
-  .floating-site-dock-right{right:14px}
-  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:50px;height:50px}
+  .floating-site-dock-left{display:none}
+  .floating-site-dock-right{top:auto;right:12px!important;bottom:12px!important;left:12px!important;display:flex;width:auto;justify-content:flex-end;flex-direction:row;gap:8px;transform:none}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:48px;height:48px}
 }
 @media(max-height:700px) and (min-width:721px){
   .floating-site-dock{gap:7px}
@@ -1962,10 +1961,8 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .floating-site-dock .floating-site-button,.floating-site-chatbot{width:56px;height:56px}
 }
 @media(max-width:420px){
-  .floating-site-dock{gap:6px}
-  .floating-site-dock-left{left:10px!important}
-  .floating-site-dock-right{right:10px}
-  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:46px;height:46px}
+  .floating-site-dock-right{right:8px!important;bottom:8px!important;left:8px!important;gap:6px}
+  .floating-site-dock .floating-site-button,.floating-site-chatbot{width:44px;height:44px}
 }
 @media(max-height:560px){
   .floating-site-dock{gap:5px}
