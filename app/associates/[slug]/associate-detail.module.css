@@ -63,3 +63,97 @@
   .productsSection .productCardContent span{margin-top:10px;font-size:9px;gap:4px}
   .productsSection .productCardContent span svg{width:12px}
 }
+
+/* Complete responsive supplier template: desktop through small phones. */
+.page,.page *{box-sizing:border-box}.page img{max-width:100%}.page h1,.page h2,.page h3,.page p,.page a,.page strong{overflow-wrap:anywhere}.page button,.page input,.page select,.page textarea{font:inherit}
+@media(max-width:1200px){
+  .wrap{width:min(1120px,calc(100% - 40px))}
+  .heroGrid{grid-template-columns:minmax(0,.95fr) minmax(380px,1.05fr);gap:46px}
+  .section{padding:82px 0}
+  .aboutFeatureGrid{gap:44px}
+  .applicationFeatureCard{padding:19px;gap:15px}
+  .applicationFeatureCard img{width:88px;height:88px;flex-basis:88px}
+  .applicationFeatureCard h3{font-size:16px}
+}
+@media(max-width:960px){
+  .wrap{width:min(820px,calc(100% - 36px))}
+  .hero{padding-bottom:68px}
+  .heroGrid{grid-template-columns:1fr;gap:44px}
+  .visual{width:min(720px,100%)}
+  .section{padding:72px 0}
+  .enquiryRangeHeader{gap:22px;margin-bottom:30px}
+  .enquiryRangeHeader>a{min-height:54px;padding:0 22px}
+  .aboutFeatureGrid{gap:34px}
+  .enquiryGrid{gap:34px}
+  .enquiryIntro{max-width:720px}
+  .technicalNote{padding:23px}
+}
+@media(max-width:680px){
+  .wrap{width:calc(100% - 24px)}
+  .section{padding:56px 0}
+  .sectionHead{margin-bottom:28px}
+  .sectionHead h2,.enquiryRangeHeader h2,.aboutFeatureCopy h2,.enquiryIntro h2{font-size:clamp(29px,9vw,36px);line-height:1.08}
+  .sectionHead p,.enquiryRangeHeader p,.aboutFeatureCopy p{margin-top:14px;font-size:13px;line-height:1.65}
+  .enquiryRangeHeader{display:block;margin-bottom:25px}
+  .enquiryRangeHeader>a{width:100%;min-height:48px;margin-top:18px;padding:0 17px;justify-content:center;font-size:12px}
+  .productsAssurance{margin-top:28px;padding-top:15px;gap:12px}
+  .productsAssurance>svg{width:27px;height:27px;flex-basis:27px}
+  .productsAssurance span{font-size:11px;line-height:1.5}
+  .productsAssurance b{margin-left:39px;font-size:10px}
+  .aboutSupplierLogo{min-height:60px;margin-top:18px;padding:10px 14px}
+  .aboutSupplierLogo img{width:50px;height:38px}
+  .aboutProfileLink{min-height:44px;margin-top:13px}
+  .applicationFeatureCard p{font-size:11px}
+  .aboutAssurance{margin-top:28px;padding:17px;gap:13px}
+  .aboutAssurance span{font-size:12px;line-height:1.5}
+  .technicalNote{padding:18px 16px;gap:12px;border-radius:13px}
+  .technicalNote>svg{width:24px;height:24px;flex-basis:24px}
+  .technicalNote strong{font-size:13px}
+  .technicalNote p{font-size:11px;line-height:1.6}
+  .applicationGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .applicationCard{min-height:122px;padding:15px;border-radius:12px}
+  .applicationCard strong{font-size:13px;line-height:1.3}
+  .faqList summary{min-height:56px;padding:17px 47px 17px 12px;font-size:12px;line-height:1.45}
+  .faqList summary:after{top:10px;right:9px;width:34px;height:34px}
+  .faqList p{margin:0 12px 18px;font-size:11px;line-height:1.65}
+  .enquiryGrid{gap:27px}
+  .enquiryIntro p{font-size:13px}
+  .enquiryIntro ul{margin-top:18px;gap:9px}
+  .enquiryIntro li{align-items:flex-start;font-size:10px;line-height:1.45}
+  .enquiryForm{min-height:0;padding:18px;border-radius:15px}
+  .enquiryForm legend{margin-bottom:18px;font-size:17px}
+  .fieldGrid{gap:12px}
+  .fieldGrid input,.fieldGrid select,.fieldGrid textarea{min-height:46px;font-size:16px}
+  .fileField{padding:14px 12px 14px 43px}
+}
+@media(max-width:420px){
+  .wrap{width:calc(100% - 20px)}
+  .section{padding:48px 0}
+  .hero h1{font-size:clamp(32px,10.5vw,42px)!important}
+  .heroCopy>p{font-size:12px!important;line-height:1.58!important}
+  .primaryButton{min-height:44px!important;padding:0 14px!important;font-size:11px!important}
+  .heroTrust{gap:8px!important}
+  .heroTrust span{font-size:9px}
+  .productsSection .productGrid{gap:8px}
+  .productsSection .productCard{min-height:0}
+  .productsSection .productCardContent{padding:10px 8px}
+  .productsSection .productCardContent h3{font-size:13px}
+  .productsSection .productCardContent span{font-size:8px}
+  .applicationFeatureCard{min-height:118px;padding:13px;gap:11px}
+  .applicationFeatureCard img{width:68px;height:68px;flex-basis:68px}
+  .applicationFeatureCard h3{margin-bottom:6px;font-size:14px}
+  .aboutAssurance a{min-height:44px;padding:0 14px}
+  .applicationCard{min-height:108px;padding:12px}
+  .applicationCard strong{font-size:12px}
+  .technicalNote{display:grid;grid-template-columns:24px 1fr}
+  .enquiryForm{padding:15px 13px}
+}
+@media(max-width:350px){
+  .wrap{width:calc(100% - 16px)}
+  .productsSection .productGrid{gap:6px}
+  .productsSection .productCardContent small{font-size:7px}
+  .productsSection .productCardContent h3{font-size:12px}
+  .applicationGrid{grid-template-columns:1fr}
+  .heroTrust{grid-template-columns:1fr!important}
+  .heroTrust span:last-child{grid-column:auto!important}
+}
