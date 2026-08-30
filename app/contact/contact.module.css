@@ -499,3 +499,78 @@
 @media(max-width:520px){
   .enquiryAnimationStage{padding:22px 12px 58px}
 }
+
+/* Professional contact form alignment refinement. */
+.professionalForm{border-color:#ddcabb;border-radius:16px;box-shadow:0 24px 70px rgba(55,30,15,.12)}
+.professionalForm:before{height:6px;background:linear-gradient(90deg,#7b3517,#b35c2b 55%,#d7975c)}
+.enquiryFields{padding:30px 36px 8px}
+.formSectionTitle{margin-bottom:24px}
+.formSectionTitle>span{width:38px;height:38px;background:linear-gradient(145deg,#f8eadf,#edcfb8);box-shadow:inset 0 0 0 1px rgba(139,65,31,.08)}
+.formSectionTitle b{font-size:14px}
+.formSectionTitle small{font-size:11px}
+.professionalFieldGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 20px}
+.professionalForm .professionalField{min-width:0;gap:9px;font-size:12px}
+.fieldLabel{min-height:18px}
+.professionalForm .fieldControl input,.professionalForm .fieldControl select{height:56px;border-radius:10px}
+.professionalForm .fieldControl input,.professionalForm .fieldControl select,.professionalForm .fieldControl textarea{border-color:#d8c7ba;background:#fffdfb;font-size:14px;box-shadow:0 1px 0 rgba(72,41,23,.02)}
+.professionalForm .fieldControl:not(:has(>svg:first-child)) input,.professionalForm .fieldControl:not(:has(>svg:first-child)) select{padding-left:18px}
+.professionalForm .fieldControl>svg:first-child{left:16px;color:#a65b34}
+.messageSection{margin-top:27px;padding:27px 36px 4px;border-top:1px solid #eee2d8}
+.professionalForm .messageField{width:100%}
+.professionalForm .fieldControl textarea{min-height:175px;border-radius:10px;padding:17px 46px;line-height:1.65}
+.formSubmitArea{margin-top:30px;padding:24px 36px 26px;gap:30px;background:linear-gradient(180deg,#fcfaf7,#f7f1eb)}
+.professionalForm .consent{font-size:11.5px!important}
+.professionalForm .consent input{width:18px!important;height:18px!important}
+.professionalForm .professionalSubmit{min-width:220px;min-height:56px;border-radius:10px;background:linear-gradient(135deg,#713315,#93451f);font-size:13px}
+@media(max-width:1100px) and (min-width:721px){
+  .enquiryFields{padding-right:28px;padding-left:28px}
+  .professionalFieldGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .messageSection{padding-right:28px;padding-left:28px}
+  .formSubmitArea{grid-template-columns:minmax(0,1fr) auto;padding-right:28px;padding-left:28px}
+  .professionalForm .professionalSubmit{width:auto}
+}
+@media(max-width:720px){
+  .professionalForm{border-radius:12px}
+  .enquiryFields{padding:26px 22px 6px}
+  .professionalFieldGrid{grid-template-columns:1fr;gap:19px}
+  .messageSection{margin-top:22px;padding:23px 22px 4px}
+  .professionalForm .fieldControl input,.professionalForm .fieldControl select{height:54px}
+  .professionalForm .fieldControl textarea{min-height:155px}
+  .formSubmitArea{grid-template-columns:1fr;padding:22px;gap:20px}
+  .professionalForm .professionalSubmit{width:100%;min-width:0}
+}
+@media(max-width:420px){
+  .enquiryFields{padding-right:17px;padding-left:17px}
+  .messageSection{padding-right:17px;padding-left:17px}
+  .formSectionTitle{align-items:flex-start}
+  .formSectionTitle>span{width:34px;height:34px;flex:0 0 34px}
+  .professionalForm .fieldControl input,.professionalForm .fieldControl select,.professionalForm .fieldControl textarea{font-size:16px}
+  .professionalForm .fieldControl textarea{min-height:145px}
+  .formSubmitArea{padding:20px 17px}
+}
+/* Single Chennai office card. */
+.officeGrid{grid-template-columns:minmax(0,780px);justify-content:center}
+@media(max-width:900px){.officeGrid{grid-template-columns:minmax(0,1fr)}}
+/* Search- and buyer-focused contact summary. */
+.searchIntentSection{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:34px;width:min(1180px,calc(100% - 48px));margin:82px auto 26px;align-items:stretch}
+.searchIntentIntro{padding:44px 46px;border:1px solid #e2d2c3;border-radius:22px;background:linear-gradient(145deg,#fff 0%,#fffaf4 100%);box-shadow:0 20px 55px rgba(59,31,16,.08)}
+.searchIntentIntro h2{max-width:720px;margin:13px 0 18px;color:#26160e;font:800 clamp(34px,4vw,52px)/1.07 'Manrope','Segoe UI',sans-serif;letter-spacing:-.045em;text-wrap:balance}
+.searchIntentIntro p{max-width:790px;margin:0;color:#6b5a4f;font-size:15px;line-height:1.78}
+.searchIntentIntro p strong{color:#402619;font-weight:750}
+.searchIntentLinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.searchIntentLinks a{display:inline-flex;min-height:44px;padding:0 17px;align-items:center;justify-content:center;gap:8px;border:1px solid #d8b89f;border-radius:999px;color:#793818;font:750 11px/1.2 'Manrope','Segoe UI',sans-serif;text-decoration:none;transition:border-color .2s ease,background .2s ease,transform .2s ease}
+.searchIntentLinks a:hover{border-color:#b9602e;background:#fff2e5;transform:translateY(-2px)}
+.searchIntentLinks svg{width:15px;height:15px}
+.enquiryGuide{display:grid;grid-template-columns:48px minmax(0,1fr);padding:36px 32px;align-content:start;gap:0 15px;border:1px solid #6e3218;border-radius:22px;background:radial-gradient(circle at 92% 10%,rgba(225,146,80,.22),transparent 30%),linear-gradient(145deg,#2b140a,#4d2412);box-shadow:0 24px 60px rgba(53,25,10,.2);color:#fff}
+.enquiryGuide>span{display:grid;width:48px;height:48px;grid-row:1;place-items:center;border:1px solid rgba(255,255,255,.2);border-radius:14px;background:rgba(255,255,255,.09)}
+.enquiryGuide>span svg{width:23px;height:23px;color:#efb477}
+.enquiryGuide small{display:block;margin:2px 0 6px;color:#e8a96d;font:800 9px/1.2 'Manrope';letter-spacing:.14em;text-transform:uppercase}
+.enquiryGuide h3{margin:0;font:800 20px/1.22 'Manrope','Segoe UI',sans-serif}
+.enquiryGuide ul{grid-column:1/-1;display:grid;gap:13px;margin:28px 0 22px;padding:0;list-style:none}
+.enquiryGuide li{display:grid;grid-template-columns:20px 1fr;gap:9px;color:#eaded5;font-size:12px;line-height:1.55}
+.enquiryGuide li svg{width:18px;height:18px;color:#e7a164}
+.enquiryGuide>p{grid-column:1/-1;display:flex;margin:0;padding-top:18px;align-items:flex-start;gap:9px;border-top:1px solid rgba(255,255,255,.13);color:#cbb8ab;font-size:10px;line-height:1.5}
+.enquiryGuide>p svg{width:16px;height:16px;flex:0 0 16px;color:#e7a164}
+@media(max-width:900px){.searchIntentSection{grid-template-columns:1fr;width:min(760px,calc(100% - 40px));margin-top:62px}.searchIntentIntro{padding:38px}.enquiryGuide{padding:34px}}
+@media(max-width:560px){.searchIntentSection{width:calc(100% - 24px);margin-top:46px;gap:18px}.searchIntentIntro{padding:29px 22px;border-radius:16px}.searchIntentIntro h2{font-size:32px}.searchIntentIntro p{font-size:14px;line-height:1.68}.searchIntentLinks{display:grid;grid-template-columns:1fr;margin-top:23px}.searchIntentLinks a{width:100%}.enquiryGuide{padding:27px 22px;border-radius:16px}.enquiryGuide h3{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.searchIntentLinks a{transition:none}.searchIntentLinks a:hover{transform:none}}
