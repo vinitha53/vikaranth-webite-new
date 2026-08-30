@@ -16,13 +16,13 @@ export const metadata = {
     title: "Food Ingredient Manufacturer & Supplier Portfolios | Vikranth",
     description: "Explore 12 ingredient portfolios available for enquiry through Vikranth. Request current product information, documents and B2B pricing.",
     siteName: "Vikranth Chemical Corporation", locale: "en_IN",
-    images: [{ url: "/ingredient-portfolio.png", alt: "Vikranth food ingredient partner network" }],
+    images: [{ url: "/ingredient-portfolio.webp", alt: "Vikranth food ingredient partner network" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Food Ingredient Manufacturer & Supplier Portfolios | Vikranth",
     description: "Browse manufacturer and supplier portfolios for bakery, chocolate, dairy, beverage and specialty food ingredient enquiries.",
-    images: ["/ingredient-portfolio.png"],
+    images: ["/ingredient-portfolio.webp"],
   },
 };
 

@@ -7,7 +7,7 @@ export default function MascotCharacter({ state = "idle" }) {
     <div className={styles.cocoaBeanMascot} data-state={state} aria-hidden="true">
       <div className={styles.cocoaBeanWalkSprite} data-cocoa-walk="true" />
       <img
-        src="/contact/cocoa-bean-three-quarter.png"
+        src="/contact/cocoa-bean-three-quarter.webp"
         alt=""
         width="379"
         height="694"
@@ -16,7 +16,7 @@ export default function MascotCharacter({ state = "idle" }) {
         data-cocoa-three-quarter="true"
       />
       <img
-        src="/cocoa-bean-character.png"
+        src="/cocoa-bean-character.webp"
         alt=""
         width="1254"
         height="1254"
@@ -25,7 +25,7 @@ export default function MascotCharacter({ state = "idle" }) {
         data-cocoa-front="true"
       />
       <img
-        src="/contact/cocoa-bean-front-blink.png"
+        src="/contact/cocoa-bean-front-blink.webp"
         alt=""
         width="1254"
         height="1254"

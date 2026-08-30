@@ -235,9 +235,9 @@ export default function CocoaMascot({
       <div className={styles.message} aria-live="polite">{message}</div>
       <button className={styles.character} ref={characterRef} type="button" aria-label="Make the cocoa guide react">
         <span className={styles.poseStage}>
-          <img className={`${styles.pose} ${styles.threeQuarter}`} src="/contact/cocoa-bean-three-quarter.png" alt="" draggable="false" />
-          <img className={`${styles.pose} ${styles.front}`} src="/cocoa-bean-character.png" alt="" draggable="false" />
-          <img className={`${styles.pose} ${styles.blink}`} src="/contact/cocoa-bean-front-blink.png" alt="" draggable="false" />
+          <img className={`${styles.pose} ${styles.threeQuarter}`} src="/contact/cocoa-bean-three-quarter.webp" alt="" draggable="false" />
+          <img className={`${styles.pose} ${styles.front}`} src="/cocoa-bean-character.webp" alt="" draggable="false" />
+          <img className={`${styles.pose} ${styles.blink}`} src="/contact/cocoa-bean-front-blink.webp" alt="" draggable="false" />
           <i className={`${styles.pupil} ${styles.pupilLeft}`} aria-hidden="true" />
           <i className={`${styles.pupil} ${styles.pupilRight}`} aria-hidden="true" />
           <i className={styles.waveTrail} aria-hidden="true" />

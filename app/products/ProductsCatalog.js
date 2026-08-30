@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./products.module.css";
 
 const cocoaStages = [
-  { name: "Cocoa bean", note: "The origin", image: "/contact/cocoa-bean-three-quarter.png", className: styles.bean },
+  { name: "Cocoa bean", note: "The origin", image: "/contact/cocoa-bean-three-quarter.webp", className: styles.bean },
   { name: "Cocoa mass", note: "The foundation", image: "/partner-products/Campco/Cocoa Mass.webp", className: styles.mass },
   { name: "Choco paste", note: "The application", image: "/choco-paste-cutout.webp", className: styles.paste },
 ];

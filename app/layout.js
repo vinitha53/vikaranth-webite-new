@@ -1,9 +1,17 @@
 import "./globals.css";
 import "./sections-v2.css";
+import "./responsive.css";
 import FloatingIconDock from "./components/FloatingIconDock";
 import GlobalCocoaGuide from "./components/GlobalCocoaGuide";
 
 const siteUrl = "https://www.vikranthchem.com";
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#fbf8f3",
+};
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,7 +43,7 @@ export default function RootLayout({ children }) {
       name: "Vikranth Chemical Corporation",
       alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       url: siteUrl,
-      logo: `${siteUrl}/logo-vikranth.png`,
+      logo: `${siteUrl}/logo-vikranth.webp`,
       description: "Vikranth Chemical Corporation is a Chennai-based B2B supplier of bakery, chocolate, dairy, beverage and specialty food ingredients.",
       taxID: "33AADFV9327N1ZO",
       telephone: "+91-87544-42924",

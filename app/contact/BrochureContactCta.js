@@ -61,7 +61,7 @@ export default function BrochureContactCta() {
         </div>
 
         <a className={`${styles.whatsappQrCard} ${styles.brochureQrCard}`} ref={qrRef} href={BROCHURE_URL} target="_blank" rel="noopener noreferrer" aria-label="Open the VCC ingredient brochure in a new tab">
-          <img className={styles.whatsappQrImage} src="/contact/vcc-brochure-qr.png" alt="Scan to open the VCC ingredient brochure" width="984" height="984" loading="lazy" decoding="async" />
+          <img className={styles.whatsappQrImage} src="/contact/vcc-brochure-qr.webp" alt="Scan to open the VCC ingredient brochure" width="984" height="984" loading="lazy" decoding="async" />
           <span><FileText aria-hidden="true" /> Scan to view the VCC brochure</span>
         </a>
       </div>

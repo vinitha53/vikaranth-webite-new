@@ -32,7 +32,7 @@ const cardCopy = {
   doehler: "Natural ingredients, flavours and integrated food and beverage systems for modern formulations.",
   "cp-kelco": "Nature-based hydrocolloids for texture, suspension, stability and formulation performance.",
   "calpro-specialities-pvt-ltd": "Cocoa powders, dairy proteins and practical food ingredient solutions for manufacturers.",
-  "gujarat-ambuja-exports-ltd": "Sorbitol, starch derivatives and agro-processing ingredients for industrial applications.",
+  "gujarat-ambuja-exports-ltd": "Sorbitol 70% solution, starch derivatives and agro-processing ingredients for industrial applications.",
   "fine-organics": "Specialty additives and food emulsifiers engineered for reliable processing performance.",
   "shree-gluco-biotech-pvt-ltd": "Starch-derived sweeteners and carbohydrate ingredients for professional food production.",
   "paramesu-biotech-ltd": "Maize starch and derivative solutions for bakery and wider food manufacturing needs.",

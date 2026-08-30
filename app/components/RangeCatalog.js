@@ -10,20 +10,20 @@ import { mec3ProductCount } from "../data/mec3-catalog";
 const MEC3_FILTER = "__mec3_catalog__";
 
 const brandLogos = {
-  Callebaut: "/brand-logos/callebaut.png",
-  "Cacao Barry": "/brand-logos/cacao-barry.png",
-  "Molino Dallagiovanna": "/brand-logos/molino-dallagiovanna.png",
-  "DLA Naturals": "/brand-logos/dla-naturals.png",
-  MEC3: "/brand-logos/mec3.png",
-  "Elle & Vire Professionnel": "/brand-logos/elle-vire.png",
-  Corman: "/brand-logos/corman.png",
-  DIRA: "/brand-logos/dira.png",
-  Switz: "/brand-logos/switz.png",
-  ARYZTA: "/brand-logos/aryzta.png",
-  Pernigotti: "/brand-logos/pernigotti.png",
-  Sosa: "/brand-logos/sosa-clean.png",
-  Celebre: "/brand-logos/celebre.png",
-  "CSM / Ulmer Spatz": "/brand-logos/csm-clean.png",
+  Callebaut: "/brand-logos/callebaut.webp",
+  "Cacao Barry": "/brand-logos/cacao-barry.webp",
+  "Molino Dallagiovanna": "/brand-logos/molino-dallagiovanna.webp",
+  "DLA Naturals": "/brand-logos/dla-naturals.webp",
+  MEC3: "/brand-logos/mec3.webp",
+  "Elle & Vire Professionnel": "/brand-logos/elle-vire.webp",
+  Corman: "/brand-logos/corman.webp",
+  DIRA: "/brand-logos/dira.webp",
+  Switz: "/brand-logos/switz.webp",
+  ARYZTA: "/brand-logos/aryzta.webp",
+  Pernigotti: "/brand-logos/pernigotti.webp",
+  Sosa: "/brand-logos/sosa-clean.webp",
+  Celebre: "/brand-logos/celebre.webp",
+  "CSM / Ulmer Spatz": "/brand-logos/csm-clean.webp",
 };
 
 export default function RangeCatalog({ products, indianNames = [], supplierMode = false, categoryField = "usageCategory", mec3Catalog = false }) {

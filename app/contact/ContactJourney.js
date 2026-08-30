@@ -12,10 +12,10 @@ import styles from "./contact.module.css";
 gsap.registerPlugin(useGSAP);
 
 const CHARACTER_ASSETS = [
-  "/contact/cocoa-bean-side-walk-sprite-transparent.png",
-  "/contact/cocoa-bean-three-quarter.png",
-  "/cocoa-bean-character.png",
-  "/contact/cocoa-bean-front-blink.png",
+  "/contact/cocoa-bean-side-walk-sprite-transparent.webp",
+  "/contact/cocoa-bean-three-quarter.webp",
+  "/cocoa-bean-character.webp",
+  "/contact/cocoa-bean-front-blink.webp",
 ];
 
 // Rightmost visible point of the presenting hand in the square front-pose asset.

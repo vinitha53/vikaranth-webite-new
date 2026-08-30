@@ -45,7 +45,7 @@ const productGroups = [
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
-    "Beverage Flavours": ["Flavours & Natural Ingredients"], "Beverage Bases": ["Chocolate Drink"]
+    "Beverage Flavours": ["Natural Food and Beverage Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
   { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
@@ -59,7 +59,7 @@ const productGroups = [
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
-    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Sorbitol", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame"],
+    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame Powder"],
     "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
   { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
@@ -76,7 +76,7 @@ const productGroups = [
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
     "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
     "Hydrocolloids": ["Xanthan Gum", "Guar Gum", "Sodium CMC"],
-    "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame", "Malt Extract Powder"],
+    "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame Powder", "Malt Extract Powder"],
     "Starches & Functional Ingredients": ["Potato Starch", "Vital Wheat Gluten", "Whey Protein", "Soya Protein"],
     "Leavening & Baking Ingredients": ["Ammonium Bicarbonate", "Baking Powder", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"],
     "Minerals & Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"],
@@ -95,7 +95,7 @@ const productCategories = productGroups.map((group, index) => ({
   href: `/industries/${industrySlugs[index]}`
 }));
 
-const ecosystemImage = "/ingredient-portfolio.png";
+const ecosystemImage = "/ingredient-portfolio.webp";
 const ecosystemCategories = [
   { number: "01", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 0 },
   { number: "02", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 1 },
@@ -111,18 +111,18 @@ const ecosystemCategories = [
 ];
 
 const associates = [
-  { name: "CAMPCO", logo: "/partners/campco-heart.png" },
-  { name: "Delta Nutritives", logo: "/partners/delta.png" },
-  { name: "Roquette", logo: "/partners/roquette.png" },
-  { name: "Nitta Gelatin India", logo: "/partners/nitta.png" },
-  { name: "Döhler", logo: "/partners/doehler.png" },
-  { name: "CP Kelco", logo: "/partners/cp-kelco.png" },
-  { name: "Calpro Specialities Pvt. Ltd.", logo: "/partners/calpro.png" },
-  { name: "Gujarat Ambuja Exports Ltd.", logo: "/partners/ambuja.png" },
-  { name: "Fine Organics", logo: "/partners/fine-organics.png" },
-  { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.png" },
-  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.png" },
-  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.png" }
+  { name: "CAMPCO", logo: "/partners/campco-heart.webp" },
+  { name: "Delta Nutritives", logo: "/partners/delta.webp" },
+  { name: "Roquette", logo: "/partners/roquette.webp" },
+  { name: "Nitta Gelatin India", logo: "/partners/nitta.webp" },
+  { name: "Döhler", logo: "/partners/doehler.webp" },
+  { name: "CP Kelco", logo: "/partners/cp-kelco.webp" },
+  { name: "Calpro Specialities Pvt. Ltd.", logo: "/partners/calpro.webp" },
+  { name: "Gujarat Ambuja Exports Ltd.", logo: "/partners/ambuja.webp" },
+  { name: "Fine Organics", logo: "/partners/fine-organics.webp" },
+  { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.webp" },
+  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.webp" },
+  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.webp" }
 ];
 const partnerSlugs = ["campco","delta-nutritives","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd","anchor"];
 
@@ -142,7 +142,7 @@ const ingredientInsights = [
 function Logo({ light = false }) {
   return (
     <a className={`logo ${light ? "light" : ""}`} href="#home" aria-label="Vikranth home">
-      <img className="brand-logo-image" src="/logo-vikranth.png" alt="VCC — Vikranth Chemical Corporation" width="156" height="73" decoding="async" />
+      <img className="brand-logo-image" src="/logo-vikranth.webp" alt="VCC — Vikranth Chemical Corporation" width="156" height="73" decoding="async" />
     </a>
   );
 }
@@ -228,8 +228,8 @@ function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
 function BotanicalCorners() {
   return (
     <div className="botanical-corners" aria-hidden="true">
-      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.png" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
-      <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.png" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
+      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
+      <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
     </div>
   );
 }
@@ -599,7 +599,7 @@ export default function Home() {
           loop
           playsInline
           preload="metadata"
-          poster="/hero-chocolate-poster.jpg"
+          poster="/hero-chocolate-poster.webp"
           aria-hidden="true"
         >
           <source src="/hero-chocolate-ingredients.mp4" type="video/mp4" />
@@ -645,7 +645,7 @@ export default function Home() {
             </div>
           </div>
           <div className="portfolio-visual">
-            <img src="/ingredient-portfolio.png" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" width="1821" height="864" loading="lazy" decoding="async" />
+            <img src="/ingredient-portfolio.webp" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" width="1821" height="864" loading="lazy" decoding="async" />
             <div className="portfolio-overlay">
               <span>Application-led sourcing</span>
               <strong>From ingredient to finished product.</strong>
@@ -690,7 +690,7 @@ export default function Home() {
           <div className="about-grid">
           <div className="about-visual">
             <div className="lab-stage about-video-stage">
-              <img src="/home-about.png" alt="Ingredient sourcing team reviewing food ingredients" width="1448" height="1086" loading="lazy" decoding="async"/>
+              <img src="/home-about.webp" alt="Ingredient sourcing team reviewing food ingredients" width="1448" height="1086" loading="lazy" decoding="async"/>
               <div className="about-video-shade"></div>
             </div>
             <div className="about-caption"><span className="about-since"><BadgeCheck/><b>GST registered</b></span><i/><p>GSTIN 33AADFV9327N1ZO · Product and relationship details confirmed per enquiry.</p></div>
@@ -833,7 +833,7 @@ export default function Home() {
             onBlur={() => setTestimonialPaused(false)}
           >
             <figure className="testimonial-professional-image">
-              <img src="/home-testimonial.png" alt="Food professionals reviewing ingredient samples" width="1122" height="1402" loading="lazy" decoding="async" />
+              <img src="/home-testimonial.webp" alt="Food professionals reviewing ingredient samples" width="1122" height="1402" loading="lazy" decoding="async" />
               <figcaption><BadgeCheck size={17}/> Trusted ingredient support for professional food businesses</figcaption>
             </figure>
             <div className="testimonial-carousel" aria-live="polite">

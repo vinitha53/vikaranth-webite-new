@@ -117,7 +117,7 @@ export default async function ProductPage({ params }) {
               <div className={styles.partnerPanel} data-partner-badge>
                 <span>{productPartners.length ? (productPartners.length > 1 ? "Available partner brands" : "Product partner") : "Supplied by"}</span>
                 <div className={styles.partnerLogos}>
-                  {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}`} key={partner.slug} title={`View ${partner.name}`}><img src={partner.logo} alt={`${partner.name} supplier logo`} /><strong>{product.brand && product.brand !== partner.name ? <><span className={styles.principalBrand}>{product.brand}</span><small>via {partner.name}</small></> : partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.png" alt="Vikranth Chemical Corporation" /><strong>Vikranth sourced</strong></div>}
+                  {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}`} key={partner.slug} title={`View ${partner.name}`}><img src={partner.logo} alt={`${partner.name} supplier logo`} /><strong>{product.brand && product.brand !== partner.name ? <><span className={styles.principalBrand}>{product.brand}</span><small>via {partner.name}</small></> : partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" /><strong>Vikranth sourced</strong></div>}
                 </div>
               </div>
             </div>

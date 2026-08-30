@@ -341,7 +341,7 @@
 .mascotStageSurface{display:none}
 .mascotEntranceMover{z-index:4;inset:16px -5% 0;opacity:1;transform-origin:62% 100%;pointer-events:none;will-change:auto}
 .cocoaBeanMascot{position:relative;width:100%;height:100%;filter:drop-shadow(0 20px 16px rgba(65,31,13,.16));pointer-events:none}
-.cocoaBeanWalkSprite{position:absolute;z-index:3;bottom:0;left:50%;height:min(650px,90%);aspect-ratio:3/4;background-image:url('/contact/cocoa-bean-side-walk-sprite-transparent.png');background-repeat:no-repeat;background-position:0 0;background-size:400% 200%;transform:translateX(-50%);will-change:auto}
+.cocoaBeanWalkSprite{position:absolute;z-index:3;bottom:0;left:50%;height:min(650px,90%);aspect-ratio:3/4;background-image:url('/contact/cocoa-bean-side-walk-sprite-transparent.webp');background-repeat:no-repeat;background-position:0 0;background-size:400% 200%;transform:translateX(-50%);will-change:auto}
 .cocoaBeanMascot img{position:absolute;z-index:2;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;user-select:none;will-change:auto}
 .cocoaBeanMascot .cocoaBeanPose{left:15%;width:70%}
 .cocoaBeanFront{z-index:2}

@@ -6,10 +6,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./detail.module.css";
 
 const productImages = {
-  "Cake Gel": "/product-images/other-products/cake-gel.png",
-  "Cake Life": "/product-images/other-products/cake-life.png",
-  "Eggless Cake Premix": "/popular-cake-premix.png",
-  "Custard Powder": "/product-images/other-products/custard-powder.png"
+  "Cake Gel": "/product-images/other-products/cake-gel.webp",
+  "Cake Life": "/product-images/other-products/cake-life.webp",
+  "Eggless Cake Premix": "/popular-cake-premix.webp",
+  "Custard Powder": "/product-images/other-products/custard-powder.webp"
 };
 
 export default function BakeryCategoryShowcase({ groups, products, categoryLabel = "Bakery", fallbackImage = "/products/bakery-ingredients.webp" }) {
