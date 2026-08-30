@@ -3,10 +3,10 @@ export const industryContent = {
     title: "Bakery Ingredients Supplier in Chennai & India | Vikranth",
     description: "Buy bakery ingredients for cakes, bread, biscuits and pastry. Chennai-based B2B sourcing, technical documents, bulk enquiries and India delivery support.",
     h1: "Bakery Ingredients Supplier in Chennai for Commercial Production",
-    summary: "Vikranth supplies bakery ingredients for cakes, breads, biscuits, cookies, crackers, pastries and desserts. The range includes cake gel, eggless cake premix, baking powder, MACP, bread improver, cake syrup and mould-control preservatives, with grade and availability confirmed per enquiry.",
+    summary: "Vikranth supplies bakery ingredients for cakes, breads, biscuits, cookies, crackers, pastries and desserts. The range includes cake gel, baking powder, MACP, bread improver, cake syrup and mould-control preservatives, with grade and availability confirmed per enquiry.",
     introduction: "Commercial bakeries need repeatable volume, crumb structure, softness, processing tolerance and shelf-life performance. Vikranth supports Chennai bakeries and food manufacturers across India with ingredient matching based on finished product, production method, preferred brand or grade, batch size and documentation needs. Final dosage and suitability should be validated in a controlled trial using the manufacturer's technical guidance.",
     applications: [
-      ["Cakes and muffins", "Cake gel, eggless cake premix, baking powder, MACP, custard powder and syrups for aeration, leavening, body and flavour systems."],
+      ["Cakes and muffins", "Cake gel, baking powder, MACP, custard powder and syrups for aeration, leavening, body and flavour systems."],
       ["Bread and buns", "Bread yield improver, vital wheat gluten and permitted preservatives for dough handling, volume and shelf-life objectives."],
       ["Biscuits and crackers", "Leavening systems, glucose or cake syrups, emulsifiers and functional starches selected for spread, snap, colour and process control."],
       ["Pastry and desserts", "Whipping cream, cream cheese, chocolate, fruit fillings and glaze gel, subject to current availability."],

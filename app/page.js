@@ -32,7 +32,7 @@ const homeFaqs = [
 
 const productGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
-    "Cake Ingredients": ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Custard Powder"],
+    "Cake Ingredients": ["Cake Gel", "Cake Life", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"],
     "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"]
   }},

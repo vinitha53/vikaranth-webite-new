@@ -33,7 +33,7 @@ export const associateContent = {
   },
   doehler: {
     title: "Döhler Ingredients Supplier Chennai & India | Vikranth",
-    description: "Enquire for selected Döhler flavours, fruit ingredients, concentrates, purees, NFC juices and orange oil through Vikranth in Chennai and across India.",
+    description: "Enquire for selected Döhler natural food and beverage ingredients, flavours, fruit ingredients, concentrates, purees and NFC juices through Vikranth in Chennai and across India.",
     h1: "Döhler Natural Food & Beverage Ingredients Supplier in Chennai",
     category: "Natural flavours, fruit ingredients and beverage systems",
     about: "Döhler develops natural taste and flavour solutions, fruit and vegetable ingredients, colours, health ingredients and integrated systems for food and beverages. Vikranth focuses on locally supported products and applications, then routes formulation-led projects to the appropriate sales or technical specialist.",
@@ -89,7 +89,7 @@ export const associateContent = {
   },
   anchor: {
     title: "Anchor Bakery Ingredients Chennai | Vikranth",
-    description: "Explore Vikranth's Anchor cake gel, eggless cake premix, custard powder and baking powder for professional bakery applications. Request samples and bulk pricing.",
+    description: "Explore Vikranth's Anchor cake gel, custard powder and baking powder for professional bakery applications. Request samples and bulk pricing.",
     h1: "Anchor Bakery Ingredients by Vikranth in Chennai",
     category: "Vikranth in-house bakery ingredients",
     about: "Anchor is Vikranth's in-house bakery ingredient range for professional bakery and food-manufacturing applications. Product composition, format, pack size, usage directions, storage, shelf life, allergen information and manufacturing or packing details are confirmed from the approved product information for each enquiry.",

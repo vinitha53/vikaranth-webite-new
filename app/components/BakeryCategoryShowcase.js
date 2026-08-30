@@ -8,7 +8,6 @@ import styles from "./detail.module.css";
 const productImages = {
   "Cake Gel": "/product-images/other-products/cake-gel.webp",
   "Cake Life": "/product-images/other-products/cake-life.webp",
-  "Eggless Cake Premix": "/popular-cake-premix.webp",
   "Custard Powder": "/product-images/other-products/custard-powder.webp"
 };
 

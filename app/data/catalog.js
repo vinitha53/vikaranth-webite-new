@@ -4,7 +4,7 @@ import { approvedRangeProducts } from "./catalog-ranges";
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
 export const industries = [
-  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Eggless Cake Premix","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate"]),
+  group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate"]),
   group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink"]),
   group("dairy-ingredients", "Dairy Ingredients", "Dairy Ingredients", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose"]),
   group("beverage-ingredients", "Beverage Ingredients", "Beverage Ingredients", "/industries/beverage-ingredients.webp", "Flavours, bases and stabilizers for consistent commercial beverage formulation.", ["Natural Food and Beverage Ingredients","Chocolate Drink","Sodium CMC Stabilizer Grade","Sodium CMC Thick Shake Grade"]),
@@ -18,7 +18,7 @@ export const industries = [
 ];
 
 export const bakeryProductGroups = [
-  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
+  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
   { name: "Bread", description: "Ingredients for making bread, buns, pav and rolls with dependable dough performance, yield, texture and freshness.", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate", "Baking Powder"] },
   { name: "Biscuits, Cookies & Crackers", description: "Leavening and sweetening ingredients used in biscuits, cookies and cracker production.", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder", "Cake Syrup"] },
   { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Custard Powder", "Cake Syrup"] }
@@ -109,7 +109,7 @@ export const productGroupsByIndustrySlug = {
 
 export const productMenuGroupsByIndustrySlug = {
   "bakery-ingredients": [
-    { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Eggless Cake Premix", "Custard Powder"] },
+    { name: "Cake Ingredients", ingredients: ["Cake Gel", "Cake Life", "Custard Powder"] },
     { name: "Bread Ingredients", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate"] },
     { name: "Leavening Agents", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"] },
     { name: "Bakery Syrups", ingredients: ["Cake Syrup"] }
