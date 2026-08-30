@@ -6,10 +6,11 @@ import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import ProductQuoteForm from "../../components/ProductQuoteForm";
 import { buildProductFaqs } from "../../data/product-faqs";
 import { getPartner, partnersForProduct } from "../../data/partners";
+import { whatsappNumberForProduct, whatsappUrl } from "../../data/whatsapp";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const supplierOverviewByProduct = {
   "Cake Gel": "Vikranth supports bakeries, cake manufacturers and food businesses sourcing cake gel in Chennai and across India. Cake gel is commonly evaluated as an emulsifying aid for sponge cakes, cupcakes and other aerated bakery products where batter stability, volume, texture and batch consistency are important. Share your recipe, process, required pack size, monthly quantity and delivery location so the team can confirm the available grade, documents, sample options and commercial quotation.",
 };
@@ -70,6 +71,7 @@ export default async function ProductPage({ params }) {
   const mappedPartners = partnersForProduct(product.name);
   const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
+  const whatsappNumber = whatsappNumberForProduct(product, productPartners.map((partner) => partner.slug));
   const supplierOverview = supplierOverviewByProduct[product.name] || `Vikranth supports professional buyers sourcing ${product.name} in Chennai and across India. Share your application, required function, grade, pack size, quantity, documentation needs and delivery location so the team can confirm a suitable available option, current lead time and commercial quotation.`;
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
   const description = `${product.name} for ${industry.name.toLowerCase()} and professional food production. Vikranth Chemical Corporation supports B2B enquiries from Chennai for available grades, pack sizes, samples, documents and bulk quotations.`;
@@ -84,10 +86,10 @@ export default async function ProductPage({ params }) {
     { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai and Pan India`, description, about: { "@id": `${canonicalUrl}#product` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
-  const whatsapp = `https://wa.me/918754442924?text=${encodeURIComponent(`Hi, I need a quotation for ${product.name}.`)}`;
+  const whatsapp = whatsappUrl(whatsappNumber, "Hi, I need a quotation for " + product.name + ".");
 
   return (
-    <main className={styles.page} data-product-page>
+    <main className={styles.page} data-product-page data-whatsapp-number={whatsappNumber}>
       <ProductMotion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <DetailHeader />
@@ -142,7 +144,7 @@ export default async function ProductPage({ params }) {
 
       <section className={styles.quoteSection} id="quote" aria-labelledby="quote-title"><div className={styles.wrap} data-reveal>
         <div className={styles.quoteIntro}><span className={styles.eyebrow}>Request a quotation</span><h2 id="quote-title">Get {product.name} price and availability</h2><p>Share your requirement and continue directly on WhatsApp. We can discuss the application, available grade, pack size, sample and supporting documents.</p><ul><li><Check /> Bulk B2B requirements</li><li><Check /> Product specifications and COA on request</li><li><Check /> Sample availability subject to product and manufacturer</li></ul></div>
-        <ProductQuoteForm product={product.name} applications={applications} />
+        <ProductQuoteForm product={product.name} applications={applications} whatsappNumber={whatsappNumber} />
       </div></section>
 
       <a className={styles.floatWhatsapp} href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Ask about ${product.name} on WhatsApp`}><MessageCircle /></a>

@@ -1872,16 +1872,6 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page .btn:hover svg,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover svg{transform:translateX(4px)}
 .home-page .btn:focus-visible,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:focus-visible{outline:3px solid #efad75!important;outline-offset:5px}
 .home-page .btn:active{transform:translateY(0) scale(.985)!important}
-.home-page .portfolio-toggle{
-  width:max-content;
-  margin-right:auto;
-  margin-left:auto;
-  display:flex;
-}
-
-/* Keep the next section directly below the portfolio toggle. */
-.home-page .product-section{padding-bottom:0}
-
 /* Site-wide centered floating contact and social icon dock */
 .floating-site-dock{
   position:fixed;
@@ -2056,3 +2046,42 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page .hero-mini-title{position:absolute;z-index:4;top:calc(50% - 190px);left:50%;display:flex;width:max-content;max-width:calc(100% - 40px);align-items:center;gap:11px;transform:translateX(-50%);color:rgba(255,247,236,.88);font:750 11px/1.2 'Manrope','Segoe UI',sans-serif;letter-spacing:.12em;text-align:center;text-shadow:0 2px 10px rgba(22,7,2,.62)}.home-page .hero-mini-title:before,.home-page .hero-mini-title:after{content:"";width:27px;height:1px;background:rgba(255,196,118,.72)}
 @media(max-width:767px){.home-page .hero-mini-title{top:clamp(70px,10svh,88px);max-width:calc(100% - 28px);gap:8px;font-size:9px;letter-spacing:.08em}.home-page .hero-mini-title:before,.home-page .hero-mini-title:after{width:16px}}
 @media(max-width:390px){.home-page .hero-mini-title{top:66px;font-size:8px}}
+/* Homepage SEO and conversion consolidation */
+.hero-tagline,.scroll-cue{display:none!important}
+.home-trust-strip{padding:2.4rem 0;border-bottom:1px solid rgba(75,47,30,.12)}
+.home-trust-strip .container{display:grid;grid-template-columns:1.15fr 1.85fr;gap:2.5rem;align-items:center}
+.trust-strip-copy h2{margin:.35rem 0 .6rem;font-size:clamp(1.7rem,2.7vw,2.65rem)}
+.trust-strip-copy p{margin:0;max-width:62ch;color:var(--muted,#665d55);line-height:1.65}
+.trust-strip-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.trust-strip-points>div,.industry-link-grid a,.enquiry-type-grid article{border:1px solid rgba(75,47,30,.12);border-radius:var(--radius,18px);background:rgba(255,255,255,.66);box-shadow:0 12px 30px rgba(49,31,19,.05)}
+.trust-strip-points>div{display:flex;align-items:center;gap:.7rem;padding:1rem;font-weight:700;color:#49311f}
+.trust-strip-points svg,.industry-link-grid svg,.enquiry-type-grid svg{color:var(--gold,#b9823d);flex:none}
+.home-industries,.enquiry-types,.company-intro{position:relative;overflow:hidden}
+.industry-link-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin-top:2rem}
+.industry-link-grid a{display:flex;align-items:center;gap:.75rem;padding:1.05rem;color:inherit;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
+.industry-link-grid a:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(49,31,19,.1)}
+.industry-link-grid a svg:last-child{margin-left:auto;width:17px}
+.enquiry-type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:2rem 0}
+.enquiry-type-grid article{padding:clamp(1.25rem,3vw,2rem)}
+.enquiry-type-grid h3{margin:.8rem 0 .5rem}.enquiry-type-grid p{margin:0;line-height:1.65}
+.procurement-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;list-style:none;padding:0;margin:1.3rem 0 1.5rem}
+.procurement-steps li{display:flex;gap:.75rem;align-items:flex-start;padding:.85rem;border-left:2px solid var(--gold,#b9823d);background:rgba(255,255,255,.55)}
+.procurement-steps b{color:var(--gold,#b9823d)}
+.company-intro-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2rem,5vw,5rem);align-items:center}.company-intro-inner p{font-size:1.08rem;line-height:1.75;margin:0 0 1.4rem}
+.faq-list summary h3,.faq-page .faq-list summary h2{font:inherit;margin:0;color:inherit}.faq-page-hero{padding:clamp(8rem,14vw,12rem) 0 4rem;background:#183c2e;color:#fff}.faq-page-hero h1{font-size:clamp(2.5rem,6vw,5rem);max-width:13ch;margin:.5rem 0 1rem}.faq-page-hero p{max-width:60ch;font-size:1.1rem;line-height:1.7}.faq-page-content{padding:clamp(3rem,7vw,6rem) 0;background:#f7f2e9}.faq-page-content .faq-list{margin-bottom:2rem}
+@media(max-width:900px){.home-trust-strip .container,.company-intro-inner{grid-template-columns:1fr}.industry-link-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.trust-strip-points,.industry-link-grid,.enquiry-type-grid,.procurement-steps{grid-template-columns:1fr}.home-trust-strip{padding:2rem 0}.hero-tagline{line-height:1.5}.industry-link-grid a{min-height:56px}}
+@media(min-width:901px){.industry-link-grid a:nth-child(n+7){display:none}}
+@media(max-width:600px){.industry-link-grid a:nth-child(n+7){display:none}.about .value-list p,.supplier-feature p{display:none}.hero-copy{max-width:34rem}.hero-buttons .btn{min-height:50px}}
+@media(prefers-reduced-motion:reduce){.industry-link-grid a{transition:none}.industry-link-grid a:hover{transform:none}}
+
+/* Keep the homepage hero message on one balanced line with consistent spacing. */
+@media(min-width:768px){
+  .home-page .hero-content>h1{top:calc(50% - 72px);font-size:clamp(34px,4.1vw,62px);white-space:nowrap}
+  .home-page .hero-content>.hero-copy{top:calc(50% - 2px);width:min(1400px,calc(100% - 40px));max-width:none;text-align:center}
+  .home-page .hero-copy>p{max-width:1320px;margin:0 auto 24px;white-space:normal;text-wrap:balance}
+}
+@media(max-width:767px){
+  .home-page .hero-content>h1{white-space:normal;text-wrap:balance}
+  .home-page .hero-copy>p{white-space:normal}
+}

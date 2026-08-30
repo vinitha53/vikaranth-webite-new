@@ -8,7 +8,7 @@ import { DetailHeader, DetailFooter, PageCta, styles } from "./DetailChrome";
 import IndustryApplicationGuide from "./IndustryApplicationGuide";
 import RangeCatalog from "./RangeCatalog";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 export function generateStaticParams() { return industries.map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }) {
   const industry = getIndustry((await params).slug); const content = industry && industryContent[industry.slug];

@@ -5,6 +5,7 @@ import { partners, getPartner } from "../../data/partners";
 import { getProduct, getIndustry, slugify } from "../../data/catalog";
 import { getAssociateContent } from "../../data/associate-content";
 import { productsForRangeSupplier } from "../../data/catalog-ranges";
+import { whatsappNumberForSupplier } from "../../data/whatsapp";
 import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import AssociateMotion from "./AssociateMotion";
 import AssociateEnquiryForm from "./AssociateEnquiryForm";
@@ -13,7 +14,7 @@ import styles from "./associate-detail.module.css";
 import stickyFix from "./associate-sticky-fix.module.css";
 import heroFix from "./associate-hero-fix.module.css";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
 export function generateStaticParams() { return partners.map(({ slug }) => ({ slug })); }
 
@@ -114,7 +115,7 @@ export default async function PartnerPage({ params }) {
 
       <section className={`${styles.section} ${styles.enquirySection}`} id="enquiry"><div className={`${styles.wrap} ${styles.enquiryGrid}`}>
         <div className={`${styles.enquiryIntro} ${stickyFix.notSticky}`} data-associate-reveal="left"><span className={styles.eyebrow}>Supplier-specific enquiry</span><h2>Need help selecting a {partner.name} product?</h2><p>Share your application, grade, quantity, delivery city and document needs. Request a quotation or ask about sample availability.</p><ul><li><Check /> Your entered details stay intact between steps</li><li><Check /> Supplier context is included automatically</li><li><Check /> Continue securely through WhatsApp</li></ul></div>
-        <AssociateEnquiryForm supplier={partner.name} products={productLinks.map((product) => product.name)} />
+        <AssociateEnquiryForm supplier={partner.name} products={productLinks.map((product) => product.name)} whatsappNumber={whatsappNumberForSupplier(partner.slug)} />
       </div></section>
 
       <DetailFooter />

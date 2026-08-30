@@ -4,7 +4,7 @@ import CoreSeoContent from "../components/CoreSeoContent";
 import { coreContent } from "../data/core-content";
 import ProductsCatalog from "./ProductsCatalog";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
 export const metadata = {
   title: "Food Ingredient Products in Chennai & India | Vikranth",

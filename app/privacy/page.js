@@ -19,6 +19,6 @@ const sections = [
 ];
 
 export default function PrivacyPage() {
-  const schema = [{ "@context": "https://schema.org", "@type": "WebPage", url: "https://www.vikranthchem.com/privacy/", name: "Privacy Policy", description: metadata.description }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://www.vikranthchem.com/privacy/" }] }];
+  const schema = [{ "@context": "https://schema.org", "@type": "WebPage", url: "https://www.vikranthchemicalcorporation.com/privacy/", name: "Privacy Policy", description: metadata.description }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://www.vikranthchemicalcorporation.com/privacy/" }] }];
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><LegalPage eyebrow="Your information" title="Privacy Policy" introduction="Vikranth Chemical Corporation respects the privacy of website visitors and business contacts. This policy explains the information received through the website and enquiry channels, why it is used and how to contact us. Legal review against actual data practices is required." updated="19 August 2026" sections={sections} /></>;
 }

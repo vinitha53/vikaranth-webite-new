@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const quickQuestions = [
   "Find an ingredient",
@@ -15,6 +17,8 @@ const answers = {
 };
 
 export default function FloatingIconDock() {
+  const pathname = usePathname();
+  const [whatsappNumber, setWhatsappNumber] = useState(WHATSAPP_NUMBERS.general);
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([{ from: "bot", text: "Hello! I'm Vikranth's ingredient assistant. How can we help with your food ingredient requirement?" }]);
   const [draft, setDraft] = useState("");
@@ -25,6 +29,12 @@ export default function FloatingIconDock() {
       inputRef.current?.focus();
     }
   }, [chatOpen]);
+
+  useEffect(() => {
+    if (pathname.startsWith("/associates/anchor")) return setWhatsappNumber(WHATSAPP_NUMBERS.anchor);
+    if (pathname.startsWith("/associates/delta-nutritives")) return setWhatsappNumber(WHATSAPP_NUMBERS.delta);
+    setWhatsappNumber(document.querySelector("[data-whatsapp-number]")?.dataset.whatsappNumber || WHATSAPP_NUMBERS.general);
+  }, [pathname]);
 
   const addMessage = (text) => {
     const value = text.trim();
@@ -43,7 +53,7 @@ export default function FloatingIconDock() {
 
       <div className="floating-site-dock floating-site-dock-right" role="navigation" aria-label="Quick contact">
         <a className="floating-site-button" href="tel:+918754442924" aria-label="Call Vikranth Chemical Corporation"><img src="/floating-icons/phone.webp" alt="" width="70" height="70" decoding="async" /></a>
-        <a className="floating-site-button" href="https://wa.me/918754442924" target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp"><img src="/whatsapp-branded.webp" alt="" width="70" height="70" decoding="async" /></a>
+        <a className="floating-site-button" href={"https://wa.me/" + whatsappNumber} target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp"><img src="/whatsapp-branded.webp" alt="" width="70" height="70" decoding="async" /></a>
         <button className="floating-site-button floating-site-chatbot" type="button" onClick={() => setChatOpen((open) => !open)} aria-label={chatOpen ? "Close ingredient chatbot" : "Open ingredient chatbot"} aria-expanded={chatOpen}>
           <img src="/chatbot-chef.webp" alt="" width="70" height="70" decoding="async" />
         </button>

@@ -28,7 +28,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, setValue, trigger, formState: { errors, isValid, isSubmitting } } = useForm({
     mode: "onChange",
-    defaultValues: { name: "", email: "", phone: "", subject: "", message: "", consent: false },
+    defaultValues: { name: "", company: "", email: "", phone: "", subject: "", message: "", consent: false },
   });
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
       onMascotState("success", "Got it! We'll be in touch soon.");
       if (!submitHandler) {
         const subject = `VCC contact enquiry - ${data.subject}`;
-        const body = [`Name: ${data.name}`, `Email: ${data.email}`, `Phone: ${data.phone || "Not provided"}`, `Reason: ${data.subject}`, "", data.message].join("\n");
+        const body = ["Name: " + data.name, "Company: " + (data.company || "Not provided"), "Email: " + data.email, "Phone: " + (data.phone || "Not provided"), "Enquiry type: " + data.subject, "", "Message: " + data.message].join("\n");
         window.setTimeout(() => { window.location.href = `mailto:vikranth.chemicals@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; }, 650);
       }
     } catch {
@@ -116,6 +116,11 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             </label>
 
             <label className={styles.professionalField}>
+              <span className={styles.fieldLabel}>Company <small>Optional</small></span>
+              <span className={styles.fieldControl}><input id="contact-company" autoComplete="organization" placeholder="Company or business name" {...bind("company")} /></span>
+            </label>
+
+            <label className={styles.professionalField}>
               <span className={styles.fieldLabel}>Phone number <small>Optional</small></span>
               <span className={styles.fieldControl}>
                 <Phone aria-hidden="true" />
@@ -130,10 +135,11 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
                 <CircleHelp aria-hidden="true" />
                 <select suppressHydrationWarning id="contact-subject" defaultValue="" {...bind("subject", { required: "Please choose a reason" })}>
                   <option value="" disabled>Select a reason</option>
-                  <option>General enquiry</option>
-                  <option>Product / quotation</option>
-                  <option>Technical support</option>
-                  <option>Feedback</option>
+                  <option>Bulk/Business</option>
+                  <option>Wholesale</option>
+                  <option>Retail/Small Quantity</option>
+                  <option>Product Documentation</option>
+                  <option>General Enquiry</option>
                 </select>
                 <Check className={styles.validTick} aria-hidden="true" />
               </span>
@@ -142,12 +148,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
           </div>
         </section>
 
-        <section className={styles.enquiryFields} aria-labelledby="requirement-heading">
-          <div className={styles.formSectionTitle}>
-            <span>02</span>
-            <div><b id="requirement-heading">Your requirement</b><small>Product, application, quantity or support needed</small></div>
-          </div>
-
+        <section className={styles.messageSection} aria-label="Enquiry message">
           <label className={`${styles.professionalField} ${styles.messageField}`}>
             <span className={styles.fieldLabel}>Message <sup>*</sup></span>
             <span className={styles.fieldControl}>

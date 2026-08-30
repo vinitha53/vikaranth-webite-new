@@ -262,8 +262,8 @@ export default function ContactJourney() {
     <section className={styles.contactJourney}>
       <div className={styles.journeySectionHeading}>
         <span>Contact Vikranth</span>
-        <h1>Contact Vikranth for a Food Ingredient Quotation</h1>
-        <p>Share your contact details and a short message so the team can understand your enquiry and respond.</p>
+        <h1>Contact a Food Ingredients Supplier in Chennai</h1>
+        <p>Request food ingredient availability, pricing and delivery support for Chennai, South India and pan-India requirements.</p>
         <i aria-hidden="true" />
       </div>
 

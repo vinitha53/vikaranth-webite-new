@@ -15,8 +15,8 @@ export const metadata = {
 
 export default function BrochurePage() {
   const schema = [
-    { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchem.com/brochure/#webpage", url: "https://www.vikranthchem.com/brochure/", name: "Vikranth Food Ingredient Product Brochure", description: metadata.description, about: { "@id": "https://www.vikranthchem.com/#organization" } },
-    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "Brochure", item: "https://www.vikranthchem.com/brochure/" }] },
+    { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchemicalcorporation.com/brochure/#webpage", url: "https://www.vikranthchemicalcorporation.com/brochure/", name: "Vikranth Food Ingredient Product Brochure", description: metadata.description, about: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "Brochure", item: "https://www.vikranthchemicalcorporation.com/brochure/" }] },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: coreContent.brochure.faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
   ];
   return <main className={styles.page}>

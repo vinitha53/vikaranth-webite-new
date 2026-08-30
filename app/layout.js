@@ -4,33 +4,37 @@ import "./responsive.css";
 import FloatingIconDock from "./components/FloatingIconDock";
 import GlobalCocoaGuide from "./components/GlobalCocoaGuide";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#fbf8f3",
+  colorScheme: "light",
 };
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Food Ingredients Supplier in Chennai & India | Vikranth",
-  description: "Source bakery, chocolate, dairy, beverage and specialty food ingredients from Vikranth in Chennai. Enquire for bulk supply and product documents.",
+  title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
+  description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
+  keywords: ["food ingredients supplier Chennai", "food ingredients distributor Tamil Nadu", "bakery raw materials Chennai", "chocolate ingredients supplier Chennai", "hydrocolloids supplier India", "dairy ingredients South India"],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     type: "website",
     url: "/",
-    title: "Food Ingredients Supplier in Chennai & India | Vikranth",
-    description: "Source bakery, chocolate, dairy, beverage and specialty food ingredients from Vikranth in Chennai.",
+    title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
+    description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
+    images: [{ url: "/hero-chocolate-poster.jpg", width: 1920, height: 1080, alt: "Bakery, chocolate, dairy and beverage food ingredients supplied by Vikranth Chemical Corporation in Chennai" }],
     siteName: "Vikranth Chemical Corporation",
     locale: "en_IN",
   },
   twitter: {
-    card: "summary",
-    title: "Food Ingredients Supplier in Chennai & India | Vikranth",
-    description: "Source bakery, chocolate, dairy, beverage and specialty food ingredients from Vikranth in Chennai.",
+    card: "summary_large_image",
+    title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
+    description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
+    images: ["/hero-chocolate-poster.jpg"],
   },
 };
 
@@ -44,7 +48,7 @@ export default function RootLayout({ children }) {
       alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       url: siteUrl,
       logo: `${siteUrl}/logo-vikranth.webp`,
-      description: "Vikranth Chemical Corporation is a Chennai-based B2B supplier of bakery, chocolate, dairy, beverage and specialty food ingredients.",
+      description: "Vikranth Chemical Corporation is a Chennai-based supplier and distributor of bakery, chocolate, confectionery, dairy, beverage, ice cream, fruit-processing, hydrocolloid, sweetener, functional, nutraceutical and food-additive ingredients for professional buyers.",
       taxID: "33AADFV9327N1ZO",
       telephone: "+91-87544-42924",
       email: "vikranth.chemicals@gmail.com",
@@ -58,14 +62,13 @@ export default function RootLayout({ children }) {
       },
       sameAs: [
         "https://in.linkedin.com/company/vikranth-chemical-corporation",
-        "https://www.facebook.com/search/top?q=Vikranth%20Chemical%20Corporation",
-        "https://www.instagram.com/explore/search/keyword/?q=vikranth%20chemical%20corporation",
       ],
       knowsAbout: ["Bakery ingredients", "Chocolate ingredients", "Dairy ingredients", "Beverage ingredients", "Hydrocolloids", "Food additives", "Nutraceutical ingredients"],
       contactPoint: [
         { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "sales", areaServed: "IN", availableLanguage: ["en", "ta"] },
         { "@type": "ContactPoint", telephone: "+91-97909-20252", contactType: "customer service", areaServed: "IN", availableLanguage: ["en", "ta"] },
-      ],      areaServed: { "@type": "Country", name: "India" },
+      ],
+      areaServed: [{ "@type": "City", name: "Chennai" }, { "@type": "Country", name: "India" }],
     },
     {
       "@context": "https://schema.org",
@@ -75,11 +78,6 @@ export default function RootLayout({ children }) {
       name: "Vikranth Chemical Corporation",
       alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       publisher: { "@id": `${siteUrl}/#organization` },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteUrl}/?search={search_term_string}`,
-        "query-input": "required name=search_term_string",
-      },
     },
   ];
 
@@ -94,5 +92,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-
