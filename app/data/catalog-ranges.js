@@ -188,4 +188,7 @@ const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogu
 // products. Its category, pack, code and description override older row data,
 // while newer MEC3 products not present in that brochure remain available.
 export const approvedRangeProducts = [...new Map([...rowRangeProducts, ...mec3RangeProducts].map((item) => [item.name, item])).values()];
-export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"&&item.brochureCategory):[];
+export const productsForRangeSupplier = (slug) =>
+  slug === "delta-nutritives"
+    ? approvedRangeProducts.filter((item) => item.range === "imported" && item.brochureCategory)
+    : [];

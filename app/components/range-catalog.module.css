@@ -5,3 +5,15 @@
 @media(max-width:760px){.groups{gap:12px}.group{border-radius:16px}.groupHeading{min-height:88px;padding:16px;gap:12px}.groupTitle{gap:11px}.groupTitle>i{width:36px;height:36px;flex-basis:36px;border-radius:10px}.groupTitle small{font-size:8px}.groupTitle strong{font-size:clamp(18px,5.4vw,23px)}.groupMeta{gap:10px}.groupMeta>span{display:none}.groupChevron{width:36px;height:36px}.groupChevron:after{top:12px;left:13px}.groupContent{padding:18px 14px}.groupIntroduction{margin-bottom:15px;font-size:12px}}@media(max-width:420px){.groupHeading{padding:14px 12px}.groupTitle>i{display:none}.groupTitle strong{font-size:18px}.groupChevron{width:32px;height:32px}.groupChevron:after{top:10px;left:11px}.groupContent{padding:14px 10px 16px}}@media(prefers-reduced-motion:reduce){.group,.groupHeading,.groupChevron,.groupContent{animation:none;transition:none}}
 .groupContent,.collapseButton{overflow-anchor:none}
 .categoryRail .mec3Filter{border-color:#b89543;background:#fff8da;color:#5c4110}.categoryRail .mec3Filter:before{display:block;width:30px;height:20px;background:url('/brand-logos/mec3.webp') center/contain no-repeat;content:""}.categoryRail .mec3Filter[aria-pressed=true]{border-color:#634111;background:linear-gradient(135deg,#5b3515,#9c6a24);color:#fff}.categoryRail .mec3Filter[aria-pressed=true] span{color:#653917}
+
+/* Supplier catalogue: two product cards per row on mobile. */
+@media(max-width:520px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .image{height:auto;aspect-ratio:1/1}
+  .image span{top:8px;left:8px;max-width:calc(100% - 16px);padding:5px 7px;font-size:8px}
+  .card>div:last-child{min-height:0;padding:12px 10px}
+  .card small{font-size:8px;line-height:1.25}
+  .card h3{margin:6px 0;font-size:14px;line-height:1.2}
+  .card p{font-size:9px;line-height:1.35}
+  .card b{margin-top:10px;padding-top:0;font-size:9px}
+}
