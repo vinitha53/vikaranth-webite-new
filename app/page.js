@@ -614,7 +614,7 @@ export default function Home() {
           poster="/hero-chocolate-poster.webp"
           aria-hidden="true"
         >
-          <source src="/hero-chocolate-ingredients.mp4" type="video/mp4" />
+          <source src="/hero-chocolate-ingredients.mp4" type="video/mp4" media="(min-width: 541px)" />
         </video>
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
@@ -622,7 +622,7 @@ export default function Home() {
           <span className="hero-mini-title">Food Ingredients · Chennai</span>
           <h1>Food Ingredients <em>Supplier in Chennai</em></h1>
           <div className="hero-copy">
-            <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco and Nitta Gelatin India; availability and delivery are confirmed per enquiry.</p>
+            <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and Anchor; availability and delivery are confirmed per enquiry.</p>
             <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
             <div className="hero-buttons">
               <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
@@ -636,7 +636,7 @@ export default function Home() {
 
       <section className="home-trust-strip botanical-light-section" aria-labelledby="trust-strip-title">
         <div className="container">
-          <div className="trust-strip-copy"><h2 id="trust-strip-title">Why Vikranth</h2><p>Chennai-based ingredient sourcing for food businesses.</p></div>
+          <div className="trust-strip-copy"><h2 id="trust-strip-title">Food Ingredients Distributor in South India</h2><p>Chennai-based ingredient sourcing for food businesses.</p></div>
           <div className="trust-strip-points">{[[BadgeCheck,"GSTIN 33AADFV9327N1ZO"],[MapPin,"Chennai-based supplier"],[Box,"11 ingredient categories"],[Handshake,"Structured procurement support"]].map(([Icon,label]) => <div key={label}><Icon aria-hidden="true"/><span>{label}</span></div>)}</div>
         </div>
       </section>
@@ -650,6 +650,23 @@ export default function Home() {
         </div>
       </section>}
 
+      <section className="supplier-section botanical-light-section" id="suppliers">
+        <BotanicalCorners/>
+        <div className="container">
+          <div className="supplier-head"><div><span className="eyebrow">Our Principal Brands</span><h2>Manufacturer &amp;<br/><em>Supplier Network</em></h2></div><p>Vikranth works with established ingredient manufacturers and suppliers across chocolate, bakery, dairy, stabiliser, starch, protein and specialty ingredient categories. Exact product availability, grade, packaging and documentation are confirmed for each enquiry.</p></div>
+          <div className="supplier-marquee-shell">
+            <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt={`${partner.name} logo`} width="180" height="80" loading="lazy" decoding="async" /> : <span className="anchor-mark" aria-label={`${partner.name} logo`}>A</span>}</a>)}</div></div>
+            <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
+          </div>
+          <div className="supplier-feature">
+            <div><Globe2/><span>Product-specific sourcing</span><p>Confirm the manufacturer, grade and available commercial source.</p></div>
+            <div><Truck/><span>Delivery confirmation</span><p>Quantity, freight and destination serviceability are checked per order.</p></div>
+            <div><Headphones/><span>Human support</span><p>One responsive team from product selection to repeat supply.</p></div>
+          </div>
+          <div className="supplier-cta-row"><a className="btn outline" href="/associates/">View All Suppliers <ArrowRight size={16}/></a></div>
+        </div>
+      </section>
       <section className="section product-section botanical-light-section" id="industries" aria-labelledby="industries-title">
         <BotanicalCorners/>
         <div className="container">
@@ -707,57 +724,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section about botanical-light-section" id="about">
+      <section className="section about proof-section botanical-light-section" id="about" aria-labelledby="proof-title">
         <BotanicalCorners/>
-        <div className="container">
-          <div className="about-section-head">
-            <span className="eyebrow">Why Vikranth?</span>
-            <h2>Ingredient Sourcing<br/><em>Made Simpler</em></h2>
-          </div>
-          <div className="about-grid">
-          <div className="about-visual">
-            <div className="lab-stage about-video-stage">
-              <img src="/home-about.webp" alt="Ingredient sourcing team reviewing food ingredients" width="1448" height="1086" loading="lazy" decoding="async"/>
-              <div className="about-video-shade"></div>
+        <div className="container proof-inner">
+          <header className="proof-heading">
+            <span className="eyebrow">Why choose Vikranth</span>
+            <h2 id="proof-title">Food Ingredient Supply Across South India</h2>
+          </header>
+          <div className="proof-layout">
+            <figure className="proof-visual">
+              <img src="/home-warehouse-inventory.jpeg" alt="Food ingredient product inventory stored for distribution from Chennai across South India" width="1264" height="841" loading="lazy" decoding="async"/>
+              <figcaption><PackageCheck aria-hidden="true"/> Food ingredient inventory and supply coordination</figcaption>
+            </figure>
+            <div className="proof-content">
+              <p className="proof-summary">Chennai-based ingredient sourcing and distribution for food manufacturers, bakeries, processors and professional buyers.</p>
+              <div className="proof-grid" aria-label="Vikranth business highlights">
+                {[
+                  [Clock3, "25+", "Years of experience", "Ingredient sourcing and supply support."],
+                  [Handshake, "1,000+", "Customers served", "Food businesses across Chennai and South India."],
+                  [PackageCheck, "300+", "Food ingredient products", "Bakery, chocolate, dairy, beverage and specialty ingredients."],
+                  [Building2, "11", "Industries supplied", "Application-led supply for manufacturers and professional buyers."]
+                ].map(([Icon, value, title, description]) => <article className="proof-card" key={title}>
+                  <span className="proof-icon" aria-hidden="true"><Icon/></span>
+                  <strong>{value}</strong>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </article>)}
+              </div>
             </div>
-            <div className="about-caption"><span className="about-since"><BadgeCheck/><b>GST registered</b></span><i/><p>GSTIN 33AADFV9327N1ZO · Product and relationship details confirmed per enquiry.</p></div>
           </div>
-          <div className="about-copy">
-            <p className="lead">Every enquiry follows a clear path—from understanding the requirement to confirming the supplier, grade, documentation, packaging and fulfilment details.</p>
-            <div className="value-list">
-              {[
-                [Box, "Wide Ingredient Portfolio", "Source ingredients across bakery, chocolate, dairy, beverage and specialty applications."],
-                [Handshake, "Manufacturer Portfolio Enquiries", "Explore listed manufacturer portfolios while exact relationship and availability are confirmed per product."],
-                [Beaker, "Application-Based Guidance", "Discuss your finished product and identify ingredients suited to your requirement."],
-                [Zap, "Responsive Quotations", "Receive clear support for availability, quantity and commercial enquiries."],
-                [PackageCheck, "Repeat-Order Coordination", "Coordinate recurring grades, pack sizes and professional requirements."]
-              ].map(([Icon,title,text], index) => <div key={title} style={{"--value-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
-                <i className="value-card-orbit" aria-hidden="true"/><i className="value-card-corner" aria-hidden="true"/>
-                <span><Icon/></span><section><h3>{title}</h3><p>{text}</p></section>
-              </div>)}
-            </div>
-            <ol className="procurement-steps"><li><b>01</b><span>Share the ingredient, application and quantity.</span></li><li><b>02</b><span>Confirm the suitable product, grade and supplier.</span></li><li><b>03</b><span>Review packaging, documents and current availability.</span></li><li><b>04</b><span>Coordinate quotation, delivery and repeat requirements.</span></li></ol>
-            <a className="btn dark" href="/contact/#enquiry">Start an Enquiry <ArrowRight size={16}/></a>
-          </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="supplier-section botanical-light-section" id="suppliers">
-        <BotanicalCorners/>
-        <div className="container">
-          <div className="supplier-head"><div><span className="eyebrow">Established ingredient portfolios</span><h2>Manufacturer &amp;<br/><em>Supplier Network</em></h2></div><p>Vikranth works with established ingredient manufacturers and suppliers across chocolate, bakery, dairy, stabiliser, starch, protein and specialty ingredient categories. Exact product availability, grade, packaging and documentation are confirmed for each enquiry.</p></div>
-          <div className="supplier-marquee-shell">
-            <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
-            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt={`${partner.name} logo`} width="180" height="80" loading="lazy" decoding="async" /> : <span className="anchor-mark" aria-label={`${partner.name} logo`}>A</span>}</a>)}</div></div>
-            <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
-          </div>
-          <div className="supplier-feature">
-            <div><Globe2/><span>Product-specific sourcing</span><p>Confirm the manufacturer, grade and available commercial source.</p></div>
-            <div><Truck/><span>Delivery confirmation</span><p>Quantity, freight and destination serviceability are checked per order.</p></div>
-            <div><Headphones/><span>Human support</span><p>One responsive team from product selection to repeat supply.</p></div>
-          </div>
-          <a className="btn outline center-btn" href="/associates/">View All Suppliers <ArrowRight size={16}/></a>
         </div>
       </section>
       {verifiedGuidesAvailable && <section className="section insights botanical-light-section" id="insights">
@@ -784,7 +779,7 @@ export default function Home() {
 
       <section className="section company-intro botanical-light-section" aria-labelledby="company-intro-title">
         <BotanicalCorners/>
-        <div className="container company-intro-inner"><div><span className="eyebrow">Chennai food ingredient partner</span><h2 id="company-intro-title">About Vikranth Chemical Corporation</h2></div><div><p>Vikranth Chemical Corporation is a Chennai-based supplier and distributor of food and specialty ingredients for bakery, confectionery, dairy, beverage and food-manufacturing companies. Business buyers across Tamil Nadu, South India and other Indian locations can enquire about current availability, grades, packaging, product documents and delivery options.</p><a className="btn dark" href="/about">Learn More About Vikranth <ArrowRight size={16}/></a></div></div>
+        <div className="container company-intro-inner"><div className="company-intro-copy"><span className="eyebrow">Chennai food ingredient partner</span><h2 id="company-intro-title">About Vikranth Chemical Corporation</h2><p>Vikranth Chemical Corporation is a Chennai-based supplier and distributor of food and specialty ingredients for bakery, confectionery, dairy, beverage and food-manufacturing companies. Business buyers across Tamil Nadu, South India and other Indian locations can enquire about current availability, grades, packaging, product documents and delivery options.</p><a className="btn dark" href="/about">Learn More About Vikranth <ArrowRight size={16}/></a></div><figure className="company-intro-visual"><img src="/vikranth-facility.jpeg" alt="Vikranth Chemical Corporation food ingredient distribution facility serving Chennai and South India" width="1264" height="841" loading="lazy" decoding="async"/><figcaption>Chennai operations · South India supply support</figcaption></figure></div>
       </section>
 
       {verifiedClaimsAvailable && <section className="testimonial-section" aria-labelledby="testimonial-title">

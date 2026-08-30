@@ -277,3 +277,9 @@
 }
 
 .footerContactNumber{margin-bottom:12px!important}.footerContactNumber strong,.footerContactNumber span{display:block}.footerContactNumber strong{color:#e09546;font-size:10px;letter-spacing:.04em;text-transform:uppercase}.footerContactNumber span{margin-top:2px;color:#d4c5ba;font-size:12px}
+
+.header nav [aria-current="page"]{position:relative;color:#a85227}
+.header nav a[aria-current="page"]::after{transform:scaleX(1)}
+.productsTrigger{position:relative}
+.productsTrigger[aria-current="page"]::after{content:"";position:absolute;right:0;bottom:20px;left:0;height:2px;border-radius:2px;background:#a85227}
+@media(max-width:850px){.header nav a[aria-current="page"]{padding-left:15px!important;background:rgba(168,82,39,.08);color:#a85227!important}.header nav a[aria-current="page"]::after{bottom:7px}}
