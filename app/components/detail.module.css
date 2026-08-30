@@ -275,3 +275,5 @@
   .industryHero h1{font-size:clamp(31px,9.3vw,38px)}
   .industryHero .heroActions a{width:100%;padding-inline:14px!important}
 }
+
+.footerContactNumber{margin-bottom:12px!important}.footerContactNumber strong,.footerContactNumber span{display:block}.footerContactNumber strong{color:#e09546;font-size:10px;letter-spacing:.04em;text-transform:uppercase}.footerContactNumber span{margin-top:2px;color:#d4c5ba;font-size:12px}

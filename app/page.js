@@ -11,6 +11,7 @@ import {
 import GlobalSearch from "./components/GlobalSearch";
 import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
 import { partners } from "./data/partners";
+import { WHATSAPP_NUMBERS } from "./data/whatsapp";
 
 const verifiedClaimsAvailable = false;
 const verifiedGuidesAvailable = false;
@@ -278,7 +279,6 @@ export default function Home() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [scrolled, setScrolled] = useState(false);
-  const [showAllProducts, setShowAllProducts] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
   const megaMenuRef = useRef(null);
@@ -674,7 +674,7 @@ export default function Home() {
             <div className="portfolio-tags"><span>Cocoa & chocolate</span><span>Bakery systems</span><span>Dairy & cream</span><span>Fruit & beverage</span></div>
           </div>
           <div className="product-grid" id="portfolio-grid">
-            {productGroups.slice(0, showAllProducts ? productGroups.length : 4).map((group, i) => {
+            {productGroups.map((group, i) => {
               const Icon = group.icon;
               return <a className="product-card" href={`/industries/${industrySlugs[i]}`} aria-label={`View ${group.name} products`} key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
@@ -694,9 +694,6 @@ export default function Home() {
               </a>
             })}
           </div>
-          <button className={`btn outline center-btn portfolio-toggle ${showAllProducts ? "expanded" : ""}`} onClick={() => setShowAllProducts(value => !value)} aria-expanded={showAllProducts} aria-controls="portfolio-grid">
-            {showAllProducts ? "Show Less" : "Show More Products"} <ChevronDown size={17}/>
-          </button>
         </div>
       </section>
 
@@ -896,7 +893,7 @@ export default function Home() {
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
           <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
-          <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
+          <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 87544 42924</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>
@@ -915,4 +912,3 @@ export default function Home() {
     </main>
   );
 }
-

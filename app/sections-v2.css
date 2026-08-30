@@ -1872,16 +1872,6 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page .btn:hover svg,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:hover svg{transform:translateX(4px)}
 .home-page .btn:focus-visible,.home-page .vcc-ingredient-ecosystem .vcc-ecosystem-cta:focus-visible{outline:3px solid #efad75!important;outline-offset:5px}
 .home-page .btn:active{transform:translateY(0) scale(.985)!important}
-.home-page .portfolio-toggle{
-  width:max-content;
-  margin-right:auto;
-  margin-left:auto;
-  display:flex;
-}
-
-/* Keep the next section directly below the portfolio toggle. */
-.home-page .product-section{padding-bottom:0}
-
 /* Site-wide centered floating contact and social icon dock */
 .floating-site-dock{
   position:fixed;
