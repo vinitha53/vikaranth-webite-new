@@ -10,7 +10,7 @@ const initialValues = {
   message: "", attachment: "", consent: false,
 };
 
-export default function ProductQuoteForm({ product, applications = [] }) {
+export default function ProductQuoteForm({ product, applications = [], whatsappNumber = "918754442924" }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);
@@ -46,7 +46,7 @@ export default function ProductQuoteForm({ product, applications = [] }) {
       `Message: ${values.message || "None"}`,
     ].join("\n");
     setSubmitted(true);
-    window.open(`https://wa.me/918754442924?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
   }
 
   if (submitted) return (

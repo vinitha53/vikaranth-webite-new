@@ -6,7 +6,7 @@ import styles from "./associate-detail.module.css";
 
 const initial = { name: "", company: "", email: "", phone: "", city: "", product: "", application: "", grade: "", quantity: "", requiredDate: "", documents: "", sample: "No", message: "", consent: false };
 
-export default function AssociateEnquiryForm({ supplier, products }) {
+export default function AssociateEnquiryForm({ supplier, products, whatsappNumber = "918754442924" }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initial);
   const [fileName, setFileName] = useState("");
@@ -41,7 +41,7 @@ export default function AssociateEnquiryForm({ supplier, products }) {
       fileName ? `Reference file selected: ${fileName} (I will attach it in WhatsApp)` : "",
     ].filter(Boolean).join("\n");
     setSent(true);
-    window.open(`https://wa.me/918754442924?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
   }
 
   return (
