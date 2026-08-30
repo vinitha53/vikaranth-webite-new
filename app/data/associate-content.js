@@ -17,9 +17,9 @@ export const associateContent = {
   },
   roquette: {
     title: "Roquette Ingredients Supplier Chennai & India | Vikranth",
-    description: "Enquire for selected Roquette starches, glucose products, maltodextrin, sorbitol and proteins through Vikranth in Chennai and across India.",
+    description: "Enquire for selected Roquette starches, glucose products, high maltose syrups and maltodextrin through Vikranth in Chennai and across India.",
     h1: "Roquette Food Ingredients Supplier in Chennai",
-    category: "Plant-based starches, sweeteners, polyols and proteins",
+    category: "Plant-based starches and sweetener ingredients",
     about: "Roquette is known for plant-based ingredients used to support nutrition, taste, texture and formulation performance. Its global food portfolio includes plant proteins, specialty starches, fibers, cereal sugars, maltodextrins and polyols. This page separates products currently available for Vikranth enquiry from Roquette's broader global catalogue.",
     applications: ["Bakery and snacks", "Confectionery", "Beverages", "Dairy", "Specialized nutrition", "Approved pharmaceutical or industrial uses"],
   },
@@ -65,7 +65,7 @@ export const associateContent = {
   },
   "fine-organics": {
     title: "Fine Organics Emulsifier Supplier Chennai | Vikranth",
-    description: "Enquire for Fine Organics GMS, DMG, PGMS, SMS and PGPR food emulsifiers through Vikranth in Chennai. Request grades, documents, samples and bulk pricing.",
+    description: "Enquire for selected Fine Organics GMS, PGMS and sorbitan monostearate food emulsifiers through Vikranth in Chennai. Request grades, documents, samples and bulk pricing.",
     h1: "Fine Organics Food Emulsifiers Supplier in Chennai",
     category: "Food emulsifiers and specialty additives",
     about: "Fine Organics produces specialty additives and food emulsifiers used to improve processing and finished-product performance. Because emulsifiers are highly application- and dosage-dependent, Vikranth discusses their role without publishing unsupported dosages or guaranteed formulation results.",

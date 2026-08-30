@@ -27,7 +27,7 @@ const categoryLabels = {
 const cardCopy = {
   campco: "Cocoa and chocolate ingredients for bakery, confectionery, dessert and beverage formulations.",
   "delta-nutritives": "Dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient solutions.",
-  roquette: "Plant-based ingredients, starches, sweeteners, proteins and selected pharmaceutical solutions.",
+  roquette: "Plant-based ingredients, starches, sweeteners and selected pharmaceutical solutions.",
   "nitta-gelatin-india-ltd": "Gelatin solutions and functional ingredients for food, nutrition and pharmaceutical applications.",
   doehler: "Natural ingredients, flavours and integrated food and beverage systems for modern formulations.",
   "cp-kelco": "Nature-based hydrocolloids for texture, suspension, stability and formulation performance.",
