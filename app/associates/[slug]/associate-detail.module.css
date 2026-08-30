@@ -23,11 +23,11 @@
 @media(max-width:960px){.enquiryRangeHeader{grid-template-columns:1fr}.enquiryRangeHeader>a{width:max-content}.productsSection .productGrid{grid-template-columns:1fr 1fr;gap:18px}.productsSection .productCard>img{height:260px;flex-basis:260px}}
 @media(max-width:620px){.enquiryRangeHeader h2{font-size:36px}.enquiryRangeHeader>a{min-height:52px;padding:0 20px;font-size:13px}.productsSection .productGrid{grid-template-columns:1fr}.productsSection .productCard>img{height:280px;flex-basis:280px}.productsAssurance{align-items:flex-start;flex-wrap:wrap}.productsAssurance span{flex:1}.productsAssurance b{width:100%;margin-left:52px}}
 
-/* Anchor has a short range, so its cards stay compact and centered. */
-.productsSection .anchorProductGrid{max-width:930px;margin-inline:auto;grid-template-columns:repeat(3,minmax(0,290px));gap:24px;justify-content:center}
-.productsSection .anchorProductGrid .productCard{min-height:410px;border-radius:16px;box-shadow:0 12px 28px rgba(61,29,9,.09)}
-.productsSection .anchorProductGrid .productCard>img{height:240px;flex-basis:240px}
-.productsSection .anchorProductGrid .productCardContent{min-height:170px;padding:21px 22px 19px}
+/* Anchor's seven-card range stays compact, readable and centered on every row. */
+.productsSection .anchorProductGrid{max-width:930px;margin-inline:auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:center}
+.productsSection .anchorProductGrid .productCard{min-height:460px;flex:0 1 290px;border-radius:16px;box-shadow:0 12px 28px rgba(61,29,9,.09)}
+.productsSection .anchorProductGrid .productCard>img{height:215px;flex-basis:215px}
+.productsSection .anchorProductGrid .productCardContent{min-height:245px;padding:21px 22px 19px}
 .productsSection .anchorProductGrid .productCardContent h3{font-size:21px}
 @media(max-width:960px){.productsSection .anchorProductGrid{max-width:680px;grid-template-columns:repeat(2,minmax(0,1fr))}.productsSection .anchorProductGrid .productCard>img{height:240px;flex-basis:240px}}
 @media(max-width:620px){.productsSection .anchorProductGrid{max-width:360px;grid-template-columns:1fr}.productsSection .anchorProductGrid .productCard>img{height:250px;flex-basis:250px}}
@@ -157,3 +157,6 @@
   .heroTrust{grid-template-columns:1fr!important}
   .heroTrust span:last-child{grid-column:auto!important}
 }
+.productsSection .anchorProductGrid .productCardContent p{margin:12px 0 18px;color:#725f51;font-size:13px;line-height:1.55}
+@media(max-width:960px){.productsSection .anchorProductGrid{max-width:680px;gap:18px}.productsSection .anchorProductGrid .productCard{flex-basis:calc(50% - 9px)}.productsSection .anchorProductGrid .productCard>img{height:225px;flex-basis:225px}}
+@media(max-width:620px){.productsSection .anchorProductGrid{max-width:360px}.productsSection .anchorProductGrid .productCard{flex-basis:100%}.productsSection .anchorProductGrid .productCard>img{height:250px;flex-basis:250px}}

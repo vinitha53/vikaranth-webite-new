@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ClipboardCheck, FileText, MapPin, PackageCheck, Search, Truck } from "lucide-react";
-import { industries, products, getIndustry, slugify, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups } from "../data/catalog";
+import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups } from "../data/catalog";
 import { industryContent } from "../data/industry-content";
 import { partnersForIndustry } from "../data/partners";
 import { DetailHeader, DetailFooter, PageCta, styles } from "./DetailChrome";
@@ -20,8 +20,13 @@ const groupMap = { "bakery-ingredients": [bakeryProductGroups, "Bakery"], "choco
 
 export default async function IndustryPage({ params }) {
   const industry = getIndustry((await params).slug); const content = industry && industryContent[industry.slug]; if (!industry || !content) notFound();
-  const items = industry.products.map((name) => products.find((product) => product.slug === slugify(name))).filter(Boolean);
-  const partners = partnersForIndustry(industry.slug); const [groups, guideLabel] = groupMap[industry.slug] || [null, ""];
+  const [groups, guideLabel] = groupMap[industry.slug] || [null, ""];
+  const items = industry.products.map((name) => {
+    const product = products.find((item) => item.name === name);
+    const industryGroup = groups?.find((group) => group.ingredients.includes(name));
+    return product ? { ...product, usageCategory: industryGroup?.name || product.usageCategory } : null;
+  }).filter(Boolean);
+  const partners = partnersForIndustry(industry.slug);
   const canonicalUrl = `${siteUrl}/industries/${industry.slug}`;
   const schema = [{ "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: content.h1, description: content.summary, inLanguage: "en-IN", about: { "@id": `${siteUrl}/#organization` }, publisher: { "@id": `${siteUrl}/#organization` }, mainEntity: { "@id": `${canonicalUrl}#products` } }, { "@context": "https://schema.org", "@type": "ItemList", "@id": `${canonicalUrl}#products`, name: `${industry.name} available for B2B enquiry`, description: content.summary, numberOfItems: items.length, itemListOrder: "https://schema.org/ItemListOrderAscending", itemListElement: items.map((item, i) => ({ "@type": "ListItem", position: i + 1, name: item.name, url: `${siteUrl}/products/${item.slug}` })) }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }, { "@type": "ListItem", position: 2, name: "Industries", item: `${siteUrl}/industries` }, { "@type": "ListItem", position: 3, name: industry.name, item: canonicalUrl }] }, { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: content.faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) }];
   return <main className={`${styles.page} ${styles.industryPage}`}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><DetailHeader />

@@ -41,7 +41,7 @@ export const associateContent = {
   },
   "cp-kelco": {
     title: "CP Kelco Hydrocolloid Supplier Chennai | Vikranth",
-    description: "Enquire for selected CP Kelco pectin, xanthan gum and CMC texture solutions through Vikranth in Chennai. Request grades, documents, samples and quotations.",
+    description: "Enquire for selected CP Kelco CMC and formulation solutions through Vikranth in Chennai. Request grades, documents, samples and quotations.",
     h1: "CP Kelco Hydrocolloid Ingredients Supplier in Chennai",
     category: "Hydrocolloids and texture solutions",
     about: "CP Kelco is associated with nature-based hydrocolloids used for texture, suspension, viscosity and stability. Its portfolio is known for pectin, gellan gum, xanthan gum, carrageenan and carboxymethyl cellulose. Selection is application-specific, so buyers should provide process conditions, pH, temperature, solids and target texture.",
@@ -57,10 +57,10 @@ export const associateContent = {
   },
   "gujarat-ambuja-exports-ltd": {
     title: "Gujarat Ambuja Ingredients Supplier Chennai | Vikranth",
-    description: "Enquire for Gujarat Ambuja sorbitol, maize starch and liquid glucose through Vikranth in Chennai. Request food-grade specifications, documents and bulk pricing.",
-    h1: "Gujarat Ambuja Starch & Sweetener Supplier in Chennai",
-    category: "Maize starch and starch-derived sweeteners",
-    about: "Gujarat Ambuja Exports manufactures maize starch and downstream starch derivatives for food, pharmaceutical and industrial applications. Vikranth distinguishes food-grade enquiries from other uses and confirms the exact product grade, documentation, pack and logistics information before quotation.",
+    description: "Enquire for Gujarat Ambuja Sorbitol 70% Solution through Vikranth in Chennai. Request food-grade specifications, documents and bulk pricing.",
+    h1: "Gujarat Ambuja Sorbitol 70% Solution Supplier in Chennai",
+    category: "Sorbitol solution",
+    about: "Gujarat Ambuja Exports is associated with agro-processing ingredient solutions. Vikranth's current enquiry range on this page focuses on Sorbitol 70% Solution and confirms the exact grade, documentation, pack and logistics information before quotation.",
     applications: ["Confectionery and bakery", "Dairy and frozen desserts", "Beverages and syrups", "Grade-approved pharmaceutical formulations", "Applicable industrial uses"],
   },
   "fine-organics": {
@@ -89,11 +89,20 @@ export const associateContent = {
   },
   anchor: {
     title: "Anchor Bakery Ingredients Chennai | Vikranth",
-    description: "Explore Vikranth's Anchor cake gel, custard powder and baking powder for professional bakery applications. Request samples and bulk pricing.",
+    description: "Explore Vikranth's Anchor cake life, cake gel, cake syrup, bread yield improver, MACP, custard powder and baking powder for professional bakery applications.",
     h1: "Anchor Bakery Ingredients by Vikranth in Chennai",
     category: "Vikranth in-house bakery ingredients",
     about: "Anchor is Vikranth's in-house bakery ingredient range for professional bakery and food-manufacturing applications. Product composition, format, pack size, usage directions, storage, shelf life, allergen information and manufacturing or packing details are confirmed from the approved product information for each enquiry.",
-    applications: ["Commercial cakes and sponge products", "Bakery premixes", "Custards and dessert fillings", "Breads and cakes", "Chemically leavened bakery products"],
+    applications: ["Commercial cakes and sponge products", "Bread and buns", "Custards and dessert fillings", "Bakery premixes", "Chemically leavened bakery products"],
+    productDescriptions: {
+      "Cake Life": "A concentrated cake improver that supports cake quality, texture and shelf life in both high-fat and low-fat oil cakes.",
+      "Cake Gel": "Improves grain size, texture, softness retention and volume to support the quality parameters of sponge cakes.",
+      "Cake Syrup": "Helps cakes retain moisture, freshness and softness while reducing dryness during storage.",
+      "Bread Yield Improver": "Supports increased bread volume and improves the texture of the finished loaf.",
+      "MACP (Mono Acid Calcium Phosphate)": "Provides controlled leavening action for consistent baking performance and dependable product quality.",
+      "Custard Powder": "An easy-to-use custard mix that delivers smooth texture, rich taste and consistent quality in every serving.",
+      "Baking Powder": "Supports reliable rise, light texture and dependable performance across professional bakery applications.",
+    },
   },
 };
 
