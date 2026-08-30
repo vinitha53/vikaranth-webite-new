@@ -1,6 +1,8 @@
+import { mec3Categories } from "./mec3-catalog";
+
 const rows = [
   ["Callebaut","imported","chocolate-confectionery","Dark Couverture 811 (54.5%)|Milk Couverture 823 (33.6%)|White Couverture W2 (28.0%)|Dark Couverture 70-30 (70.5%)|Gold Chocolate (30.4%)|Ruby Chocolate (47.3%)|Ecuador Single Origin (70.4%)|Sao Thome Single Origin (70%)|Madagascar Single Origin (67.4%)|Arriba Single Origin (39%)|Java Single Origin (32.5%)|Milk Chocolate (MALCHOC - Milk 33.9%)|White Chocolate (MALCHOC - White 30.6%)|Dark Chocolate (MALCHOC - Dark 53.9%)|Dark Truffle Shells|Milk Truffle Shells|White Truffle Shells|Hazelnut Praline PRA 663|Hazelnut Praline PRA 660|Caramel Fill|Pale Gianduja (Milk Chocolate + Hazelnut)|Paillete Feuilletine - M7 French Biscuit Crunch|Pure Hazelnut Paste|Pure Pistachio Paste|Cocoa Nibs|Mycryo Cocoa Butter"],
-  ["Mona Lisa","imported","chocolate-confectionery","Dark Chocolate Crispearls|Milk Chocolate Crispearls|White Chocolate Crispearls|Salted Caramel Crispearls|Ruby Chocolate Crispearls|Mini Crispearls Mix"],
+  ["Mona Lisa","imported","chocolate-confectionery","Dark Chocolate Coated Cereals|Milk Chocolate Coated Cereals|White Chocolate Coated Cereals|Salted Caramel Flavored Cocoa Based Cereals|Ruby Chocolate Coated Cereals|Minimix (Dark, Milk, White Mini Crispearls)"],
   ["Cacao Barry","imported","chocolate-confectionery","Tanzanie (75%)|Saint Domingue (70%)|Venezuela (72%)|Ghana (40%)|Alunga Milk Organic (41%)|Alto El Sol (65%)|Ocoa (70%)|Inaya (65%)|Lactée Barry (35.3%)|Zephyr Caramel (35%)|Excellence (55%)|Extrabitter Guayaquil (64%)|Favorites Mi-Amere (58%)|Blanc Satin (29.2%)|Plein Arôme Cocoa Powder (22/24% Fat)|CB Grand Caraque 100% Cocoa Mass|Extra Brute Cocoa Powder (22/24% Fat)|Cara Crakine|Praline Feuilletine"],
   ["Molino Dallagiovanna","imported","bakery-ingredients","Neapolitan Pizza Flour|T55 Strong Flour for Ciabatta|T45 Special Flour for Baguette"],
   ["DLA Naturals","imported","fruit-processing","Apple Filling|Apple Cinnamon Filling|Bakers Cream Vanilla|Bakers Cream Cinnamon|Banana Filling|Blueberry Filling|Coconut Filling|Dark Cherry Filling|Passion Fruit Filling|Pineapple Filling|Raspberry Filling|Red Cherry Filling|Strawberry Filling|Tropical Filling"],
@@ -50,14 +52,14 @@ const brochureDisplayCategoryFor = (brand, name) => {
       ["Flavoured Chocolate", /gold chocolate|ruby chocolate/i],
       ["Praline Fillings", /hazelnut praline|caramel fill|pale gianduja/i],
       ["Specialities", /paillete feuilletine|pure hazelnut paste|pure pistachio paste|cocoa nibs|mycryo cocoa butter/i],
-      ["Decorations & Inclusions", /truffle shells/i],
+      ["Truffle Shells", /truffle shells/i],
       ["No Added Sugar Chocolate (Maltitol)", /malchoc/i],
       ["Single-Origin Couverture", /ecuador|sao thome|madagascar|arriba|java/i],
       ["Milk & White Couverture", /milk couverture|white couverture/i],
       ["Dark Couverture", /dark couverture/i],
       ["Speciality Couverture", /gold chocolate|ruby chocolate/i],
     ],
-    "Mona Lisa": [["Decorations & Inclusions", /.*/]],
+    "Mona Lisa": [["Crispearls™", /.*/]],
     "DLA Naturals": [["DLA Naturals Bake Stable Fruit & Pie Fillings", /.*/]],
     "Cacao Barry": [
       ["Chocolate d'Origine", /^(?:tanzanie|saint domingue|venezuela|ghana|alunga milk organic|alto el sol|ocoa|inaya)\b/i],
@@ -75,8 +77,8 @@ const brochureDisplayCategoryFor = (brand, name) => {
       ["Creams, Pastes & Specialities", /.*/],
     ],
     DIRA: [
-      ["Frozen Fruits", /frozen/i],
-      ["Fruit Purees", /puree/i],
+      ["Frozen Fruits IQF", /frozen/i],
+      ["Frozen Fruit Purees", /puree/i],
     ],
     "Les Vergers Boiron": [["Les Vergers Boiron Purees", /.*/]],
     Switz: [["Switz Frozen Dough & Sheets", /.*/]],
@@ -108,6 +110,12 @@ const usageCategoryFor = (industrySlug, name, range) => {
 };
 
 const featuredChocolateDetails = {
+  "Dark Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian dark chocolate for adding a crisp finishing touch to desserts and pastries." },
+  "Milk Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian milk chocolate for professional dessert, pastry and ice-cream applications." },
+  "White Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian white chocolate for professional dessert, pastry and ice-cream applications." },
+  "Salted Caramel Flavored Cocoa Based Cereals": { packs: "800 g", description: "Mona Lisa salted caramel flavoured Crispearls for adding a crisp texture and caramel-chocolate finish to desserts and pastries." },
+  "Ruby Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in ruby chocolate for professional dessert and pastry decoration." },
+  "Minimix (Dark, Milk, White Mini Crispearls)": { packs: "425 g", description: "A Mona Lisa mix of dark, milk and white Mini Crispearls for adding varied chocolate colour, flavour and crisp texture to desserts." },
   "Dark Couverture 811 (54.5%)": { cocoaPercentage: "54.5% cocoa", packs: "10 kg and 2.5 kg", description: "Smooth, well-balanced Belgian dark chocolate with a vanilla note for professional confectionery and bakery applications." },
   "Milk Couverture 823 (33.6%)": { cocoaPercentage: "33.6% cocoa", packs: "10 kg and 2.5 kg", description: "Belgian milk couverture combining cocoa, milk and caramel notes for professional chocolate applications." },
   "White Couverture W2 (28.0%)": { cocoaPercentage: "28% cocoa", packs: "10 kg and 2.5 kg", description: "Balanced Belgian white couverture with a creamy milk taste and vanilla notes." },
@@ -144,7 +152,7 @@ const featuredChocolateDetails = {
   "Tropical Filling": { packs: "2.7 kg" },
 };
 
-export const approvedRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => names.split("|").map(name => {
+const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => names.split("|").map(name => {
   const featuredDetails = featuredChocolateDetails[name];
   return {
     name,
@@ -160,4 +168,24 @@ export const approvedRangeProducts = rows.flatMap(([brand, range, industrySlug, 
     description: featuredDetails?.description || `${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`,
   };
 }));
+
+const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogueCategory.products.map((item) => ({
+  name: item.name,
+  brand: "MEC3",
+  range: "imported",
+  industrySlug: "ice-cream-ingredients",
+  category: categories["ice-cream-ingredients"],
+  usageCategory: catalogueCategory.title,
+  brochureCategory: "Premium Ice Cream",
+  brochureDisplayCategory: catalogueCategory.title,
+  packs: item.pack,
+  itemCode: item.code,
+  dosage: item.dosage,
+  description: `${item.name} by MEC3 from the ${catalogueCategory.title} range for professional gelato, ice-cream, pastry and dessert applications. Confirm dosage, specification and current availability for the intended formulation.`,
+})));
+
+// The June 2026 MEC3 catalogue is the single source of truth for matching
+// products. Its category, pack, code and description override older row data,
+// while newer MEC3 products not present in that brochure remain available.
+export const approvedRangeProducts = [...new Map([...rowRangeProducts, ...mec3RangeProducts].map((item) => [item.name, item])).values()];
 export const productsForRangeSupplier=slug=>slug==="campco"?approvedRangeProducts.filter(item=>item.range==="indian"):slug==="delta-nutritives"?approvedRangeProducts.filter(item=>item.range==="imported"&&item.brochureCategory):[];

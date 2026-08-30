@@ -74,7 +74,7 @@ export default async function ProductPage({ params }) {
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
   const description = `${product.name} for ${industry.name.toLowerCase()} and professional food production. Vikranth Chemical Corporation supports B2B enquiries from Chennai for available grades, pack sizes, samples, documents and bulk quotations.`;
   const structuredData = [
-    { "@context": "https://schema.org", "@type": "Product", "@id": `${canonicalUrl}#product`, name: product.name, image: `${siteUrl}${product.image}`, description, category: product.category, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), url: canonicalUrl },
+    { "@context": "https://schema.org", "@type": "Product", "@id": `${canonicalUrl}#product`, name: product.name, image: `${siteUrl}${product.image}`, description, category: product.brochureDisplayCategory || product.category, ...(product.itemCode ? { sku: product.itemCode } : {}), ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), url: canonicalUrl },
     { "@context": "https://schema.org", "@type": "Service", "@id": `${canonicalUrl}#service`, name: `${product.name} B2B sourcing and enquiry support`, image: `${siteUrl}${product.image}`, description, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), serviceType: "B2B food ingredient sourcing", areaServed: { "@type": "Country", name: "India" }, provider: { "@id": `${siteUrl}/#organization` }, url: canonicalUrl },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
@@ -98,14 +98,14 @@ export default async function ProductPage({ params }) {
           <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/products">Products</Link><span>/</span><span>{product.name}</span></nav>
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy} data-hero-copy>
-              <span className={styles.eyebrow}>{product.brand ? `${product.brand} · ${product.category}` : product.category}</span>
+              <span className={styles.eyebrow}>{product.brand ? `${product.brand} · ${product.brochureDisplayCategory || product.category}` : product.category}</span>
               <h1>{product.name} <em>supplier</em> in Chennai and across India</h1>
               <p>{product.name} for {industry.name.toLowerCase()} and professional food production. Tell us your application, required grade and quantity so our B2B team can confirm a suitable available option.</p>
               <div className={styles.actions}>
                 <a className={styles.whatsappButton} href="#quote"><MessageCircle /> Request a quote</a>
                 <a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><FlaskConical /> Request a sample</a>
               </div>
-              <div className={styles.trust}><span><BadgeCheck /> B2B supply</span><span><FileCheck2 /> Documents on request</span><span><MapPin /> Chennai contact</span><span><Truck /> India enquiries</span></div>
+              <div className={styles.trust}><span><BadgeCheck /> B2B supply</span>{product.packs && <span><PackageCheck /> {product.packs}</span>}{product.itemCode && <span><SearchCheck /> Item {product.itemCode}</span>}<span><FileCheck2 /> Documents on request</span><span><Truck /> India enquiries</span></div>
             </div>
             <div className={styles.visualColumn}>
               <div className={styles.productVisual} data-product-stage>

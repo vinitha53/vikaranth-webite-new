@@ -3,7 +3,7 @@ export const partners = [
   {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:[],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
   {slug:"roquette",name:"Roquette",logo:"/partners/roquette.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"plant-based ingredients, starches, sweeteners, proteins and selected pharmaceutical solutions",about:"Roquette is known for plant-based ingredient solutions across food, nutrition and pharmaceutical applications. Availability is confirmed against the current approved catalogue.",products:["Liquid Glucose","Dextrose Monohydrate","Glucose D","High Maltose Syrups","Maize Starch Powder","Maltodextrin Powder","Sorbitol 70% Solution","Sorbitol","Maize Starch","Whey Protein"],industries:["sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma"]},
   {slug:"nitta-gelatin-india-ltd",name:"Nitta Gelatin India Ltd.",logo:"/partners/nitta.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"gelatin solutions and related functional applications",about:"Nitta Gelatin India is associated with gelatin solutions for food, nutraceutical and selected pharmaceutical uses. Bloom strength, grade and documents require product-specific confirmation.",products:["Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom"],industries:["hydrocolloids-stabilizers","nutraceutical-pharma"]},
-  {slug:"doehler",name:"Döhler",logo:"/partners/doehler.webp",image:"/industries/beverage-ingredients.webp",summary:"natural ingredients, fruit products and integrated food and beverage systems",about:"Döhler develops natural ingredient and application systems for food and beverage markets. Vikranth provides a Chennai enquiry route subject to current range and supply confirmation.",products:["Flavours & Natural Ingredients","Fruit Crush","Orange Oil"],industries:["beverage-ingredients","fruit-processing"]},
+  {slug:"doehler",name:"Döhler",logo:"/partners/doehler.webp",image:"/industries/beverage-ingredients.webp",summary:"natural ingredients, fruit products and integrated food and beverage systems",about:"Döhler develops natural ingredient and application systems for food and beverage markets. Vikranth provides a Chennai enquiry route subject to current range and supply confirmation.",products:["Flavours & Natural Ingredients","Orange Oil"],industries:["beverage-ingredients","fruit-processing"]},
   {slug:"cp-kelco",name:"CP Kelco",logo:"/partners/cp-kelco.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"nature-based hydrocolloids and formulation solutions",about:"CP Kelco is associated with nature-based hydrocolloid solutions for viscosity, suspension, stabilization and texture. Exact grades and applications must be verified.",products:["Genu Pectin","GENU® Pectin MRS 115","Xanthan Gum","Sodium CMC","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)"],industries:["hydrocolloids-stabilizers","fruit-processing","beverage-ingredients","functional-ingredients"]},
   {slug:"calpro-specialities-pvt-ltd",name:"Calpro Specialities Pvt. Ltd.",logo:"/partners/calpro.webp",image:"/industries/dairy-ingredients.webp",summary:"cocoa, dairy, bakery and functional food ingredient solutions",about:"Calpro supplies food ingredient solutions across cocoa, dairy, bakery and functional applications. Publish only the products supported by current catalogue and written partner documentation.",products:["Cocoa Powder","Whey Protein","Whey Powder","Skimmed Milk Powder","Amaze Ice Cream Stabilizer","Calcium Propionate (CP)","Sodium Propionate","Vital Wheat Gluten"],industries:["bakery-ingredients","chocolate-confectionery","dairy-ingredients","ice-cream-ingredients","functional-ingredients","food-additives-preservatives"]},
   {slug:"gujarat-ambuja-exports-ltd",name:"Gujarat Ambuja Exports Ltd.",logo:"/partners/ambuja.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"sorbitol, starch derivatives and agro-processing ingredients",about:"Gujarat Ambuja Exports is associated with starch-derived and agro-processing ingredient solutions. Product grade, pack and current availability require confirmation.",products:["Sorbitol 70% Solution","Sorbitol","Maize Starch","Liquid Glucose"],industries:["sweeteners-syrups-starches","functional-ingredients"]},
@@ -47,7 +47,7 @@ export const partnerProductImages = {
   },
   doehler: {
     hero: "/product-images/doehler/fruit-ingredients.webp",
-    products: {"Flavours & Natural Ingredients":"/partner-products/doehler-flavours.webp","Fruit Crush":"/product-images/fruit-processing/fruit-crush.png","Orange Oil":"/partner-products/doehler-flavours.webp"}
+    products: {"Flavours & Natural Ingredients":"/partner-products/doehler-flavours.webp","Orange Oil":"/partner-products/doehler-flavours.webp"}
   },
   "cp-kelco": {
     hero: "/product-images/cp-kelco/genu-pectin-mrs-115.webp",
@@ -108,12 +108,12 @@ const catalogProductImages = {
   "Pure Pistachio Paste": "/product-images/chocolate-confectionery/pure-pistachio-paste.webp",
   "Cocoa Nibs": "/product-images/chocolate-confectionery/cocoa-nibs.webp",
   "Mycryo Cocoa Butter": "/product-images/chocolate-confectionery/mycryo-cocoa-butter.webp",
-  "Dark Chocolate Crispearls": "/product-images/chocolate-confectionery/dark-chocolate-crispearls.webp",
-  "Milk Chocolate Crispearls": "/product-images/chocolate-confectionery/milk-chocolate-crispearls.webp",
-  "White Chocolate Crispearls": "/product-images/chocolate-confectionery/white-chocolate-crispearls.webp",
-  "Salted Caramel Crispearls": "/product-images/chocolate-confectionery/salted-caramel-crispearls.webp",
-  "Ruby Chocolate Crispearls": "/product-images/chocolate-confectionery/ruby-chocolate-crispearls.webp",
-  "Mini Crispearls Mix": "/product-images/chocolate-confectionery/mini-crispearls-mix.webp",
+  "Dark Chocolate Coated Cereals": "/product-images/chocolate-confectionery/dark-chocolate-crispearls.webp",
+  "Milk Chocolate Coated Cereals": "/product-images/chocolate-confectionery/milk-chocolate-crispearls.webp",
+  "White Chocolate Coated Cereals": "/product-images/chocolate-confectionery/white-chocolate-crispearls.webp",
+  "Salted Caramel Flavored Cocoa Based Cereals": "/product-images/chocolate-confectionery/salted-caramel-crispearls.webp",
+  "Ruby Chocolate Coated Cereals": "/product-images/chocolate-confectionery/ruby-chocolate-crispearls.webp",
+  "Minimix (Dark, Milk, White Mini Crispearls)": "/product-images/chocolate-confectionery/mini-crispearls-mix.webp",
   "Venezuela (72%)": "/product-images/chocolate-confectionery/venezuela.webp",
   "Alunga Milk Organic (41%)": "/product-images/chocolate-confectionery/alunga-milk-organic.webp",
   "Saint Domingue (70%)": "/product-images/chocolate-confectionery/saint-domingue.webp",
