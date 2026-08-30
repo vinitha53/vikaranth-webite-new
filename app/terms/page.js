@@ -17,6 +17,6 @@ const sections = [
 ];
 
 export default function TermsPage() {
-  const schema = [{ "@context": "https://schema.org", "@type": "WebPage", url: "https://www.vikranthchem.com/terms/", name: "Website Terms of Use", description: metadata.description }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "Terms of Use", item: "https://www.vikranthchem.com/terms/" }] }];
+  const schema = [{ "@context": "https://schema.org", "@type": "WebPage", url: "https://www.vikranthchemicalcorporation.com/terms/", name: "Website Terms of Use", description: metadata.description }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "Terms of Use", item: "https://www.vikranthchemicalcorporation.com/terms/" }] }];
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><LegalPage eyebrow="Website terms" title="Website Terms of Use" introduction="These terms govern use of Vikranth's website, product information, enquiries, documents, trademarks and external links. They are separate from quotation, invoice and supply-contract terms and require legal review." updated="19 August 2026" sections={sections} /></>;
 }

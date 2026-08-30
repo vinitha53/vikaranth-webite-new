@@ -9,7 +9,7 @@ import { getPartner, partnersForProduct } from "../../data/partners";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const supplierOverviewByProduct = {
   "Cake Gel": "Vikranth supports bakeries, cake manufacturers and food businesses sourcing cake gel in Chennai and across India. Cake gel is commonly evaluated as an emulsifying aid for sponge cakes, cupcakes and other aerated bakery products where batter stability, volume, texture and batch consistency are important. Share your recipe, process, required pack size, monthly quantity and delivery location so the team can confirm the available grade, documents, sample options and commercial quotation.",
 };

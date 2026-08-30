@@ -16,8 +16,8 @@ export const metadata = {
 
 export default function AboutPage() {
   const structuredData = [
-    { "@context": "https://schema.org", "@type": "AboutPage", name: "About Vikranth Chemical Corporation", description: metadata.description, url: "https://www.vikranthchem.com/about/", mainEntity: { "@id": "https://www.vikranthchem.com/#organization" } },
-    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "About", item: "https://www.vikranthchem.com/about/" }] },
+    { "@context": "https://schema.org", "@type": "AboutPage", name: "About Vikranth Chemical Corporation", description: metadata.description, url: "https://www.vikranthchemicalcorporation.com/about/", mainEntity: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "About", item: "https://www.vikranthchemicalcorporation.com/about/" }] },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([question,answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
   ];
   return <main><DetailHeader/><AboutStory/><CoreSeoContent content={coreContent.about}/><DetailFooter/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}/></main>;

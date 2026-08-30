@@ -28,7 +28,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, setValue, trigger, formState: { errors, isValid, isSubmitting } } = useForm({
     mode: "onChange",
-    defaultValues: { name: "", email: "", phone: "", subject: "", message: "", consent: false },
+    defaultValues: { name: "", company: "", email: "", phone: "", subject: "", ingredient: "", quantity: "", deliveryLocation: "", application: "", preferredContact: "Email", message: "", consent: false },
   });
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
       onMascotState("success", "Got it! We'll be in touch soon.");
       if (!submitHandler) {
         const subject = `VCC contact enquiry - ${data.subject}`;
-        const body = [`Name: ${data.name}`, `Email: ${data.email}`, `Phone: ${data.phone || "Not provided"}`, `Reason: ${data.subject}`, "", data.message].join("\n");
+        const body = [`Name: ${data.name}`, `Company: ${data.company || "Not provided"}`, `Email: ${data.email}`, `Phone: ${data.phone || "Not provided"}`, `Enquiry type: ${data.subject}`, `Ingredient: ${data.ingredient || "Not specified"}`, `Quantity: ${data.quantity || "Not specified"}`, `Application: ${data.application || "Not specified"}`, `Delivery location: ${data.deliveryLocation || "Not specified"}`, `Preferred contact: ${data.preferredContact}`, "", data.message].join("\n");
         window.setTimeout(() => { window.location.href = `mailto:vikranth.chemicals@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; }, 650);
       }
     } catch {
@@ -116,6 +116,11 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             </label>
 
             <label className={styles.professionalField}>
+              <span className={styles.fieldLabel}>Company <small>Optional</small></span>
+              <span className={styles.fieldControl}><input id="contact-company" autoComplete="organization" placeholder="Company or business name" {...bind("company")} /></span>
+            </label>
+
+            <label className={styles.professionalField}>
               <span className={styles.fieldLabel}>Phone number <small>Optional</small></span>
               <span className={styles.fieldControl}>
                 <Phone aria-hidden="true" />
@@ -130,10 +135,11 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
                 <CircleHelp aria-hidden="true" />
                 <select suppressHydrationWarning id="contact-subject" defaultValue="" {...bind("subject", { required: "Please choose a reason" })}>
                   <option value="" disabled>Select a reason</option>
-                  <option>General enquiry</option>
-                  <option>Product / quotation</option>
-                  <option>Technical support</option>
-                  <option>Feedback</option>
+                  <option>Bulk/Business</option>
+                  <option>Wholesale</option>
+                  <option>Retail/Small Quantity</option>
+                  <option>Product Documentation</option>
+                  <option>General Enquiry</option>
                 </select>
                 <Check className={styles.validTick} aria-hidden="true" />
               </span>
@@ -146,6 +152,14 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
           <div className={styles.formSectionTitle}>
             <span>02</span>
             <div><b id="requirement-heading">Your requirement</b><small>Product, application, quantity or support needed</small></div>
+          </div>
+
+          <div className={styles.professionalFieldGrid}>
+            <label className={styles.professionalField}><span className={styles.fieldLabel}>Ingredient required <small>Optional</small></span><span className={styles.fieldControl}><input id="contact-ingredient" placeholder="e.g. Cocoa powder" {...bind("ingredient")} /></span></label>
+            <label className={styles.professionalField}><span className={styles.fieldLabel}>Quantity <small>Optional</small></span><span className={styles.fieldControl}><input id="contact-quantity" placeholder="e.g. 500 kg" {...bind("quantity")} /></span></label>
+            <label className={styles.professionalField}><span className={styles.fieldLabel}>Application or industry <small>Optional</small></span><span className={styles.fieldControl}><input id="contact-application" placeholder="e.g. Commercial bakery" {...bind("application")} /></span></label>
+            <label className={styles.professionalField}><span className={styles.fieldLabel}>Delivery location <small>Optional</small></span><span className={styles.fieldControl}><input id="contact-delivery-location" autoComplete="address-level2" placeholder="City / PIN code" {...bind("deliveryLocation")} /></span></label>
+            <label className={styles.professionalField}><span className={styles.fieldLabel}>Preferred contact method</span><span className={styles.fieldControl}><select id="contact-preferred" {...bind("preferredContact")}><option>Email</option><option>Phone</option><option>WhatsApp</option></select></span></label>
           </div>
 
           <label className={`${styles.professionalField} ${styles.messageField}`}>

@@ -16,8 +16,8 @@ const directions = "https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sr
 
 export default function ContactPage() {
   const schema = [
-    { "@context": "https://schema.org", "@type": "ContactPage", "@id": "https://www.vikranthchem.com/contact/#webpage", url: "https://www.vikranthchem.com/contact/", name: "Contact Vikranth for a Food Ingredient Quotation", description: metadata.description, about: { "@id": "https://www.vikranthchem.com/#organization" } },
-    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchem.com/" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.vikranthchem.com/contact/" }] },
+    { "@context": "https://schema.org", "@type": "ContactPage", "@id": "https://www.vikranthchemicalcorporation.com/contact/#webpage", url: "https://www.vikranthchemicalcorporation.com/contact/", name: "Contact Vikranth for a Food Ingredient Quotation", description: metadata.description, about: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.vikranthchemicalcorporation.com/contact/" }] },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: coreContent.contact.faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
   ];
   return (

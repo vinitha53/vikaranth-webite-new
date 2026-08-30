@@ -1,0 +1,16 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/hero-chocolate-ingredients.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/hero-chocolate-poster.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/partners/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/products/*
+  Cache-Control: public, max-age=31536000, immutable

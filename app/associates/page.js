@@ -2,7 +2,7 @@ import { partners } from "../data/partners";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
 import AssociatesClient from "./AssociatesClient";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const canonicalUrl = `${siteUrl}/associates/`;
 
 export const metadata = {

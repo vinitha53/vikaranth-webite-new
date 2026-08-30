@@ -1,7 +1,7 @@
 import { industries, products } from "./catalog";
 import { partners } from "./partners";
 
-export const siteUrl = "https://www.vikranthchem.com";
+export const siteUrl = "https://www.vikranthchemicalcorporation.com";
 export const lastSignificantUpdate = "2026-08-16";
 
 export const corePages = [
@@ -11,6 +11,7 @@ export const corePages = [
   { path: "/industries/", label: "Food Industries and Applications" },
   { path: "/associates/", label: "Ingredient Manufacturers and Suppliers" },
   { path: "/contact/", label: "Contact and Request a Quote" },
+  { path: "/faq/", label: "Food Ingredient Supply Questions" },
   { path: "/brochure/", label: "Food Ingredient Brochure" },
   { path: "/site-map/", label: "HTML Sitemap" },
   { path: "/privacy/", label: "Privacy Policy" },

@@ -9,25 +9,18 @@ import {
   ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import GlobalSearch from "./components/GlobalSearch";
-import CoreSeoContent from "./components/CoreSeoContent";
 import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
-import { coreContent } from "./data/core-content";
 import { partners } from "./data/partners";
 
 const verifiedClaimsAvailable = false;
 const verifiedGuidesAvailable = false;
 
 const homeFaqs = [
-  ["Which food ingredients does Vikranth supply?", "Vikranth supplies ingredients for bakery, chocolate, dairy, beverages, ice cream, fruit processing, hydrocolloids, sweeteners, starches, proteins, emulsifiers, preservatives and related manufacturing needs. Current availability and grade must be confirmed."],
-  ["Do you supply food ingredients outside Chennai?", "Vikranth is based in Chennai and supports business enquiries from different locations. Share your delivery city and quantity so the team can confirm availability and supply options."],
-  ["Can you help us select the right ingredient?", "Yes. Share your application, expected function, required grade and quantity. The team can help identify suitable product options for evaluation."],
-  ["Can we request product specifications or certificates?", "Product specifications and supporting documents can be requested. Availability depends on the selected ingredient and manufacturer."],
-  ["Do you support bulk ingredient requirements?", "Yes. Vikranth primarily supports manufacturers, bakeries, food processors and other professional buyers. Mention your approximate quantity when requesting a quotation."],
-  ["What information is needed for a quotation?", "Provide the ingredient name, grade or application, required quantity, delivery location, company name and contact information."],
-  ["Is Vikranth a food ingredients supplier in Chennai?", "Yes. Vikranth Chemical Corporation is a Chennai-based B2B food-ingredient supplier for manufacturers and professional buyers."],
-  ["Can I request a product sample?", "Sample availability depends on the ingredient, supplier and project. Include the product, application, sample quantity and delivery location."],
-  ["Are COA, TDS and SDS documents available?", "Availability varies by product, grade and supplier. State the exact document required in the enquiry."],
-  ["Does Vikranth provide formulation approval?", "No. The team may help identify product families and available documents, but final formulation, dosage, safety, regulatory compliance and production approval remain with the buyer's qualified team."],
+  ["What food ingredients does Vikranth Chemical supply in Chennai?", "Vikranth Chemical Corporation supplies bakery, chocolate and confectionery, dairy, beverage, ice cream, fruit-processing, hydrocolloid, sweetener, functional, nutraceutical and food-additive ingredients for manufacturers and professional buyers."],
+  ["Which manufacturer portfolios can buyers enquire about through Vikranth?", "Buyers can enquire about listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and other ingredient manufacturers. The exact manufacturer, relationship, grade and current availability are confirmed for each enquiry."],
+  ["Does Vikranth Chemical supply food ingredients outside Chennai?", "Vikranth is based in Chennai and accepts business enquiries from Tamil Nadu, South India and other locations across India. Delivery options and serviceability are confirmed for the selected product, quantity and destination."],
+  ["Does Vikranth support bulk ingredient requirements?", "Yes. Vikranth primarily supports manufacturers, bakeries, food processors and other professional buyers with bulk and wholesale ingredient requirements. Mention the product, application, approximate quantity and delivery location when requesting a quotation."],
+  ["Can retail or small-quantity buyers purchase from Vikranth?", "Select retail and small-quantity enquiries are considered for specific ingredients. Share the product, application and required quantity, and the team will confirm current availability."],
 ];
 
 const productGroups = [
@@ -289,6 +282,7 @@ export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
   const megaMenuRef = useRef(null);
+  const heroVideoRef = useRef(null);
   const featureMotionFrame = useRef(null);
   const insightCarouselRef = useRef(null);
   const insightTrackRef = useRef(null);
@@ -304,6 +298,23 @@ export default function Home() {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePlayback = () => {
+      const saveData = navigator.connection?.saveData;
+      if (reducedMotion.matches || saveData) {
+        video.pause();
+        video.removeAttribute("autoplay");
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+    updatePlayback();
+    reducedMotion.addEventListener?.("change", updatePlayback);
+    return () => reducedMotion.removeEventListener?.("change", updatePlayback);
   }, []);
   useEffect(() => () => {
     if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
@@ -439,23 +450,24 @@ export default function Home() {
   return (
     <main className="home-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
-        { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchem.com/#webpage", url: "https://www.vikranthchem.com/", name: "Food Ingredients Supplier in Chennai & India | Vikranth", description: "Source bakery, chocolate, dairy, beverage and specialty food ingredients from Vikranth in Chennai. Enquire for bulk supply and product documents.", isPartOf: { "@id": "https://www.vikranthchem.com/#website" }, about: { "@id": "https://www.vikranthchem.com/#organization" } },
+        { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchemicalcorporation.com/#webpage", url: "https://www.vikranthchemicalcorporation.com/", name: "Food Ingredients Supplier in Chennai | Vikranth Chemical", description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.", isPartOf: { "@id": "https://www.vikranthchemicalcorporation.com/#website" }, about: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
         { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: homeFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+        { "@context": "https://schema.org", "@type": "ItemList", name: "Food ingredient categories", itemListElement: productCategories.map((category, index) => ({ "@type": "ListItem", position: index + 1, name: category.name, url: `https://www.vikranthchemicalcorporation.com${category.href}/` })) },
       ]) }} />
       <div className="utility">
         <div className="utility-viewport">
           <div className="utility-track">
             <div className="utility-set">
-              <span><BadgeCheck size={14}/> B2B Food Ingredient Supplier</span>
+              <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
-              <span className="utility-tag">Serving businesses across India</span>
+              <span className="utility-tag">Chennai · India</span>
               <a className="utility-contact" href="tel:+918754442924"><Phone size={14}/> +91 87544 42924</a>
               <a className="utility-contact" href="mailto:vikranth.chemicals@gmail.com"><Mail size={14}/> vikranth.chemicals@gmail.com</a>
             </div>
             <div className="utility-set" aria-hidden="true">
-              <span><BadgeCheck size={14}/> B2B Food Ingredient Supplier</span>
+              <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
-              <span className="utility-tag">Serving businesses across India</span>
+              <span className="utility-tag">Chennai · India</span>
               <span className="utility-contact"><Phone size={14}/> +91 87544 42924</span>
               <span className="utility-contact"><Mail size={14}/> vikranth.chemicals@gmail.com</span>
             </div>
@@ -475,7 +487,6 @@ export default function Home() {
             <a className="mobile-products-link" href="/industries" onClick={jump}>Industries</a>
             <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu">Suppliers <ChevronDown size={14}/></button>
             <a className="mobile-products-link" href="/associates" onClick={jump}>Suppliers</a>
-            <a href="#insights" onClick={jump}>Blog</a>
             <a href="/contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
@@ -577,7 +588,7 @@ export default function Home() {
             <div className="industry-menu-grid" aria-label="Suppliers">
               {partners.map((partner) => (
                 <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}>
-                  {partner.logo ? <img className="supplier-item-logo" src={partner.logo} alt="" loading="lazy" decoding="async"/> : <span className="supplier-item-logo supplier-item-logo-fallback" aria-hidden="true">A</span>}
+                  {partner.logo ? <img className="supplier-item-logo" src={partner.logo} alt="" width="180" height="80" loading="lazy" decoding="async"/> : <span className="supplier-item-logo supplier-item-logo-fallback" aria-hidden="true">A</span>}
                   <span>{partner.name}</span>
                   <ArrowRight className="industry-item-arrow" aria-hidden="true"/>
                 </a>
@@ -593,6 +604,7 @@ export default function Home() {
 
       <section className="hero" id="home">
         <video
+          ref={heroVideoRef}
           className="hero-media"
           autoPlay
           muted
@@ -607,17 +619,26 @@ export default function Home() {
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
-          <span className="hero-mini-title">Food Ingredients Supplier in Chennai</span>
-          <h1>Your Product <em>Vision.</em> Our Ingredient<br/><em>Expertise.</em></h1>
+          <span className="hero-mini-title">Food Ingredients · Chennai</span>
+          <h1>Food Ingredients <em>Supplier in Chennai</em></h1>
           <div className="hero-copy">
-            <p>Bakery, chocolate, dairy, beverage and specialty ingredients for commercial production, with grade, document and quotation support.</p>
+            <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco and Nitta Gelatin India; availability and delivery are confirmed per enquiry.</p>
+            <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
             <div className="hero-buttons">
-              <a className="btn gold" href="/contact/#enquiry">Request a quotation <ArrowRight size={17}/></a>
-              <a className="btn ghost" href="https://wa.me/918754442924">Discuss your application</a>
+              <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
+              <a className="btn ghost" href="https://wa.me/918754442924">WhatsApp Us</a>
+              <a className="btn ghost hero-catalogue-link" href="/brochure/">Download Product Catalogue</a>
             </div>
           </div>
         </div>
-        <div className="scroll-cue"><span/> Scroll to discover</div>
+        <div className="scroll-cue" aria-hidden="true"><span/> Scroll</div>
+      </section>
+
+      <section className="home-trust-strip botanical-light-section" aria-labelledby="trust-strip-title">
+        <div className="container">
+          <div className="trust-strip-copy"><h2 id="trust-strip-title">Why Vikranth</h2><p>Chennai-based ingredient sourcing for food businesses.</p></div>
+          <div className="trust-strip-points">{[[BadgeCheck,"GSTIN 33AADFV9327N1ZO"],[MapPin,"Chennai-based supplier"],[Box,"11 ingredient categories"],[Handshake,"Structured procurement support"]].map(([Icon,label]) => <div key={label}><Icon aria-hidden="true"/><span>{label}</span></div>)}</div>
+        </div>
       </section>
 
       {verifiedClaimsAvailable && <section className="metrics">
@@ -629,19 +650,18 @@ export default function Home() {
         </div>
       </section>}
 
-      <section className="section product-section botanical-light-section" id="products">
+      <section className="section product-section botanical-light-section" id="industries" aria-labelledby="industries-title">
         <BotanicalCorners/>
         <div className="container">
           <div className="section-head portfolio-section-head">
             <div>
-              <span className="eyebrow">Explore our portfolio</span>
-              <h2>
-                <span className="portfolio-title-line"><span>Food Ingredients</span></span>
-                <span className="portfolio-title-line"><em>for Every Formulation</em></span>
+              <span className="eyebrow">Applications</span>
+              <h2 id="industries-title">
+                <span className="portfolio-title-line"><span>Industries We Supply</span></span>
               </h2>
             </div>
-            <div><p>Explore bakery, cocoa, dairy, fruit, sweetener, stabilizer, emulsifier and processing ingredients for commercial food production.</p>
-              <a className="text-link" href="/products">Search all ingredients <ArrowRight size={16}/></a>
+            <div><p>Ingredients for bakeries, confectioners, dairy, beverages, ice cream and food processing.</p>
+              <a className="text-link" href="/industries/">See All Industries <ArrowRight size={16}/></a>
             </div>
           </div>
           <div className="portfolio-visual">
@@ -659,7 +679,7 @@ export default function Home() {
               return <a className="product-card" href={`/industries/${industrySlugs[i]}`} aria-label={`View ${group.name} products`} key={group.name} style={{"--accent": group.accent, "--delay": `${i * 60}ms`}}>
                 {group.image ? (
                   <div className="category-photo">
-                    <img src={group.image} alt={`${group.name} for commercial food production`} loading="lazy" decoding="async"/>
+                    <img src={group.image} alt={`${group.name} for commercial food production`} width="640" height="480" loading="lazy" decoding="async"/>
                   </div>
                 ) : (
                   <div className="category-photo category-placeholder" aria-hidden="true"><Icon/><span>Product image coming soon</span></div>
@@ -680,6 +700,16 @@ export default function Home() {
         </div>
       </section>
 
+
+      <section className="section enquiry-types botanical-light-section" aria-labelledby="enquiry-types-title">
+        <BotanicalCorners/>
+        <div className="container">
+          <div className="section-head"><div><span className="eyebrow">Enquiry options</span><h2 id="enquiry-types-title">Business &amp; Retail Enquiries</h2></div><p>Bulk, wholesale and selected small-quantity enquiries.</p></div>
+          <div className="enquiry-type-grid"><article><Building2/><h3>Bulk &amp; Business</h3><p>For manufacturers, bakeries and food processors.</p></article><article><PackageCheck/><h3>Small Quantity</h3><p>Selected ingredients, subject to availability.</p></article></div>
+          <a className="btn primary" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={16}/></a>
+        </div>
+      </section>
+
       <section className="section about botanical-light-section" id="about">
         <BotanicalCorners/>
         <div className="container">
@@ -696,20 +726,21 @@ export default function Home() {
             <div className="about-caption"><span className="about-since"><BadgeCheck/><b>GST registered</b></span><i/><p>GSTIN 33AADFV9327N1ZO · Product and relationship details confirmed per enquiry.</p></div>
           </div>
           <div className="about-copy">
-            <p className="lead">Ingredient sourcing designed for manufacturers, bakeries, processors and professional buyers.</p>
+            <p className="lead">Every enquiry follows a clear path—from understanding the requirement to confirming the supplier, grade, documentation, packaging and fulfilment details.</p>
             <div className="value-list">
               {[
                 [Box, "Wide Ingredient Portfolio", "Source ingredients across bakery, chocolate, dairy, beverage and specialty applications."],
                 [Handshake, "Manufacturer Portfolio Enquiries", "Explore listed manufacturer portfolios while exact relationship and availability are confirmed per product."],
                 [Beaker, "Application-Based Guidance", "Discuss your finished product and identify ingredients suited to your requirement."],
                 [Zap, "Responsive Quotations", "Receive clear support for availability, quantity and commercial enquiries."],
-                [PackageCheck, "Business-Focused Supply", "Practical sourcing for manufacturers, bakeries, processors and professional buyers."]
+                [PackageCheck, "Repeat-Order Coordination", "Coordinate recurring grades, pack sizes and professional requirements."]
               ].map(([Icon,title,text], index) => <div key={title} style={{"--value-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
                 <i className="value-card-orbit" aria-hidden="true"/><i className="value-card-corner" aria-hidden="true"/>
                 <span><Icon/></span><section><h3>{title}</h3><p>{text}</p></section>
               </div>)}
             </div>
-            <button className="btn dark" onClick={() => openQuote()}>Work with Vikranth <ArrowRight size={16}/></button>
+            <ol className="procurement-steps"><li><b>01</b><span>Share the ingredient, application and quantity.</span></li><li><b>02</b><span>Confirm the suitable product, grade and supplier.</span></li><li><b>03</b><span>Review packaging, documents and current availability.</span></li><li><b>04</b><span>Coordinate quotation, delivery and repeat requirements.</span></li></ol>
+            <a className="btn dark" href="/contact/#enquiry">Start an Enquiry <ArrowRight size={16}/></a>
           </div>
           </div>
         </div>
@@ -718,10 +749,10 @@ export default function Home() {
       <section className="supplier-section botanical-light-section" id="suppliers">
         <BotanicalCorners/>
         <div className="container">
-          <div className="supplier-head"><div><span className="eyebrow">Manufacturer portfolios</span><h2>Multiple Product Portfolios.<br/><em>One Enquiry Route.</em></h2></div><p>Explore listed portfolios for product identification. Exact relationship, source, grade and current availability are confirmed for every enquiry.</p></div>
+          <div className="supplier-head"><div><span className="eyebrow">Established ingredient portfolios</span><h2>Manufacturer &amp;<br/><em>Supplier Network</em></h2></div><p>Vikranth works with established ingredient manufacturers and suppliers across chocolate, bakery, dairy, stabiliser, starch, protein and specialty ingredient categories. Exact product availability, grade, packaging and documentation are confirmed for each enquiry.</p></div>
           <div className="supplier-marquee-shell">
             <button className="supplier-carousel-control previous" type="button" aria-label="Move product network left" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(-1)}><ChevronLeft/></button>
-            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" /> : <span className="anchor-mark" aria-label={`${partner.name} logo`}>A</span>}</a>)}</div></div>
+            <div className="logo-marquee" ref={supplierMarqueeRef}><div className="logo-track" id="supplier-logo-track" ref={supplierTrackRef}>{[...partners,...partners].map((partner,i) => <a href={`/associates/${partner.slug}`} className="associate-logo" key={`${partner.slug}-${i}`}>{partner.logo ? <img src={partner.logo} alt={`${partner.name} logo`} width="180" height="80" loading="lazy" decoding="async" /> : <span className="anchor-mark" aria-label={`${partner.name} logo`}>A</span>}</a>)}</div></div>
             <button className="supplier-carousel-control next" type="button" aria-label="Move product network right" aria-controls="supplier-logo-track" onClick={() => moveSupplierCarousel(1)}><ChevronRight/></button>
           </div>
           <div className="supplier-feature">
@@ -729,36 +760,7 @@ export default function Home() {
             <div><Truck/><span>Delivery confirmation</span><p>Quantity, freight and destination serviceability are checked per order.</p></div>
             <div><Headphones/><span>Human support</span><p>One responsive team from product selection to repeat supply.</p></div>
           </div>
-        </div>
-      </section>
-
-      <section className="quality-section botanical-light-section" id="quality" aria-labelledby="quality-heading">
-        <BotanicalCorners/>
-        <div className="container">
-          <div className="quality-section-head">
-            <span className="eyebrow">Quality-led sourcing</span>
-            <h2 id="quality-heading">Confidence in Every Ingredient</h2>
-          </div>
-          <div className="quality-grid">
-            <div className="quality-copy">
-              <span className="quality-copy-label"><ShieldCheck size={16}/> Sourcing assurance for professional buyers</span>
-              <p>Every requirement follows a clear sourcing path—from supplier alignment and available product documents to careful fulfilment and repeat-order support. Specifications, certificates and supporting information are coordinated according to product and supplier availability.</p>
-              <div className="quality-assurance-flow" aria-label="Our sourcing assurance process">
-                <span><b>01</b> Supplier aligned</span><i aria-hidden="true"/><span><b>02</b> Information checked</span><i aria-hidden="true"/><span><b>03</b> Supply coordinated</span>
-              </div>
-              <button className="btn dark quality-information-cta" onClick={() => openQuote("Product information request")}>Request Product Information <ArrowRight size={16}/></button>
-            </div>
-            <div className="quality-cards">
-              {[
-                [ShieldCheck, "Supplier information checks", "Confirm the manufacturer, commercial source and relationship for the selected product."],
-                [PackageCheck, "Product information support", "Request available specifications, certificates and supporting product documents."],
-                [BadgeCheck, "Careful handling and fulfilment", "Product-aware coordination from commercial requirement through dispatch."],
-                [Globe2, "Repeat-order continuity", "Responsive support for recurring grades, pack sizes and professional requirements."]
-              ].map(([Icon, title, text], index) => <article key={title} style={{"--quality-index": index, "--mouse-x": "50%", "--mouse-y": "50%", "--spotlight-opacity": 0}} onPointerEnter={updateFeatureSpotlight} onPointerMove={updateFeatureSpotlight} onPointerLeave={clearFeatureSpotlight}>
-                <span className="quality-card-step" aria-hidden="true">0{index + 1}</span><i className="quality-card-glow" aria-hidden="true"/><span className="quality-icon"><Icon/></span><div><h3>{title}</h3><p>{text}</p></div>
-              </article>)}
-            </div>
-          </div>
+          <a className="btn outline center-btn" href="/associates/">View All Suppliers <ArrowRight size={16}/></a>
         </div>
       </section>
       {verifiedGuidesAvailable && <section className="section insights botanical-light-section" id="insights">
@@ -783,42 +785,10 @@ export default function Home() {
         </div>
       </section>}
 
-      <section className="home-trusted-customers botanical-light-section" aria-labelledby="home-trusted-customers-title">
+      <section className="section company-intro botanical-light-section" aria-labelledby="company-intro-title">
         <BotanicalCorners/>
-        <div className="home-trusted-customers-heading">
-          <span id="home-trusted-customers-title" className="eyebrow">Trusted Customers</span>
-        </div>
-        <div className="home-customer-carousel-shell">
-          <button className="home-customer-carousel-control previous" type="button" aria-label="Move trusted customers left" aria-controls="home-customer-logo-track" onClick={() => moveCustomerCarousel(-1)}><ChevronLeft/></button>
-          <div className="home-customer-marquee" ref={customerMarqueeRef} aria-label="Trusted customer logos">
-            <div className="home-customer-marquee-track" id="home-customer-logo-track" ref={customerTrackRef}>
-            {[
-              ["hershey.jpg", "The Hershey Company"],
-              ["cavinkare.jpg", "CavinKare"],
-              ["milka.jpg", "Milka"],
-              ["lotte.jpg", "Lotte"],
-              ["a2b.png", "A2B Indian Veg Restaurant"],
-              ["nilgiris.png", "Nilgiris"],
-              ["amrutanjan.png", "Amrutanjan"],
-              ["hershey.jpg", "The Hershey Company"],
-              ["cavinkare.jpg", "CavinKare"],
-              ["milka.jpg", "Milka"],
-              ["lotte.jpg", "Lotte"],
-              ["a2b.png", "A2B Indian Veg Restaurant"],
-              ["nilgiris.png", "Nilgiris"],
-              ["amrutanjan.png", "Amrutanjan"]
-            ].map(([logo, name], index) => (
-              <div className="home-customer-logo" key={`${name}-${index}`}>
-                <img src={`/trusted-customers/${logo}`} alt={`${name} logo`} loading="lazy" />
-              </div>
-            ))}
-            </div>
-          </div>
-          <button className="home-customer-carousel-control next" type="button" aria-label="Move trusted customers right" aria-controls="home-customer-logo-track" onClick={() => moveCustomerCarousel(1)}><ChevronRight/></button>
-        </div>
+        <div className="container company-intro-inner"><div><span className="eyebrow">Chennai food ingredient partner</span><h2 id="company-intro-title">About Vikranth Chemical Corporation</h2></div><div><p>Vikranth Chemical Corporation is a Chennai-based supplier and distributor of food and specialty ingredients for bakery, confectionery, dairy, beverage and food-manufacturing companies. Business buyers across Tamil Nadu, South India and other Indian locations can enquire about current availability, grades, packaging, product documents and delivery options.</p><a className="btn dark" href="/about">Learn More About Vikranth <ArrowRight size={16}/></a></div></div>
       </section>
-
-      <IngredientEcosystem/>
 
       {verifiedClaimsAvailable && <section className="testimonial-section" aria-labelledby="testimonial-title">
         <div className="container testimonial-inner">
@@ -882,8 +852,6 @@ export default function Home() {
         </div>
       </section>}
 
-      <CoreSeoContent content={coreContent.home} compact hideFaq />
-
       <section className="faq-section botanical-light-section" id="faq" aria-labelledby="faq-heading">
         <BotanicalCorners/>
         <div className="container">
@@ -895,23 +863,21 @@ export default function Home() {
           <div className="faq-list">
             {homeFaqs.map(([question, answer]) => (
               <details key={question}>
-                <summary>{question}<span aria-hidden="true">+</span></summary>
+                <summary><h3>{question}</h3><span aria-hidden="true">+</span></summary>
                 <p>{answer}</p>
               </details>
             ))}
           </div>
-          <button className="btn gold faq-contact" onClick={() => openQuote("Technical guidance")}>
-            Contact our technical team <ArrowRight size={16}/>
-          </button>
+          <a className="btn gold faq-contact" href="/faq/">See All FAQs <ArrowRight size={16}/></a>
           </div>
         </div>
       </section>
       <section className="cta-section" id="contact">
         <div className="cta-bg"/><div className="container cta-inner">
           <span className="eyebrow light-text">Tell us what you need</span>
-          <h2>Looking for a<br/><em>Food Ingredient Supplier?</em></h2>
-          <p>Share your product, application, quantity and delivery location. Our team will respond with availability and suitable next steps.</p>
-          <div><button className="btn gold" onClick={() => openQuote()}>Request a quote <ArrowRight size={17}/></button><a className="btn ghost" href="tel:+918754442924"><Phone size={16}/> +91 87544 42924</a></div>
+          <h2>Looking for a Food Ingredient<br/><em>Supplier in Chennai?</em></h2>
+          <p>Share your required ingredient, application, quantity and delivery location. The Vikranth team will review the requirement and respond with availability and the next steps.</p>
+          <div><a className="btn gold" href="/contact/#enquiry">Request a Quote <ArrowRight size={17}/></a><a className="btn ghost" href="tel:+918754442924"><Phone size={16}/> Call Vikranth</a></div>
         </div>
       </section>
 
@@ -928,9 +894,9 @@ export default function Home() {
       <footer>
         <div className="container footer-grid">
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
-          <div><h4>Explore</h4><a href="/about">About</a><a href="#products">Products</a><a href="#industries">Industries</a><a href="#insights">Resources</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="#faq">FAQs</a></div>
+          <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
-          <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p><p>GSTIN: 33AADFV9327N1ZO</p></div>
+          <div><h4>Contact</h4><a href="tel:+918754442924">+91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>

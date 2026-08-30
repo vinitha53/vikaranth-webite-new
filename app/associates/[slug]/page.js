@@ -13,7 +13,7 @@ import styles from "./associate-detail.module.css";
 import stickyFix from "./associate-sticky-fix.module.css";
 import heroFix from "./associate-hero-fix.module.css";
 
-const siteUrl = "https://www.vikranthchem.com";
+const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
 export function generateStaticParams() { return partners.map(({ slug }) => ({ slug })); }
 
