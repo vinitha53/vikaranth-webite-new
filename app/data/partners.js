@@ -152,7 +152,7 @@ const catalogProductImages = {
   "Covering Stracciatella": "/product-images/ice-cream/covering-stracciatella.png",
   "Cookies Black": "/product-images/ice-cream/cookies-black.png",
   "Crema Chocomilky": "/product-images/ice-cream/crema-chocomilky.png",
-  "French Vanilla MEC3": "/product-images/ice-cream/french-vanilla-mec3.png",
+  "French Vanilla": "/product-images/ice-cream/french-vanilla-mec3.png",
   "Blackberry Puree": "/product-images/fruit-processing/blackberry-puree.png",
   "Coconut Puree": "/product-images/fruit-processing/coconut-puree.png",
   "Cappuccino Paste": "/product-images/ice-cream/cappuccino-paste.png",
