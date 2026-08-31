@@ -59,9 +59,11 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
   const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
   const visibleGroups = hasBrandDirectory
-    ? activeBrand && activeBrand !== "MEC3" && activeCategory && activeCategory !== "all"
-      ? [{ category: activeCategory, products: selectedBrandProducts.filter((product) => categoryFor(product) === activeCategory) }]
-      : []
+    ? !activeBrand
+      ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
+      : activeBrand !== "MEC3" && activeCategory && activeCategory !== "all"
+        ? [{ category: activeCategory, products: selectedBrandProducts.filter((product) => categoryFor(product) === activeCategory) }]
+        : []
     : (activeCategory === "all"
       ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
       : [{ category: activeCategory, products: inRange.filter((product) => categoryFor(product) === activeCategory) }]);
@@ -105,7 +107,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       {!activeBrand && <section className={styles.brandDirectory} aria-labelledby={`brand-directory-${active}`}>
         <div className={styles.brandDirectoryHeading}>
           <div><small>Browse by brand</small><h3 id={`brand-directory-${active}`}>Explore {rangeLabel.toLowerCase()} ingredient brands</h3></div>
-          <p>Select a brand to view its product ranges and available ingredients.</p>
+          <p>All products are listed below. Select a brand to narrow the catalogue to that supplier.</p>
         </div>
         <div className={styles.brandGrid}>
           {brands.map((brand) => {
