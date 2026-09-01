@@ -551,30 +551,41 @@ export default function Home() {
             </section>
           </div>
         </div>
-        <div id="industries-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu ${industryMegaOpen ? "show" : ""}`} aria-hidden={!industryMegaOpen}>
+        <div id="industries-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu industries-showcase-menu ${industryMegaOpen ? "show" : ""}`} aria-hidden={!industryMegaOpen}>
           <span className="latest-mega-pointer industry-mega-pointer" aria-hidden="true"/>
-          <div className="industry-menu-surface">
-            <div className="industry-menu-head">
-              <Building2 aria-hidden="true"/>
-              <div><span>Industries We Serve</span><h2>Explore by industry</h2></div>
-              <small>{industries.length} industries</small>
-            </div>
-            <div className="industry-menu-grid" aria-label="Industries">
-              {productCategories.map((industry, index) => {
-                const IndustryIcon = productGroups[index]?.icon || Building2;
-                return (
-                  <a key={industry.id} href={industry.href} onClick={jump}>
-                    <IndustryIcon className="industry-item-icon" aria-hidden="true"/>
-                    <span>{industry.name}</span>
-                    <ArrowRight className="industry-item-arrow" aria-hidden="true"/>
-                  </a>
-                );
-              })}
-              <a className="industry-menu-all" href="/industries" onClick={jump}>
-                <span>View all industries</span>
-                <ArrowRight aria-hidden="true"/>
-              </a>
-            </div>
+          <div className="industries-showcase-surface">
+            <aside className="industries-showcase-intro">
+              <div>
+                <span>Solutions by industry</span>
+                <p>Find ingredients selected for your production needs.</p>
+              </div>
+              <img src="/industries/chocolate-confectionery.webp" alt="Chocolate, bakery and dessert ingredient applications" width="420" height="560"/>
+              <a href="/industries" onClick={jump}>View All Industries <ArrowRight aria-hidden="true"/></a>
+            </aside>
+            <section className="industries-showcase-content">
+              <div className="industries-showcase-heading">
+                <span>Industries We Serve</span>
+                <small>{industries.length} specialist categories</small>
+              </div>
+              <div className="industries-showcase-grid" aria-label="Industries">
+                {productCategories.map((industry, index) => {
+                  const IndustryIcon = productGroups[index]?.icon || Building2;
+                  return (
+                    <a key={industry.id} className={index === 1 ? "featured" : ""} href={industry.href} onClick={jump}>
+                      <IndustryIcon className="industry-showcase-icon" aria-hidden="true"/>
+                      <strong>{industry.name}</strong>
+                      <p>{industry.description}</p>
+                      <ArrowRight className="industry-showcase-arrow" aria-hidden="true"/>
+                    </a>
+                  );
+                })}
+              </div>
+              <div className="industries-showcase-help">
+                <span className="industries-help-icon"><Headphones aria-hidden="true"/></span>
+                <strong>Not sure which solution fits your application?</strong>
+                <button type="button" onClick={() => openQuote("Industry ingredient specialist request")}>Speak to an Ingredient Specialist <ArrowRight aria-hidden="true"/></button>
+              </div>
+            </section>
           </div>
         </div>
         <div id="suppliers-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu supplier-mega-menu ${supplierMegaOpen ? "show" : ""}`} aria-hidden={!supplierMegaOpen}>
