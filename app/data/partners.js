@@ -72,6 +72,16 @@ export const partnerProductImages = {
   "paramesu-biotech-ltd": {
     hero: "/partner-products/paramesu-maize-starch.webp",
     products: {"Maize Starch":"/partner-products/paramesu-maize-starch.webp","Liquid Glucose":"/partner-products/paramesu-liquid-glucose.webp","Dextrose Monohydrate":"/partner-products/paramesu-maize-starch.webp","Maltodextrin Powder":"/partner-products/paramesu-maize-starch.webp"}
+  },
+  anchor: {
+    hero: "/industries/bakery-ingredients.webp",
+    products: {
+      "Indonesia cocoa powder - BG 1000/2000": "/product-images/anchor/indonesia-cocoa-powder-bg-1000-2000.png",
+      "Liquid Glucose": "/product-images/anchor/liquid-glucose.png",
+      "Vinegar": "/product-images/anchor/vinegar.png",
+      "Refined Glycerine": "/product-images/anchor/refined-glycerine.png",
+      "Biscuit Enhancer": "/product-images/anchor/biscuit-enhancer.png"
+    }
   }
 };
 
@@ -247,7 +257,8 @@ const bakeryProductImages = {
   "VX2T Improver": "/product-images/bakery/VX2T Improver.webp",
   "Waffle Mix": "/product-images/bakery/Waffle Mix.webp"
 };
-Object.values(partnerProductImages).forEach(({ products }) => {
+Object.entries(partnerProductImages).forEach(([partnerSlug, { products }]) => {
+  if (partnerSlug === "anchor") return;
   Object.keys(products).forEach((name) => {
     if (catalogProductImages[name]) products[name] = catalogProductImages[name];
   });

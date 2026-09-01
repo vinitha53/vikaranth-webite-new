@@ -40,7 +40,10 @@ export default async function PartnerPage({ params }) {
   const content = getAssociateContent(partner.slug, partner);
   const baseProductLinks = partner.products.map((name) => getProduct(slugify(name))).filter(Boolean);
   const rangeProductLinks = productsForRangeSupplier(partner.slug).map((item) => getProduct(slugify(item.name))).filter(Boolean);
-  const productLinks = [...new Map([...baseProductLinks, ...rangeProductLinks].map((item) => [item.slug, item])).values()];
+  const productLinks = [...new Map([...baseProductLinks, ...rangeProductLinks].map((item) => [item.slug, item])).values()]
+    .map((product) => partner.productImages?.[product.name]
+      ? { ...product, image: partner.productImages[product.name] }
+      : product);
   const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives" || partner.slug === "anchor";
   const industryLinks = industries.filter((industry) => partner.industries.includes(industry.slug));
   const canonicalUrl = `${siteUrl}/associates/${partner.slug}/`;
