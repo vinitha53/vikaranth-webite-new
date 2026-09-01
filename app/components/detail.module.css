@@ -37,7 +37,9 @@
 /* Exact homepage brown ticker and sticky navigation treatment. */
 .utility{position:sticky;top:0;z-index:40;height:44px;box-shadow:0 4px 14px rgba(43,24,16,.16)}
 .utility::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,190,112,.08) 50%,transparent 70%);pointer-events:none}
-.utilityTrack{will-change:transform;animation:detailUtilityTicker 26s linear infinite}
+.utilityTrack{width:max-content;min-width:max-content;column-gap:0;will-change:transform;animation:detailUtilityTicker 26s linear infinite}
+.utilitySet{flex:0 0 auto;width:max-content;min-width:max-content}
+.utilitySet>*{flex:0 0 auto;min-width:max-content}
 .utility:hover .utilityTrack{animation-play-state:paused}
 .utilitySet span,.utilitySet a{letter-spacing:.025em}
 .utilitySet svg{filter:drop-shadow(0 0 5px rgba(233,164,93,.35));animation:detailUtilityIconPulse 2s ease-in-out infinite}

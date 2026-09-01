@@ -24,10 +24,10 @@ const homeFaqs = [
   ["Can retail or small-quantity buyers purchase from Vikranth?", "Select retail and small-quantity enquiries are considered for specific ingredients. Share the product, application and required quantity, and the team will confirm current availability."],
 ];
 
-const productGroups = [
+const allProductGroups = [
   { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Custard Powder"],
-    "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"],
+    "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"], "Biscuit Ingredients": ["Biscuit Enhancer"],
     "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"]
   }},
   { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
@@ -35,25 +35,25 @@ const productGroups = [
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy Ingredients", icon: Milk, image: "/industries/dairy-ingredients.webp", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy", icon: Milk, image: "/industries/dairy-ingredients.webp", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Natural Food and Beverage Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
-  { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Icecream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Fruit Processing", icon: Leaf, image: "/industries/fruit-processing.webp", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids, Gums & Stabilizers", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloids", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
-    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Aspartame Powder"],
+    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"], "Sugar Free": ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"],
     "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
   { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
@@ -67,7 +67,7 @@ const productGroups = [
   }},
   { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/industries/food-additives-preservatives.webp", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
-    "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Ascorbic Acid"],
+    "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid"],
     "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
     "Hydrocolloids": ["Xanthan Gum", "Guar Gum", "Sodium CMC"],
     "Sweeteners & Syrups": ["Sorbitol 70% Solution", "Invert Sugar", "Aspartame Powder", "Malt Extract Powder"],
@@ -79,7 +79,13 @@ const productGroups = [
   }}
 ];
 
-const industrySlugs = ["bakery-ingredients","chocolate-confectionery","dairy-ingredients","beverage-ingredients","ice-cream-ingredients","fruit-processing","hydrocolloids-stabilizers","sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma","food-additives-preservatives"];
+const productGroups = [
+  allProductGroups[1], allProductGroups[0], allProductGroups[3],
+  allProductGroups[4], allProductGroups[8], allProductGroups[9],
+  allProductGroups[2], allProductGroups[10], allProductGroups[6],
+  allProductGroups[5], allProductGroups[7]
+];
+const industrySlugs = ["chocolate-confectionery","bakery-ingredients","beverage-ingredients","ice-cream-ingredients","functional-ingredients","nutraceutical-pharma","dairy-ingredients","food-additives-preservatives","hydrocolloids-stabilizers","fruit-processing","sweeteners-syrups-starches"];
 const productCategories = productGroups.map((group, index) => ({
   id: String(index + 1).padStart(2, "0"),
   name: group.name,
@@ -91,17 +97,17 @@ const productCategories = productGroups.map((group, index) => ({
 
 const ecosystemImage = "/ingredient-portfolio.webp";
 const ecosystemCategories = [
-  { number: "01", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 0 },
-  { number: "02", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 1 },
-  { number: "03", name: <>Dairy<br/>Ingredients</>, label: "Dairy Ingredients", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 2 },
-  { number: "04", name: <>Beverage<br/>Ingredients</>, label: "Beverage Ingredients", icon: FlaskConical, href: "/industries/beverage-ingredients", groupIndex: 3 },
-  { number: "05", name: <>Ice Cream<br/>Ingredients</>, label: "Ice Cream Ingredients", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 4 },
-  { number: "06", name: <>Fruit<br/>Processing</>, label: "Fruit Processing", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 5 },
-  { number: "07", name: <>Hydrocolloids &amp;<br/>Stabilizers</>, label: "Hydrocolloids & Stabilizers", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 6 },
-  { number: "08", name: <>Sweeteners, Syrups<br/>&amp; Starches</>, label: "Sweeteners, Syrups & Starches", icon: CircleGauge, href: "/industries/sweeteners-syrups-starches", groupIndex: 7 },
-  { number: "09", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 8 },
-  { number: "10", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 9 },
-  { number: "11", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 10 }
+  { number: "01", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 0 },
+  { number: "02", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 1 },
+  { number: "03", name: <>Beverage<br/>Ingredients</>, label: "Beverage Ingredients", icon: FlaskConical, href: "/industries/beverage-ingredients", groupIndex: 2 },
+  { number: "04", name: <>Icecream<br/>Products</>, label: "Icecream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
+  { number: "05", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 4 },
+  { number: "06", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 5 },
+  { number: "07", name: <>Dairy</>, label: "Dairy", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
+  { number: "08", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 7 },
+  { number: "09", name: <>Hydrocolloids</>, label: "Hydrocolloids", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 8 },
+  { number: "10", name: <>Fruit<br/>Processing</>, label: "Fruit Processing", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 9 },
+  { number: "11", name: <>Sweeteners, Syrups<br/>&amp; Starches</>, label: "Sweeteners, Syrups & Starches", icon: CircleGauge, href: "/industries/sweeteners-syrups-starches", groupIndex: 10 }
 ];
 
 const associates = [

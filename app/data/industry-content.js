@@ -42,9 +42,9 @@ export const industryContent = {
     quote: "Share whether you mould, enrobe, bake or make fillings, plus the chocolate type, preferred fluidity or cocoa profile, quantity and delivery PIN code.",
   },
   "dairy-ingredients": {
-    title: "Dairy Ingredients Supplier in Chennai & India | Vikranth",
+    title: "Dairy Supplier in Chennai & India | Vikranth",
     description: "Source milk powders and whey powder for bakery, desserts and beverages from Chennai across India.",
-    h1: "Dairy Ingredients Supplier in Chennai for Food Manufacturers",
+    h1: "Dairy Supplier in Chennai for Food Manufacturers",
     summary: "Vikranth supplies dairy ingredients including milk powders and whey powder for bakery, desserts, beverages and nutrition mixes. Grade, fat or protein specification, storage requirement and availability are confirmed per enquiry.",
     introduction: "Dairy ingredients influence creaminess, flavour, protein contribution, solids, browning and mouthfeel. Vikranth supports professional kitchens and manufacturers with dairy ingredient sourcing from Chennai for applications across India. Tell us the finished product, target specification, storage capability, quantity and required documentation so the closest available option can be checked.",
     applications: [["Cakes and desserts", "Milk powders selected for dairy solids, browning, flavour and body."], ["Bakery products", "Milk powder and whey powder for solids, browning, nutrition, flavour and dough or batter performance."], ["Nutrition products", "Milk and whey powders selected by composition, protein target, dispersibility and sensory profile."], ["Drinks and dry mixes", "Milk and whey powders selected by composition, dispersibility, flavour and processing method."]],
@@ -62,13 +62,13 @@ export const industryContent = {
     quote: "Share your beverage type, fruit or flavour target, processing method, pack format, trial or monthly quantity and delivery PIN code for a relevant product check.",
   },
   "ice-cream-ingredients": {
-    title: "Ice Cream Ingredients Supplier Chennai & India | Vikranth",
+    title: "Icecream Products Supplier Chennai & India | Vikranth",
     description: "Source ice cream and gelato bases, flavours, toppings, premixes and stabilizers for commercial production in Chennai and across India.",
-    h1: "Ice Cream and Gelato Ingredients Supplier in Chennai",
+    h1: "Icecream Products Supplier in Chennai",
     summary: "Vikranth supplies stabilizers and selected imported ingredients for ice cream, gelato, frozen yogurt and sundaes, subject to current grade and availability.",
     introduction: "Frozen-dessert quality depends on fat and solids balance, freezing process, overrun, ice-crystal control, melt resistance and storage temperature. Vikranth supports ice cream manufacturers, gelato businesses, bakeries and hospitality buyers with sourcing from Chennai and supply enquiries across India. Ingredient selection and dosage should be validated against the complete recipe, equipment and manufacturer guidance.",
     applications: [["Ice cream and gelato", "Bases, cocoa systems, flavours and stabilizers for body, texture and flavour delivery."], ["Frozen yogurt", "Premixes, fruit preparations and stabilizer systems selected for acidity, freezing behaviour and sensory target."], ["Sundaes and desserts", "Fruit or caramel toppings, chocolate ingredients, sauces and inclusions for service and packaged formats."], ["Texture control", "Ice cream stabilizers selected against formulation solids, hydration method, homogenization, overrun and cold-chain conditions."]],
-    faq: [["What does an ice cream stabilizer do?", "A permitted stabilizer can help manage water, body, ice-crystal growth, melt behaviour and texture. Results depend on the full formulation, process and storage conditions."], ["Do you supply ice cream stabilizer in Chennai?", "Ice Cream Stabilizer and Amaze Ice Cream Stabilizer are listed. Confirm grade, pack size, manufacturer, dosage guidance and stock for your application."], ["Can I source imported gelato ingredients?", "Selected imported frozen-dessert products are listed subject to current availability."], ["How should I select ingredients for frozen yogurt?", "Share the yogurt base, acidity, fat and solids, freezing equipment, target overrun and shelf life. Use production trials to confirm texture and stability."], ["Is India-wide supply available?", "Pan-India enquiries are supported, subject to product availability, order quantity, freight and any temperature-control requirements."]],
+    faq: [["What does an ice cream stabilizer do?", "A permitted stabilizer can help manage water, body, ice-crystal growth, melt behaviour and texture. Results depend on the full formulation, process and storage conditions."], ["Do you supply ice cream stabilizer in Chennai?", "Ice Cream Stabilizer is listed. Confirm grade, pack size, manufacturer, dosage guidance and stock for your application."], ["Can I source imported gelato ingredients?", "Selected imported frozen-dessert products are listed subject to current availability."], ["How should I select ingredients for frozen yogurt?", "Share the yogurt base, acidity, fat and solids, freezing equipment, target overrun and shelf life. Use production trials to confirm texture and stability."], ["Is India-wide supply available?", "Pan-India enquiries are supported, subject to product availability, order quantity, freight and any temperature-control requirements."]],
     quote: "Tell us whether you make ice cream, gelato or frozen yogurt, plus batch size, current texture challenge, required product, monthly quantity and delivery PIN code.",
   },
   "fruit-processing": {

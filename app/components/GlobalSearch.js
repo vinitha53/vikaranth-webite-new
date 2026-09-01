@@ -159,7 +159,7 @@ const popularSearches = [
   ["Baking Powder", getProductHref("Baking Powder")],
   ["Calcium Propionate", getProductHref("Calcium Propionate (CP)")],
   ["Beverage Ingredients", "/industries/beverage-ingredients"],
-  ["Dairy Ingredients", "/industries/dairy-ingredients"],
+  ["Dairy", "/industries/dairy-ingredients"],
   ["Request a Quote", "/contact#enquiry"],
 ].filter(([, href]) => href && !href.endsWith("undefined"));
 

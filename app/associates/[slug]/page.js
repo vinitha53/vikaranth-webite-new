@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, BadgeCheck, Check, FileCheck2, MapPin, PackageCheck, SearchCheck, ShieldCheck, Truck } from "lucide-react";
 import { partners, getPartner } from "../../data/partners";
-import { getProduct, getIndustry, slugify } from "../../data/catalog";
+import { getProduct, industries, slugify } from "../../data/catalog";
 import { getAssociateContent } from "../../data/associate-content";
 import { productsForRangeSupplier } from "../../data/catalog-ranges";
 import { whatsappNumberForSupplier } from "../../data/whatsapp";
@@ -41,8 +41,8 @@ export default async function PartnerPage({ params }) {
   const baseProductLinks = partner.products.map((name) => getProduct(slugify(name))).filter(Boolean);
   const rangeProductLinks = productsForRangeSupplier(partner.slug).map((item) => getProduct(slugify(item.name))).filter(Boolean);
   const productLinks = [...new Map([...baseProductLinks, ...rangeProductLinks].map((item) => [item.slug, item])).values()];
-  const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives";
-  const industryLinks = partner.industries.map(getIndustry).filter(Boolean);
+  const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives" || partner.slug === "anchor";
+  const industryLinks = industries.filter((industry) => partner.industries.includes(industry.slug));
   const canonicalUrl = `${siteUrl}/associates/${partner.slug}/`;
   const productNames = productLinks.map((product) => product.name).join(", ");
   const applicationNames = content.applications.join(", ");
@@ -95,7 +95,7 @@ export default async function PartnerPage({ params }) {
 
       <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
         <header className={styles.enquiryRangeHeader} data-associate-reveal="up"><div><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Compare available products and open each product page for grade, format, pack and documentation details.</p></div><a href="#enquiry">Discuss your requirement</a></header>
-        {hasApprovedRange ? <RangeCatalog products={productLinks} indianNames={partner.slug === "campco" ? productLinks.map((item) => item.name) : []} supplierMode categoryField={partner.slug === "delta-nutritives" ? "brochureDisplayCategory" : "usageCategory"} mec3Catalog={partner.slug === "delta-nutritives"} /> : <div className={`${styles.productGrid} ${partner.slug === "anchor" ? styles.anchorProductGrid : ""}`} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3>{content.productDescriptions?.[product.name] ? <p>{content.productDescriptions[product.name]}</p> : null}<span>View product details <ArrowRight /></span></div></Link>)}</div>}
+        {hasApprovedRange ? <RangeCatalog products={productLinks} indianNames={partner.slug === "campco" || partner.slug === "anchor" ? productLinks.filter((item) => item.range !== "imported").map((item) => item.name) : []} supplierMode categoryField={partner.slug === "delta-nutritives" ? "brochureDisplayCategory" : "usageCategory"} mec3Catalog={partner.slug === "delta-nutritives"} /> : <div className={`${styles.productGrid} ${partner.slug === "anchor" ? styles.anchorProductGrid : ""}`} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3>{content.productDescriptions?.[product.name] ? <p>{content.productDescriptions[product.name]}</p> : null}<span>View product details <ArrowRight /></span></div></Link>)}</div>}
               <div className={styles.productsAssurance} data-associate-reveal="up"><ShieldCheck/><span>Exact grade, source, format, pack, MOQ and availability are confirmed for each enquiry.</span><b><em>01</em> — {String(productLinks.length).padStart(2,"0")}</b></div>
 </div></section>
 
