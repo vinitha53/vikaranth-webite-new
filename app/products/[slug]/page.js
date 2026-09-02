@@ -38,6 +38,11 @@ const benefitByIndustry = {
   "food-additives-preservatives": ["Required function", "Process conditions", "Grade verification", "Compliance review"],
 };
 
+const cakeGelFaq = [
+  ["What is cake gel commonly evaluated for?", "Cake gel is commonly evaluated for batter stability, volume, texture and batch consistency in commercial cakes and other aerated bakery products."],
+  ["Is Vikranth a cake gel wholesaler in Chennai?", "Vikranth supports wholesale and commercial cake gel enquiries. Share the monthly quantity, preferred pack, required documents and application for current options."],
+  ["Can cake gel be supplied outside Chennai?", "South India and India enquiries are reviewed according to product availability, quantity, pack, freight and delivery serviceability."],
+];
 export function generateStaticParams() { return products.map(({ slug }) => ({ slug })); }
 
 export async function generateMetadata({ params }) {
@@ -46,7 +51,7 @@ export async function generateMetadata({ params }) {
   const industry = getIndustry(product.industrySlug);
   const canonical = `${siteUrl}/products/${product.slug}/`;
   const title = `${product.name} Supplier in Chennai | Vikranth`;
-  const description = `Source ${product.name} for ${industry.name.toLowerCase()} through a Chennai B2B supplier supporting wholesale enquiries across South India and India.`;
+  const description = product.slug === "cake-gel" ? "Source cake gel for commercial cakes and sponge production from a Chennai B2B supplier supporting wholesale enquiries across South India and India." : `Source ${product.name} for ${industry.name.toLowerCase()} through a Chennai B2B supplier supporting wholesale enquiries across South India and India.`;
   return {
     title, description,
     alternates: { canonical },
@@ -60,9 +65,10 @@ export default async function ProductPage({ params }) {
   const product = getProduct((await params).slug);
   if (!product) notFound();
   const industry = getIndustry(product.industrySlug);
-  const applications = applicationsByIndustry[product.industrySlug];
-  const benefits = benefitByIndustry[product.industrySlug];
-  const faq = buildProductFaqs(product, industry, applications);
+  const isCakeGel = product.slug === "cake-gel";
+  const applications = isCakeGel ? ["Sponge cakes", "Cupcakes", "Aerated cake batters", "Commercial bakery batches"] : applicationsByIndustry[product.industrySlug];
+  const benefits = isCakeGel ? ["Batter stability", "Cake volume", "Texture", "Batch consistency"] : benefitByIndustry[product.industrySlug];
+  const faq = isCakeGel ? cakeGelFaq : buildProductFaqs(product, industry, applications);
   const mappedPartners = partnersForProduct(product.name);
   const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
@@ -76,7 +82,11 @@ export default async function ProductPage({ params }) {
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/` }, { "@type": "ListItem", position: 3, name: product.name, item: canonicalUrl }] },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
-  const snapshot = [["Product", product.name], ["Brand / manufacturer", product.brand], ["Category", product.brochureDisplayCategory || product.category], ["Form / type", product.usageCategory], ["Grade / identifier", product.cocoaPercentage || product.itemCode], ["Pack", product.packs || "Confirmed per enquiry"], ["Documents", "Requested for the selected product and grade"]].filter(([, value]) => value);
+  const snapshot = [["Product", product.name], ["Brand / manufacturer", product.brand || productPartners[0]?.name], ["Category", product.brochureDisplayCategory || product.category], ["Form / type", product.usageCategory], ["Grade / identifier", product.cocoaPercentage || product.itemCode], ["Applications", applications.join(" · ")], ["Pack and minimum quantity", product.packs || "Confirmed per enquiry"], ["Documents", "Requested for the selected product and grade"]].filter(([, value]) => value);
+  const heroCopy = isCakeGel ? "Source cake gel for commercial cakes, sponge products and other aerated bakery applications. Vikranth helps buyers confirm the available product, pack, documents, sample options and commercial quotation." : `Source ${product.name} for ${applications.slice(0, 3).join(", ").toLowerCase()}. Vikranth supports professional buyers with product, grade, pack, document and current commercial-availability confirmation.`;
+  const proofPoints = isCakeGel ? ["Commercial bakery supply", "Documents on request", "India enquiries reviewed"] : ["B2B supply enquiry", "Documents on request", "India enquiries reviewed"];
+  const technicalNote = isCakeGel ? "Dosage, composition, storage, shelf life and performance depend on the selected product and grade. Review the current specification and validate the ingredient in a controlled formulation trial." : "Performance depends on the exact grade, supplier specification, formulation and process. Review current product documents and validate suitability through the buyer's own technical and quality process.";
+  const regionalCopy = isCakeGel ? "Vikranth handles wholesale cake gel enquiries from Chennai for bakeries and food businesses across South India and India. Pack, minimum quantity, availability, freight and serviceability are confirmed before quotation." : `Vikranth handles ${product.name} wholesale and commercial enquiries from Chennai for buyers across South India and India. Availability, pack, minimum quantity, freight and serviceability are confirmed before quotation.`;
 
   return <main className={styles.page} data-product-page data-whatsapp-number={whatsappNumber}>
     <ProductMotion /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><DetailHeader />
@@ -85,10 +95,10 @@ export default async function ProductPage({ params }) {
       <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/products/">Products</Link><span>/</span><span>{product.name}</span></nav>
       <div className={styles.heroGrid}><div className={styles.heroCopy} data-hero-copy>
         <span className={styles.eyebrow}>{product.brochureDisplayCategory || product.category}</span><h1>{product.name} Supplier in Chennai</h1>
-        <p>Source {product.name} for {applications.slice(0, 3).join(", ").toLowerCase()}. Vikranth supports professional buyers with product, grade, pack, document and current commercial-availability confirmation.</p>
+        <p>{heroCopy}</p>
         <div className={styles.actions}><a className={styles.whatsappButton} href="#quote"><MessageCircle /> Request a quotation</a><a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><FlaskConical /> Ask on WhatsApp</a></div>
-        <div className={styles.trust}><span><BadgeCheck /> B2B supply enquiry</span><span><FileCheck2 /> Documents on request</span><span><Truck /> India enquiries reviewed</span></div>
-      </div><div className={styles.visualColumn}><div className={styles.productVisual} data-product-stage><div className={styles.orbit} data-orbit><i /><i /><i /></div><img data-product-image src={product.image} alt={product.name} /><span className={styles.bulkBadge}><PackageCheck /> Bulk enquiry</span><div className={styles.imageLabel}><Sparkles /><small>Commercial sourcing</small><strong>{product.name}</strong></div></div>
+        <div className={styles.trust}>{proofPoints.map((point, index) => { const Icon = [BadgeCheck, FileCheck2, Truck][index]; return <span key={point}><Icon /> {point}</span>; })}</div>
+      </div><div className={styles.visualColumn}><div className={styles.productVisual} data-product-stage><div className={styles.orbit} data-orbit><i /><i /><i /></div><img data-product-image src={product.image} alt={product.name} width="900" height="900" decoding="async" /><span className={styles.bulkBadge}><PackageCheck /> Bulk enquiry</span><div className={styles.imageLabel}><Sparkles /><small>Commercial sourcing</small><strong>{product.name}</strong></div></div>
       <div className={styles.partnerPanel} data-partner-badge><span>{productPartners.length ? "Verified product partner" : "Sourcing contact"}</span><div className={styles.partnerLogos}>{productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}><img src={partner.logo} alt="" /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" /><strong>Vikranth</strong></div>}</div></div></div></div>
       <a href="#snapshot" className={styles.scrollCue} data-scroll-cue><span>Product details</span><ArrowDown /></a>
     </div></section>
@@ -99,8 +109,8 @@ export default async function ProductPage({ params }) {
     <section className={styles.uses} aria-labelledby="uses-title"><div className={styles.wrap}><header className={styles.sectionHeading} data-heading><span className={styles.eyebrow}>Benefits and applications</span><h2 id="uses-title">Evaluate <em>{product.name}</em> for Your Application</h2></header>
       <p className={styles.answer} data-reveal>{product.description}</p><div className={styles.benefitGrid} data-stagger>{benefits.map((benefit, index) => <article key={benefit}><span>0{index + 1}</span><strong>{benefit}</strong><p>Review this consideration against the selected grade, specification and process.</p></article>)}</div>
       <h3 className={styles.applicationTitle}>Application starting points</h3><div className={styles.useList} data-stagger>{applications.map((application) => <div key={application}><span /><strong>{application}</strong></div>)}</div>
-      <aside className={styles.technicalNote}><ShieldCheck /><div><strong>Technical buyer note</strong><p>Performance depends on the exact grade, supplier specification, formulation and process. Review current product documents and validate suitability through the buyer's own technical and quality process.</p></div></aside>
-      <aside className={styles.technicalNote}><MapPin /><div><strong>{product.name} sourcing from Chennai</strong><p>Vikranth handles {product.name} wholesale and commercial enquiries from Chennai for buyers across South India and India. Availability, pack, minimum quantity, freight and serviceability are confirmed before quotation.</p></div></aside>
+      <aside className={styles.technicalNote}><ShieldCheck /><div><strong>Technical buyer note</strong><p>{technicalNote}</p></div></aside>
+      <aside className={styles.technicalNote}><MapPin /><div><strong>{product.name} sourcing from Chennai</strong><p>{regionalCopy}</p></div></aside>
     </div></section>
 
     <section className={styles.faqSection} aria-labelledby="faq-title"><div className={styles.wrap}><header className={styles.sectionHeading} data-heading><span className={styles.eyebrow}>Product questions</span><h2 id="faq-title">Frequently Asked Questions About <em>{product.name}</em></h2></header><div className={styles.faqList} data-reveal>{faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
