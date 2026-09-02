@@ -27,8 +27,7 @@ export function DetailFooter() {
   </>;
 }
 
-export function PageCta({ title, product }) {
-  return <section className={styles.finalCta}><div><small>Final enquiry</small><h2>{title}</h2><p>Share your application, required grade, quantity and documentation needs.</p></div><div><Link href={`/contact/?product=${encodeURIComponent(product)}#enquiry`}>Request a Quote →</Link><Link href={`/contact/?sample=${encodeURIComponent(product)}#enquiry`}>Ask for a Sample</Link></div></section>;
+export function PageCta({ title, copy = "Share your application, required grade, quantity and documentation needs.", product }) {
+  return <section className={styles.finalCta}><div><small>Final enquiry</small><h2>{title}</h2><p>{copy}</p></div><div><Link href={`/contact/?product=${encodeURIComponent(product)}#enquiry`}>Send Your Requirement →</Link><Link href={`/contact/?sample=${encodeURIComponent(product)}#enquiry`}>Ask for a Sample</Link></div></section>;
 }
-
 export { styles };

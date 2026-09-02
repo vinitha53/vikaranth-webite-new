@@ -9,7 +9,6 @@ const siteUrl = "https://www.vikranthchemicalcorporation.com";
 export const metadata = {
   title: "Food Ingredient Products in Chennai & India | Vikranth",
   description: "Browse bakery, cocoa, dairy, beverage, hydrocolloid, sweetener, starch, protein, emulsifier, preservative and acidulant ingredients.",
-  keywords: ["food ingredient products Chennai", "B2B food ingredients India", "bulk food ingredients", "food ingredients supplier Chennai"],
   alternates: { canonical: "/products/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   openGraph: { type: "website", url: "/products/", title: "Food Ingredient Products in Chennai & India | Vikranth", description: "Browse Vikranth's B2B food ingredient catalogue by product family and application.", siteName: "Vikranth Chemical Corporation", locale: "en_IN" },

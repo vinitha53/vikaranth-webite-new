@@ -1,45 +1,153 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Boxes, FileCheck2, Headphones, MapPin, PackageCheck, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, Check, FileCheck2, MapPin, PackageCheck, Phone, Search, ShieldCheck, Truck } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
 import { partners } from "../data/partners";
+import { aboutBuyerLabels, aboutFaqs, aboutIndustries, aboutProcess } from "../data/about-content";
+import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const frameCount = 300;
-const verifiedCustomerPermissions = false;
-const frameUrl = index => `/about-sequence/frame-${String(index + 1).padStart(3, "0")}.webp`;
+const frameUrl = (index) => "/about-sequence/frame-" + String(index + 1).padStart(3, "0") + ".webp";
 const frameIndexesForViewport = () => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const count = reduced ? 1 : window.innerWidth <= 560 ? 72 : window.innerWidth <= 900 ? 150 : frameCount;
+  const count = reduced ? 1 : window.innerWidth <= 560 ? 10 : window.innerWidth <= 900 ? 16 : 24;
   if (count === 1) return [0];
   return Array.from({ length: count }, (_, index) => Math.round((index / (count - 1)) * (frameCount - 1)));
 };
-const chapters = [
-  [0,74,"Chennai ingredient-sourcing partner","About Vikranth Chemical Corporation","Vikranth Chemical Corporation connects professional food businesses with bakery, chocolate, dairy, beverage and specialty ingredient options selected around defined production needs."],
-  [75,148,"Application-led sourcing","The right ingredient starts with the right questions.","We begin with your application, required function, grade, quantity and documentation needs—then help identify suitable options for evaluation."],
-  [149,223,"A dependable ingredient network","Established partners. Practical local support.","Our supplier relationships and Chennai enquiry route help professional buyers navigate availability, specifications, samples and repeat requirements."],
-  [224,299,"Built for business continuity","Responsive service beyond the first order.","From initial product matching to documentation and repeat supply conversations, our focus is clear communication and dependable support."],
-];
 
-function drawCover(canvas,image){const ctx=canvas.getContext("2d");const ratio=Math.min(window.devicePixelRatio||1,2.5);const width=canvas.clientWidth,height=canvas.clientHeight;if(canvas.width!==width*ratio||canvas.height!==height*ratio){canvas.width=width*ratio;canvas.height=height*ratio}ctx.setTransform(ratio,0,0,ratio,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";ctx.fillStyle="#211007";ctx.fillRect(0,0,width,height);const scale=Math.max(width/image.naturalWidth,height/image.naturalHeight),rw=image.naturalWidth*scale,rh=image.naturalHeight*scale;ctx.drawImage(image,(width-rw)/2,(height-rh)/2,rw,rh)}
+function drawCover(canvas, image) {
+  const ctx = canvas.getContext("2d");
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  if (canvas.width !== width * ratio || canvas.height !== height * ratio) {
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+  }
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.fillStyle = "#211007";
+  ctx.fillRect(0, 0, width, height);
+  const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+  const renderedWidth = image.naturalWidth * scale;
+  const renderedHeight = image.naturalHeight * scale;
+  ctx.drawImage(image, (width - renderedWidth) / 2, (height - renderedHeight) / 2, renderedWidth, renderedHeight);
+}
 
-export default function AboutStory(){
-  const sectionRef=useRef(null),canvasRef=useRef(null),imagesRef=useRef([]),currentFrame=useRef(0);
-  const[loaded,setLoaded]=useState(0),[chapter,setChapter]=useState(0),[progress,setProgress]=useState(0);
-  useEffect(()=>{gsap.registerPlugin(ScrollTrigger);let cancelled=false;const frameIndexes=frameIndexesForViewport();const activeFrameCount=frameIndexes.length;const images=Array.from({length:activeFrameCount},(_,index)=>{const image=new Image();image.decoding="async";image.src=frameUrl(frameIndexes[index]);image.onload=()=>{if(cancelled)return;setLoaded(value=>Math.min(frameCount,value+1));if(index===0&&canvasRef.current)drawCover(canvasRef.current,image)};return image});imagesRef.current=images;const playhead={frame:0};const render=()=>{const frame=Math.max(0,Math.min(activeFrameCount-1,Math.round(playhead.frame)));const sourceFrame=frameIndexes[frame];currentFrame.current=frame;setProgress(activeFrameCount === 1 ? 100 : (frame/(activeFrameCount-1))*100);const image=images[frame];if(image?.complete&&image.naturalWidth&&canvasRef.current)drawCover(canvasRef.current,image);const next=chapters.findIndex(item=>sourceFrame>=item[0]&&sourceFrame<=item[1]);if(next>=0)setChapter(previous=>previous===next?previous:next)};const tween=gsap.to(playhead,{frame:activeFrameCount-1,ease:"none",onUpdate:render,scrollTrigger:{trigger:sectionRef.current,start:"top top",end:"bottom bottom",scrub:.35,invalidateOnRefresh:true}});const resize=()=>{const image=images[currentFrame.current];if(image?.complete&&image.naturalWidth&&canvasRef.current)drawCover(canvasRef.current,image)};window.addEventListener("resize",resize,{passive:true});return()=>{cancelled=true;window.removeEventListener("resize",resize);tween.scrollTrigger?.kill();tween.kill()}},[]);
-  useEffect(()=>{gsap.registerPlugin(ScrollTrigger);const items=gsap.utils.toArray(".aboutReveal");const reveals=items.map((item,index)=>gsap.fromTo(item,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:.8,ease:"power3.out",scrollTrigger:{trigger:item,start:"top 86%",once:true},delay:(index%3)*.06}));return()=>{reveals.forEach(tween=>{tween.scrollTrigger?.kill();tween.kill()})}},[]);
-  const active=chapters[chapter];
+export default function AboutStory() {
+  const sectionRef = useRef(null);
+  const canvasRef = useRef(null);
+  const imagesRef = useRef([]);
+  const currentFrame = useRef(0);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    let cancelled = false;
+    const frameIndexes = frameIndexesForViewport();
+    const images = frameIndexes.map((sourceIndex, index) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.src = frameUrl(sourceIndex);
+      image.onload = () => {
+        if (!cancelled && index === 0 && canvasRef.current) drawCover(canvasRef.current, image);
+      };
+      return image;
+    });
+    imagesRef.current = images;
+    const playhead = { frame: 0 };
+    const render = () => {
+      const frame = Math.max(0, Math.min(images.length - 1, Math.round(playhead.frame)));
+      currentFrame.current = frame;
+      const image = images[frame];
+      if (image?.complete && image.naturalWidth && canvasRef.current) drawCover(canvasRef.current, image);
+      if (progressRef.current) progressRef.current.style.setProperty("--progress", (images.length === 1 ? 100 : frame / (images.length - 1) * 100) + "%");
+    };
+    const tween = gsap.to(playhead, { frame: images.length - 1, ease: "none", onUpdate: render, scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom bottom", scrub: 0.35, invalidateOnRefresh: true } });
+    const resize = () => {
+      const image = images[currentFrame.current];
+      if (image?.complete && image.naturalWidth && canvasRef.current) drawCover(canvasRef.current, image);
+    };
+    window.addEventListener("resize", resize, { passive: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("resize", resize);
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, []);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const reveals = gsap.utils.toArray(".aboutReveal").map((item, index) => gsap.fromTo(item, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 88%", once: true }, delay: (index % 3) * 0.05 }));
+    return () => reveals.forEach((tween) => { tween.scrollTrigger?.kill(); tween.kill(); });
+  }, []);
+
   return <>
-    <section ref={sectionRef} className={styles.sequence} aria-label="The Vikranth story"><div className={styles.sticky}><canvas ref={canvasRef} className={styles.canvas}/><div className={styles.shade}/><div className={styles.progress} style={{"--progress":`${progress}%`}}/><div className={styles.storyCopy}><span>{active[2]}</span><h1>{active[3]}</h1><p>{active[4]}</p></div>{loaded<12&&<div className={styles.loader}><Sparkles/><span>Preparing the Vikranth story</span><small>{Math.round((loaded/12)*100)}%</small></div>}<div className={styles.scrollCue}>Scroll to explore <span/></div></div></section>
-    <section className={styles.aboutOverview} aria-labelledby="about-overview-title">
-      <div className={styles.aboutOverviewLead + " aboutReveal"}><span className={styles.eyebrow}>About Vikranth Chemical Corporation</span><h2 id="about-overview-title">A Chennai ingredient-sourcing partner for food businesses.</h2><p>Vikranth supports professional buyers sourcing ingredients for bakery, chocolate, confectionery, dairy, beverages, ice cream, fruit processing, nutraceutical and other manufacturing applications. Exact grade, manufacturer, pack size, availability and commercial terms are confirmed per enquiry.</p><a className={styles.textLink} href="/products">Explore our ingredient range <ArrowRight/></a></div>
-      <div className={styles.aboutOverviewImage + " aboutReveal"}><img src="/about-overview.webp" alt="Vikranth Chemical Corporation ingredient sourcing team" loading="lazy"/><div><span>Application-first support</span><b>Ingredients, people and practical supply conversations.</b></div></div>
+    <section ref={sectionRef} className={styles.sequence} aria-labelledby="about-page-title">
+      <div className={styles.sticky}>
+        <img className={styles.heroPoster} src="/about-sequence/frame-001.webp" width="1920" height="1080" alt="Vikranth food ingredient sourcing and commercial supply" fetchPriority="high" decoding="async" />
+        <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+        <div className={styles.shade} />
+        <div ref={progressRef} className={styles.progress} />
+        <nav className={styles.heroBreadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>About</span></nav>
+        <div className={styles.storyCopy}>
+          <span>Chennai-Based B2B Ingredient Partner</span>
+          <h1 id="about-page-title">About Vikranth Chemical Corporation</h1>
+          <p>Vikranth Chemical Corporation is a Chennai-based food ingredient supplier and distributor connecting manufacturers, bakeries and professional buyers with ingredients for bakery, chocolate, dairy, beverage, ice cream, fruit-processing and specialty applications.</p>
+          <strong>Clearer sourcing. Relevant documentation. Practical supply support.</strong>
+          <div className={styles.heroButtons}><Link href="/products/">Explore Our Ingredients <ArrowRight /></Link><Link href="/contact/#enquiry">Discuss Your Requirement</Link></div>
+        </div>
+        <div className={styles.scrollCue}>Scroll to explore <span /></div>
+      </div>
     </section>
-    {verifiedCustomerPermissions && <section className={styles.trustedCustomers} aria-labelledby="trusted-customers-title"><div className={styles.customerHeading + " aboutReveal"}><span id="trusted-customers-title" className={styles.eyebrow}>Trusted customers</span></div><div className={styles.customerMarquee} aria-label="Trusted customer logos"><div className={styles.customerMarqueeTrack}>{[['hershey.jpg','The Hershey Company'],['cavinkare.jpg','CavinKare'],['milka.jpg','Milka'],['lotte.jpg','Lotte'],['a2b.png','A2B Indian Veg Restaurant'],['nilgiris.png','Nilgiris'],['amrutanjan.png','Amrutanjan']].map(([logo,name],index)=><div className={styles.customerLogo} key={`${name}-${index}`}><img src={`/trusted-customers/${logo}`} alt={`${name} logo`}/></div>)}</div></div></section>}
-    <section className={styles.whoWeAre} aria-labelledby="who-we-are-title"><div className={styles.whoMedia + " aboutReveal"}><img src="/about-who-we-are.webp" alt="Food ingredient samples reviewed for commercial sourcing" loading="lazy"/><div><span>Chennai · Tamil Nadu</span><b>Ingredients selected around real production needs.</b></div></div><div className={styles.whoCopy + " aboutReveal"}><span className={styles.eyebrow}>Who we are</span><h2 id="who-we-are-title">Local access. Professional ingredient support.</h2><p>We work with procurement teams, product developers, production teams, commercial bakeries, food processors and hospitality buyers who need a clearer path from ingredient enquiry to supply.</p><p>We help buyers define the application, grade, pack size, quantity, document requirements and supply expectations. Website information introduces sourcing options; final technical and regulatory approval remains with the buyer's qualified team.</p><div className={styles.industryPills}>{['Bakery','Chocolate','Beverages','Dairy & ice cream','Nutraceuticals','Food processing'].map(item=><span key={item}>{item}</span>)}</div></div></section>
-    <section className={styles.qualitySection} aria-labelledby="quality-title"><div className={styles.qualityContent}><div className={styles.qualityHeading + " aboutReveal"}><span className={styles.eyebrow}>Quality and documentation</span><h2 id="quality-title">Product-specific information, not vague claims.</h2><p>Each enquiry should identify the product, grade, manufacturer or source, required documents and intended application. Where available, Vikranth coordinates specifications, COA, TDS, SDS and related supplier information for buyer review.</p><h3>Portfolio enquiry routes</h3><ul>{['CAMPCO','Roquette','Döhler','Nitta Gelatin India','Delta Nutritives','CP Kelco','Calpro Specialities','Anchor','Bakery ingredients','Other food ingredients'].map(item=><li key={item}>{item}</li>)}</ul></div><div className={styles.qualityImage + " aboutReveal"}><img src="/about-quality.webp" alt="Food ingredient samples reviewed for commercial sourcing" loading="lazy"/><span>Product documents vary by ingredient, grade and supplier</span></div></div><div className={styles.partnerMarquee + " aboutReveal"} aria-label="Ingredient manufacturer and supplier portfolios"><div className={styles.partnerMarqueeTrack}>{[...partners,...partners].map((partner,index)=><a href={`/associates/${partner.slug}`} key={`${partner.slug}-${index}`}><img src={partner.logo} alt={index < partners.length ? `${partner.name} logo` : ""}/><span>{partner.name}</span></a>)}</div></div></section>
-    <section className={styles.finalCta}><span>Start a conversation</span><h2>Tell us what your product needs.</h2><p>Share your application, required ingredient, quantity and delivery location.</p><a href="/#contact">Request a Quote <ArrowRight/></a></section>  </>;
+
+    <section className={styles.verifiedStrip} aria-label="Verified Business Details">
+      <ul><li><MapPin />Chennai, Tamil Nadu</li><li><BadgeCheck />GSTIN 33AADFV9327N1ZO</li><li><Building2 />11 industry-focused ingredient groups</li><li><FileCheck2 />Product-document support where available</li></ul>
+    </section>
+
+    <section className={styles.companyIntro} aria-labelledby="company-intro-title">
+      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Clearer Route from Requirement to Ingredient</h2><p>Vikranth works with procurement teams, product developers, production teams, commercial bakeries, food processors and hospitality buyers who need a practical route from ingredient enquiry to commercial supply.</p><p>Buyers can approach the team with a product name, finished application or functional need. Vikranth helps clarify the required grade, pack size, quantity, documents and current sourcing options before quotation and fulfilment are coordinated.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
+      <div className={styles.companyImage + " aboutReveal"}><img src="/about-overview.webp" width="760" height="820" alt="Food ingredients prepared for commercial sourcing review" loading="lazy" /><div><small>Application-first support</small><strong>Ingredients, people and practical supply conversations.</strong></div></div>
+    </section>
+
+    <section className={styles.portfolioSection} aria-labelledby="portfolio-title">
+      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Industry portfolio</span><h2 id="portfolio-title">Ingredients Organised Around Production Needs</h2><p>The portfolio connects ingredient families with the products they help create. Explore each industry page to find relevant options for flavour, texture, structure, stability, nutrition, preservation and processing performance.</p></div>
+      <div className={styles.industryLinks}>{aboutIndustries.map(([label, href], index) => <Link href={href} key={href}><span>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong><ArrowRight /></Link>)}</div>
+      <Link className={styles.sectionCta} href="/industries/">Explore Industries <ArrowRight /></Link>
+    </section>
+
+    <section className={styles.processSection} aria-labelledby="process-title">
+      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Commercial ingredient sourcing</span><h2 id="process-title">Built Around the Buyer’s Requirement</h2><p>Every enquiry starts with the finished product and the result the buyer needs—not with a generic product list.</p></div>
+      <div className={styles.processGrid}>{aboutProcess.map(([title, copy], index) => { const Icon = [Search, PackageCheck, FileCheck2, Truck][index]; return <article className="aboutReveal" key={title}><span>0{index + 1}</span><Icon /><h3>{title}</h3><p>{copy}</p></article>; })}</div>
+      <Link className={styles.sectionCta} href="/contact/#enquiry">Start an Ingredient Enquiry <ArrowRight /></Link>
+    </section>
+
+    <section className={styles.documentationSection} aria-labelledby="documentation-title">
+      <div className="aboutReveal"><span className={styles.eyebrow}>Quality and documentation</span><h2 id="documentation-title">Product-Specific Information, Clearly Shared</h2><p>Ingredient performance depends on the exact product, grade, supplier specification, formulation and process. Where available, Vikranth coordinates specifications, certificates of analysis, technical data sheets, safety data sheets and related supplier information for buyer review.</p><aside><ShieldCheck /><p>Website information supports product discovery and sourcing; final trials, dosage, technical suitability and regulatory approval remain with the buyer’s qualified team.</p></aside></div>
+      <img className="aboutReveal" src="/about-quality.webp" width="720" height="640" alt="Food ingredient samples and documentation reviewed for sourcing" loading="lazy" />
+    </section>
+
+    <section className={styles.networkSection} aria-labelledby="network-title">
+      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Verified portfolio navigation</span><h2 id="network-title">Manufacturer &amp; Supplier Network</h2><p>Vikranth’s portfolio includes ingredient options associated with established manufacturers and suppliers. Exact product, brand, grade, availability, documentation and commercial relationship are confirmed for each enquiry.</p></div>
+      <div className={styles.networkGrid}>{partners.map((partner) => <Link href={"/associates/" + partner.slug} key={partner.slug}><img src={partner.logo} width="150" height="60" alt={partner.name + " logo"} loading="lazy" /><strong>{partner.name}</strong><ArrowRight /></Link>)}</div>
+      <Link className={styles.sectionCta} href="/associates/">View All Suppliers <ArrowRight /></Link>
+    </section>
+
+    <section className={styles.coverageSection} aria-labelledby="coverage-title">
+      <div className="aboutReveal"><span className={styles.eyebrow}>Location and service area</span><h2 id="coverage-title">Based in Chennai. Open to Business Enquiries Across India.</h2><p>Vikranth Chemical Corporation is based in Kolathur, Chennai and supports professional ingredient enquiries from Chennai, South India and other Indian locations. Share the product, quantity and delivery city so the team can confirm current availability, pack options, freight and serviceability.</p><address>Saraswathy Enclave, Lakshmipuram, Kolathur, Chennai – 600099, Tamil Nadu, India.</address><div><a href="tel:+918754442924"><Phone />Call the Chennai Team</a><Link href="/contact/#enquiry">Send Your Requirement</Link><a href="https://www.google.com/maps/search/?api=1&query=Vikranth+Chemical+Corporation+Kolathur+Chennai" target="_blank" rel="noreferrer"><MapPin />View on Google Maps</a></div></div>
+    </section>
+
+    <section className={styles.aboutFaq} aria-labelledby="about-faq-title">
+      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Company and sourcing answers</span><h2 id="about-faq-title">About Vikranth: Buyer Questions</h2></div>
+      <div>{aboutFaqs.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>0{index + 1}</span><h3>{question}</h3><b>+</b></summary><p>{answer}</p></details>)}</div>
+    </section>
+
+    <section className={styles.finalCta}><span>Start a conversation</span><h2>Tell Us What Your Product Needs</h2><p>Share the application, required ingredient, approximate quantity, document needs and delivery location. The Vikranth team will review the requirement and confirm the next sourcing step.</p><div><Link href="/contact/#enquiry">Request a Quotation <ArrowRight /></Link><a href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer">Discuss on WhatsApp</a></div></section>
+  </>;
 }

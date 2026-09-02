@@ -18,7 +18,6 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
   title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
   description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
-  keywords: ["food ingredients supplier Chennai", "food ingredients distributor Tamil Nadu", "bakery raw materials Chennai", "chocolate ingredients supplier Chennai", "hydrocolloids supplier India", "dairy ingredients South India"],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {

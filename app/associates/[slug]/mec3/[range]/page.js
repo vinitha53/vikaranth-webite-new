@@ -34,7 +34,7 @@ export default async function Mec3RangePage({ params }) {
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.heroContent}>
         <nav aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/associates/delta-nutritives">Delta Nutritives</Link><span>/</span><span>MEC3</span></nav>
-        <Image src="/brand-logos/mec3.webp" width={178} height={96} alt="MEC3 logo" />
+        <Image src="/brand-logos/mec3-seo.webp" width={178} height={96} alt="MEC3 logo" />
         <span className={styles.eyebrow}>{item.eyebrow}</span>
         <h1>{item.title}</h1>
         <p>{item.description}</p>

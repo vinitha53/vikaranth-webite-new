@@ -256,7 +256,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
     slug, name, industrySlug: primaryIndustry.slug, category: primaryIndustry.name, image: productImageByName[name] || primaryIndustry.image,
     brand: approved?.brand, range: approved?.range, packs: approved?.packs, itemCode: approved?.itemCode, dosage: approved?.dosage, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[primaryIndustry.slug]?.find((group) => group.ingredients.includes(name))?.name || primaryIndustry.name,
     summary: `${name} for consistent food production`,
-    description: approved?.description || `Vikranth Chemical Corporation supplies ${name} in Chennai for professional food businesses seeking dependable sourcing and application-fit guidance. Tell our team your product, process, required grade, monthly quantity and documentation needs so we can confirm a suitable available option.`
+    description: approved?.description || `${name} is listed in Vikranth's ${industry.name} catalogue for professional B2B enquiry. Product identity and category are verified in the current structured catalogue; grade, specification, pack, documents and suitability require confirmation for the selected option.`
   });
 }));
 

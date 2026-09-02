@@ -60,7 +60,7 @@ export default function WhatsAppContactCta() {
           <h2 id="whatsapp-contact-title">Connect With Us on WhatsApp</h2>
           <p>Need help choosing the right food ingredient? Chat with the VCC team for product details, availability, quotations and business enquiries.</p>
           <a className={styles.whatsappCtaButton} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Chat with Vikranth Chemical Corporation on WhatsApp in a new tab">
-            <img src="/whatsapp-branded.webp" alt="" width="70" height="70" loading="lazy" decoding="async" aria-hidden="true" />
+            <img src="/whatsapp-branded-seo.webp" alt="" width="70" height="70" loading="lazy" decoding="async" aria-hidden="true" />
             <span>Chat With Us</span>
             <ArrowRight aria-hidden="true" />
           </a>

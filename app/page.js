@@ -6,11 +6,11 @@ import {
   ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, FlaskConical,
   Globe2, Handshake, Headphones, HeartPulse, IceCreamBowl, Leaf,
   Mail, MapPin, Menu, Milk, PackageCheck, Phone,
-  ShieldCheck, Sparkles, Truck, Wheat, X, Zap
+  Search, ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import GlobalSearch from "./components/GlobalSearch";
 import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
-import { partners } from "./data/partners";
+import { partners, partnerSpecialties } from "./data/partners";
 import { WHATSAPP_NUMBERS } from "./data/whatsapp";
 
 const verifiedClaimsAvailable = false;
@@ -95,7 +95,7 @@ const productCategories = productGroups.map((group, index) => ({
   href: `/industries/${industrySlugs[index]}`
 }));
 
-const ecosystemImage = "/ingredient-portfolio.webp";
+const ecosystemImage = "/ingredient-portfolio-seo.webp";
 const ecosystemCategories = [
   { number: "01", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 0 },
   { number: "02", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 1 },
@@ -228,7 +228,7 @@ function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
 function BotanicalCorners() {
   return (
     <div className="botanical-corners" aria-hidden="true">
-      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
+      <span className="botanical-line botanical-cocoa"><img src="/decor/cocoa-corner-seo.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
       <span className="botanical-line botanical-leaves"><img src="/decor/leaf-corner.webp" alt="" width="1254" height="1254" loading="lazy" decoding="async" /></span>
     </div>
   );
@@ -280,6 +280,8 @@ export default function Home() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [industryMegaOpen, setIndustryMegaOpen] = useState(false);
   const [supplierMegaOpen, setSupplierMegaOpen] = useState(false);
+  const [supplierQuery, setSupplierQuery] = useState("");
+  const filteredSuppliers = partners.filter((partner) => partner.name.toLowerCase().includes(supplierQuery.trim().toLowerCase()));
   const [activeGroup, setActiveGroup] = useState(1);
   const [thumbnailStart, setThumbnailStart] = useState(0);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -287,6 +289,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
+  const [heroVideoEnabled, setHeroVideoEnabled] = useState(false);
   const megaMenuRef = useRef(null);
   const heroVideoRef = useRef(null);
   const featureMotionFrame = useRef(null);
@@ -306,22 +309,17 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePlayback = () => {
-      const saveData = navigator.connection?.saveData;
-      if (reducedMotion.matches || saveData) {
-        video.pause();
-        video.removeAttribute("autoplay");
-      } else {
-        video.play().catch(() => {});
-      }
-    };
-    updatePlayback();
-    reducedMotion.addEventListener?.("change", updatePlayback);
-    return () => reducedMotion.removeEventListener?.("change", updatePlayback);
+    if (reducedMotion.matches || navigator.connection?.saveData || window.innerWidth <= 760) return;
+    let timer;
+    const enableVideo = () => { timer = window.setTimeout(() => setHeroVideoEnabled(true), 1800); };
+    if (document.readyState === "complete") enableVideo(); else window.addEventListener("load", enableVideo, { once: true });
+    return () => { window.removeEventListener("load", enableVideo); window.clearTimeout(timer); };
   }, []);
+  useEffect(() => {
+    if (!heroVideoEnabled || !heroVideoRef.current) return;
+    heroVideoRef.current.play().catch(() => {});
+  }, [heroVideoEnabled]);
   useEffect(() => () => {
     if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
     if (insightControlTimer.current) window.clearTimeout(insightControlTimer.current);
@@ -489,10 +487,18 @@ export default function Home() {
             <a href="/about" onClick={jump}>About</a>
             <button className="nav-product" onClick={() => { setMegaOpen(v => !v); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
             <a className="mobile-products-link" href="/products" onClick={jump}>Products</a>
-            <button className="nav-product nav-industry" onClick={() => { setIndustryMegaOpen(v => !v); setMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={industryMegaOpen} aria-controls="industries-mega-menu">Industries <ChevronDown size={14}/></button>
-            <a className="mobile-products-link" href="/industries" onClick={jump}>Industries</a>
-            <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu">Suppliers <ChevronDown size={14}/></button>
-            <a className="mobile-products-link" href="/associates" onClick={jump}>Suppliers</a>
+            <button className="nav-product nav-industry" onClick={() => { setIndustryMegaOpen(v => !v); setMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={industryMegaOpen} aria-controls="industries-mega-menu mobile-industries-list">Industries <ChevronDown size={14}/></button>
+            <a className="mobile-products-link mobile-industries-link" href="/industries" onClick={jump}>Industries</a>
+            <div id="mobile-industries-list" className={`mobile-industries-list ${industryMegaOpen ? "open" : ""}`}>
+              {productCategories.map((industry) => <a key={industry.id} href={industry.href} onClick={jump}>{industry.name}<ArrowRight aria-hidden="true"/></a>)}
+              <a className="mobile-industries-all" href="/industries" onClick={jump}>View All Industries <ArrowRight aria-hidden="true"/></a>
+            </div>
+            <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu mobile-suppliers-list">Suppliers <ChevronDown size={14}/></button>
+            <a className="mobile-products-link mobile-suppliers-link" href="/associates" onClick={jump}>Suppliers</a>
+            <div id="mobile-suppliers-list" className={`mobile-suppliers-list ${supplierMegaOpen ? "open" : ""}`}>
+              {partners.map((partner) => <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}><span><img src={partner.logo} alt="" loading="lazy" decoding="async"/>{partner.name}</span><ArrowRight aria-hidden="true"/></a>)}
+              <a className="mobile-suppliers-all" href="/associates" onClick={jump}>View All Suppliers <ArrowRight aria-hidden="true"/></a>
+            </div>
             <a href="/contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
@@ -594,45 +600,41 @@ export default function Home() {
             </section>
           </div>
         </div>
-        <div id="suppliers-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu supplier-mega-menu ${supplierMegaOpen ? "show" : ""}`} aria-hidden={!supplierMegaOpen}>
+        <div id="suppliers-mega-menu" className={`mega-menu latest-mega-menu supplier-showcase-menu ${supplierMegaOpen ? "show" : ""}`} aria-hidden={!supplierMegaOpen}>
           <span className="latest-mega-pointer supplier-mega-pointer" aria-hidden="true"/>
-          <div className="industry-menu-surface">
-            <div className="industry-menu-head">
-              <Handshake aria-hidden="true"/>
-              <div><span>Supplier Network</span><h2>Explore by supplier</h2></div>
-              <small>{partners.length} suppliers</small>
-            </div>
-            <div className="industry-menu-grid" aria-label="Suppliers">
-              {partners.map((partner) => (
-                <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}>
-                  {partner.logo ? <img className="supplier-item-logo" src={partner.logo} alt="" width="180" height="80" loading="lazy" decoding="async"/> : <span className="supplier-item-logo supplier-item-logo-fallback" aria-hidden="true">A</span>}
-                  <span>{partner.name}</span>
-                  <ArrowRight className="industry-item-arrow" aria-hidden="true"/>
-                </a>
-              ))}
-              <a className="industry-menu-all" href="/associates" onClick={jump}>
-                <span>View all suppliers</span>
-                <ArrowRight aria-hidden="true"/>
-              </a>
-            </div>
+          <div className="supplier-showcase-surface">
+            <aside className="supplier-showcase-intro">
+              <div><span>Our supplier network</span><p>Explore trusted ingredient manufacturers and specialist partners.</p></div>
+              <img src="/industries/bakery-ingredients.webp" alt="Food ingredients supplied by our specialist partner network" width="420" height="560"/>
+              <a href="/associates" onClick={jump}>View All Suppliers <ArrowRight aria-hidden="true"/></a>
+            </aside>
+            <section className="supplier-showcase-content">
+              <div className="supplier-showcase-heading">
+                <strong>Explore by Supplier</strong>
+                <label><Search aria-hidden="true"/><input type="search" value={supplierQuery} onChange={(event) => setSupplierQuery(event.target.value)} placeholder="Search supplier name" aria-label="Search supplier name"/></label>
+              </div>
+              <div className="supplier-showcase-grid" aria-label="Suppliers">
+                {filteredSuppliers.map((partner, index) => (
+                  <a key={partner.slug} className={partner.slug === "roquette" ? "featured" : ""} href={`/associates/${partner.slug}`} onClick={jump}>
+                    <img src={partner.logo} alt="" width="150" height="55" loading="lazy" decoding="async"/>
+                    <span><strong>{partner.name}</strong><small>{partnerSpecialties[partner.slug]}</small></span>
+                    <ArrowRight aria-hidden="true"/>
+                  </a>
+                ))}
+                {!filteredSuppliers.length && <p className="supplier-search-empty">No suppliers match your search.</p>}
+              </div>
+              <div className="supplier-showcase-help">
+                <span><Headphones aria-hidden="true"/></span>
+                <strong>Need help sourcing a specific ingredient?</strong>
+                <button type="button" onClick={() => openQuote("Supplier sourcing team request")}>Ask Our Sourcing Team <ArrowRight aria-hidden="true"/></button>
+              </div>
+            </section>
           </div>
-        </div>
-      </header>
+        </div>      </header>
 
       <section className="hero" id="home">
-        <video
-          ref={heroVideoRef}
-          className="hero-media"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/hero-chocolate-poster.webp"
-          aria-hidden="true"
-        >
-          <source src="/hero-chocolate-ingredients.mp4" type="video/mp4" media="(min-width: 541px)" />
-        </video>
+        <img className="hero-media hero-poster" src="/hero-chocolate-poster.webp" alt="Chocolate and food ingredients for commercial production" width="1920" height="1080" fetchPriority="high" decoding="async" />
+        {heroVideoEnabled && <video ref={heroVideoRef} className="hero-media hero-video" muted loop playsInline preload="none" poster="/hero-chocolate-poster.webp" aria-hidden="true"><source src="/hero-chocolate-ingredients.mp4" type="video/mp4" /></video>}
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
@@ -699,7 +701,7 @@ export default function Home() {
             </div>
           </div>
           <div className="portfolio-visual">
-            <img src="/ingredient-portfolio.webp" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" width="1821" height="864" loading="lazy" decoding="async" />
+            <img src="/ingredient-portfolio-seo.webp" alt="Chocolate, bakery, dairy, fruit and beverage ingredient applications" width="1821" height="864" loading="lazy" decoding="async" />
             <div className="portfolio-overlay">
               <span>Application-led sourcing</span>
               <strong>From ingredient to finished product.</strong>
