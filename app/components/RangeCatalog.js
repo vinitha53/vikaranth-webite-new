@@ -81,7 +81,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   };
   const selectBrandCategory = (category) => {
     setActiveCategory(category);
-    setOpenGroups({ [`${active}:${activeBrand}:${category}`]: true });
+    setOpenGroups({});
   };
   const rangeLabel = active === "indian" ? "Indian" : "Imported";
   const collapseInPlace = (event, groupKey) => {
@@ -156,9 +156,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       const headingId = `range-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       const contentId = `${headingId}-products`;
       const groupKey = `${active}:${activeBrand || "all"}:${group.category}`;
-      const isOpen = openGroups[groupKey] ?? true;
+      const isOpen = openGroups[groupKey] ?? false;
       return <section className={styles.group} key={group.category} aria-labelledby={headingId}>
-        <button className={styles.groupHeading} type="button" aria-expanded={isOpen} aria-controls={contentId} onClick={() => setOpenGroups((current) => ({ ...current, [groupKey]: !isOpen }))}>
+        <button className={styles.groupHeading} type="button" aria-expanded={isOpen} aria-controls={contentId} onClick={() => setOpenGroups(isOpen ? {} : { [groupKey]: true })}>
           <span className={styles.groupTitle}><i aria-hidden="true">{String(groupIndex + 1).padStart(2, "0")}</i><span><small>Ingredient collection</small><strong id={headingId}>{group.category}</strong></span></span>
           <span className={styles.groupMeta}><span><b>{group.products.length}</b> {group.products.length === 1 ? "product" : "products"}</span><i className={styles.groupChevron} aria-hidden="true" /></span>
         </button>
