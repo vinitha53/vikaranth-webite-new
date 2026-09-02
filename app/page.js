@@ -655,8 +655,29 @@ export default function Home() {
 
       <section className="home-trust-strip botanical-light-section" aria-labelledby="trust-strip-title">
         <div className="container">
-          <div className="trust-strip-copy"><h2 id="trust-strip-title">Food Ingredients Distributor in South India</h2><p>Chennai-based ingredient sourcing for food businesses.</p></div>
-          <div className="trust-strip-points">{[[BadgeCheck,"GSTIN 33AADFV9327N1ZO"],[MapPin,"Chennai-based supplier"],[Box,"11 ingredient categories"],[Handshake,"Structured procurement support"]].map(([Icon,label]) => <div key={label}><Icon aria-hidden="true"/><span>{label}</span></div>)}</div>
+          <div className="trust-strip-copy">
+            <span className="trust-eyebrow">Why Vikranth</span>
+            <h2 id="trust-strip-title">Reliable Food<br/>Ingredient Sourcing<br/><em>Across South India</em></h2>
+            <span className="trust-ornament" aria-hidden="true"/>
+            <p>Source bakery, chocolate, dairy, beverage and food-processing ingredients with clear commercial support from Chennai.</p>
+            <div className="trust-actions">
+              <a className="btn gold" href="/contact/#enquiry">Request a Quote <ArrowRight size={18}/></a>
+              <a className="btn trust-outline" href="/products/">Explore Categories <ArrowRight size={18}/></a>
+            </div>
+          </div>
+          <div className="trust-strip-points">
+            {[
+              [BadgeCheck,"GSTIN 33AADFV9327N1ZO","Registered & Compliant"],
+              [MapPin,"Chennai-Based Supplier","Local Strength. Faster Support"],
+              [Box,"11 Ingredient Categories","Wide Range. One Source"],
+              [Handshake,"Structured Procurement Support","Reliable. Transparent. On Time"]
+            ].map(([Icon,title,description]) => (
+              <div key={title}>
+                <Icon aria-hidden="true"/>
+                <span><strong>{title}</strong><small>{description}</small></span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -736,10 +757,50 @@ export default function Home() {
 
       <section className="section enquiry-types botanical-light-section" aria-labelledby="enquiry-types-title">
         <BotanicalCorners/>
-        <div className="container">
-          <div className="section-head"><div><span className="eyebrow">Enquiry options</span><h2 id="enquiry-types-title">Business &amp; Retail Enquiries</h2></div><p>Bulk, wholesale and selected small-quantity enquiries.</p></div>
-          <div className="enquiry-type-grid"><article><Building2/><h3>Bulk &amp; Business</h3><p>For manufacturers, bakeries and food processors.</p></article><article><PackageCheck/><h3>Small Quantity</h3><p>Selected ingredients, subject to availability.</p></article></div>
-          <a className="btn primary" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={16}/></a>
+        <div className="container enquiry-options-inner">
+          <div className="enquiry-options-head">
+            <span className="eyebrow">Enquiry Options</span>
+            <h2 id="enquiry-types-title">Choose the <em>Right Way</em> to Source</h2>
+            <p>Bulk, wholesale and selected small-quantity enquiries—all handled through one clear process.</p>
+            <span className="enquiry-head-rule" aria-hidden="true"/>
+          </div>
+          <div className="enquiry-type-grid">
+            <article className="enquiry-card enquiry-card-business">
+              <img className="enquiry-cocoa-art" src="/enquiry-cocoa-beans-powder.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
+              <div className="enquiry-card-kicker"><span><Building2 aria-hidden="true"/></span>01 · Business</div>
+              <h3>Bulk &amp; Business</h3>
+              <p>For manufacturers, bakeries, cafés, food processors and commercial buyers.</p>
+              <ul>
+                <li><Check aria-hidden="true"/>Bulk and wholesale quantities</li>
+                <li><Check aria-hidden="true"/>Commercial sourcing support</li>
+                <li><Check aria-hidden="true"/>Delivery planning by enquiry</li>
+              </ul>
+              <div className="enquiry-card-actions">
+                <a className="btn gold" href="/contact/#enquiry">Start Business Enquiry <ArrowRight size={18}/></a>
+                <a className="enquiry-text-link" href="https://wa.me/918754442924">Talk on WhatsApp <ArrowRight size={16}/></a>
+              </div>
+            </article>
+            <article className="enquiry-card enquiry-card-small">
+              <img className="enquiry-cocoa-art" src="/enquiry-cocoa-beans-powder.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
+              <div className="enquiry-card-kicker"><span><PackageCheck aria-hidden="true"/></span>02 · Small Quantity</div>
+              <h3>Small Quantity</h3>
+              <p>Selected ingredients for trials, small businesses and individual requirements.</p>
+              <ul>
+                <li><Check aria-hidden="true"/>Selected products only</li>
+                <li><Check aria-hidden="true"/>Subject to current availability</li>
+                <li><Check aria-hidden="true"/>Quantity confirmed on enquiry</li>
+              </ul>
+              <div className="enquiry-card-actions">
+                <a className="btn gold" href="/contact/#enquiry">Check Availability <ArrowRight size={18}/></a>
+                <a className="enquiry-text-link" href="/products/">Explore Products <ArrowRight size={16}/></a>
+              </div>
+            </article>
+          </div>
+          <aside className="enquiry-requirement-banner">
+            <span className="enquiry-banner-icon"><PackageCheck aria-hidden="true"/></span>
+            <div><h3>Know the product and quantity you need?</h3><p>Share the product name, required quantity and delivery location.</p></div>
+            <a className="btn gold" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={18}/></a>
+          </aside>
         </div>
       </section>
 
