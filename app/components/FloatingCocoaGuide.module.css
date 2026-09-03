@@ -1,0 +1,135 @@
+.guide {
+  position: fixed;
+  z-index: 44;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  left: 22px;
+  width: 132px;
+  height: 128px;
+  pointer-events: none;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  place-items: end center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  transform-origin: 50% 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mascot {
+  display: block;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.button:focus-visible {
+  border-radius: 50%;
+  outline: 3px solid #d9682d;
+  outline-offset: 3px;
+}
+
+.greeting {
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  right: -7px;
+  padding: 5px 8px;
+  border: 1px solid #8b4a29;
+  border-radius: 12px 12px 12px 3px;
+  background: #fffaf3;
+  box-shadow: 0 5px 13px rgba(64, 29, 11, .14);
+  color: #753716;
+  font: 800 11px/1 "Segoe UI", Arial, sans-serif;
+  pointer-events: none;
+}
+
+.greeting::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 8px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid #8b4a29;
+  border-bottom: 1px solid #8b4a29;
+  background: #fffaf3;
+  transform: rotate(45deg);
+}
+
+.guide[data-jumping="true"] .button {
+  animation: cocoaClickJump 720ms cubic-bezier(.22, .78, .26, 1) both;
+}
+
+@keyframes cocoaClickJump {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  18% { transform: translateY(3px) scale(.98, .95); }
+  48% { transform: translateY(-28px) rotate(-4deg); }
+  72% { transform: translateY(-8px) rotate(2deg); }
+  88% { transform: translateY(2px) scale(1.02, .97); }
+}
+
+@media (max-width: 1024px) {
+  .guide {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    left: 16px;
+    width: 106px;
+    height: 104px;
+  }
+
+  .button {
+    width: 98px;
+    height: 98px;
+  }
+
+  .mascot {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+@media (max-width: 600px) {
+  .guide {
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: 9px;
+    width: 82px;
+    height: 80px;
+  }
+
+  .button {
+    width: 76px;
+    height: 76px;
+  }
+
+  .mascot {
+    width: 68px;
+    height: 68px;
+  }
+
+  .greeting {
+    display: none;
+  }
+}
+
+@media (max-height: 520px) {
+  .greeting {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide[data-jumping="true"] .button {
+    animation: none;
+  }
+}

@@ -9,6 +9,7 @@ import {
   Search, ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import GlobalSearch from "./components/GlobalSearch";
+import CocoaMascot from "./components/CocoaMascot/CocoaMascot";
 import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
 import { partners, partnerSpecialties } from "./data/partners";
 import { WHATSAPP_NUMBERS } from "./data/whatsapp";
@@ -139,9 +140,10 @@ const ingredientInsights = [
   ["Texture guide", "How Stabilizers Improve Food Texture", "Understand consistency in dairy, beverages and desserts.", "04"]
 ];
 
-function Logo({ light = false }) {
+function Logo({ light = false, withMascot = false }) {
   return (
     <a className={`logo ${light ? "light" : ""}`} href="#home" aria-label="Vikranth home">
+      {withMascot && <CocoaMascot />}
       <img className="brand-logo-image" src="/logo-vikranth.webp" alt="VCC — Vikranth Chemical Corporation" width="156" height="73" decoding="async" />
     </a>
   );
@@ -481,7 +483,7 @@ export default function Home() {
 
       <header className={scrolled ? "scrolled" : ""} ref={megaMenuRef}>
         <div className="container nav-wrap">
-          <Logo />
+          <Logo withMascot />
           <nav id="home-navigation" className={`home-nav ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
             <a href="#home" onClick={jump}>Home</a>
             <a href="/about" onClick={jump}>About</a>

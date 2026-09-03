@@ -2,7 +2,7 @@ import "./globals.css";
 import "./sections-v2.css";
 import "./responsive.css";
 import FloatingIconDock from "./components/FloatingIconDock";
-import GlobalCocoaGuide from "./components/GlobalCocoaGuide";
+import FloatingCocoaGuide from "./components/FloatingCocoaGuide";
 
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
-        <GlobalCocoaGuide />
+        <FloatingCocoaGuide />
         <FloatingIconDock />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </body>
