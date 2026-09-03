@@ -2231,3 +2231,13 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
  .home-page .enquiry-cocoa-art{width:68%;right:-18%;opacity:.58}
  .home-page .enquiry-card-small .enquiry-cocoa-art{width:65%;right:-17%;opacity:.44}
 }
+/* Final reference alignment for enquiry composition */
+.home-page .enquiry-options-head{order:1;max-width:1180px}
+.home-page .enquiry-options-head h2{text-wrap:balance}
+.home-page .enquiry-options-head p{max-width:850px;text-wrap:balance}
+.home-page .enquiry-type-grid{order:2;align-items:stretch}
+.home-page .enquiry-type-grid .enquiry-card{height:100%}
+.home-page .enquiry-card>p,.home-page .enquiry-card>ul{max-width:54%}
+.home-page .enquiry-requirement-banner{order:3;width:100%}
+@media(max-width:900px){.home-page .enquiry-card>p,.home-page .enquiry-card>ul{max-width:58%}}
+@media(max-width:600px){.home-page .enquiry-card>p,.home-page .enquiry-card>ul{max-width:100%}}

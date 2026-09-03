@@ -114,7 +114,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
             const count = inRange.filter((product) => product.brand === brand).length;
             const logo = brandLogos[brand];
             return <button type="button" onClick={() => selectBrand(brand)} key={brand}>
-              <span className={styles.brandLogo}>{logo ? <img src={logo} alt={`${brand} logo`} loading="lazy" /> : <strong>{brand}</strong>}</span>
+              <span className={styles.brandLogo}>{logo ? <img src={logo} alt={`${brand} logo`} width="180" height="72" loading="lazy" /> : <strong>{brand}</strong>}</span>
               <span><small>{brandEyebrows[brand] || "Professional ingredients"}</small><strong>{brand}</strong><em>{brand === "MEC3" ? mec3ProductCount : count} products</em></span>
               <ArrowRight aria-hidden="true" />
             </button>;
@@ -128,7 +128,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
 
       {activeBrand && activeBrand !== "MEC3" && <section className={styles.brandNavigator} aria-labelledby="selected-brand-title">
         <div className={styles.brandNavigatorHead}>
-          <span className={styles.brandNavigatorLogo}>{brandLogos[activeBrand] ? <img src={brandLogos[activeBrand]} alt={`${activeBrand} logo`} /> : <strong>{activeBrand}</strong>}</span>
+          <span className={styles.brandNavigatorLogo}>{brandLogos[activeBrand] ? <img src={brandLogos[activeBrand]} alt={`${activeBrand} logo`} width="180" height="72" /> : <strong>{activeBrand}</strong>}</span>
           <div><small>{brandEyebrows[activeBrand] || "Professional ingredient portfolio"}</small><h3 id="selected-brand-title">Explore the {activeBrand} catalogue</h3><p>Select a range to view its products, pack information and sourcing details.</p></div>
           <span className={styles.brandTotal}><strong>{selectedBrandProducts.length}</strong> catalogue products</span>
         </div>
@@ -162,19 +162,19 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <span className={styles.groupTitle}><i aria-hidden="true">{String(groupIndex + 1).padStart(2, "0")}</i><span><small>Ingredient collection</small><strong id={headingId}>{group.category}</strong></span></span>
           <span className={styles.groupMeta}><span><b>{group.products.length}</b> {group.products.length === 1 ? "product" : "products"}</span><i className={styles.groupChevron} aria-hidden="true" /></span>
         </button>
-        <div className={styles.groupContent} id={contentId} hidden={!isOpen}>
+        {isOpen && <div className={styles.groupContent} id={contentId}>
           <p className={styles.groupIntroduction}>Explore {group.products.length} professional {group.category.toLowerCase()} {group.products.length === 1 ? "ingredient" : "ingredients"}. Open a product for sourcing, pack, specification and enquiry details.</p>
-          <div className={styles.grid}>{group.products.map((product, productIndex) => <Link className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
+          <div className={styles.grid}>{group.products.map((product, productIndex) => <Link prefetch={false} className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
             <div className={styles.image}>
-              <img src={product.image} alt={`${product.name} by ${product.brand || "Vikranth"}`} loading="lazy" />
+              <img src={product.image} alt={`${product.name} by ${product.brand || "Vikranth"}`} width="640" height="640" loading="lazy" />
               {brandLogos[product.brand]
-                ? <span className={styles.brandLogoBadge} title={product.brand} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand]} alt={`${product.brand} logo`} loading="lazy" /></span>
+                ? <span className={styles.brandLogoBadge} title={product.brand} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand]} alt={`${product.brand} logo`} width="160" height="64" loading="lazy" /></span>
                 : <span>{product.brand || (active === "indian" ? "Indian range" : "Imported range")}</span>}
             </div>
             <div><small>{categoryFor(product)}</small><h3>{product.name}</h3>{product.cocoaPercentage && <p>{product.cocoaPercentage}</p>}{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>
           </Link>)}</div>
           <button className={styles.collapseButton} type="button" onClick={(event) => collapseInPlace(event, groupKey)}>Collapse {group.category}<span aria-hidden="true">↑</span></button>
-        </div>
+        </div>}
       </section>;
     })}</div>
     {supplierMode && <p className={styles.note}>Only products matched to the approved supplier catalogue are shown. Grade, pack and availability are confirmed per enquiry.</p>}

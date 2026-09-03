@@ -1,8 +1,7 @@
 import "./globals.css";
-import "./sections-v2.css";
 import "./responsive.css";
-import FloatingIconDock from "./components/FloatingIconDock";
-import FloatingCocoaGuide from "./components/FloatingCocoaGuide";
+import DeferredGlobalWidgets from "./components/DeferredGlobalWidgets";
+import WebVitals from "./components/WebVitals";
 
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
 
@@ -84,8 +83,8 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
-        <FloatingCocoaGuide />
-        <FloatingIconDock />
+        <DeferredGlobalWidgets />
+        <WebVitals />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </body>
     </html>

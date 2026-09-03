@@ -15,7 +15,8 @@ export async function generateMetadata({ params }) {
   const item = getMec3Category(range);
   if (!item) return {};
   const description = `${item.title} MEC3 products with item codes and pack sizes. Enquire through Vikranth Chemical Corporation in Chennai.`;
-  return { title: `${item.title} - MEC3 Products | Vikranth`, description, alternates: { canonical: `/associates/delta-nutritives/mec3/${item.slug}/` } };
+  const canonical = `/associates/delta-nutritives/mec3/${item.slug}/`;
+  return { title: `${item.title} - MEC3 Products | Vikranth`, description, alternates: { canonical }, robots: { index: true, follow: true }, openGraph: { type: "website", url: canonical, title: `${item.title} - MEC3 Products | Vikranth`, description }, twitter: { card: "summary_large_image", title: `${item.title} - MEC3 Products | Vikranth`, description } };
 }
 
 export default async function Mec3RangePage({ params }) {
@@ -23,11 +24,24 @@ export default async function Mec3RangePage({ params }) {
   if (slug !== "delta-nutritives") notFound();
   const item = getMec3Category(range);
   if (!item) notFound();
+  const canonicalUrl = `https://www.vikranthchemicalcorporation.com/associates/delta-nutritives/mec3/${item.slug}/`;
+  const faqs = [
+    [`What is included in the MEC3 ${item.title} range?`, `This page lists ${item.products.length} catalogue products with available item codes, descriptions and pack information. Confirm the exact grade, format and current availability before ordering.`],
+    [`How can I request a quotation for ${item.title}?`, "Share the MEC3 product name or item code, application, required quantity, delivery city and document needs. Vikranth Chemical Corporation will confirm the available option and next commercial step."],
+    [`Can buyers outside Chennai enquire about this range?`, "Yes. Vikranth is based in Chennai, Tamil Nadu, and reviews business enquiries from South India and other Indian locations subject to quantity, freight and serviceability."],
+  ];
+  const structuredData = { "@context": "https://schema.org", "@graph": [
+    { "@type": "CollectionPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${item.title} MEC3 products`, description: item.description, publisher: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" }, inLanguage: "en-IN" },
+    { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "Delta Nutritives", item: "https://www.vikranthchemicalcorporation.com/associates/delta-nutritives/" }, { "@type": "ListItem", position: 3, name: item.title, item: canonicalUrl }] },
+    { "@type": "ItemList", numberOfItems: item.products.length, itemListElement: item.products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: product.name })) },
+    { "@type": "FAQPage", mainEntity: faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
+  ] };
   const productDescription = item.slug === "granfrutta-range"
     ? "An innovative solution for creating quality gelato using the best of fruit with the convenience of a professional semi-finished product."
     : `A professional MEC3 ${item.title.toLowerCase()} ingredient. Confirm dosage, application, specification and current availability before use.`;
 
   return <main className={styles.page}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     <DetailHeader />
     <section className={styles.hero}>
       <Image className={styles.heroImage} src="/mec3/mec3-catalog-hero.webp" fill priority sizes="100vw" alt="MEC3 artisan gelato range" />
@@ -57,6 +71,8 @@ export default async function Mec3RangePage({ params }) {
         </table>
       </div>
     </section>
+
+    <section className={styles.introduction} aria-labelledby="mec3-faq-title"><div><small>Buyer questions</small><h2 id="mec3-faq-title">Questions about {item.title}</h2>{faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
 
     <section className={styles.selection}><div><FileText /><span><small>Need a specification or quotation?</small><strong>Share the item code, application and required quantity.</strong></span></div><Link href={`/contact#enquiry`}>Enquire for {item.title} <ArrowRight /></Link></section>
 

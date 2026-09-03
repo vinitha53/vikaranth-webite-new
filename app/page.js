@@ -1,6 +1,9 @@
 "use client";
 
+import "./sections-v2.css";
+
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import {
   ArrowRight, BadgeCheck, Beaker, Box, Building2, CakeSlice, Check,
   ChevronDown, ChevronLeft, ChevronRight, CircleGauge, Clock3, FlaskConical,
@@ -8,11 +11,12 @@ import {
   Mail, MapPin, Menu, Milk, PackageCheck, Phone,
   Search, ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
-import GlobalSearch from "./components/GlobalSearch";
 import CocoaMascot from "./components/CocoaMascot/CocoaMascot";
 import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
 import { partners, partnerSpecialties } from "./data/partners";
 import { WHATSAPP_NUMBERS } from "./data/whatsapp";
+
+const GlobalSearch = dynamic(() => import("./components/GlobalSearch"), { ssr: false });
 
 const verifiedClaimsAvailable = false;
 const verifiedGuidesAvailable = false;

@@ -1,12 +1,10 @@
-/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-
-/hero-chocolate-ingredients.mp4
+/_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
 /hero-chocolate-poster.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/mascot/*
   Cache-Control: public, max-age=31536000, immutable
 
 /partners/*
@@ -14,3 +12,17 @@
 
 /products/*
   Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.mp4
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

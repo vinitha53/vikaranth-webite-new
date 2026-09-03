@@ -7,6 +7,14 @@ import { ArrowRight, FileCheck2, Search, SlidersHorizontal, X } from "lucide-rea
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./products.module.css";
+import { industries, products } from "../data/catalog";
+
+
+const productByName = new Map(products.map((item) => [item.name, item]));
+const catalogueCategories = industries.map((industry) => ({
+  ...industry,
+  products: industry.products.map((name) => productByName.get(name)).filter(Boolean),
+}));
 
 const cocoaStages = [
   { name: "Cocoa bean", note: "The origin", image: "/contact/cocoa-bean-three-quarter.webp", className: styles.bean },
@@ -14,13 +22,15 @@ const cocoaStages = [
   { name: "Choco paste", note: "The application", image: "/choco-paste-cutout-seo.webp", className: styles.paste },
 ];
 
-export default function ProductsCatalog({ categories, productCount, children }) {
+export default function ProductsCatalog({ children }) {
+  const categories = catalogueCategories;
+  const productCount = products.length;
   const rootRef = useRef(null);
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLowerCase();
   const visibleCategories = useMemo(() => categories.map((category) => ({
     ...category,
-    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products,
+    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products.slice(0, 8),
   })).filter((category) => category.products.length), [categories, normalizedQuery]);
   const resultCount = visibleCategories.reduce((total, category) => total + category.products.length, 0);
 
@@ -61,7 +71,7 @@ export default function ProductsCatalog({ categories, productCount, children }) 
         <div className={styles.catalogueHead}><div><span className={styles.eyebrow}>Product categories</span><h2 id="catalogue-title">Find the right ingredient family</h2></div><label className={styles.searchBox}><Search aria-hidden="true" /><span className={styles.srOnly}>Search ingredients</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search cocoa, pectin, starch..." />{query && <button type="button" onClick={() => setQuery("")} aria-label="Clear ingredient search"><X /></button>}</label></div>
         <nav className={styles.categoryNav} aria-label="Product category shortcuts">{categories.map((category, index) => <a href={`#${category.slug}`} key={category.slug}><span>{String(index + 1).padStart(2, "0")}</span>{category.name}</a>)}</nav>
         {query && <p className={styles.results} role="status">{resultCount} matching catalogue entries</p>}
-        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGrid}>{category.products.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 45vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} /></span><span className={styles.productCopy}><strong>{product.name}</strong><small>View product <ArrowRight /></small></span></Link>)}</div></section>)}</div>
+        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGrid}>{category.products.map((product) => <Link prefetch={false} className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 45vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} /></span><span className={styles.productCopy}><strong>{product.name}</strong><small>View product <ArrowRight /></small></span></Link>)}</div></section>)}</div>
         {!visibleCategories.length && <div className={styles.empty}><h2>No ingredient found</h2><p>Try a broader product name or send us the specification you need.</p><Link href="/contact#enquiry">Ask our sourcing team <ArrowRight /></Link></div>}
       </section>
     </div>
