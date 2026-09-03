@@ -1714,8 +1714,14 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .section{padding-block:60px}
   .home-page .section h2,.home-page .supplier-head h2,.home-page .testimonial-heading h2,.home-page .faq-section-head h2{font-size:clamp(28px,9vw,35px);line-height:1.14}
   .home-page .portfolio-section-head{margin-bottom:30px}
-  .home-page .product-section .product-grid{grid-template-columns:1fr;gap:16px}
-  .home-page .product-section .product-card{height:auto;min-height:410px}
+  .home-page .product-section .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .home-page .product-section .product-card{height:310px;min-height:0;border-radius:12px}
+  .home-page .product-section .category-photo{height:50%}
+  .home-page .product-section .category-card-content{inset:50% 0 0;padding:13px 12px}
+  .home-page .product-section .product-card h3{font-size:13px;line-height:1.25}
+  .home-page .product-section .category-title-line{width:34px;height:2px;margin:8px 0 7px}
+  .home-page .product-section .product-card p{display:-webkit-box;font-size:10.5px;line-height:1.4;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+  .home-page .product-section .product-card .product-route{font-size:11px;gap:5px}
   .home-page .about .about-grid{gap:26px}
   .home-page .about .about-visual{aspect-ratio:4/5;border-radius:14px}
   .home-page .about .about-copy .lead{font-size:19px;line-height:1.55}
@@ -2145,7 +2151,11 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .home-trust-strip{padding:2.5rem 0 1.25rem}
   .home-page .home-trust-strip .container{width:calc(100% - 2rem);gap:2.35rem}
   .home-page .trust-eyebrow{font-size:10px;letter-spacing:.32em;margin-bottom:1.25rem}
-  .home-page .trust-strip-copy h2{font-size:clamp(2.25rem,11vw,3rem);line-height:1.03}.home-page .trust-strip-copy h2 em{white-space:normal}
+  .home-page .trust-strip-copy h2{max-width:100%;font-size:clamp(1.9rem,8.8vw,2.35rem);line-height:1.08;letter-spacing:-.025em;overflow-wrap:anywhere}
+  .home-page .trust-strip-copy h2 em{display:block;margin-top:.18em;font-size:.94em;line-height:1.08;white-space:normal;overflow-wrap:normal}
+  .home-page .trust-strip-copy p{max-width:34ch;padding-inline:2px;font-size:.9rem;line-height:1.65}
+  .home-page .trust-actions{gap:.7rem;margin-top:1.15rem}
+  .home-page .trust-actions .btn{min-height:50px;padding-inline:15px;font-size:.82rem;line-height:1.25}
   .home-page .trust-ornament{width:220px;background-size:58px 1px,128px 1px}.home-page .trust-ornament:after{left:68px}
   .home-page .trust-actions{display:grid;grid-template-columns:1fr;width:100%}.home-page .trust-actions .btn{width:100%;justify-content:center}
   .home-page .trust-strip-points{grid-template-columns:1fr;gap:1rem}
