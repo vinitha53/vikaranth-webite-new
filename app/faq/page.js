@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { DetailHeader } from "../components/DetailChrome";
 
 export const metadata = {
   title: "Food Ingredient Supply FAQs | Vikranth",
@@ -24,5 +25,5 @@ const faqs = [
 
 export default function FaqPage() {
   const schema = [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) }, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.vikranthchemicalcorporation.com/" }, { "@type": "ListItem", position: 2, name: "FAQs", item: "https://www.vikranthchemicalcorporation.com/faq/" }] }];
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><main className="faq-page"><section className="faq-page-hero"><div className="container"><span className="eyebrow">Buyer help centre</span><h1>Food Ingredient Supply Questions</h1><p>Clear answers for manufacturers, bakeries, processors, procurement teams and selected small-quantity buyers.</p></div></section><section className="faq-page-content"><div className="container"><div className="faq-list">{faqs.map(([question,answer]) => <details key={question}><summary><h2>{question}</h2><span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div><a className="btn primary" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={16}/></a></div></section></main></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><main className="faq-page"><DetailHeader /><section className="faq-page-hero"><div className="container"><span className="eyebrow">Buyer help centre</span><h1>Food Ingredient Supply Questions</h1><p>Clear answers for manufacturers, bakeries, processors, procurement teams and selected small-quantity buyers.</p></div></section><section className="faq-page-content"><div className="container"><div className="faq-list">{faqs.map(([question,answer]) => <details key={question}><summary><h2>{question}</h2><span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div><a className="btn primary" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={16}/></a></div></section></main></>;
 }

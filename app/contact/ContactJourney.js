@@ -1,4 +1,4 @@
-import ContactForm from "./ContactForm";
+import ContactFormPushAnimation from "./ContactFormPushAnimation";
 import WhatsAppContactCta from "./WhatsAppContactCta";
 import BrochureContactCta from "./BrochureContactCta";
 import styles from "./contact.module.css";
@@ -13,11 +13,7 @@ export default function ContactJourney() {
         <i aria-hidden="true" />
       </div>
 
-      <div className={`${styles.enquiryAnimationStage} ${styles.staticEnquiryStage}`}>
-        <div className={styles.journeyForm}>
-          <ContactForm />
-        </div>
-      </div>
+      <ContactFormPushAnimation />
 
       <WhatsAppContactCta />
       <BrochureContactCta />

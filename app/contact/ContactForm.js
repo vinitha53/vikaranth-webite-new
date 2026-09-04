@@ -153,7 +153,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             <span className={styles.fieldLabel}>Message <sup>*</sup></span>
             <span className={styles.fieldControl}>
               <MessageSquareText aria-hidden="true" />
-              <textarea suppressHydrationWarning id="contact-message" rows="5" placeholder="Tell us about your requirement..." {...bind("message", { required: "Please enter your message", minLength: { value: 12, message: "Please add a little more detail" } })} />
+              <textarea suppressHydrationWarning id="contact-message" rows="4" placeholder="Tell us about your requirement..." {...bind("message", { required: "Please enter your message", minLength: { value: 12, message: "Please add a little more detail" } })} />
               <Check className={styles.validTick} aria-hidden="true" />
             </span>
             {errors.message && <small id="message-error" className={styles.fieldError}>{errors.message.message}</small>}

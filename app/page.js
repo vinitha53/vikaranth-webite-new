@@ -637,6 +637,7 @@ export default function Home() {
             </section>
           </div>
         </div>      </header>
+      <div className="home-sticky-spacer" aria-hidden="true" />
 
       <section className="hero" id="home">
         <img className="hero-media hero-poster" src="/hero-chocolate-poster.webp" alt="Chocolate and food ingredients for commercial production" width="1920" height="1080" fetchPriority="high" decoding="async" />

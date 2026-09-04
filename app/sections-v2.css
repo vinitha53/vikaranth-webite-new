@@ -85,6 +85,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   box-shadow:0 12px 28px rgba(78,45,22,.09);
   animation:testimonialCardRise .75s cubic-bezier(.16,1,.3,1) both;
 }
+
 .testimonial-card-grid .testimonial-card:nth-child(2){animation-delay:130ms}
 .testimonial-card-grid .testimonial-card:nth-child(3){animation-delay:260ms}
 .testimonial-card-grid .testimonial-quote-mark{
@@ -2251,3 +2252,42 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page .enquiry-requirement-banner{order:3;width:100%}
 @media(max-width:900px){.home-page .enquiry-card>p,.home-page .enquiry-card>ul{max-width:58%}}
 @media(max-width:600px){.home-page .enquiry-card>p,.home-page .enquiry-card>ul{max-width:100%}}
+
+/* Persistent homepage chrome: the animated utility bar and main navigation
+   remain paired at the top, while the spacer preserves the original flow. */
+.home-page>.utility{
+  display:block!important;
+  position:fixed!important;
+  top:0!important;
+  right:0;
+  left:0;
+  z-index:101!important;
+  height:44px;
+}
+.home-page>header,
+.home-page>header.scrolled,
+.home-page>header:not(.scrolled){
+  position:fixed!important;
+  top:44px!important;
+  right:0;
+  left:0;
+  z-index:100!important;
+}
+.home-sticky-spacer{height:120px;flex:0 0 120px}
+
+@media(max-width:1024px){
+  .home-page>.utility{display:block!important;height:38px}
+  .home-page>header,
+  .home-page>header.scrolled,
+  .home-page>header:not(.scrolled){top:38px!important;height:72px}
+  .home-sticky-spacer{height:110px;flex-basis:110px}
+  .home-page .home-nav{inset-block-start:110px!important}
+}
+@media(max-width:767px){
+  .home-page>.utility{display:block!important}
+  .home-page>header,
+  .home-page>header.scrolled,
+  .home-page>header:not(.scrolled){height:68px}
+  .home-sticky-spacer{height:106px;flex-basis:106px}
+  .home-page .home-nav{inset-block-start:106px!important}
+}

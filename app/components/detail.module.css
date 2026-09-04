@@ -272,6 +272,38 @@
   .header .headerInner>nav{top:102px!important;padding-right:16px!important;padding-left:16px!important}
   .header .headerInner>nav a{min-height:54px;font-size:15px!important}
 }
+
+/* Keep the utility ticker and primary navigation visible as one header stack.
+   Fixed positioning is intentional: several page shells clip decorative overflow,
+   which prevents descendant sticky elements from tracking the viewport. */
+.utility{
+  position:fixed!important;
+  top:0!important;
+  right:0;
+  left:0;
+  z-index:101!important;
+}
+.header{
+  position:fixed!important;
+  top:44px!important;
+  right:0;
+  left:0;
+  z-index:100!important;
+}
+.chromeSpacer{height:128px;flex:0 0 128px}
+
+@media(max-width:1100px){
+  .chromeSpacer{height:116px;flex-basis:116px}
+}
+@media(max-width:850px){
+  .header{top:38px!important}
+  .chromeSpacer{height:110px;flex-basis:110px}
+  .header .headerInner>nav{top:110px!important}
+}
+@media(max-width:620px){
+  .chromeSpacer{height:102px;flex-basis:102px}
+  .header .headerInner>nav{top:102px!important}
+}
 @media(max-width:420px){
   .industryHeroInner{width:calc(100% - 28px)}
   .industryHero h1{font-size:clamp(31px,9.3vw,38px)}
