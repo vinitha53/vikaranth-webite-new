@@ -117,8 +117,8 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       </header>
       <div className={styles.collectionShell}>
         <nav className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
-          {categories.map((category, index) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
-            <span>{String(index + 1).padStart(2, "0")}</span><strong>{category}</strong><ArrowRight aria-hidden="true" />
+          {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
+            <strong>{category}</strong><ArrowRight aria-hidden="true" />
           </button>)}
         </nav>
         <section className={styles.collectionPanel} aria-labelledby="selected-collection-title">

@@ -34,15 +34,16 @@
 .collectionIntro h2:after{transform:scaleX(-1)}
 .collectionIntro p{margin:8px 0 0;color:#77665b;font-size:13px;line-height:1.55}
 .collectionShell{display:flex;width:100%;min-width:0;align-items:flex-start;gap:18px}
-.collectionTabs{display:flex;width:245px;min-width:245px;max-width:245px;overflow:hidden;padding:8px;flex:0 0 245px;flex-direction:column;border:1px solid #e5cfbd;border-radius:15px;background:rgba(255,255,255,.82);box-shadow:0 12px 30px rgba(62,31,15,.06)}
-.collectionTabs button{position:relative;display:grid;width:100%;min-width:0;max-width:none;min-height:66px;padding:8px 11px;align-items:center;grid-template-columns:38px minmax(0,1fr) 18px;gap:10px;flex:0 0 auto;border:0;border-bottom:1px solid #eddfd4;background:transparent;color:#352219;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
+.collectionTabs{display:flex;width:245px;min-width:245px;max-width:245px;max-height:480px;overflow-x:hidden;overflow-y:auto;padding:8px;flex:0 0 245px;flex-direction:column;overscroll-behavior:contain;border:1px solid #e5cfbd;border-radius:15px;background:rgba(255,255,255,.82);box-shadow:0 12px 30px rgba(62,31,15,.06);scrollbar-width:thin;scrollbar-color:#d58a62 transparent}
+.collectionTabs::-webkit-scrollbar{width:6px}
+.collectionTabs::-webkit-scrollbar-thumb{border-radius:999px;background:#d58a62}
+.collectionTabs::-webkit-scrollbar-track{background:transparent}
+.collectionTabs button{position:relative;display:grid;width:100%;min-width:0;max-width:none;min-height:66px;padding:8px 16px;align-items:center;grid-template-columns:minmax(0,1fr) 18px;gap:12px;flex:0 0 auto;border:0;border-bottom:1px solid #eddfd4;background:transparent;color:#352219;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
 .collectionTabs button:last-child{border-bottom:0}
 .collectionTabs button:before{position:absolute;inset:0 auto 0 -8px;width:4px;border-radius:0 6px 6px 0;background:#d35b20;content:"";opacity:0;transition:opacity .2s ease}
 .collectionTabs button:hover{background:#fff8f1;color:#9c3e17}
 .collectionTabs button[aria-pressed=true]{background:linear-gradient(90deg,#fff5e9,#fff);color:#b3471b}
 .collectionTabs button[aria-pressed=true]:before{opacity:1}
-.collectionTabs button>span{display:grid;width:34px;height:34px;place-items:center;border:1px solid #e9cab1;border-radius:9px;background:#fff;color:#9f461e;font:800 10px/1 inherit}
-.collectionTabs button[aria-pressed=true]>span{border-color:#d96728;background:linear-gradient(135deg,#e36b28,#bd4514);color:#fff;box-shadow:0 6px 13px rgba(169,62,19,.2)}
 .collectionTabs strong{min-width:0;font-size:12px;line-height:1.25;overflow-wrap:normal;word-break:normal;hyphens:none}
 .collectionTabs svg{width:15px;color:#ac4b20;transition:transform .2s ease}
 .collectionTabs button:hover svg,.collectionTabs button[aria-pressed=true] svg{transform:translateX(3px)}
@@ -73,10 +74,9 @@
   .collectionIntro{text-align:left}
   .collectionIntro h2:before,.collectionIntro h2:after{display:none}
   .collectionShell{display:block}
-  .collectionTabs{width:100%;min-width:0;max-width:none;margin-bottom:12px;gap:7px;overflow-x:auto;flex-direction:row;border-radius:13px;scrollbar-width:thin}
-  .collectionTabs button{width:190px;min-width:190px;max-width:190px;min-height:58px;border:1px solid #ead8ca;border-radius:10px;grid-template-columns:32px minmax(0,1fr) 15px}
+  .collectionTabs{width:100%;min-width:0;max-width:none;max-height:none;margin-bottom:12px;gap:7px;overflow-x:auto;overflow-y:hidden;flex-direction:row;overscroll-behavior-x:contain;border-radius:13px;scrollbar-width:thin}
+  .collectionTabs button{width:190px;min-width:190px;max-width:190px;min-height:58px;border:1px solid #ead8ca;border-radius:10px;grid-template-columns:minmax(0,1fr) 15px}
   .collectionTabs button:before{display:none}
-  .collectionTabs button>span{width:30px;height:30px}
   .collectionPanel{width:100%}
   .collectionPanelHeading{grid-template-columns:34px minmax(0,1fr);padding:11px}
   .collectionCount{display:none}
