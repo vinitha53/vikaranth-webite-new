@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev --turbopack -p 3000",
     "build": "next build",
     "perf:audit": "lhci autorun",
     "audit:all-pages": "node scripts/audit-all-pages.mjs",

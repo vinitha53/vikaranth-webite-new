@@ -18,5 +18,10 @@ export function buildProductFaqs(product, industry, applications) {
     [`What is ${name} evaluated for?`, `${name} may be evaluated for ${primaryUses}. Share the ${focus}; final suitability must be confirmed against the selected product documents and the buyer's own formulation trial.`],
     [`Can I submit a wholesale or bulk ${name} enquiry?`, `Yes. Share the application, required grade, quantity, preferred pack and documents. Available packs, minimum quantity and commercial terms are confirmed for the selected product before quotation.`],
     [`Can ${name} be supplied outside Chennai?`, `South India and India enquiries are reviewed according to the selected product, quantity, pack, freight and destination serviceability. No delivery or stock position is confirmed until quotation.`],
+    [`How do I select the right ${name} grade?`, `Share the ${focus}. Vikranth can coordinate available grade and specification information, but the buyer should approve final suitability through document review and a controlled application trial.`],
+    [`Which documents can I request for ${name}?`, `You may request the current specification, certificate or other supporting product documents where available. Document availability depends on the selected manufacturer, grade and supply option.`],
+    [`What pack size and minimum quantity apply to ${name}?`, `Pack size and minimum order quantity are confirmed for the exact product and grade. Include your required quantity and expected repeat usage so the most relevant commercial option can be checked.`],
+    [`Can I request a ${name} sample before ordering?`, `Sample requests are reviewed according to product availability, intended application and delivery location. A sample is not a substitute for the buyer's own technical, quality and regulatory approval.`],
+    [`How are ${name} price and availability confirmed?`, `Pricing and availability are quotation-specific. Share the grade, quantity, pack preference, delivery city and document requirements for a current commercial check.`],
   ];
 }

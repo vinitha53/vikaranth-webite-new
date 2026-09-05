@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, PackageOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, PackageOpen, Search, SlidersHorizontal, X } from "lucide-react";
 import styles from "./range-catalog.module.css";
 import Mec3CatalogNav from "./Mec3CatalogNav";
 import { mec3ProductCount } from "../data/mec3-catalog";
@@ -45,22 +45,33 @@ const brandEyebrows = {
 };
 
 export default function RangeCatalog({ products, indianNames = [], supplierMode = false, categoryField = "usageCategory", mec3Catalog = false, collectionTitle = "Ingredient" }) {
+  const categoryFor = (product) => product[categoryField] || product.usageCategory || product.category;
+  const industryCollectionMode = !supplierMode && categoryField === "brochureDisplayCategory";
   const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
-  const [active, setActive] = useState(ranges[0] || "indian");
+  const initialRange = ranges[0] || "indian";
+  const initialCategory = industryCollectionMode ? categoryFor(normalized.find((product) => product.range === initialRange) || {}) || "all" : "all";
+  const [active, setActive] = useState(initialRange);
   const [activeBrand, setActiveBrand] = useState(null);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [searchQuery, setSearchQuery] = useState("");
   const [openGroups, setOpenGroups] = useState({});
+  const productFinderRef = useRef(null);
+  const collectionContentRef = useRef(null);
   const inRange = normalized.filter((product) => product.range === active);
-  const categoryFor = (product) => product[categoryField] || product.usageCategory || product.category;
   const brands = [...new Set(inRange.map((product) => product.brand).filter(Boolean))];
   const hasBrandDirectory = brands.length > 0;
   const selectedBrandProducts = activeBrand ? inRange.filter((product) => product.brand === activeBrand) : [];
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
   const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
-  const industryCollectionMode = !supplierMode && categoryField === "brochureDisplayCategory";
-  const selectedCollectionName = activeCategory === "all" ? categories[0] : activeCategory;
-  const selectedCollectionProducts = inRange.filter((product) => categoryFor(product) === selectedCollectionName);
+  const defaultIndustryCategory = categories[0] || "all";
+  const selectedCollectionName = activeCategory === "all" ? "All Products" : activeCategory;
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const categoryFilteredProducts = activeCategory === "all" ? inRange : inRange.filter((product) => categoryFor(product) === activeCategory);
+  const selectedCollectionProducts = normalizedQuery
+    ? categoryFilteredProducts.filter((product) => Object.values(product).map((value) => Array.isArray(value) ? value.join(" ") : typeof value === "object" && value ? JSON.stringify(value) : String(value ?? "")).join(" ").toLowerCase().includes(normalizedQuery))
+    : categoryFilteredProducts;
+  const collectionHeading = normalizedQuery && activeCategory === "all" ? "Search Results" : selectedCollectionName;
   const visibleGroups = hasBrandDirectory
     ? !activeBrand
       ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
@@ -74,7 +85,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const selectRange = (range) => {
     setActive(range);
     setActiveBrand(null);
-    setActiveCategory("all");
+    const firstRangeProduct = normalized.find((product) => product.range === range && categoryFor(product));
+    setActiveCategory(industryCollectionMode ? categoryFor(firstRangeProduct || {}) || "all" : "all");
+    setSearchQuery("");
     setOpenGroups({});
   };
   const selectBrand = (brand) => {
@@ -88,6 +101,15 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   };
   const selectIndustryCategory = (category) => {
     setActiveCategory(category);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const finder = productFinderRef.current;
+      const firstRow = collectionContentRef.current;
+      if (!finder || !firstRow) return;
+      const stickyTop = Number.parseFloat(getComputedStyle(finder).top) || 0;
+      const targetTop = window.scrollY + firstRow.getBoundingClientRect().top - stickyTop - finder.offsetHeight - 12;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? "auto" : "smooth" });
+    }));
   };
   const rangeLabel = active === "indian" ? "Indian" : "Imported";
   const collapseInPlace = (event, groupKey) => {
@@ -109,12 +131,33 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>International brands</small></button>
     </div>}
 
-    {industryCollectionMode ? <section className={styles.collectionBrowser} aria-labelledby={`collection-browser-${active}`}>
-      <header className={styles.collectionIntro}>
-        <small>Explore the catalogue</small>
-        <h2 id={`collection-browser-${active}`}>Explore {collectionTitle} Collections</h2>
-        <p>Curated solutions for every production need. Select a category to discover the available ingredients.</p>
-      </header>
+    {industryCollectionMode && <section ref={productFinderRef} className={styles.productFinder} aria-label="Search and filter products">
+      <div className={styles.productSearch}>
+        <Search aria-hidden="true" />
+        <input type="search" value={searchQuery} onChange={(event) => {
+          const nextQuery = event.target.value;
+          if (!searchQuery.trim() && nextQuery.trim()) setActiveCategory("all");
+          if (searchQuery.trim() && !nextQuery.trim()) setActiveCategory(defaultIndustryCategory);
+          setSearchQuery(nextQuery);
+        }} placeholder={`Search all products in this industry...`} aria-label={`Search all ${rangeLabel.toLowerCase()} products in this industry`} />
+        {searchQuery && <button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }} aria-label="Clear product search"><X aria-hidden="true" /></button>}
+      </div>
+      <label className={styles.productFilter}>
+        <SlidersHorizontal aria-hidden="true" />
+        <span>Filter</span>
+        <select value={activeCategory} onChange={(event) => selectIndustryCategory(event.target.value)} aria-label="Filter products by category">
+          <option value="all">All categories</option>
+          {categories.map((category) => <option value={category} key={category}>{category}</option>)}
+        </select>
+      </label>
+      <div className={styles.finderSummary} aria-live="polite">
+        <strong>{selectedCollectionProducts.length}</strong>
+        <span>{selectedCollectionProducts.length === 1 ? "matching product" : "matching products"}</span>
+        {(searchQuery || activeCategory !== defaultIndustryCategory) && <button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Reset filters</button>}
+      </div>
+    </section>}
+
+    {industryCollectionMode ? <section className={styles.collectionBrowser} aria-label={`${collectionTitle} collections`}>
       <div className={styles.collectionShell}>
         <nav className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
           {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
@@ -124,14 +167,14 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         <section className={styles.collectionPanel} aria-labelledby="selected-collection-title">
           <div className={styles.collectionPanelHeading}>
             <span className={styles.collectionHeadingIcon}><PackageOpen aria-hidden="true" /></span>
-            <strong id="selected-collection-title">{selectedCollectionName}</strong>
+            <strong id="selected-collection-title">{collectionHeading}</strong>
             <span className={styles.collectionCount}>{selectedCollectionProducts.length} {selectedCollectionProducts.length === 1 ? "product" : "products"}</span>
           </div>
-          <div className={styles.collectionContent}>
-            <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
+          <div ref={collectionContentRef} className={styles.collectionContent}>
+            {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
               <span className={styles.collectionImage}><img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" /></span>
               <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brand || product.usageCategory || selectedCollectionName}</small><ArrowRight aria-hidden="true" /></span>
-            </Link>)}</div>
+            </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}
           </div>
         </section>
       </div>
