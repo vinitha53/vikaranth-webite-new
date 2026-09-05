@@ -25,3 +25,68 @@
 .brandNavigatorHead{display:grid;padding-bottom:24px;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;border-bottom:1px solid #e2ccb0}.brandNavigatorLogo{display:grid;width:146px;height:84px;padding:12px;place-items:center;border-radius:14px;background:#fff;box-shadow:0 10px 24px rgba(55,29,10,.1)}.brandNavigatorLogo img{display:block;max-width:118px;max-height:62px;object-fit:contain}.brandNavigatorLogo>strong{font-size:15px;text-align:center}.brandTotal{padding:12px 16px;border:1px solid #d8b37b;border-radius:12px;background:#fff8ee;color:#72502d;font-size:11px;font-weight:800;text-align:center;text-transform:uppercase}.brandTotal strong{display:block;color:#7f3517;font-size:24px}.brandRangeGrid{display:grid;margin-top:22px;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.brandRangeGrid button{display:grid;min-width:0;min-height:112px;padding:16px;align-items:center;grid-template-columns:34px minmax(0,1fr) 22px;gap:12px;border:1px solid #e5d3bd;border-radius:13px;background:#fff;color:#2c190f;text-align:left;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}.brandRangeGrid button:hover,.brandRangeGrid button[aria-pressed=true]{border-color:#a9572d;box-shadow:0 12px 26px rgba(75,37,14,.12);transform:translateY(-3px)}.brandRangeGrid button>span:nth-child(2){display:grid;min-width:0;gap:5px}.brandRangeGrid strong{font-size:15px;line-height:1.2;overflow-wrap:anywhere}.brandRangeNumber{display:grid;width:32px;height:32px;place-items:center;border-radius:50%;background:#6d2e13;color:#fff;font-size:9px;font-weight:900}
 @media(max-width:900px){.brandGrid,.brandRangeGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.brandNavigatorHead{grid-template-columns:auto 1fr}.brandTotal{grid-column:2;justify-self:start}}
 @media(max-width:600px){.brandDirectory,.brandNavigator{padding:18px 14px;border-radius:16px}.brandDirectoryHeading{display:block}.brandDirectoryHeading p{margin-top:9px}.brandGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.brandGrid>button{min-height:118px;padding:11px;grid-template-columns:1fr 16px;gap:8px}.brandGrid .brandLogo{grid-column:1/-1;width:100%;height:48px;padding:4px;justify-content:start}.brandGrid .brandLogo img{max-width:105px}.brandGrid>button>span:nth-child(2)>small{display:none}.brandGrid>button>span:nth-child(2)>strong{font-size:13px}.brandNavigatorHead{grid-template-columns:1fr}.brandNavigatorLogo{width:120px;height:70px}.brandTotal{grid-column:auto;justify-self:start}.brandRangeGrid{grid-template-columns:1fr}.brandRangeGrid button{min-height:96px}}
+/* Industry collection browser: compact category rail + one active product panel. */
+.collectionBrowser{width:100%;min-width:0;color:#2b180f}
+.collectionIntro{margin:0 auto 20px;text-align:center}
+.collectionIntro small{display:block;margin-bottom:7px;color:#a64a21;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.collectionIntro h2{margin:0;color:#2a170e;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,3.4vw,45px);font-weight:600;line-height:1.08;letter-spacing:-.035em}
+.collectionIntro h2:before,.collectionIntro h2:after{display:inline-block;margin:0 12px;color:#d18a43;content:"❧";font-size:.58em;vertical-align:middle}
+.collectionIntro h2:after{transform:scaleX(-1)}
+.collectionIntro p{margin:8px 0 0;color:#77665b;font-size:13px;line-height:1.55}
+.collectionShell{display:flex;width:100%;min-width:0;align-items:flex-start;gap:18px}
+.collectionTabs{display:flex;width:245px;min-width:245px;max-width:245px;overflow:hidden;padding:8px;flex:0 0 245px;flex-direction:column;border:1px solid #e5cfbd;border-radius:15px;background:rgba(255,255,255,.82);box-shadow:0 12px 30px rgba(62,31,15,.06)}
+.collectionTabs button{position:relative;display:grid;width:100%;min-width:0;max-width:none;min-height:66px;padding:8px 11px;align-items:center;grid-template-columns:38px minmax(0,1fr) 18px;gap:10px;flex:0 0 auto;border:0;border-bottom:1px solid #eddfd4;background:transparent;color:#352219;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
+.collectionTabs button:last-child{border-bottom:0}
+.collectionTabs button:before{position:absolute;inset:0 auto 0 -8px;width:4px;border-radius:0 6px 6px 0;background:#d35b20;content:"";opacity:0;transition:opacity .2s ease}
+.collectionTabs button:hover{background:#fff8f1;color:#9c3e17}
+.collectionTabs button[aria-pressed=true]{background:linear-gradient(90deg,#fff5e9,#fff);color:#b3471b}
+.collectionTabs button[aria-pressed=true]:before{opacity:1}
+.collectionTabs button>span{display:grid;width:34px;height:34px;place-items:center;border:1px solid #e9cab1;border-radius:9px;background:#fff;color:#9f461e;font:800 10px/1 inherit}
+.collectionTabs button[aria-pressed=true]>span{border-color:#d96728;background:linear-gradient(135deg,#e36b28,#bd4514);color:#fff;box-shadow:0 6px 13px rgba(169,62,19,.2)}
+.collectionTabs strong{min-width:0;font-size:12px;line-height:1.25;overflow-wrap:normal;word-break:normal;hyphens:none}
+.collectionTabs svg{width:15px;color:#ac4b20;transition:transform .2s ease}
+.collectionTabs button:hover svg,.collectionTabs button[aria-pressed=true] svg{transform:translateX(3px)}
+.collectionPanel{width:0;min-width:0;overflow:hidden;flex:1 1 0;border:1px solid #e2c7b0;border-radius:17px;background:rgba(255,255,255,.86);box-shadow:0 16px 38px rgba(62,31,15,.08)}
+.collectionPanelHeading{display:grid;width:100%;min-height:72px;padding:12px 15px;align-items:center;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;border-bottom:1px solid #ead8ca;background:linear-gradient(90deg,#fffaf5,#fff);color:#2d190f;text-align:left}
+.collectionHeadingIcon{display:grid;width:36px;height:36px;place-items:center;border-radius:50%;background:#fff6ea;color:#b84c1b;box-shadow:0 6px 15px rgba(92,41,17,.08)}
+.collectionHeadingIcon svg{width:18px}
+.collectionPanelHeading>strong{font-family:Georgia,"Times New Roman",serif;font-size:clamp(20px,2.1vw,28px);font-weight:600;line-height:1.1}
+.collectionCount{padding-left:14px;border-left:1px solid #ead8ca;color:#a24a22;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.collectionContent{padding:14px 15px 12px;animation:rangeIn .3s ease both}
+.collectionGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.collectionCard{display:block;min-width:0;overflow:hidden;border:1px solid #ead8ca;border-radius:11px;background:#fff;color:#2f1d14;text-decoration:none;transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+.collectionCard:hover{border-color:#ce6b38;box-shadow:0 12px 25px rgba(70,32,14,.13);transform:translateY(-4px)}
+.collectionImage{display:block;height:145px;overflow:hidden;background:#f1e3d6}
+.collectionImage img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.collectionCard:hover .collectionImage img{transform:scale(1.055)}
+.collectionCardCopy{position:relative;display:block;min-height:78px;padding:12px 32px 11px 12px}
+.collectionCardCopy strong{display:block;font-size:14px;line-height:1.25}
+.collectionCardCopy small{display:block;margin-top:5px;color:#7c6c62;font-size:10px;line-height:1.3}
+.collectionCardCopy svg{position:absolute;right:11px;bottom:14px;width:15px;color:#c34f1d;transition:transform .2s ease}
+.collectionCard:hover .collectionCardCopy svg{transform:translateX(3px)}
+@media(max-width:900px){
+  .collectionTabs{width:210px;min-width:210px;max-width:210px;flex-basis:210px}
+  .collectionGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .collectionImage{height:165px}
+}
+@media(max-width:650px){
+  .collectionIntro{text-align:left}
+  .collectionIntro h2:before,.collectionIntro h2:after{display:none}
+  .collectionShell{display:block}
+  .collectionTabs{width:100%;min-width:0;max-width:none;margin-bottom:12px;gap:7px;overflow-x:auto;flex-direction:row;border-radius:13px;scrollbar-width:thin}
+  .collectionTabs button{width:190px;min-width:190px;max-width:190px;min-height:58px;border:1px solid #ead8ca;border-radius:10px;grid-template-columns:32px minmax(0,1fr) 15px}
+  .collectionTabs button:before{display:none}
+  .collectionTabs button>span{width:30px;height:30px}
+  .collectionPanel{width:100%}
+  .collectionPanelHeading{grid-template-columns:34px minmax(0,1fr);padding:11px}
+  .collectionCount{display:none}
+  .collectionPanelHeading>strong{font-size:20px}
+}
+@media(max-width:440px){
+  .collectionContent{padding:10px}
+  .collectionGrid{gap:9px}
+  .collectionImage{height:115px}
+  .collectionCardCopy{min-height:72px;padding:10px 26px 9px 9px}
+  .collectionCardCopy strong{font-size:12px}
+  .collectionCardCopy small{font-size:9px}
+}

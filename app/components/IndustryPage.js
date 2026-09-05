@@ -90,9 +90,9 @@ export default async function IndustryPage({ params }) {
 
     <div className={styles.industryContent}>
       <section className={styles.productSection} id="industry-products" data-range-section={items.some((item) => item.range) ? "true" : undefined}>
-        <Heading number="01" eyebrow={`${guideLabel} portfolio`} title="Explore Available Product Families" text={`${items.length} listed products with grade, pack, document and current availability confirmed for each enquiry.`} />
-        <div className={styles.productFamilyLabels} aria-label="Product families">{content.productFamilies.map((label) => <span key={label}>{label}</span>)}</div>
-        <RangeCatalog products={items} indianNames={items.filter((item) => !item.range || item.range === "indian").map((item) => item.name)} categoryField="brochureDisplayCategory" mec3Catalog={items.some((item) => item.brand === "MEC3")} />
+        <div id="catalog-browser" className={styles.catalogBrowser}>
+          <RangeCatalog products={items} indianNames={items.filter((item) => !item.range || item.range === "indian").map((item) => item.name)} categoryField="brochureDisplayCategory" collectionTitle={guideLabel.toLowerCase().includes("ingredient") ? guideLabel : `${guideLabel} Ingredient`} mec3Catalog={items.some((item) => item.brand === "MEC3")} />
+        </div>
       </section>
 
       <IndustryApplicationGuide industry={industry} content={content} />

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, PackageOpen } from "lucide-react";
 import styles from "./range-catalog.module.css";
 import Mec3CatalogNav from "./Mec3CatalogNav";
 import { mec3ProductCount } from "../data/mec3-catalog";
@@ -44,7 +44,7 @@ const brandEyebrows = {
   Celebre: "Indian bakery & dessert range",
 };
 
-export default function RangeCatalog({ products, indianNames = [], supplierMode = false, categoryField = "usageCategory", mec3Catalog = false }) {
+export default function RangeCatalog({ products, indianNames = [], supplierMode = false, categoryField = "usageCategory", mec3Catalog = false, collectionTitle = "Ingredient" }) {
   const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const [active, setActive] = useState(ranges[0] || "indian");
@@ -58,6 +58,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const selectedBrandProducts = activeBrand ? inRange.filter((product) => product.brand === activeBrand) : [];
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
   const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
+  const industryCollectionMode = !supplierMode && categoryField === "brochureDisplayCategory";
+  const selectedCollectionName = activeCategory === "all" ? categories[0] : activeCategory;
+  const selectedCollectionProducts = inRange.filter((product) => categoryFor(product) === selectedCollectionName);
   const visibleGroups = hasBrandDirectory
     ? !activeBrand
       ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
@@ -83,6 +86,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     setActiveCategory(category);
     setOpenGroups({});
   };
+  const selectIndustryCategory = (category) => {
+    setActiveCategory(category);
+  };
   const rangeLabel = active === "indian" ? "Indian" : "Imported";
   const collapseInPlace = (event, groupKey) => {
     const section = event.currentTarget.closest("section");
@@ -103,7 +109,33 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>International brands</small></button>
     </div>}
 
-    {hasBrandDirectory ? <>
+    {industryCollectionMode ? <section className={styles.collectionBrowser} aria-labelledby={`collection-browser-${active}`}>
+      <header className={styles.collectionIntro}>
+        <small>Explore the catalogue</small>
+        <h2 id={`collection-browser-${active}`}>Explore {collectionTitle} Collections</h2>
+        <p>Curated solutions for every production need. Select a category to discover the available ingredients.</p>
+      </header>
+      <div className={styles.collectionShell}>
+        <nav className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
+          {categories.map((category, index) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
+            <span>{String(index + 1).padStart(2, "0")}</span><strong>{category}</strong><ArrowRight aria-hidden="true" />
+          </button>)}
+        </nav>
+        <section className={styles.collectionPanel} aria-labelledby="selected-collection-title">
+          <div className={styles.collectionPanelHeading}>
+            <span className={styles.collectionHeadingIcon}><PackageOpen aria-hidden="true" /></span>
+            <strong id="selected-collection-title">{selectedCollectionName}</strong>
+            <span className={styles.collectionCount}>{selectedCollectionProducts.length} {selectedCollectionProducts.length === 1 ? "product" : "products"}</span>
+          </div>
+          <div className={styles.collectionContent}>
+            <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
+              <span className={styles.collectionImage}><img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" /></span>
+              <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brand || product.usageCategory || selectedCollectionName}</small><ArrowRight aria-hidden="true" /></span>
+            </Link>)}</div>
+          </div>
+        </section>
+      </div>
+    </section> : hasBrandDirectory ? <>
       {!activeBrand && <section className={styles.brandDirectory} aria-labelledby={`brand-directory-${active}`}>
         <div className={styles.brandDirectoryHeading}>
           <div><small>Browse by brand</small><h3 id={`brand-directory-${active}`}>Explore {rangeLabel.toLowerCase()} ingredient brands</h3></div>
@@ -152,7 +184,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{activeCategory === "all" ? inRange.length : inRange.filter((product) => categoryFor(product) === activeCategory).length} ingredients</span></div>
     </div>}
 
-    <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
+    {!industryCollectionMode && <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
       const headingId = `range-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       const contentId = `${headingId}-products`;
       const groupKey = `${active}:${activeBrand || "all"}:${group.category}`;
@@ -176,7 +208,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <button className={styles.collapseButton} type="button" onClick={(event) => collapseInPlace(event, groupKey)}>Collapse {group.category}<span aria-hidden="true">↑</span></button>
         </div>}
       </section>;
-    })}</div>
+    })}</div>}
     {supplierMode && <p className={styles.note}>Only products matched to the approved supplier catalogue are shown. Grade, pack and availability are confirmed per enquiry.</p>}
   </div>;
 }
