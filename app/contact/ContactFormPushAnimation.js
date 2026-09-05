@@ -5,7 +5,7 @@ import ContactForm from "./ContactForm";
 import styles from "./contact.module.css";
 
 const START_DELAY = 50;
-const PUSH_DURATION = 6000;
+const PUSH_DURATION = 4000;
 const SETTLE_DURATION = 650;
 const DESKTOP_QUERY = "(min-width: 1281px)";
 
@@ -52,7 +52,9 @@ export default function ContactFormPushAnimation() {
       stage.style.setProperty("--mascot-lane", `${Math.round(laneWidth)}px`);
       stage.style.setProperty("--walk-distance", `${Math.round(walkDistance)}px`);
       const formLeft = finalLeft + laneWidth;
-      stage.style.setProperty("--form-entry-distance", `${Math.ceil(form.offsetWidth + formLeft + 4)}px`);
+      const initiallyVisibleWidth = form.offsetWidth * 0.4;
+      const entryDistance = formLeft + form.offsetWidth - initiallyVisibleWidth;
+      stage.style.setProperty("--form-entry-distance", `${Math.ceil(entryDistance)}px`);
     };
 
     measure();

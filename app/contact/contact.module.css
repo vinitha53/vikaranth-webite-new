@@ -498,7 +498,7 @@
 
 /* One-time contact entrance: the cocoa bean gently walks the form into place. */
 .contactPushStage{
-  --push-duration:6000ms;
+  --push-duration:4000ms;
   --form-entry-distance:1289px;
   --mascot-height:396px;
   --mascot-lane:317px;
