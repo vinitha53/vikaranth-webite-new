@@ -190,7 +190,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
     { name: "Leavening & Preservation", description: "Leavening salts and preservatives used in cakes, biscuits, cookies, crackers, bread and related bakery products.", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)", "Potassium Sorbate", "Sodium Benzoate"] }
   ],
   "chocolate-confectionery": [
-    { name: "Sweeteners & Bulking Ingredients", description: "Sweeteners and carbohydrates for confectionery texture, solids, reduced-sugar recipes and fillings.", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
+    { name: "Sweeteners & Bulking Ingredients", description: "Sweeteners and carbohydrates for confectionery texture, solids, reduced-sugar recipes and fillings.", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
     { name: "Dairy Ingredients", description: "Milk and whey powders for milk chocolate, centres, coatings and confectionery formulations.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
     { name: "Emulsifiers & Texture", description: "Emulsifiers and gelling ingredients for flow, dispersion, moulding, fillings, gummies and aerated confectionery.", ingredients: ["PGPR", "Soya Lecithin", "GMS Powder", "Distilled Monoglycerides (DMG)", "Gelatin 120 Bloom", "Gelatin 160 Bloom", "Gelatin 180 Bloom", "Genu Pectin"] }
   ],
@@ -207,7 +207,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
   ],
   "ice-cream-ingredients": [
     { name: "Dairy & Protein", description: "Milk, whey and protein ingredients for dairy solids, creaminess, body and nutrition in frozen desserts.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose", "Whey Protein"] },
-    { name: "Sweeteners & Solids", description: "Sweeteners and carbohydrates for freezing-point control, body, solids and reduced-sugar formulations.", ingredients: ["Liquid Glucose", "Glucose D", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARLÂ® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
+    { name: "Sweeteners & Solids", description: "Sweeteners and carbohydrates for freezing-point control, body, solids and reduced-sugar formulations.", ingredients: ["Liquid Glucose", "Glucose D", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
     { name: "Fruit, Cocoa & Chocolate", description: "Fruit, cocoa and chocolate ingredients for flavours, ripples, coatings, inclusions and toppings.", ingredients: ["Fruit Filling", "Fruit Crush", "Cocoa Powder", "Chocolate Drink", "Dark Chocolate", "Milk Chocolate", "White Chocolate", "White Chips", "Dark Chips", "Milk Chips"] },
     { name: "Gums & Emulsifiers", description: "Hydrocolloids and emulsifiers for overrun, body, melt resistance and storage stability.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG", "Genu Pectin", "GMS Flakes", "GMS Powder", "Distilled Monoglycerides (DMG)", "Sorbitan Monostearate"] }
   ],
