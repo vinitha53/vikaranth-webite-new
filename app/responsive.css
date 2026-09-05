@@ -23,6 +23,107 @@ body {
   overflow-x: clip;
 }
 
+/* Shared floating social/contact rails used on every route. */
+.floating-site-dock {
+  position: fixed;
+  z-index: 45;
+  top: 50%;
+  right: 20px;
+  bottom: auto !important;
+  left: auto !important;
+  display: flex;
+  width: max-content;
+  margin: 0 !important;
+  flex-direction: column;
+  gap: 11px;
+  transform: translateY(-50%);
+}
+
+.floating-site-dock-left {
+  right: auto !important;
+  left: 20px !important;
+}
+
+.floating-site-dock-right {
+  right: 20px;
+}
+
+.floating-site-dock .floating-site-button,
+.floating-site-chatbot {
+  position: relative;
+  inset: auto;
+  display: grid;
+  flex: 0 0 auto;
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(219, 123, 57, 0.62);
+  border-radius: 50%;
+  background: #35170c;
+  box-shadow: 0 9px 24px rgba(48, 20, 8, 0.24), 0 0 0 3px rgba(222, 126, 61, 0.09);
+  text-decoration: none;
+  cursor: pointer;
+  animation: floatingIconEnter 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.floating-site-dock .floating-site-button:nth-child(2) {
+  animation-delay: 0.07s;
+}
+
+.floating-site-dock .floating-site-button:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.floating-site-dock .floating-site-button img,
+.floating-site-chatbot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.floating-site-dock .floating-site-chatbot {
+  position: relative;
+  z-index: auto;
+  right: auto;
+  bottom: auto;
+}
+
+.floating-site-chatbot img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+}
+
+.floating-site-dock .floating-site-button:hover,
+.floating-site-chatbot:hover {
+  filter: brightness(1.08);
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 14px 31px rgba(48, 20, 8, 0.34), 0 0 0 5px rgba(222, 126, 61, 0.14);
+}
+
+.floating-site-dock .floating-site-button:focus-visible,
+.floating-site-chatbot:focus-visible {
+  outline: 3px solid #e79b61;
+  outline-offset: 3px;
+}
+
+@keyframes floatingIconEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 main,
 section,
 article,
@@ -131,8 +232,38 @@ summary {
     border-radius: 12px;
   }
 
+  .floating-site-dock {
+    top: 50%;
+    bottom: auto !important;
+    width: max-content;
+    flex-direction: column;
+    gap: 8px;
+    transform: translateY(-50%);
+  }
+
+  .floating-site-dock-left {
+    right: auto !important;
+    left: 8px !important;
+    display: flex;
+  }
+
   .floating-site-dock-right {
-    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    top: 50%;
+    right: 8px !important;
+    bottom: auto !important;
+    left: auto !important;
+    display: flex;
+    width: max-content;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    transform: translateY(-50%);
+  }
+
+  .floating-site-dock .floating-site-button,
+  .floating-site-chatbot {
+    width: 46px;
+    height: 46px;
   }
 
   .ingredient-chat-panel {
@@ -152,6 +283,25 @@ summary {
 @media (max-width: 420px) {
   .container {
     width: min(100% - 24px, 1220px);
+  }
+
+  .floating-site-dock-left {
+    left: 6px !important;
+  }
+
+  .floating-site-dock-right {
+    top: 50%;
+    right: 6px !important;
+    bottom: auto !important;
+    left: auto !important;
+    gap: 6px;
+    transform: translateY(-50%);
+  }
+
+  .floating-site-dock .floating-site-button,
+  .floating-site-chatbot {
+    width: 42px;
+    height: 42px;
   }
 
   .ingredient-chat-panel {
