@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, PackageOpen, Search, SlidersHorizontal, X } from "lucide-react";
@@ -9,6 +9,8 @@ import Mec3CatalogNav from "./Mec3CatalogNav";
 import { mec3ProductCount } from "../data/mec3-catalog";
 
 const MEC3_FILTER = "__mec3_catalog__";
+const RANGE_QUERY_PARAM = "catalogRange";
+const CATEGORY_QUERY_PARAM = "catalogCategory";
 
 const brandLogos = {
   Callebaut: "/brand-logos/callebaut.webp",
@@ -56,6 +58,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [openGroups, setOpenGroups] = useState({});
+  const [catalogStateReady, setCatalogStateReady] = useState(false);
   const productFinderRef = useRef(null);
   const collectionContentRef = useRef(null);
   const inRange = normalized.filter((product) => product.range === active);
@@ -81,6 +84,45 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     : (activeCategory === "all"
       ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
       : [{ category: activeCategory, products: inRange.filter((product) => categoryFor(product) === activeCategory) }]);
+
+  useEffect(() => {
+    if (!industryCollectionMode) return;
+
+    const restoreCatalogState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const requestedRange = params.get(RANGE_QUERY_PARAM);
+      const availableRanges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
+      const restoredRange = availableRanges.includes(requestedRange) ? requestedRange : initialRange;
+      const restoredCategories = [...new Set(normalized
+        .filter((product) => product.range === restoredRange)
+        .map((product) => product[categoryField] || product.usageCategory || product.category)
+        .filter(Boolean))];
+      const requestedCategory = params.get(CATEGORY_QUERY_PARAM);
+      const restoredCategory = requestedCategory === "all" || restoredCategories.includes(requestedCategory)
+        ? requestedCategory
+        : restoredCategories[0] || "all";
+
+      setActive(restoredRange);
+      setActiveBrand(null);
+      setActiveCategory(restoredCategory);
+      setSearchQuery("");
+      setOpenGroups({});
+      setCatalogStateReady(true);
+    };
+
+    restoreCatalogState();
+    window.addEventListener("popstate", restoreCatalogState);
+    return () => window.removeEventListener("popstate", restoreCatalogState);
+  }, [categoryField, industryCollectionMode, initialRange, normalized]);
+
+  useEffect(() => {
+    if (!industryCollectionMode || !catalogStateReady) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set(RANGE_QUERY_PARAM, active);
+    url.searchParams.set(CATEGORY_QUERY_PARAM, activeCategory || "all");
+    window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+  }, [active, activeCategory, catalogStateReady, industryCollectionMode]);
 
   const selectRange = (range) => {
     setActive(range);
