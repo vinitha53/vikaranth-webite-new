@@ -907,9 +907,8 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .hero-trust span{min-width:0;font-size:8.5px;line-height:1.35}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-media{display:none}
+  .hero-video{display:none}
   .hero-film-note{animation:none}
-  .hero{background:#2a1008 url('/hero-chocolate-poster.webp') center/cover no-repeat}
 }
 
 /* Hero headline sits above the film while actions remain in the content flow. */

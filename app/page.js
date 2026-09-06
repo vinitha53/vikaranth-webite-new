@@ -316,7 +316,7 @@ export default function Home() {
   }, []);
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches || navigator.connection?.saveData || window.innerWidth <= 760) return;
+    if (reducedMotion.matches || navigator.connection?.saveData) return;
     let timer;
     const enableVideo = () => { timer = window.setTimeout(() => setHeroVideoEnabled(true), 1800); };
     if (document.readyState === "complete") enableVideo(); else window.addEventListener("load", enableVideo, { once: true });
@@ -324,7 +324,37 @@ export default function Home() {
   }, []);
   useEffect(() => {
     if (!heroVideoEnabled || !heroVideoRef.current) return;
-    heroVideoRef.current.play().catch(() => {});
+    const video = heroVideoRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const connection = navigator.connection;
+    let visible = false;
+    // Select one file before loading, so phones never download the desktop film.
+    video.src = window.matchMedia("(max-width: 760px)").matches
+      ? "/hero-home-mobile.mp4" : "/hero-home-desktop.mp4";
+    const syncPlayback = () => {
+      if (visible && !document.hidden && !reducedMotion.matches && !connection?.saveData) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncPlayback();
+    });
+    observer.observe(video);
+    document.addEventListener("visibilitychange", syncPlayback);
+    reducedMotion.addEventListener("change", syncPlayback);
+    connection?.addEventListener("change", syncPlayback);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", syncPlayback);
+      reducedMotion.removeEventListener("change", syncPlayback);
+      connection?.removeEventListener("change", syncPlayback);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
   }, [heroVideoEnabled]);
   useEffect(() => () => {
     if (featureMotionFrame.current) cancelAnimationFrame(featureMotionFrame.current);
@@ -640,8 +670,8 @@ export default function Home() {
       <div className="home-sticky-spacer" aria-hidden="true" />
 
       <section className="hero" id="home">
-        <img className="hero-media hero-poster" src="/hero-chocolate-poster.webp" alt="Chocolate and food ingredients for commercial production" width="1920" height="1080" fetchPriority="high" decoding="async" />
-        {heroVideoEnabled && <video ref={heroVideoRef} className="hero-media hero-video" muted loop playsInline preload="none" poster="/hero-chocolate-poster.webp" aria-hidden="true"><source src="/hero-chocolate-ingredients.mp4" type="video/mp4" /></video>}
+        <img className="hero-media hero-poster" src="/hero-home-poster.webp" alt="" width="1280" height="720" fetchPriority="high" decoding="async" />
+        {heroVideoEnabled && <video ref={heroVideoRef} className="hero-media hero-video" muted loop playsInline preload="none" poster="/hero-home-poster.webp" aria-hidden="true" />}
         <div className="hero-shade"/>
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">

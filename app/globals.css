@@ -580,7 +580,7 @@ header nav a:hover::after,.nav-product:hover::after,header nav a:focus-visible::
 /* Full-width row guarantees the supplier CTA is centered in the section. */
 .supplier-section .supplier-cta-row{display:flex;width:100%;margin-top:34px;justify-content:center}
 
-/* Mobile hero: remove long copy and use the poster instead of downloading the desktop video. */
+/* Keep the mobile hero copy compact above the responsive video. */
 @media(max-width:540px){.home-page .hero-copy>p{display:none}}
 
 
