@@ -2116,6 +2116,69 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .hero-content>h1{white-space:normal;text-wrap:balance}
   .home-page .hero-copy>p{white-space:normal}
 }
+
+/* Keep the hero headline and actions in one centered, responsive composition. */
+.home-page .hero-message{
+  position:absolute;
+  z-index:4;
+  top:50%;
+  left:50%;
+  width:min(1120px,calc(100% - 48px));
+  transform:translate(-50%,-43%);
+  text-align:center;
+}
+.home-page .hero-message .hero-title{
+  width:100%;
+  max-width:none;
+  margin:0;
+  color:#fffdf8;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:clamp(50px,5.25vw,76px);
+  font-weight:700;
+  line-height:.98;
+  letter-spacing:-.045em;
+  white-space:normal;
+  text-wrap:initial;
+  text-shadow:0 3px 24px rgba(18,6,2,.72);
+}
+.home-page .hero-message .hero-title span,
+.home-page .hero-message .hero-title em{display:block}
+.home-page .hero-message .hero-title span{white-space:nowrap}
+.home-page .hero-message .hero-title em{
+  margin-top:.16em;
+  color:#ffc476;
+  font-family:inherit;
+  font-size:.82em;
+  font-style:italic;
+  font-weight:700;
+  letter-spacing:-.025em;
+}
+.home-page .hero-message .hero-copy{
+  width:min(900px,100%);
+  max-width:none;
+  margin:30px auto 0;
+  text-align:center;
+}
+.home-page .hero-message .hero-copy>p{
+  max-width:860px;
+  margin:0 auto 24px;
+  white-space:normal;
+  text-wrap:balance;
+}
+.home-page .hero-message .hero-buttons{justify-content:center}
+@media(max-width:767px){
+  .home-page .hero-message{
+    top:50%;
+    width:calc(100% - 28px);
+    transform:translate(-50%,-42%);
+  }
+  .home-page .hero-message .hero-title{
+    font-size:clamp(23px,7.1vw,32px);
+    line-height:1.02;
+    letter-spacing:-.04em;
+  }
+  .home-page .hero-message .hero-copy{margin-top:26px}
+}
 /* Why Vikranth reference composition */
 .home-page .home-trust-strip{position:relative;isolation:isolate;overflow:hidden;padding:clamp(2.8rem,4vw,4.2rem) 0 1.8rem;background:
   radial-gradient(circle at 63% 45%,rgba(245,176,94,.18),transparent 31%),

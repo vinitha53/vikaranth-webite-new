@@ -676,14 +676,16 @@ export default function Home() {
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
           <span className="hero-mini-title">Food Ingredients · Chennai</span>
-          <h1>Food Ingredients <em>Supplier in Chennai</em></h1>
-          <div className="hero-copy">
-            <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and Anchor; availability and delivery are confirmed per enquiry.</p>
-            <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
-            <div className="hero-buttons">
-              <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
-              <a className="btn ghost" href="https://wa.me/918754442924">WhatsApp Us</a>
-              <a className="btn ghost hero-catalogue-link" href="/brochure/">Download Product Catalogue</a>
+          <div className="hero-message">
+            <h1 className="hero-title"><span>Food Ingredients Supplier</span><em>in Chennai</em></h1>
+            <div className="hero-copy">
+              <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and Anchor; availability and delivery are confirmed per enquiry.</p>
+              <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
+              <div className="hero-buttons">
+                <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
+                <a className="btn ghost" href="https://wa.me/918754442924">WhatsApp Us</a>
+                <a className="btn ghost hero-catalogue-link" href="/brochure/">Download Product Catalogue</a>
+              </div>
             </div>
           </div>
         </div>
