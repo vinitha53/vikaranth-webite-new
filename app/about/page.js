@@ -6,11 +6,11 @@ const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const canonicalUrl = siteUrl + "/about/";
 
 export const metadata = {
-  title: "About Vikranth | Food Ingredient Supplier in Chennai",
-  description: "Learn about Vikranth Chemical Corporation, a Chennai-based B2B supplier and distributor of bakery, chocolate, dairy, beverage and specialty ingredients.",
+  title: "About Vikranth | Pan-India Food Ingredient Distributor",
+  description: "Vikranth is a Chennai food ingredient distributor, supplier and wholesaler serving B2B buyers across South India and serviceable locations Pan India.",
   alternates: { canonical: canonicalUrl },
-  openGraph: { title: "About Vikranth Chemical Corporation | Chennai", description: "Meet the Chennai-based team supporting B2B ingredient sourcing across bakery, chocolate, dairy, beverage and specialty food applications.", type: "website", url: canonicalUrl, siteName: "Vikranth Chemical Corporation", locale: "en_IN", images: [{ url: "/about-overview.webp", alt: "Food ingredients prepared for commercial sourcing review" }] },
-  twitter: { card: "summary_large_image", title: "About Vikranth Chemical Corporation | Chennai", description: "Meet the Chennai-based team supporting B2B ingredient sourcing across bakery, chocolate, dairy, beverage and specialty food applications.", images: ["/about-overview.webp"] }
+  openGraph: { title: "Vikranth | Food Ingredient Distributor & Wholesaler", description: "Chennai-based B2B ingredient sourcing for buyers across South India and serviceable locations Pan India.", type: "website", url: canonicalUrl, siteName: "Vikranth Chemical Corporation", locale: "en_IN", images: [{ url: "/about-distribution-sequence/ezgif-frame-300.webp", alt: "Food ingredient portfolio supplied by Vikranth Chemical Corporation" }] },
+  twitter: { card: "summary_large_image", title: "Vikranth | Food Ingredient Distributor & Wholesaler", description: "Chennai-based B2B ingredient sourcing for buyers across South India and serviceable locations Pan India.", images: ["/about-distribution-sequence/ezgif-frame-300.webp"] }
 };
 
 export default function AboutPage() {

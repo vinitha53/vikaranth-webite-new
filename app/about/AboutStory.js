@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Building2, Check, FileCheck2, MapPin, PackageCheck, Phone, Search, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, FileCheck2, MapPin, PackageCheck, Phone, Search, ShieldCheck, Truck } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
@@ -11,17 +11,43 @@ import { aboutBuyerLabels, aboutFaqs, aboutIndustries, aboutProcess } from "../d
 import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const frameCount = 300;
-const frameUrl = (index) => "/about-sequence/frame-" + String(index + 1).padStart(3, "0") + ".webp";
-const frameIndexesForViewport = () => {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const count = reduced ? 1 : window.innerWidth <= 560 ? 10 : window.innerWidth <= 900 ? 16 : 24;
-  if (count === 1) return [0];
-  return Array.from({ length: count }, (_, index) => Math.round((index / (count - 1)) * (frameCount - 1)));
-};
+const storyChapters = [
+  {
+    eyebrow: "01 / 04 - From cocoa to possibility",
+    title: "Food Ingredient Distributor & Wholesaler in Chennai",
+    copy: "Vikranth Chemical Corporation connects food manufacturers, bakeries, processors and professional buyers with dependable ingredient sourcing.",
+    highlight: "Commercial quantities. Relevant documents. Reliable sourcing support."
+  },
+  {
+    eyebrow: "02 / 04 - Application-led portfolio",
+    title: "Ingredients for the Products India Makes",
+    copy: "Source ingredients for chocolate, bakery, dairy, beverages, ice cream, fruit processing, nutrition and specialty food applications.",
+    highlight: "One sourcing partner across multiple food industries."
+  },
+  {
+    eyebrow: "03 / 04 - Wholesale supply support",
+    title: "Built for Commercial Buyers Across South India",
+    copy: "We help clarify grades, pack sizes, quantities and available product documents before coordinating quotations and dispatch.",
+    highlight: "Practical support from requirement to repeat supply."
+  },
+  {
+    eyebrow: "04 / 04 - Pan-India distribution",
+    title: "Chennai Roots. Pan-India Reach.",
+    copy: "Share your product requirement and delivery city. Our team will confirm availability, packs, freight and serviceability across India.",
+    highlight: "Your next ingredient conversation starts here.",
+    actions: true
+  }
+];
+const frameUrl = (index) => "/about-distribution-sequence/ezgif-frame-" + String(index + 1).padStart(3, "0") + ".webp";
+const motionProfile = () => window.innerWidth <= 600
+  ? { step: 4, cacheLimit: 12, preloadRadius: 2 }
+  : window.innerWidth <= 1024
+    ? { step: 2, cacheLimit: 18, preloadRadius: 3 }
+    : { step: 1, cacheLimit: 26, preloadRadius: 4 };
 
 function drawCover(canvas, image) {
   const ctx = canvas.getContext("2d");
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const ratio = Math.min(window.devicePixelRatio || 1, window.innerWidth > 1200 ? 1.25 : 1.5);
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
   if (canvas.width !== width * ratio || canvas.height !== height * ratio) {
@@ -37,40 +63,91 @@ function drawCover(canvas, image) {
   const renderedWidth = image.naturalWidth * scale;
   const renderedHeight = image.naturalHeight * scale;
   ctx.drawImage(image, (width - renderedWidth) / 2, (height - renderedHeight) / 2, renderedWidth, renderedHeight);
+  canvas.style.opacity = "1";
 }
 
 export default function AboutStory() {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
-  const imagesRef = useRef([]);
   const currentFrame = useRef(0);
   const progressRef = useRef(null);
+  const chapterRefs = useRef([]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     let cancelled = false;
-    const frameIndexes = frameIndexesForViewport();
-    const images = frameIndexes.map((sourceIndex, index) => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return undefined;
+    const profile = motionProfile();
+    const cache = new Map();
+    let requestedFrame = 0;
+    const playhead = { frame: 0 };
+
+    const normaliseFrame = (frame) => Math.min(frameCount - 1, Math.max(0, Math.round(frame / profile.step) * profile.step));
+    const trimCache = (activeFrame) => {
+      if (cache.size <= profile.cacheLimit) return;
+      [...cache.keys()]
+        .sort((a, b) => Math.abs(b - activeFrame) - Math.abs(a - activeFrame))
+        .slice(0, cache.size - profile.cacheLimit)
+        .forEach((key) => {
+          const oldImage = cache.get(key);
+          oldImage.onload = null;
+          oldImage.onerror = null;
+          oldImage.src = "";
+          cache.delete(key);
+        });
+    };
+    const loadFrame = (frame, renderWhenReady = false) => {
+      const index = normaliseFrame(frame);
+      const cached = cache.get(index);
+      if (cached) {
+        if (renderWhenReady && cached.complete && cached.naturalWidth && canvasRef.current) drawCover(canvasRef.current, cached);
+        return;
+      }
       const image = new Image();
       image.decoding = "async";
-      image.src = frameUrl(sourceIndex);
+      image.src = frameUrl(index);
       image.onload = () => {
-        if (!cancelled && index === 0 && canvasRef.current) drawCover(canvasRef.current, image);
+        if (!cancelled && canvasRef.current && requestedFrame === index) drawCover(canvasRef.current, image);
+        trimCache(requestedFrame);
       };
-      return image;
-    });
-    imagesRef.current = images;
-    const playhead = { frame: 0 };
-    const render = () => {
-      const frame = Math.max(0, Math.min(images.length - 1, Math.round(playhead.frame)));
-      currentFrame.current = frame;
-      const image = images[frame];
-      if (image?.complete && image.naturalWidth && canvasRef.current) drawCover(canvasRef.current, image);
-      if (progressRef.current) progressRef.current.style.setProperty("--progress", (images.length === 1 ? 100 : frame / (images.length - 1) * 100) + "%");
+      cache.set(index, image);
     };
-    const tween = gsap.to(playhead, { frame: images.length - 1, ease: "none", onUpdate: render, scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom bottom", scrub: 0.35, invalidateOnRefresh: true } });
+    const render = () => {
+      const frame = normaliseFrame(playhead.frame);
+      requestedFrame = frame;
+      currentFrame.current = frame;
+      loadFrame(frame, true);
+      for (let offset = 1; offset <= profile.preloadRadius; offset += 1) {
+        loadFrame(frame + offset * profile.step);
+        loadFrame(frame - offset * profile.step);
+      }
+      trimCache(frame);
+      if (progressRef.current) progressRef.current.style.setProperty("--progress", (playhead.frame / (frameCount - 1) * 100) + "%");
+    };
+    loadFrame(0, true);
+    for (let offset = 1; offset <= profile.preloadRadius; offset += 1) loadFrame(offset * profile.step);
+    const tween = gsap.to(playhead, { frame: frameCount - 1, ease: "none", onUpdate: render, scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom bottom", scrub: 0.55, invalidateOnRefresh: true } });
+    const chapters = chapterRefs.current.filter(Boolean);
+    gsap.set(chapters, { autoAlpha: 0, y: 28 });
+    gsap.set(chapters[0], { autoAlpha: 1, y: 0 });
+    const copyTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.55,
+        invalidateOnRefresh: true
+      }
+    });
+    copyTimeline.to({ progress: 0 }, { progress: 1, duration: 1, ease: "none" }, 0);
+    [0.2, 0.44, 0.68].forEach((position, index) => {
+      copyTimeline
+        .to(chapters[index], { autoAlpha: 0, y: -28, duration: 0.08, ease: "power1.in" }, position)
+        .fromTo(chapters[index + 1], { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.1, ease: "power2.out" }, position + 0.03);
+    });
     const resize = () => {
-      const image = images[currentFrame.current];
+      const image = cache.get(currentFrame.current);
       if (image?.complete && image.naturalWidth && canvasRef.current) drawCover(canvasRef.current, image);
     };
     window.addEventListener("resize", resize, { passive: true });
@@ -79,6 +156,10 @@ export default function AboutStory() {
       window.removeEventListener("resize", resize);
       tween.scrollTrigger?.kill();
       tween.kill();
+      copyTimeline.scrollTrigger?.kill();
+      copyTimeline.kill();
+      cache.forEach((image) => { image.onload = null; image.onerror = null; });
+      cache.clear();
     };
   }, []);
 
@@ -91,28 +172,36 @@ export default function AboutStory() {
   return <>
     <section ref={sectionRef} className={styles.sequence} aria-labelledby="about-page-title">
       <div className={styles.sticky}>
-        <img className={styles.heroPoster} src="/about-sequence/frame-001.webp" width="1920" height="1080" alt="Vikranth food ingredient sourcing and commercial supply" fetchPriority="high" decoding="async" />
+        <img className={styles.heroPoster} src="/about-distribution-sequence/ezgif-frame-001.webp" width="1920" height="1080" alt="Cocoa ingredients supplied by Vikranth Chemical Corporation" fetchPriority="high" decoding="async" />
         <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
         <div className={styles.shade} />
         <div ref={progressRef} className={styles.progress} />
         <nav className={styles.heroBreadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>About</span></nav>
         <div className={styles.storyCopy}>
-          <span>Chennai-Based B2B Ingredient Partner</span>
-          <h1 id="about-page-title">About Vikranth Chemical Corporation</h1>
-          <p>Vikranth Chemical Corporation is a Chennai-based food ingredient supplier and distributor connecting manufacturers, bakeries and professional buyers with ingredients for bakery, chocolate, dairy, beverage, ice cream, fruit-processing and specialty applications.</p>
-          <strong>Clearer sourcing. Relevant documentation. Practical supply support.</strong>
-          <div className={styles.heroButtons}><Link href="/products/">Explore Our Ingredients <ArrowRight /></Link><Link href="/contact/#enquiry">Discuss Your Requirement</Link></div>
+          {storyChapters.map((chapter, index) => <article
+            className={styles.storyChapter}
+            key={chapter.eyebrow}
+            ref={(element) => { chapterRefs.current[index] = element; }}
+          >
+            <span>{chapter.eyebrow}</span>
+            {index === 0
+              ? <h1 id="about-page-title">{chapter.title}</h1>
+              : <h2>{chapter.title}</h2>}
+            <p>{chapter.copy}</p>
+            <strong>{chapter.highlight}</strong>
+            {chapter.actions && <div className={styles.heroButtons}><Link href="/products/">Explore Our Ingredients <ArrowRight /></Link><Link href="/contact/#enquiry">Discuss Your Requirement</Link></div>}
+          </article>)}
         </div>
         <div className={styles.scrollCue}>Scroll to explore <span /></div>
       </div>
     </section>
 
     <section className={styles.verifiedStrip} aria-label="Verified Business Details">
-      <ul><li><MapPin />Chennai, Tamil Nadu</li><li><BadgeCheck />GSTIN 33AADFV9327N1ZO</li><li><Building2 />11 industry-focused ingredient groups</li><li><FileCheck2 />Product-document support where available</li></ul>
+      <ul><li><MapPin />Chennai, Tamil Nadu</li><li><Truck />Pan-India B2B supply coordination</li><li><Building2 />11 industry-focused ingredient groups</li><li><BadgeCheck />GSTIN 33AADFV9327N1ZO</li></ul>
     </section>
 
     <section className={styles.companyIntro} aria-labelledby="company-intro-title">
-      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Clearer Route from Requirement to Ingredient</h2><p>Vikranth works with procurement teams, product developers, production teams, commercial bakeries, food processors and hospitality buyers who need a practical route from ingredient enquiry to commercial supply.</p><p>Buyers can approach the team with a product name, finished application or functional need. Vikranth helps clarify the required grade, pack size, quantity, documents and current sourcing options before quotation and fulfilment are coordinated.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
+      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Chennai Distributor with a Pan-India Supply Outlook</h2><p>Vikranth works with procurement teams, product developers, wholesalers, commercial bakeries, food processors and hospitality buyers that need a practical route from ingredient enquiry to commercial supply.</p><p>Tell us the product, application or functional result you need. We help identify the relevant grade, pack size, commercial quantity and available documentation, then coordinate quotation and dispatch for Chennai, South India and serviceable locations across India.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
       <div className={styles.companyImage + " aboutReveal"}><img src="/about-overview.webp" width="760" height="820" alt="Food ingredients prepared for commercial sourcing review" loading="lazy" /><div><small>Application-first support</small><strong>Ingredients, people and practical supply conversations.</strong></div></div>
     </section>
 
@@ -140,7 +229,7 @@ export default function AboutStory() {
     </section>
 
     <section className={styles.coverageSection} aria-labelledby="coverage-title">
-      <div className="aboutReveal"><span className={styles.eyebrow}>Location and service area</span><h2 id="coverage-title">Based in Chennai. Open to Business Enquiries Across India.</h2><p>Vikranth Chemical Corporation is based in Kolathur, Chennai and supports professional ingredient enquiries from Chennai, South India and other Indian locations. Share the product, quantity and delivery city so the team can confirm current availability, pack options, freight and serviceability.</p><address>Saraswathy Enclave, Lakshmipuram, Kolathur, Chennai – 600099, Tamil Nadu, India.</address><div><a href="tel:+918754442924"><Phone />Call the Chennai Team</a><Link href="/contact/#enquiry">Send Your Requirement</Link><a href="https://www.google.com/maps/search/?api=1&query=Vikranth+Chemical+Corporation+Kolathur+Chennai" target="_blank" rel="noreferrer"><MapPin />View on Google Maps</a></div></div>
+      <div className="aboutReveal"><span className={styles.eyebrow}>Distribution reach</span><h2 id="coverage-title">Chennai Roots. South India Strength. Pan-India Reach.</h2><p>From our base in Kolathur, Chennai, we support B2B ingredient enquiries for local manufacturers, buyers across South India and customers in serviceable locations throughout India. Share the product, quantity and delivery city so our team can confirm packs, availability, freight and dispatch options.</p><div className={styles.coverageGrid}><article><MapPin /><span>Chennai</span><strong>Responsive local sourcing support</strong></article><article><Building2 /><span>South India</span><strong>Wholesale and manufacturing requirements</strong></article><article><Truck /><span>Pan India</span><strong>Commercial supply coordination</strong></article></div><address>Saraswathy Enclave, Lakshmipuram, Kolathur, Chennai &ndash; 600099, Tamil Nadu, India.</address><div className={styles.coverageActions}><a href="tel:+918754442924"><Phone />Call the Chennai Team</a><Link href="/contact/#enquiry">Send Your Requirement</Link><a href="https://www.google.com/maps/search/?api=1&query=Vikranth+Chemical+Corporation+Kolathur+Chennai" target="_blank" rel="noreferrer"><MapPin />View on Google Maps</a></div></div>
     </section>
 
     <section className={styles.aboutFaq} aria-labelledby="about-faq-title">

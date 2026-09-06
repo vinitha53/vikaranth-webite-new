@@ -13,7 +13,7 @@ export const aboutIndustries = [
 ];
 
 export const aboutBuyerLabels = [
-  "Food manufacturers", "Commercial bakeries", "Chocolate and confectionery businesses",
+  "Food manufacturers", "Ingredient wholesalers and distributors", "Commercial bakeries", "Chocolate and confectionery businesses",
   "Dairy and beverage producers", "Ice cream and dessert producers",
   "Food processors and product-development teams"
 ];
@@ -26,8 +26,8 @@ export const aboutProcess = [
 ];
 
 export const aboutFaqs = [
-  ["What type of company is Vikranth Chemical Corporation?", "Vikranth Chemical Corporation is a Chennai-based B2B food ingredient supplier and distributor supporting manufacturers, bakeries, food processors, product developers and other professional buyers."],
+  ["What type of company is Vikranth Chemical Corporation?", "Vikranth Chemical Corporation is a Chennai-based B2B food ingredient distributor, supplier and wholesaler supporting manufacturers, bakeries, food processors, product developers and other professional buyers."],
   ["Which industries does Vikranth support?", "Vikranth supports chocolate, bakery, beverage, ice cream, dairy, fruit-processing, functional-food, nutraceutical, hydrocolloid, sweetener and food-additive requirements."],
-  ["Does Vikranth supply ingredients outside Chennai?", "Vikranth reviews business enquiries from South India and other Indian locations. Supply options depend on the ingredient, quantity, pack size, availability, freight and delivery serviceability."],
+  ["Does Vikranth supply ingredients outside Chennai?", "Yes. Vikranth supports B2B ingredient enquiries from Chennai, across South India and from serviceable locations Pan India. Supply options depend on the ingredient, quantity, pack size, availability, freight and delivery location."],
   ["Can buyers request product documents?", "Yes. Buyers can request available specifications, COA, TDS, SDS and related information for the exact product, manufacturer and grade being considered."]
 ];
