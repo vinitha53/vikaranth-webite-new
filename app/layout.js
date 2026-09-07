@@ -50,14 +50,6 @@ export default function RootLayout({ children }) {
       taxID: "33AADFV9327N1ZO",
       telephone: "+91-87544-42924",
       email: "vikranth.chemicals@gmail.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Saraswathy Enclave, Plot No. I & II, 4th Floor, Perambur-Redhills High Road, Secretariat Colony Main Road, Lakshmipuram, Kolathur",
-        addressLocality: "Chennai",
-        postalCode: "600099",
-        addressRegion: "Tamil Nadu",
-        addressCountry: "IN",
-      },
       sameAs: [
         "https://in.linkedin.com/company/vikranth-chemical-corporation",
       ],

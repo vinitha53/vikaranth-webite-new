@@ -11,8 +11,8 @@ export const associateContent = {
     title: "Delta Nutritives Supplier Chennai & India | Vikranth",
     description: "Source Delta Nutritives frozen fruits, purees, fillings, toppings and selected dessert ingredients through Vikranth in Chennai and across India.",
     h1: "Delta Nutritives Food Ingredients Supplier in Chennai",
-    category: "Dessert, bakery, fruit, dairy and ice-cream ingredients",
-    about: "Delta Nutritives serves professional dessert, bakery, chocolate, ice-cream and foodservice businesses. Its wider portfolio connects buyers with chocolates, ice-cream ingredients, frozen fruits and purees, fruit fillings and dairy products. This page shows only the Delta products that Vikranth can currently support for enquiry, rather than the wider international catalogue.",
+    category: "Dessert, bakery, fruit, dairy and ice cream products",
+    about: "Delta Nutritives serves professional dessert, bakery, chocolate, ice-cream and foodservice businesses. Its wider portfolio connects buyers with chocolates, ice cream products, frozen fruits and purees, fruit fillings and dairy products. This page shows only the Delta products that Vikranth can currently support for enquiry, rather than the wider international catalogue.",
     applications: ["Bakery and pastry", "Chocolate and confectionery", "Gelato and ice cream", "Beverages and smoothies", "Dairy desserts", "Hotels, restaurants and catering"],
   },
   roquette: {

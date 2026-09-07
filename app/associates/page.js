@@ -33,7 +33,7 @@ const faqs = [
   { question: "How do I request a sample or SDS (Safety Data Sheet) from Vikranth?", answer: "You can request samples, spec sheets or SDS documents by calling +91 87544 42924, emailing vikranth.chemicals@gmail.com, or submitting an enquiry through the Request a Quote form on this page." },
   { question: "Is there a minimum order quantity for bulk ingredient orders?", answer: "Minimum order quantities vary by product and brand. Share your requirement through the enquiry form or WhatsApp and our team will confirm pricing and MOQ for your specific ingredient." },
   { question: "Which industries can submit ingredient enquiries?", answer: "Vikranth supports enquiries from bakery, chocolate and confectionery, dairy, beverage, ice cream and other professional food-processing businesses." },
-  { question: "How can I contact Vikranth Chemical Corporation directly?", answer: "Call +91 87544 42924, email vikranth.chemicals@gmail.com, or visit our facility at Saraswathy Enclave, Lakshmipuram, Kolathur, Chennai — 600099." },
+  { question: "How can I contact Vikranth Chemical Corporation directly?", answer: "Call +91 87544 42924 or email vikranth.chemicals@gmail.com." },
 ];
 
 export default function AssociatesPage() {

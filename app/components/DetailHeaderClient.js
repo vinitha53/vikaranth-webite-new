@@ -18,7 +18,7 @@ const categories = [
   ["chocolate-confectionery", "Chocolate & Confectionery"],
   ["dairy-ingredients", "Dairy Ingredients"],
   ["beverage-ingredients", "Beverage Ingredients"],
-  ["ice-cream-ingredients", "Ice Cream Ingredients"],
+  ["ice-cream-ingredients", "Ice Cream Products"],
   ["fruit-processing", "Fruit Processing"],
   ["hydrocolloids-stabilizers", "Hydrocolloids & Stabilizers"],
   ["sweeteners-syrups-starches", "Sweeteners, Syrups & Starches"],

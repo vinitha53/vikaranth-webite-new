@@ -23,6 +23,18 @@ const proofPointMap = {
   "sweeteners-syrups-starches": ["Liquid and dry options", "Commercial packs", "Cross-category sourcing"]
 };
 const regionalBenefitIcons = [Box, SlidersHorizontal, FileCheck, Handshake];
+const industryHeroImages = {
+  "bakery-ingredients": "/industries/bakery-ingredients-hero.png",
+  "chocolate-confectionery": "/industries/chocolate-confectionery-hero.png",
+  "dairy-ingredients": "/industries/dairy-ingredients-hero.png",
+  "ice-cream-ingredients": "/industries/ice-cream-ingredients-hero.png",
+  "functional-ingredients": "/industries/functional-ingredients-hero.png",
+  "nutraceutical-pharma": "/industries/nutraceutical-pharma-hero.png",
+  "food-additives-preservatives": "/industries/food-additives-preservatives-hero.png",
+  "hydrocolloids-stabilizers": "/industries/hydrocolloids-stabilizers-hero.png",
+  "fruit-processing": "/industries/fruit-processing-hero.png",
+  "sweeteners-syrups-starches": "/industries/sweeteners-syrups-starches-hero.png"
+};
 
 function buildIndustryFaqs(industry, content) {
   const category = industry.name.toLowerCase();
@@ -98,7 +110,7 @@ export default async function IndustryPage({ params }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <DetailHeader />
     <section className={styles.industryHero}>
-      <img className={styles.industryHeroImage} src={industry.image} alt={`${industry.name} ingredients for commercial food production`} />
+      <img className={styles.industryHeroImage} src={industryHeroImages[industry.slug] || industry.image} alt={`${industry.name} ingredients for commercial food production`} />
       <div className={styles.industryHeroShade} />
       <div className={styles.industryHeroInner}>
         <nav className={styles.crumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/industries">Industries</Link><span>/</span><span>{industry.name}</span></nav>

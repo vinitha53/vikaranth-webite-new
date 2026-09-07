@@ -30,47 +30,47 @@ const homeFaqs = [
 ];
 
 const allProductGroups = [
-  { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
+  { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients-hero.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"], "Biscuit Ingredients": ["Biscuit Enhancer"],
     "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"]
   }},
-  { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
+  { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery-hero.png", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy", icon: Milk, image: "/industries/dairy-ingredients.webp", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Natural Food and Beverage Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
-  { name: "Icecream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Ice Cream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.png", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Fruit Processing", icon: Leaf, image: "/industries/fruit-processing.webp", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
+  { name: "Fruit Processing", icon: Leaf, image: "/industries/fruit-processing-hero.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids", icon: Beaker, image: "/industries/hydrocolloids-stabilizers.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloids", icon: Beaker, image: "/industries/hydrocolloids-stabilizers-hero.png", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
+  { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches-hero.png", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"], "Sugar Free": ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"],
     "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
-  { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
+  { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients-hero.png", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
     "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"],
     "Proteins": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein", "Full-Fat Soya Flour", "Vital Wheat Gluten", "Skimmed Milk Powder"],
     "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Calcium Gluconate", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
-  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma.webp", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
+  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma-hero.png", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
     "Protein Ingredients": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"], "Sugar-Free Excipients": ["Isomalt", "SWEETPEARL® P 200 Maltitol"]
   }},
-  { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/industries/food-additives-preservatives.webp", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
+  { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/industries/food-additives-preservatives-hero.png", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid"],
     "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
@@ -105,7 +105,7 @@ const ecosystemCategories = [
   { number: "01", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 0 },
   { number: "02", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 1 },
   { number: "03", name: <>Beverage<br/>Ingredients</>, label: "Beverage Ingredients", icon: FlaskConical, href: "/industries/beverage-ingredients", groupIndex: 2 },
-  { number: "04", name: <>Icecream<br/>Products</>, label: "Icecream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
+  { number: "04", name: <>Ice Cream<br/>Products</>, label: "Ice Cream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
   { number: "05", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 4 },
   { number: "06", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 5 },
   { number: "07", name: <>Dairy</>, label: "Dairy", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
@@ -118,6 +118,7 @@ const ecosystemCategories = [
 const associates = [
   { name: "CAMPCO", logo: "/partners/campco-heart.webp" },
   { name: "Delta Nutritives", logo: "/partners/delta.webp" },
+  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.webp" },
   { name: "Roquette", logo: "/partners/roquette.webp" },
   { name: "Nitta Gelatin India", logo: "/partners/nitta.webp" },
   { name: "Döhler", logo: "/partners/doehler.webp" },
@@ -126,10 +127,9 @@ const associates = [
   { name: "Gujarat Ambuja Exports Ltd.", logo: "/partners/ambuja.webp" },
   { name: "Fine Organics", logo: "/partners/fine-organics.webp" },
   { name: "Shree Gluco Biotech Pvt. Ltd.", logo: "/partners/shree-gluco.webp" },
-  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.webp" },
-  { name: "Anchor (In-house manufacturing brand)", logo: "/partners/anchor.webp" }
+  { name: "Paramesu Biotech Ltd.", logo: "/partners/paramesu.webp" }
 ];
-const partnerSlugs = ["campco","delta-nutritives","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd","anchor"];
+const partnerSlugs = ["campco","delta-nutritives","anchor","roquette","nitta-gelatin-india-ltd","doehler","cp-kelco","calpro-specialities-pvt-ltd","gujarat-ambuja-exports-ltd","fine-organics","shree-gluco-biotech-pvt-ltd","paramesu-biotech-ltd"];
 
 const testimonials = [
   { quote: "Vikranth has consistently supported our ingredient requirements with dependable quality and prompt service. Their team understands our application needs and recommends suitable products.", role: "Purchase Manager", company: "Bakery Manufacturer", location: "Chennai", result: "Dependable quality and prompt service", initials: "PM" },
@@ -1007,7 +1007,7 @@ export default function Home() {
           <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
           <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
-          <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 87544 42924</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>Saraswathy Enclave, Lakshmipuram, Kolathur,<br/>Chennai — 600099, Tamil Nadu, India.</p><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
+          <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 87544 42924</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>

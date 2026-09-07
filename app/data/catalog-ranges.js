@@ -20,7 +20,7 @@ const rows = [
   ["Celebre","indian","ice-cream-ingredients","Softy Ice Cream Mix"],
   ["Celebre","indian","fruit-processing","Celebre IQF Fruits|Celebre Fruit Purees"],
 ];
-const categories={"chocolate-confectionery":"Chocolate & Confectionery","bakery-ingredients":"Bakery Ingredients","fruit-processing":"Fruit Processing","ice-cream-ingredients":"Icecream Products","dairy-ingredients":"Dairy","functional-ingredients":"Functional Ingredients"};
+const categories={"chocolate-confectionery":"Chocolate & Confectionery","bakery-ingredients":"Bakery Ingredients","fruit-processing":"Fruit Processing","ice-cream-ingredients":"Ice Cream Products","dairy-ingredients":"Dairy","functional-ingredients":"Functional Ingredients"};
 // One main Delta category per product. These are the category names used by
 // Delta's ingredient navigation and represented by the matching PDF sections.
 const brochureCategoryFor = (brand) => ({
