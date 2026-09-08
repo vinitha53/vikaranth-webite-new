@@ -65,7 +65,7 @@ export const partnerProductImages = {
   },
   "cp-kelco": {
     hero: "/partner-products/cp-kelco-products.webp",
-    products: {"Sodium CMC":"/partner-products/cp-kelco-products.webp","Distilled Monoglycerides (DMG)":"/product-images/cp-kelco/distilled-monoglycerides.webp","Propylene Glycol Monostearate (PGMS)":"/product-images/cp-kelco/propylene-glycol-monostearate.webp"}
+    products: {"Sodium CMC":"/partner-products/cp-kelco-products.webp","Distilled Monoglycerides (DMG)":"/product-images/cp-kelco/distilled-monoglycerides.png","Propylene Glycol Monostearate (PGMS)":"/product-images/cp-kelco/propylene-glycol-monostearate.webp"}
   },
   "calpro-specialities-pvt-ltd": {
     hero: "/product-images/calpro/amaze-ice-cream-stabilizer.webp",
