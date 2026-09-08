@@ -693,8 +693,9 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 }
 .contact-strip-grid>*{min-width:0;padding:8px 34px}
 .contact-strip-grid>div:first-child{padding-left:0;display:flex;flex-direction:column;justify-content:center}
-.contact-strip-grid>a{
+.contact-strip-grid>a,.contact-strip-grid>.contact-phone-card{
   position:relative;
+  display:flex;
   align-items:flex-start;
   gap:16px;
   border-left:1px solid #e8dac8;
@@ -708,7 +709,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   letter-spacing:-.035em;
 }
 .contact-strip .eyebrow{font-size:12px;letter-spacing:.15em}
-.contact-strip a>svg{
+.contact-strip a>svg,.contact-strip .contact-phone-card>svg{
   width:42px;
   height:42px;
   flex:0 0 42px;
@@ -719,6 +720,10 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   transition:background .3s,color .3s,transform .3s;
 }
 .contact-strip-grid>a:hover>svg{background:#7a3b1e;color:#fff;transform:scale(1.06)}
+.contact-strip .contact-phone-number{display:grid;margin:0 0 8px;gap:0;align-items:start;color:#2b1b13;text-decoration:none}
+.contact-strip .contact-phone-number:last-child{margin-bottom:0}
+.contact-strip .contact-phone-number strong{color:#9a4b24;font:700 10.5px/1.35 'Manrope','Segoe UI',sans-serif;letter-spacing:.02em}
+.contact-strip .contact-phone-number b{font-size:12.5px;line-height:1.45}
 .contact-strip span{min-width:0}
 .contact-strip small{
   margin:1px 0 7px;
@@ -745,7 +750,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .contact-strip-grid>*,
   .contact-strip-grid>*:nth-child(odd){padding:24px 0}
   .contact-strip-grid>div:first-child{padding-top:0;padding-bottom:28px;margin:0;border-bottom:1px solid #e8dac8}
-  .contact-strip-grid>a{border-left:0;border-bottom:1px solid #e8dac8}
+  .contact-strip-grid>a,.contact-strip-grid>.contact-phone-card{border-left:0;border-bottom:1px solid #e8dac8}
   .contact-strip-grid>a:last-child{border-bottom:0;padding-bottom:0}
   .contact-strip h2{font-size:25px}
   .contact-strip b{font-size:13.5px}
@@ -1014,7 +1019,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   min-height:0;
   margin:0;
   color:#24170f;
-  font:700 17px/1.3 'Manrope','Segoe UI',sans-serif;
+  font:700 20px/1.3 'Manrope','Segoe UI',sans-serif;
   letter-spacing:-.015em;
   transition:color 350ms ease,transform 600ms cubic-bezier(.22,1,.36,1);
 }
@@ -1045,7 +1050,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   margin:0;
   overflow:hidden;
   color:#6b5b50;
-  font-size:12.5px;
+  font-size:14px;
   line-height:1.55;
   text-overflow:ellipsis;
   white-space:nowrap;
@@ -1063,7 +1068,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   align-self:flex-start;
   gap:8px;
   color:#8e421f;
-  font:700 12.5px/1.2 'Manrope','Segoe UI',sans-serif;
+  font:700 14px/1.2 'Manrope','Segoe UI',sans-serif;
   transition:color 350ms ease,gap 380ms ease;
 }
 .product-section .product-card .product-route svg{width:15px;transition:transform 380ms cubic-bezier(.22,1,.36,1)}
@@ -1092,8 +1097,8 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .product-section .product-card{height:350px}
   .product-section .category-photo{height:57%}
   .product-section .category-card-content{inset:57% 0 0;padding:17px 18px}
-  .product-section .product-card h3{font-size:16px}
-  .product-section .product-card p{font-size:12px}
+  .product-section .product-card h3{font-size:18px}
+  .product-section .product-card p{font-size:13.5px}
 }
 @media(hover:none),(pointer:coarse){
   .product-section .category-title-line{width:46px}
@@ -1718,10 +1723,10 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .product-section .product-card{height:310px;min-height:0;border-radius:12px}
   .home-page .product-section .category-photo{height:50%}
   .home-page .product-section .category-card-content{inset:50% 0 0;padding:13px 12px}
-  .home-page .product-section .product-card h3{font-size:13px;line-height:1.25}
+  .home-page .product-section .product-card h3{font-size:15px;line-height:1.25}
   .home-page .product-section .category-title-line{width:34px;height:2px;margin:8px 0 7px}
-  .home-page .product-section .product-card p{display:-webkit-box;font-size:10.5px;line-height:1.4;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
-  .home-page .product-section .product-card .product-route{font-size:11px;gap:5px}
+  .home-page .product-section .product-card p{display:-webkit-box;font-size:12px;line-height:1.4;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+  .home-page .product-section .product-card .product-route{font-size:12px;gap:5px}
   .home-page .about .about-grid{gap:26px}
   .home-page .about .about-visual{aspect-ratio:4/5;border-radius:14px}
   .home-page .about .about-copy .lead{font-size:19px;line-height:1.55}

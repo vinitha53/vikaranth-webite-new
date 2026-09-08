@@ -40,7 +40,7 @@ const allProductGroups = [
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy Products", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
@@ -49,11 +49,11 @@ const allProductGroups = [
   { name: "Ice Cream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.png", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Fruit Processing", icon: Leaf, image: "/industries/fruit-processing-hero.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
+  { name: "Fruit Processing Ingredients", icon: Leaf, image: "/industries/fruit-processing-hero.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloids", icon: Beaker, image: "/industries/hydrocolloids-stabilizers-hero.png", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloid & Food Stabilizer", icon: Beaker, image: "/industries/hydrocolloids-stabilizers-hero.png", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
@@ -108,10 +108,10 @@ const ecosystemCategories = [
   { number: "04", name: <>Ice Cream<br/>Products</>, label: "Ice Cream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
   { number: "05", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 4 },
   { number: "06", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 5 },
-  { number: "07", name: <>Dairy</>, label: "Dairy", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
+  { number: "07", name: <>Dairy<br/>Products</>, label: "Dairy Products", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
   { number: "08", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 7 },
-  { number: "09", name: <>Hydrocolloids</>, label: "Hydrocolloids", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 8 },
-  { number: "10", name: <>Fruit<br/>Processing</>, label: "Fruit Processing", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 9 },
+  { number: "09", name: <>Hydrocolloid &amp;<br/>Food Stabilizer</>, label: "Hydrocolloid & Food Stabilizer", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 8 },
+  { number: "10", name: <>Fruit Processing<br/>Ingredients</>, label: "Fruit Processing Ingredients", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 9 },
   { number: "11", name: <>Sweeteners, Syrups<br/>&amp; Starches</>, label: "Sweeteners, Syrups & Starches", icon: CircleGauge, href: "/industries/sweeteners-syrups-starches", groupIndex: 10 }
 ];
 
@@ -679,7 +679,7 @@ export default function Home() {
           <div className="hero-message">
             <h1 className="hero-title"><span>Food Ingredients Supplier</span><em>in Chennai</em></h1>
             <div className="hero-copy">
-              <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and Anchor; availability and delivery are confirmed per enquiry.</p>
+              <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from CAMPCO, Delta Nutritives, Anchor, Roquette, Döhler, CP Kelco and Nitta Gelatin India; availability and delivery are confirmed per enquiry.</p>
               <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
               <div className="hero-buttons">
                 <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
@@ -996,7 +996,7 @@ export default function Home() {
         <BotanicalCorners/>
         <div className="container contact-strip-grid">
           <div><span className="eyebrow">Start your ingredient enquiry</span><h2>Vikranth Chemical Corporation</h2></div>
-          <a href="tel:+914425657360"><Phone/><span><small>Phone</small><b>044 2565 7360 / 044 2565 7369<br/>+91 87544 42924 / +91 97909 20252</b></span></a>
+          <div className="contact-phone-card"><Phone/><span><small>Phone</small><a className="contact-phone-number" href="tel:+918754442924"><strong>General Enquiries</strong><b>+91 87544 42924</b></a><a className="contact-phone-number" href="tel:+918754429922"><strong>Anchor Products</strong><b>+91 87544 29922</b></a><a className="contact-phone-number" href="tel:+919841068559"><strong>Delta Nutritives</strong><b>+91 98410 68559</b></a></span></div>
           <a href="mailto:vikranth.chemicals@gmail.com"><Mail/><span><small>Email</small><b>vikranth.chemicals@gmail.com</b></span></a>
           <a href="https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sri+Sai+Ram+Street+Jyothi+Nagar+Ponnimmanmedu+Chennai+600110" target="_blank" rel="noreferrer"><MapPin/><span><small>Address & directions</small><b>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110</b></span></a>
         </div>
