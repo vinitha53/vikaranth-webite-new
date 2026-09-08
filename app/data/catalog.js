@@ -11,7 +11,7 @@ export const industries = [
   group("functional-ingredients", "Functional Ingredients", "Functional Ingredients", "/industries/functional-ingredients.webp", "Emulsifiers, proteins and processing aids for dependable texture, structure and production efficiency.", ["GMS Flakes","GMS Powder","Sorbitan Monostearate","Finamul 90","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Full-Fat Soya Flour","Vital Wheat Gluten","Skimmed Milk Powder","Calcium Carbonate","Calcium Chloride","Calcium Gluconate","Sodium Citrate","Propylene Glycol (PG)","Refined Glycerine","Amaze Ice Cream Stabilizer"]),
   group("nutraceutical-pharma", "Nutraceutical & Pharma", "Nutraceutical & Pharma Ingredients", "/industries/nutraceutical-pharma.webp", "Protein, gelatin, vitamin and mineral ingredients subject to application and grade verification.", ["Whey Protein","Instantized Whey Protein","Whey Powder","Soya Protein","Gelatin 120 Bloom","Gelatin 180 Bloom","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame Powder","Dextrose Monohydrate","Maltodextrin Powder","Skimmed Milk Powder","Calcium Carbonate","Calcium Gluconate","Ascorbic Acid","Refined Glycerine","Propylene Glycol (PG)"]),
   group("dairy-ingredients", "Dairy Products", "Dairy Products", "/industries/dairy-ingredients.webp", "Dairy ingredients for creaminess, body, flavour, protein contribution and reliable food production.", ["Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose"]),
-  group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Malic Acid","Acetic Acid","Vinegar","Ascorbic Acid","Fumaric Acid","Tartaric Acid","Boric Acid","Phosphoric Acid","Formic Acid","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","Ammonium Bicarbonate","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Calcium Carbonate","Calcium Chloride","Sodium Citrate","Malt Extract Powder","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"]),
+  group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Sodium Metabisulphite (SMBS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Sodium Citrate","Malic Acid","Acetic Acid","Vinegar","Ascorbic Acid","Fumaric Acid","Tartaric Acid","Boric Acid","Phosphoric Acid","Formic Acid","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","GMS Flakes","GMS Powder","Sorbitan Monostearate","Finamul 90","Xanthan Gum","Guar Gum","Sodium CMC","Algel Pro","Sempoorna","Ice Pro","Invert Sugar","Aspartame Powder","Sucralose","Acesulfame K","Saccharin","Isomalt","Maltitol","Sucrose","Potato Starch","Vital Wheat Gluten","Whey Protein Concentrate","Isolate Soya Protein","Ammonium Bicarbonate","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Calcium Carbonate","Calcium Chloride","Propylene Glycol (PG)","Refined Glycerine","Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose","Malt Extract Powder","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"]),
   group("hydrocolloids-stabilizers", "Hydrocolloids", "Hydrocolloids", "/industries/hydrocolloids-stabilizers.webp", "Hydrocolloids and gums for viscosity control, stability, texture and mouthfeel.", ["Genu Pectin","GENU® Pectin MRS 115","Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom","Xanthan Gum","Guar Gum","Sodium CMC","Sodium Alginate FG","Ice Cream Stabilizer"]),
   group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Crush","Genu Pectin","Glaze Gel"]),
   group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Syrups","Sorbitol 70% Solution","Invert Sugar","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame Powder","Sucralose","Acesulfame K","Saccharin","Maltitol","Sucrose","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Cake Syrup","CLEARAM® CH 20 20"])
@@ -86,13 +86,39 @@ export const nutraceuticalProductGroups = [
 ];
 
 export const additiveProductGroups = [
-  { name: "Preservatives", description: "Preservatives for supporting shelf life and microbial control in bakery, beverages, sauces and processed foods.", ingredients: ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Sodium Propionate", "Potassium Metabisulphite (KMS)"] },
-  { name: "Acidulants", description: "Food acids for pH adjustment, tartness, flavour balance, processing and formulation control.", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid", "Fumaric Acid", "Tartaric Acid", "Boric Acid", "Phosphoric Acid", "Formic Acid"] },
-  { name: "Emulsifiers", description: "Emulsifiers for dispersion, texture, aeration, stability and consistent food processing.", ingredients: ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"] },
+  { name: "Preservatives", description: "Preservatives for supporting shelf life and microbial control in bakery, beverages, sauces and processed foods.", ingredients: ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Sodium Propionate", "Potassium Metabisulphite (KMS)", "Sodium Metabisulphite (SMBS)"] },
+  { name: "Acidulants", description: "Food acids for pH adjustment, tartness, flavour balance, processing and formulation control.", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Sodium Citrate", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid", "Fumaric Acid", "Tartaric Acid", "Boric Acid", "Phosphoric Acid", "Formic Acid"] },
+  { name: "Emulsifiers", description: "Emulsifiers for dispersion, texture, aeration, stability and consistent food processing.", ingredients: ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"] },
+  { name: "Hydrocolloids & Stabilizers", description: "Gums and stabilizer systems for viscosity, suspension, texture and process consistency.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Algel Pro", "Sempoorna", "Ice Pro"] },
+  { name: "Sweeteners & Syrups", description: "Sweeteners and syrups for sweetness, solids, bulking and formulation requirements.", ingredients: ["Invert Sugar", "Aspartame Powder", "Sucralose", "Acesulfame K", "Saccharin", "Isomalt", "Maltitol", "Sucrose"] },
+  { name: "Starches & Functional Ingredients", description: "Starches and protein ingredients for structure, texture and functional performance.", ingredients: ["Potato Starch", "Vital Wheat Gluten", "Whey Protein Concentrate", "Isolate Soya Protein"] },
   { name: "Leavening & Baking Ingredients", description: "Leavening and baking ingredients for cakes, biscuits, cookies, crackers and other bakery products.", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
-  { name: "Minerals & Processing Ingredients", description: "Minerals, carriers and processing ingredients for formulation and production requirements.", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate"] },
-  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
+  { name: "Minerals & Processing Ingredients", description: "Minerals, carriers and processing ingredients for formulation and production requirements.", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Propylene Glycol (PG)", "Refined Glycerine"] },
+  { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
+  { name: "Other Food Additives", description: "Additional food additives, flavours and processing ingredients available for commercial enquiry.", ingredients: ["Malt Extract Powder", "Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] }
 ];
+
+export const foodAdditiveProductLabels = {
+  "Potassium Sorbate": "Potassium Sorbate (KUNDA)",
+  "Sorbic Acid": "Sorbic Acid (KUNDA)",
+  "Sodium Benzoate": "Sodium Benzoate (GANESH)",
+  "Citric Acid Monohydrate": "Citric Acid Monohydrate (ENSIGN)",
+  "Citric Acid Anhydrous": "Citric Acid Anhydrous (ENSIGN)",
+  "Sodium Citrate": "Sodium Citrate (Daffodil)",
+  "Malic Acid": "Malic Acid (THIRUMALA)",
+  "Acetic Acid": "Acetic Acid (GNVFC)",
+  "Ascorbic Acid": "Ascorbic Acid (LUWEI)",
+  "Fumaric Acid": "Fumaric Acid (THIRUMALA)",
+  "Xanthan Gum": "Xanthan Gum (DEOSEN)",
+  "Guar Gum": "Guar Gum (DHANALAKSHMI)",
+  "Sodium CMC": "Sodium CMC (AMIT)",
+  "Algel Pro": "Algel Pro (AMIT)",
+  "Sempoorna": "Sempoorna (DANISCO)",
+  "Ice Pro": "Ice Pro (DANISCO)",
+  "Ammonium Bicarbonate": "Ammonium Bicarbonate (MANGALA)",
+  "Sodium Bicarbonate": "Sodium Bicarbonate (TATA CHEMICALS)",
+  "SAPP (Sodium Acid Pyrophosphate)": "Sodium Acid Pyrophosphate (ADITYA BIRLA)"
+};
 
 export const productGroupsByIndustrySlug = {
   "bakery-ingredients": bakeryProductGroups,
@@ -167,12 +193,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Carriers", ingredients: ["Dextrose Monohydrate", "Maltodextrin Powder", "Skimmed Milk Powder", "Refined Glycerine", "Propylene Glycol (PG)"] }
   ],
   "food-additives-preservatives": [
-    { name: "Preservatives", ingredients: ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Sodium Propionate", "Potassium Metabisulphite (KMS)"] },
-    { name: "Acidulants", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid", "Fumaric Acid", "Tartaric Acid", "Boric Acid", "Phosphoric Acid", "Formic Acid"] },
-    { name: "Emulsifiers", ingredients: ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"] },
-    { name: "Leavening & Baking Ingredients", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
-    { name: "Minerals & Processing Ingredients", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Sodium Citrate"] },
-    { name: "Milk Powder", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] }
+    ...additiveProductGroups.map(({ name, ingredients }) => ({ name, ingredients }))
   ]
 };
 
