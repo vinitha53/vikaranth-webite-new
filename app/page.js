@@ -40,7 +40,7 @@ const allProductGroups = [
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy Products", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
@@ -108,7 +108,7 @@ const ecosystemCategories = [
   { number: "04", name: <>Ice Cream<br/>Products</>, label: "Ice Cream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
   { number: "05", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 4 },
   { number: "06", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 5 },
-  { number: "07", name: <>Dairy<br/>Products</>, label: "Dairy Products", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
+  { number: "07", name: <>Dairy</>, label: "Dairy", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },
   { number: "08", name: <>Food Additives &amp;<br/>Preservatives</>, label: "Food Additives & Preservatives", icon: ShieldCheck, href: "/industries/food-additives-preservatives", groupIndex: 7 },
   { number: "09", name: <>Hydrocolloid &amp;<br/>Food Stabilizer</>, label: "Hydrocolloid & Food Stabilizer", icon: Beaker, href: "/industries/hydrocolloids-stabilizers", groupIndex: 8 },
   { number: "10", name: <>Fruit Processing<br/>Ingredients</>, label: "Fruit Processing Ingredients", icon: Leaf, href: "/industries/fruit-processing", groupIndex: 9 },

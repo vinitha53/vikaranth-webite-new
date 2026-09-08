@@ -10,23 +10,25 @@ import CocoaMascot from "./CocoaMascot/CocoaMascot";
 import styles from "./detail.module.css";
 
 import { partners, partnerSpecialties } from "../data/partners";
+import { industries } from "../data/catalog";
 
 const GlobalSearch = dynamic(() => import("./GlobalSearch"), { ssr: false });
 
-const categories = [
-  ["bakery-ingredients", "Bakery Ingredients"],
-  ["chocolate-confectionery", "Chocolate & Confectionery"],
-  ["dairy-ingredients", "Dairy Ingredients"],
-  ["beverage-ingredients", "Beverage Ingredients"],
-  ["ice-cream-ingredients", "Ice Cream Products"],
-  ["fruit-processing", "Fruit Processing"],
-  ["hydrocolloids-stabilizers", "Hydrocolloids & Stabilizers"],
-  ["sweeteners-syrups-starches", "Sweeteners, Syrups & Starches"],
-  ["functional-ingredients", "Functional Ingredients"],
-  ["nutraceutical-pharma", "Nutraceutical & Pharma"],
-  ["food-additives-preservatives", "Food Additives & Preservatives"],
-].map(([slug, name]) => ({ slug, name, href: `/industries/${slug}`, image: `/products/${slug}-v1.webp`, summary: `Explore ${name.toLowerCase()} for commercial food production.` }));
-const industryIcons = [CakeSlice, Sparkles, Milk, FlaskConical, IceCreamBowl, Leaf, Beaker, Wheat, CircleGauge, HeartPulse, ShieldCheck];
+const categories = industries.map(({ slug, name }) => ({ slug, name, href: `/industries/${slug}`, image: `/products/${slug}-v1.webp`, summary: `Explore ${name.toLowerCase()} for commercial food production.` }));
+const industryIconBySlug = {
+  "chocolate-confectionery": Sparkles,
+  "bakery-ingredients": CakeSlice,
+  "beverage-ingredients": FlaskConical,
+  "ice-cream-ingredients": IceCreamBowl,
+  "functional-ingredients": CircleGauge,
+  "nutraceutical-pharma": HeartPulse,
+  "dairy-ingredients": Milk,
+  "food-additives-preservatives": ShieldCheck,
+  "hydrocolloids-stabilizers": Beaker,
+  "fruit-processing": Leaf,
+  "sweeteners-syrups-starches": Wheat,
+};
+const industryIcons = categories.map(({ slug }) => industryIconBySlug[slug] || Building2);
 
 const UtilitySet = ({ hidden = false }) => <div className={styles.utilitySet} aria-hidden={hidden || undefined}><span><BadgeCheck/> Food Ingredients</span><span><MapPin/> Chennai</span><span>Chennai · India</span><a href="tel:+918754442924"><Phone/> +91 87544 42924</a><a href="mailto:vikranth.chemicals@gmail.com"><Mail/> vikranth.chemicals@gmail.com</a></div>;
 
@@ -38,7 +40,7 @@ export default function DetailHeaderClient() {
   const [supplierMegaOpen, setSupplierMegaOpen] = useState(false);
   const [supplierQuery, setSupplierQuery] = useState("");
   const filteredSuppliers = partners.filter((partner) => partner.name.toLowerCase().includes(supplierQuery.trim().toLowerCase()));
-  const [activeCategory, setActiveCategory] = useState(categories[1] || categories[0]);
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
   const headerRef = useRef(null);
   useEffect(() => {
     if (!open && !megaOpen && !industryMegaOpen && !supplierMegaOpen) return;
