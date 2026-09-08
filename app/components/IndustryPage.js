@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Box, Check, ClipboardList, FileCheck, FileText, Handshake, MapPin, PackageCheck, ShieldCheck, SlidersHorizontal, Truck } from "lucide-react";
-import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups, foodAdditiveProductLabels } from "../data/catalog";
+import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups, foodAdditiveProductSuppliers } from "../data/catalog";
 import { industryContent } from "../data/industry-content";
 import { partnersForIndustry } from "../data/partners";
 import { DetailHeader, DetailFooter, PageCta, styles } from "./DetailChrome";
@@ -93,7 +93,8 @@ export default async function IndustryPage({ params }) {
   const items = industry.products.map((name) => {
     const product = products.find((item) => item.name === name);
     const industryGroup = groups?.find((group) => group.ingredients.includes(name));
-    return product ? { ...product, displayName: industry.slug === "food-additives-preservatives" ? foodAdditiveProductLabels[name] || name : name, usageCategory: industryGroup?.name || product.usageCategory } : null;
+    const brochureSupplier = industry.slug === "food-additives-preservatives" ? foodAdditiveProductSuppliers[name] : null;
+    return product ? { ...product, brand: brochureSupplier || product.brand, brandOnImageOnly: Boolean(brochureSupplier), usageCategory: industryGroup?.name || product.usageCategory } : null;
   }).filter(Boolean);
   const partners = partnersForIndustry(industry.slug);
   const relatedIndustries = content.related.map((slug) => getIndustry(slug)).filter(Boolean);
@@ -101,7 +102,7 @@ export default async function IndustryPage({ params }) {
   const canonicalUrl = `${siteUrl}/industries/${industry.slug}/`;
   const schema = [
     { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: content.h1, description: content.summary, inLanguage: "en-IN", about: { "@id": `${siteUrl}/#organization` }, publisher: { "@id": `${siteUrl}/#organization` }, mainEntity: { "@id": `${canonicalUrl}#products` } },
-    { "@context": "https://schema.org", "@type": "ItemList", "@id": `${canonicalUrl}#products`, name: `${industry.name} available for B2B enquiry`, description: content.summary, numberOfItems: items.length, itemListOrder: "https://schema.org/ItemListOrderAscending", itemListElement: items.map((item, i) => ({ "@type": "ListItem", position: i + 1, name: item.displayName || item.name, url: `${siteUrl}/products/${item.slug}/` })) },
+    { "@context": "https://schema.org", "@type": "ItemList", "@id": `${canonicalUrl}#products`, name: `${industry.name} available for B2B enquiry`, description: content.summary, numberOfItems: items.length, itemListOrder: "https://schema.org/ItemListOrderAscending", itemListElement: items.map((item, i) => ({ "@type": "ListItem", position: i + 1, name: item.name, url: `${siteUrl}/products/${item.slug}/` })) },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Industries", item: `${siteUrl}/industries/` }, { "@type": "ListItem", position: 3, name: industry.name, item: canonicalUrl }] },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: industryFaqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) }
   ];

@@ -98,26 +98,26 @@ export const additiveProductGroups = [
   { name: "Other Food Additives", description: "Additional food additives, flavours and processing ingredients available for commercial enquiry.", ingredients: ["Malt Extract Powder", "Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] }
 ];
 
-export const foodAdditiveProductLabels = {
-  "Potassium Sorbate": "Potassium Sorbate (KUNDA)",
-  "Sorbic Acid": "Sorbic Acid (KUNDA)",
-  "Sodium Benzoate": "Sodium Benzoate (GANESH)",
-  "Citric Acid Monohydrate": "Citric Acid Monohydrate (ENSIGN)",
-  "Citric Acid Anhydrous": "Citric Acid Anhydrous (ENSIGN)",
-  "Sodium Citrate": "Sodium Citrate (Daffodil)",
-  "Malic Acid": "Malic Acid (THIRUMALA)",
-  "Acetic Acid": "Acetic Acid (GNVFC)",
-  "Ascorbic Acid": "Ascorbic Acid (LUWEI)",
-  "Fumaric Acid": "Fumaric Acid (THIRUMALA)",
-  "Xanthan Gum": "Xanthan Gum (DEOSEN)",
-  "Guar Gum": "Guar Gum (DHANALAKSHMI)",
-  "Sodium CMC": "Sodium CMC (AMIT)",
-  "Algel Pro": "Algel Pro (AMIT)",
-  "Sempoorna": "Sempoorna (DANISCO)",
-  "Ice Pro": "Ice Pro (DANISCO)",
-  "Ammonium Bicarbonate": "Ammonium Bicarbonate (MANGALA)",
-  "Sodium Bicarbonate": "Sodium Bicarbonate (TATA CHEMICALS)",
-  "SAPP (Sodium Acid Pyrophosphate)": "Sodium Acid Pyrophosphate (ADITYA BIRLA)"
+export const foodAdditiveProductSuppliers = {
+  "Potassium Sorbate": "KUNDA",
+  "Sorbic Acid": "KUNDA",
+  "Sodium Benzoate": "GANESH",
+  "Citric Acid Monohydrate": "ENSIGN",
+  "Citric Acid Anhydrous": "ENSIGN",
+  "Sodium Citrate": "Daffodil",
+  "Malic Acid": "THIRUMALA",
+  "Acetic Acid": "GNVFC",
+  "Ascorbic Acid": "LUWEI",
+  "Fumaric Acid": "THIRUMALA",
+  "Xanthan Gum": "DEOSEN",
+  "Guar Gum": "DHANALAKSHMI",
+  "Sodium CMC": "AMIT",
+  "Algel Pro": "AMIT",
+  "Sempoorna": "DANISCO",
+  "Ice Pro": "DANISCO",
+  "Ammonium Bicarbonate": "MANGALA",
+  "Sodium Bicarbonate": "TATA CHEMICALS",
+  "SAPP (Sodium Acid Pyrophosphate)": "ADITYA BIRLA"
 };
 
 export const productGroupsByIndustrySlug = {

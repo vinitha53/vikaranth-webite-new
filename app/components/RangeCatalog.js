@@ -240,12 +240,12 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <div ref={collectionContentRef} className={styles.collectionContent}>
             {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
               <span className={styles.collectionImage}>
-                <img src={product.image} alt={`${product.displayName || product.name} ingredient`} width="520" height="360" loading="lazy" />
+                <img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" />
                 {(brandLogos[product.brand] || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
                   <img src={brandLogos[product.brand] || supplierLogo} alt={`${product.brand || supplierName} logo`} width="100" height="44" loading="lazy" />
                 </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null}
               </span>
-              <span className={styles.collectionCardCopy}><strong>{product.displayName || product.name}</strong><small>{product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
+              <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
             </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}
           </div>
         </section>
@@ -306,12 +306,12 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <p className={styles.groupIntroduction}>Explore {group.products.length} professional {group.category.toLowerCase()} {group.products.length === 1 ? "ingredient" : "ingredients"}. Open a product for sourcing, pack, specification and enquiry details.</p>
           <div className={styles.grid}>{group.products.map((product, productIndex) => <Link prefetch={false} className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
             <div className={styles.image}>
-              <img src={product.image} alt={`${product.displayName || product.name} by ${product.brand || "Vikranth"}`} width="640" height="640" loading="lazy" />
+              <img src={product.image} alt={`${product.name} by ${product.brand || "Vikranth"}`} width="640" height="640" loading="lazy" />
               {brandLogos[product.brand]
                 ? <span className={styles.brandLogoBadge} title={product.brand} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand]} alt={`${product.brand} logo`} width="160" height="64" loading="lazy" /></span>
                 : <span>{product.brand || (active === "indian" ? "Indian range" : "Imported range")}</span>}
             </div>
-            <div><small>{categoryFor(product)}</small><h3>{product.displayName || product.name}</h3>{product.cocoaPercentage && <p>{product.cocoaPercentage}</p>}{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>
+            <div><small>{categoryFor(product)}</small><h3>{product.name}</h3>{product.cocoaPercentage && <p>{product.cocoaPercentage}</p>}{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>
           </Link>)}</div>
           <button className={styles.collapseButton} type="button" onClick={(event) => collapseInPlace(event, groupKey)}>Collapse {group.category}<span aria-hidden="true">↑</span></button>
         </div>}
