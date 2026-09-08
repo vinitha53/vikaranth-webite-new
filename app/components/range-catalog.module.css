@@ -134,3 +134,10 @@
 
 @media(min-width:651px){.collectionSidebar .collectionTabs button{height:54px;min-height:54px;max-height:54px;flex-basis:54px;margin:0;padding:0 12px}}
 @media(max-width:650px){.collectionSidebar .collectionTabs{max-height:none;gap:7px}}
+
+
+.collectionImage{position:relative}
+.collectionBrandBadge{position:absolute;z-index:1;top:8px;left:8px;display:flex;width:86px;max-width:calc(100% - 16px);height:42px;padding:5px 8px;align-items:center;justify-content:center;border:1px solid rgba(229,207,189,.8);border-radius:8px;background:rgba(255,255,255,.96);box-shadow:0 3px 10px rgba(53,27,13,.12);color:#713216;font-size:10px;font-weight:700;text-align:center;line-height:1.2}
+.collectionImage .collectionBrandBadge img{width:100%;height:100%;object-fit:contain;transform:none;transition:none}
+.collectionCard:hover .collectionBrandBadge img{transform:none}
+@media(max-width:440px){.collectionBrandBadge{top:6px;left:6px;width:66px;height:32px;padding:4px 6px}}

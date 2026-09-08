@@ -7,27 +7,13 @@ import { ArrowDown, ArrowLeft, ArrowRight, PackageOpen, Search, SlidersHorizonta
 import styles from "./range-catalog.module.css";
 import Mec3CatalogNav from "./Mec3CatalogNav";
 import { mec3ProductCount } from "../data/mec3-catalog";
+import { brandLogos } from "../data/brand-logos";
 
 const MEC3_FILTER = "__mec3_catalog__";
 const RANGE_QUERY_PARAM = "catalogRange";
 const CATEGORY_QUERY_PARAM = "catalogCategory";
 
-const brandLogos = {
-  Callebaut: "/brand-logos/callebaut.webp",
-  "Cacao Barry": "/brand-logos/cacao-barry-seo.webp",
-  "Molino Dallagiovanna": "/brand-logos/molino-dallagiovanna-seo.webp",
-  "DLA Naturals": "/brand-logos/dla-naturals-seo.webp",
-  MEC3: "/brand-logos/mec3-seo.webp",
-  "Elle & Vire Professionnel": "/brand-logos/elle-vire-seo.webp",
-  Corman: "/brand-logos/corman-seo.webp",
-  DIRA: "/brand-logos/dira-seo.webp",
-  Switz: "/brand-logos/switz-seo.webp",
-  ARYZTA: "/brand-logos/aryzta-seo.webp",
-  Pernigotti: "/brand-logos/pernigotti-seo.webp",
-  Sosa: "/brand-logos/sosa-clean-seo.webp",
-  Celebre: "/brand-logos/celebre-seo.webp",
-  "CSM / Ulmer Spatz": "/brand-logos/csm-clean-seo.webp",
-};
+
 
 const brandEyebrows = {
   Callebaut: "Belgian chocolate",
@@ -46,13 +32,13 @@ const brandEyebrows = {
   Celebre: "Indian bakery & dessert range",
 };
 
-export default function RangeCatalog({ products, indianNames = [], supplierMode = false, categoryField = "usageCategory", mec3Catalog = false, collectionTitle = "Ingredient" }) {
+export default function RangeCatalog({ products, indianNames = [], supplierMode = false, supplierLogo, supplierName, categoryField = "usageCategory", mec3Catalog = false, collectionTitle = "Ingredient" }) {
   const categoryFor = (product) => product[categoryField] || product.usageCategory || product.category;
-  const industryCollectionMode = !supplierMode && categoryField === "brochureDisplayCategory";
+  const collectionMode = supplierMode || categoryField === "brochureDisplayCategory";
   const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const initialRange = ranges[0] || "indian";
-  const initialCategory = "all";
+  const initialCategory = collectionMode ? categoryFor(normalized.find((product) => product.range === initialRange && categoryFor(product)) || {}) || "all" : "all";
   const [active, setActive] = useState(initialRange);
   const [activeBrand, setActiveBrand] = useState(null);
   const [activeCategory, setActiveCategory] = useState(initialCategory);
@@ -73,7 +59,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const selectedBrandProducts = activeBrand ? inRange.filter((product) => product.brand === activeBrand) : [];
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
   const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
-  const defaultIndustryCategory = "all";
+  const defaultIndustryCategory = categories[0] || "all";
   const selectedCollectionName = activeCategory === "all" ? "All Products" : activeCategory;
   const normalizedQuery = searchQuery.trim().toLowerCase();
   const categoryFilteredProducts = activeCategory === "all" ? inRange : inRange.filter((product) => categoryFor(product) === activeCategory);
@@ -100,10 +86,10 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     observer.observe(nav);
     for (const child of nav.children) observer.observe(child);
     return () => observer.disconnect();
-  }, [active, industryCollectionMode, products]);
+  }, [active, collectionMode, products]);
 
   useEffect(() => {
-    if (!industryCollectionMode) return;
+    if (!collectionMode) return;
 
     const restoreCatalogState = () => {
       const params = new URLSearchParams(window.location.search);
@@ -115,9 +101,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         .map((product) => product[categoryField] || product.usageCategory || product.category)
         .filter(Boolean))];
       const requestedCategory = params.get(CATEGORY_QUERY_PARAM);
-      const restoredCategory = requestedCategory === "all" || restoredCategories.includes(requestedCategory)
+      const restoredCategory = restoredCategories.includes(requestedCategory)
         ? requestedCategory
-        : "all";
+        : restoredCategories[0] || "all";
 
       setActive(restoredRange);
       setActiveBrand(null);
@@ -130,21 +116,22 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     restoreCatalogState();
     window.addEventListener("popstate", restoreCatalogState);
     return () => window.removeEventListener("popstate", restoreCatalogState);
-  }, [categoryField, industryCollectionMode, initialRange, normalized]);
+  }, [categoryField, collectionMode, initialRange, normalized]);
 
   useEffect(() => {
-    if (!industryCollectionMode || !catalogStateReady) return;
+    if (!collectionMode || !catalogStateReady) return;
 
     const url = new URL(window.location.href);
     url.searchParams.set(RANGE_QUERY_PARAM, active);
     url.searchParams.set(CATEGORY_QUERY_PARAM, activeCategory || "all");
     window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
-  }, [active, activeCategory, catalogStateReady, industryCollectionMode]);
+  }, [active, activeCategory, catalogStateReady, collectionMode]);
 
   const selectRange = (range) => {
     setActive(range);
     setActiveBrand(null);
-    setActiveCategory("all");
+    const firstProduct = normalized.find((product) => product.range === range && categoryFor(product));
+    setActiveCategory(collectionMode ? categoryFor(firstProduct || {}) || "all" : "all");
     setSearchQuery("");
     setOpenGroups({});
   };
@@ -170,6 +157,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     }));
   };
   const rangeLabel = active === "indian" ? "Indian" : "Imported";
+  const catalogContext = supplierMode ? "supplier catalogue" : "industry";
   const collapseInPlace = (event, groupKey) => {
     const section = event.currentTarget.closest("section");
     const viewportAnchor = section?.nextElementSibling || section;
@@ -187,7 +175,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         <button type="button" aria-pressed={activeCategory === "all"} onClick={() => setActiveCategory("all")}>All products <span>{inRange.length}</span></button>
         {categories.map((category) => <button type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} key={category}>{category} <span>{inRange.filter((product) => categoryFor(product) === category).length}</span></button>)}
       </div>
-      <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{industryCollectionMode ? selectedCollectionProducts.length : categoryFilteredProducts.length} ingredients</span></div>
+      <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{collectionMode ? selectedCollectionProducts.length : categoryFilteredProducts.length} ingredients</span></div>
     </div>;
 
   if (!ranges.length) return null;
@@ -198,9 +186,9 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>International brands</small></button>
     </div>}
 
-    {industryCollectionMode && categoryBrowser}
+    {collectionMode && categoryBrowser}
 
-    {industryCollectionMode && <section ref={productFinderRef} className={styles.productFinder} aria-label="Search and filter products">
+    {collectionMode && <section ref={productFinderRef} className={styles.productFinder} aria-label="Search and filter products">
       <div className={styles.productSearch}>
         <Search aria-hidden="true" />
         <input type="search" value={searchQuery} onChange={(event) => {
@@ -208,7 +196,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           if (!searchQuery.trim() && nextQuery.trim()) setActiveCategory("all");
           if (searchQuery.trim() && !nextQuery.trim()) setActiveCategory(defaultIndustryCategory);
           setSearchQuery(nextQuery);
-        }} placeholder={`Search all products in this industry...`} aria-label={`Search all ${rangeLabel.toLowerCase()} products in this industry`} />
+        }} placeholder={`Search all products in this ${catalogContext}...`} aria-label={`Search all ${rangeLabel.toLowerCase()} products in this ${catalogContext}`} />
         {searchQuery && <button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }} aria-label="Clear product search"><X aria-hidden="true" /></button>}
       </div>
       <label className={styles.productFilter}>
@@ -226,10 +214,11 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       </div>
     </section>}
 
-    {industryCollectionMode ? <section className={styles.collectionBrowser} aria-label={`${collectionTitle} collections`}>
+    {collectionMode ? <section className={styles.collectionBrowser} aria-label={`${collectionTitle} collections`}>
       <div className={styles.collectionShell}>
         <div className={styles.collectionSidebar}>
         <nav ref={categoryNavRef} onScroll={updateCategoryScroll} className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
+          {supplierMode && <button type="button" aria-pressed={activeCategory === "all"} onClick={() => selectIndustryCategory("all")}><strong>All products</strong><ArrowRight aria-hidden="true" /></button>}
           {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
             <strong>{category}</strong><ArrowRight aria-hidden="true" />
           </button>)}
@@ -250,8 +239,13 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           </div>
           <div ref={collectionContentRef} className={styles.collectionContent}>
             {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
-              <span className={styles.collectionImage}><img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" /></span>
-              <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brand || product.usageCategory || selectedCollectionName}</small><ArrowRight aria-hidden="true" /></span>
+              <span className={styles.collectionImage}>
+                <img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" />
+                {(brandLogos[product.brand] || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
+                  <img src={brandLogos[product.brand] || supplierLogo} alt={`${product.brand || supplierName} logo`} width="100" height="44" loading="lazy" />
+                </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null}
+              </span>
+              <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
             </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}
           </div>
         </section>
@@ -298,7 +292,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       </section>}
     </> : categoryBrowser}
 
-    {!industryCollectionMode && <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
+    {!collectionMode && <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
       const headingId = `range-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       const contentId = `${headingId}-products`;
       const groupKey = `${active}:${activeBrand || "all"}:${group.category}`;
@@ -323,6 +317,5 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         </div>}
       </section>;
     })}</div>}
-    {supplierMode && <p className={styles.note}>Only products matched to the approved supplier catalogue are shown. Grade, pack and availability are confirmed per enquiry.</p>}
   </div>;
 }

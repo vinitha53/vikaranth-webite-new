@@ -6,6 +6,7 @@ import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import ProductQuoteForm from "../../components/ProductQuoteForm";
 import { buildProductFaqs } from "../../data/product-faqs";
 import { getPartner, partnersForProduct } from "../../data/partners";
+import { brandLogos } from "../../data/brand-logos";
 import { whatsappNumberForProduct, whatsappUrl } from "../../data/whatsapp";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
@@ -78,6 +79,7 @@ export default async function ProductPage({ params }) {
   const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
   const relatedProducts = products.filter((item) => item.slug !== product.slug && item.industrySlug === product.industrySlug).slice(0, 4);
+  const showProductBrand = product.brand && !productPartners.some((partner) => partner.name.toLowerCase() === product.brand.toLowerCase());
   const whatsappNumber = whatsappNumberForProduct(product, productPartners.map((partner) => partner.slug));
   const whatsapp = whatsappUrl(whatsappNumber, `Hi, I need a quotation for ${product.name}.`);
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
@@ -124,7 +126,12 @@ export default async function ProductPage({ params }) {
         <div className={styles.actions}><a className={styles.whatsappButton} href="#quote">Request a Quote <ArrowDown /></a><a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle /> Ask on WhatsApp</a></div>
         <div className={styles.trust}>{proofPoints.map((point, index) => { const Icon = [FileCheck2, Truck, BadgeCheck][index]; return <span key={point}><Icon /> {point}</span>; })}</div>
       </div><div className={styles.visualColumn}><div className={styles.productVisual} data-product-stage><span className={styles.visualWord} aria-hidden="true">{product.name}</span><img data-product-image src={product.image} alt={product.name} width="900" height="900" loading="eager" fetchPriority="high" decoding="async" /><span className={styles.bulkBadge}><PackageCheck /> Bulk enquiry</span><div className={styles.imageLabel}><FlaskConical /><small>Commercial sourcing</small><strong>{product.name}</strong></div></div>
-      <div className={styles.partnerPanel} data-partner-badge><span>{productPartners.length ? "Verified product partner" : "Sourcing contact"}</span><div className={styles.partnerLogos}>{productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}><img src={partner.logo} alt="" width="180" height="72" loading="lazy" decoding="async" /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" width="156" height="73" loading="lazy" decoding="async" /><strong>Vikranth</strong></div>}</div></div></div></div>
+      <div className={`${styles.partnerPanel} ${showProductBrand ? styles.partnerPanelWithBrand : ""}`} data-partner-badge><span>{showProductBrand ? "Product brand & supplier" : productPartners.length ? "Verified product partner" : "Sourcing contact"}</span><div className={styles.partnerLogos}>
+        {showProductBrand && <div className={styles.productBrandCard}>
+          {brandLogos[product.brand] && <img src={brandLogos[product.brand]} alt={`${product.brand} logo`} width="100" height="44" loading="lazy" decoding="async" />}
+          <strong><small>Brand</small>{product.brand}</strong>
+        </div>}
+        {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}><img src={partner.logo} alt="" width="180" height="72" loading="lazy" decoding="async" /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" width="156" height="73" loading="lazy" decoding="async" /><strong>Vikranth</strong></div>}</div></div></div></div>
       <a href="#snapshot" className={styles.scrollCue} data-scroll-cue><span>Product details</span><ArrowDown /></a>
     </div></section>
 

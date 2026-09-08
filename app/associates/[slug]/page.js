@@ -44,7 +44,6 @@ export default async function PartnerPage({ params }) {
     .map((product) => partner.productImages?.[product.name]
       ? { ...product, image: partner.productImages[product.name] }
       : product);
-  const hasApprovedRange = partner.slug === "campco" || partner.slug === "delta-nutritives" || partner.slug === "anchor";
   const industryLinks = industries.filter((industry) => partner.industries.includes(industry.slug));
   const canonicalUrl = `${siteUrl}/associates/${partner.slug}/`;
   const productNames = productLinks.map((product) => product.name).join(", ");
@@ -98,7 +97,7 @@ export default async function PartnerPage({ params }) {
 
       <section className={`${styles.section} ${styles.productsSection}`} id="products"><div className={styles.wrap}>
         <header className={styles.enquiryRangeHeader} data-associate-reveal="up"><div><span className={styles.eyebrow}>Current enquiry range</span><h2>{partner.name} products available for enquiry</h2><p>Compare available products and open each product page for grade, format, pack and documentation details.</p></div><a href="#enquiry">Discuss your requirement</a></header>
-        {hasApprovedRange ? <RangeCatalog products={productLinks} indianNames={partner.slug === "campco" || partner.slug === "anchor" ? productLinks.filter((item) => item.range !== "imported").map((item) => item.name) : []} supplierMode categoryField={partner.slug === "delta-nutritives" ? "brochureDisplayCategory" : "usageCategory"} mec3Catalog={partner.slug === "delta-nutritives"} /> : <div className={`${styles.productGrid} ${partner.slug === "anchor" ? styles.anchorProductGrid : ""}`} data-associate-stagger>{productLinks.map((product) => <Link className={styles.productCard} href={`/products/${product.slug}`} key={product.slug}><img src={partner.productImages?.[product.name] || product.image} alt={`${partner.name} ${product.name} ingredient`} width="640" height="480" loading="lazy" /><div className={styles.productCardContent}><small>{content.category}</small><h3>{product.name}</h3>{content.productDescriptions?.[product.name] ? <p>{content.productDescriptions[product.name]}</p> : null}<span>View product details <ArrowRight /></span></div></Link>)}</div>}
+        <RangeCatalog products={productLinks.map((product) => ({ ...product, supplierDescription: content.productDescriptions?.[product.name] }))} indianNames={partner.slug === "campco" || partner.slug === "anchor" ? productLinks.filter((item) => item.range !== "imported").map((item) => item.name) : []} supplierMode supplierLogo={partner.logo} supplierName={partner.name} categoryField={partner.slug === "delta-nutritives" ? "brochureDisplayCategory" : "usageCategory"} mec3Catalog={partner.slug === "delta-nutritives"} collectionTitle={`${partner.name} product`} />
               <div className={styles.productsAssurance} data-associate-reveal="up"><ShieldCheck/><span>Exact grade, source, format, pack, MOQ and availability are confirmed for each enquiry.</span><b><em>01</em> — {String(productLinks.length).padStart(2,"0")}</b></div>
 </div></section>
 
