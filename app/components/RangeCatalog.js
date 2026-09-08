@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, PackageOpen, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, PackageOpen, Search, SlidersHorizontal, X } from "lucide-react";
 import styles from "./range-catalog.module.css";
 import Mec3CatalogNav from "./Mec3CatalogNav";
 import { mec3ProductCount } from "../data/mec3-catalog";
@@ -52,7 +52,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const initialRange = ranges[0] || "indian";
-  const initialCategory = industryCollectionMode ? categoryFor(normalized.find((product) => product.range === initialRange) || {}) || "all" : "all";
+  const initialCategory = "all";
   const [active, setActive] = useState(initialRange);
   const [activeBrand, setActiveBrand] = useState(null);
   const [activeCategory, setActiveCategory] = useState(initialCategory);
@@ -61,13 +61,19 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const [catalogStateReady, setCatalogStateReady] = useState(false);
   const productFinderRef = useRef(null);
   const collectionContentRef = useRef(null);
+  const categoryNavRef = useRef(null);
+  const [canScrollCategories, setCanScrollCategories] = useState(false);
+  const updateCategoryScroll = () => {
+    const nav = categoryNavRef.current;
+    setCanScrollCategories(Boolean(nav && nav.scrollHeight - nav.clientHeight - nav.scrollTop > 2));
+  };
   const inRange = normalized.filter((product) => product.range === active);
   const brands = [...new Set(inRange.map((product) => product.brand).filter(Boolean))];
   const hasBrandDirectory = brands.length > 0;
   const selectedBrandProducts = activeBrand ? inRange.filter((product) => product.brand === activeBrand) : [];
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
   const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
-  const defaultIndustryCategory = categories[0] || "all";
+  const defaultIndustryCategory = "all";
   const selectedCollectionName = activeCategory === "all" ? "All Products" : activeCategory;
   const normalizedQuery = searchQuery.trim().toLowerCase();
   const categoryFilteredProducts = activeCategory === "all" ? inRange : inRange.filter((product) => categoryFor(product) === activeCategory);
@@ -86,6 +92,17 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       : [{ category: activeCategory, products: inRange.filter((product) => categoryFor(product) === activeCategory) }]);
 
   useEffect(() => {
+    const nav = categoryNavRef.current;
+    if (!nav) return;
+    nav.scrollTop = 0;
+    updateCategoryScroll();
+    const observer = new ResizeObserver(updateCategoryScroll);
+    observer.observe(nav);
+    for (const child of nav.children) observer.observe(child);
+    return () => observer.disconnect();
+  }, [active, industryCollectionMode, products]);
+
+  useEffect(() => {
     if (!industryCollectionMode) return;
 
     const restoreCatalogState = () => {
@@ -100,7 +117,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       const requestedCategory = params.get(CATEGORY_QUERY_PARAM);
       const restoredCategory = requestedCategory === "all" || restoredCategories.includes(requestedCategory)
         ? requestedCategory
-        : restoredCategories[0] || "all";
+        : "all";
 
       setActive(restoredRange);
       setActiveBrand(null);
@@ -127,8 +144,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const selectRange = (range) => {
     setActive(range);
     setActiveBrand(null);
-    const firstRangeProduct = normalized.find((product) => product.range === range && categoryFor(product));
-    setActiveCategory(industryCollectionMode ? categoryFor(firstRangeProduct || {}) || "all" : "all");
+    setActiveCategory("all");
     setSearchQuery("");
     setOpenGroups({});
   };
@@ -165,6 +181,15 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     }
   };
 
+  const categoryBrowser = <div className={styles.categorySection}>
+      <div className={styles.filterHeading}><div><small>Browse by category</small><h3>Find the right ingredient category</h3></div><p>Select a catalogue category to quickly narrow {inRange.length} {rangeLabel.toLowerCase()} products.</p></div>
+      <div className={styles.categoryRail} role="group" aria-label={`Filter ${rangeLabel.toLowerCase()} products by category`}>
+        <button type="button" aria-pressed={activeCategory === "all"} onClick={() => setActiveCategory("all")}>All products <span>{inRange.length}</span></button>
+        {categories.map((category) => <button type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} key={category}>{category} <span>{inRange.filter((product) => categoryFor(product) === category).length}</span></button>)}
+      </div>
+      <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{industryCollectionMode ? selectedCollectionProducts.length : categoryFilteredProducts.length} ingredients</span></div>
+    </div>;
+
   if (!ranges.length) return null;
 
   return <div className={styles.catalog} data-range-catalog>
@@ -172,6 +197,8 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       <button type="button" role="tab" aria-selected={active === "indian"} onClick={() => selectRange("indian")}>Indian Range</button>
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>International brands</small></button>
     </div>}
+
+    {industryCollectionMode && categoryBrowser}
 
     {industryCollectionMode && <section ref={productFinderRef} className={styles.productFinder} aria-label="Search and filter products">
       <div className={styles.productSearch}>
@@ -201,11 +228,20 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
 
     {industryCollectionMode ? <section className={styles.collectionBrowser} aria-label={`${collectionTitle} collections`}>
       <div className={styles.collectionShell}>
-        <nav className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
+        <div className={styles.collectionSidebar}>
+        <nav ref={categoryNavRef} onScroll={updateCategoryScroll} className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
           {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
             <strong>{category}</strong><ArrowRight aria-hidden="true" />
           </button>)}
         </nav>
+        <div className={styles.categoryScrollFooter}>
+          {canScrollCategories && <button type="button" className={styles.categoryScrollHint} onClick={() => {
+            const nav = categoryNavRef.current;
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            nav?.scrollBy({ top: nav.clientHeight * 0.7, behavior: reducedMotion ? "auto" : "smooth" });
+          }}>Scroll down <ArrowDown aria-hidden="true" /></button>}
+        </div>
+        </div>
         <section className={styles.collectionPanel} aria-labelledby="selected-collection-title">
           <div className={styles.collectionPanelHeading}>
             <span className={styles.collectionHeadingIcon}><PackageOpen aria-hidden="true" /></span>
@@ -260,14 +296,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           })}
         </nav>
       </section>}
-    </> : <div className={styles.categorySection}>
-      <div className={styles.filterHeading}><div><small>Browse by category</small><h3>Find the right ingredient category</h3></div><p>Select a catalogue category to quickly narrow {inRange.length} {rangeLabel.toLowerCase()} products.</p></div>
-      <div className={styles.categoryRail} role="group" aria-label={`Filter ${rangeLabel.toLowerCase()} products by category`}>
-        <button type="button" aria-pressed={activeCategory === "all"} onClick={() => setActiveCategory("all")}>All products <span>{inRange.length}</span></button>
-        {categories.map((category) => <button type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} key={category}>{category} <span>{inRange.filter((product) => categoryFor(product) === category).length}</span></button>)}
-      </div>
-      <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{activeCategory === "all" ? inRange.length : inRange.filter((product) => categoryFor(product) === activeCategory).length} ingredients</span></div>
-    </div>}
+    </> : categoryBrowser}
 
     {!industryCollectionMode && <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
       const headingId = `range-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;

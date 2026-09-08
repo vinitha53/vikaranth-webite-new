@@ -116,3 +116,21 @@
   .collectionCardCopy strong{font-size:12px}
   .collectionCardCopy small{font-size:9px}
 }
+
+/* Keep the scroll cue visible beneath the category list. */
+.collectionSidebar{width:245px;min-width:245px;max-width:245px;flex:0 0 245px;overflow:hidden;border:1px solid #e5cfbd;border-radius:15px;background:rgba(255,255,255,.92);box-shadow:0 12px 30px rgba(62,31,15,.06)}
+.collectionSidebar .collectionTabs{width:100%;min-width:0;max-width:none;max-height:340px;gap:0;margin:0;padding:4px 8px;border:0;border-radius:0;box-shadow:none;scrollbar-width:auto;scrollbar-color:#b85d32 #f7e8dc;scrollbar-gutter:stable}
+.collectionSidebar .collectionTabs::-webkit-scrollbar{width:14px;height:14px}
+.collectionSidebar .collectionTabs::-webkit-scrollbar-thumb{min-height:64px;border:3px solid #f7e8dc;border-radius:999px;background:#b85d32}
+.collectionSidebar .collectionTabs::-webkit-scrollbar-thumb:hover{background:#8b3817}
+.collectionSidebar .collectionTabs::-webkit-scrollbar-track{border-radius:999px;background:#f7e8dc}
+.categoryScrollFooter{display:flex;min-height:34px;align-items:center;justify-content:center;border-top:1px solid #eddfd4;background:#fff8f1}
+.categoryScrollHint{display:flex;width:100%;min-height:34px;align-items:center;justify-content:center;gap:10px;border:0;background:transparent;color:#9c3e17;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.categoryScrollHint:hover{background:#f9e9da}
+.categoryScrollHint:focus-visible{outline:2px solid #9c3e17;outline-offset:-4px}
+.categoryScrollHint svg{width:16px;height:16px}
+@media(max-width:900px){.collectionSidebar{width:210px;min-width:210px;max-width:210px;flex-basis:210px}}
+@media(max-width:650px){.collectionSidebar{width:100%;min-width:0;max-width:none;margin-bottom:12px}.collectionSidebar .collectionTabs{margin-bottom:0}.categoryScrollFooter{display:none}}
+
+@media(min-width:651px){.collectionSidebar .collectionTabs button{height:54px;min-height:54px;max-height:54px;flex-basis:54px;margin:0;padding:0 12px}}
+@media(max-width:650px){.collectionSidebar .collectionTabs{max-height:none;gap:7px}}
