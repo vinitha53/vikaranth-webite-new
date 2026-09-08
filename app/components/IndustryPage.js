@@ -74,7 +74,7 @@ export async function generateMetadata({ params }) {
 const groupMap = {
   "bakery-ingredients": [bakeryProductGroups, "Bakery"],
   "chocolate-confectionery": [chocolateProductGroups, "Chocolate & confectionery"],
-  "dairy-ingredients": [dairyProductGroups, "Dairy"],
+  "dairy-ingredients": [dairyProductGroups, "Dairy Products"],
   "beverage-ingredients": [beverageProductGroups, "Beverage"],
   "ice-cream-ingredients": [iceCreamProductGroups, "Ice cream"],
   "fruit-processing": [fruitProductGroups, "Fruit processing"],

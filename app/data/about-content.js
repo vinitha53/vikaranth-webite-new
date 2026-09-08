@@ -5,7 +5,7 @@ export const aboutIndustries = [
   ["Ice Cream & Frozen Desserts", "/industries/ice-cream-ingredients/"],
   ["Functional Ingredients", "/industries/functional-ingredients/"],
   ["Nutraceutical & Pharma", "/industries/nutraceutical-pharma/"],
-  ["Dairy", "/industries/dairy-ingredients/"],
+  ["Dairy Products", "/industries/dairy-ingredients/"],
   ["Food Additives & Preservatives", "/industries/food-additives-preservatives/"],
   ["Hydrocolloids & Stabilizers", "/industries/hydrocolloids-stabilizers/"],
   ["Fruit Processing", "/industries/fruit-processing/"],

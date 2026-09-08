@@ -92,10 +92,10 @@ export const industryContent = {
     related: ["functional-ingredients","hydrocolloids-stabilizers","dairy-ingredients"]
   }),
   "dairy-ingredients": entry({
-    title: "Dairy Ingredients Supplier in Chennai | Vikranth",
+    title: "Dairy Products Supplier in Chennai | Vikranth",
     description: "Source milk powders, whey powder and dairy ingredients from a Chennai B2B supplier supporting manufacturers across South India and India.",
     eyebrow: "Body, Creaminess, Nutrition",
-    h1: "Dairy Ingredients Supplier in Chennai",
+    h1: "Dairy Products Supplier in Chennai",
     summary: "Source milk and whey ingredients for creaminess, body, flavour, solids and protein contribution across bakery, beverage, dessert and food-production applications.",
     productFamilies: ["Skimmed milk powder","Whole milk powder","Whey powder","Milk powder with added glucose","Selected cream and dairy ingredients"],
     applications: [["Bakery","Dairy solids for bakery applications."],["Chocolate and confectionery","Milk and whey options for commercial production."],["Beverages","Dairy ingredients for body and solids."],["Ice cream","Dairy powders for frozen-dessert systems."],["Desserts","Ingredients for creamy dessert applications."],["Dry mixes","Milk and whey powders for dry blending."]],
