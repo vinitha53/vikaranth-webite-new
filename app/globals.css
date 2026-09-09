@@ -711,3 +711,6 @@ header nav a:hover::after,.nav-product:hover::after,header nav a:focus-visible::
   .supplier-showcase-help>button{min-height:42px;padding-inline:19px;gap:11px;font-size:11px}.supplier-showcase-help>button svg{width:16px}
 }
 .hero-poster{z-index:0}.hero-video{z-index:1;animation:professionalMediaFade .8s ease-out both}@keyframes professionalMediaFade{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){.hero-video{display:none}.reveal-item{transition:none!important;opacity:1!important;transform:none!important}}
+
+/* Preserve the full supplied product artwork and packaging logos. */
+img[src^="/product-images/delta/"]{object-fit:contain!important;object-position:center!important;transform:none!important}

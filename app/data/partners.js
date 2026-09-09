@@ -1,3 +1,5 @@
+import { deltaProductImages } from "./delta-product-images";
+
 export const partners = [
   {slug:"campco",name:"CAMPCO",logo:"/partners/campco-heart.webp",image:"/industries/chocolate-confectionery.webp",summary:"cocoa and chocolate ingredient options for bakery, confectionery, desserts and beverage formulations",about:"CAMPCO is associated with cocoa and chocolate products. Exact catalogue, grade, pack size and commercial availability must be confirmed from current supplier documentation.",products:["Cocoa Powder","Cocoa Butter","Cocoa Mass","Choco Paste","White Chips","Milk Chips","Dark Chips","White Chocomass","Milk Chocomass","Dark Chocomass","Chocolate Drink","White Chocolate","Milk Chocolate","Dark Chocolate"],industries:["chocolate-confectionery","bakery-ingredients"]},
   {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:[],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
@@ -470,7 +472,8 @@ export const productImageByName = {
   "Soya Lecithin": "/product-images/other-products/soya-lecithin.webp",
   "Vital Wheat Gluten": "/product-images/other-products/vital-wheat-gluten.webp",
   ...catalogProductImages,
-  ...bakeryProductImages
+  ...bakeryProductImages,
+  ...deltaProductImages
 };
 
 partners.forEach(partner => {
