@@ -1,6 +1,8 @@
 "use client";
 
 import "./sections-v2.css";
+import BuyerSupport from "./components/BuyerSupport";
+import { business, buyerFaq } from "./data/business";
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
@@ -22,6 +24,7 @@ const verifiedClaimsAvailable = false;
 const verifiedGuidesAvailable = false;
 
 const homeFaqs = [
+  buyerFaq,
   ["What food ingredients does Vikranth Chemical supply in Chennai?", "Vikranth Chemical Corporation supplies bakery, chocolate and confectionery, dairy, beverage, ice cream, fruit-processing, hydrocolloid, sweetener, functional, nutraceutical and food-additive ingredients for manufacturers and professional buyers."],
   ["Which manufacturer portfolios can buyers enquire about through Vikranth?", "Buyers can enquire about listed portfolios from Roquette, Döhler, CP Kelco, Nitta Gelatin India and other ingredient manufacturers. The exact manufacturer, relationship, grade and current availability are confirmed for each enquiry."],
   ["Does Vikranth Chemical supply food ingredients outside Chennai?", "Vikranth is based in Chennai and accepts business enquiries from Tamil Nadu, South India and other locations across India. Delivery options and serviceability are confirmed for the selected product, quantity and destination."],
@@ -30,47 +33,47 @@ const homeFaqs = [
 ];
 
 const allProductGroups = [
-  { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients-hero.png", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
+  { name: "Bakery Ingredients", icon: CakeSlice, image: "/industries/bakery-ingredients-hero.webp", accent: "#efb16f", blurb: "Commercial bakery ingredients for improved cake volume, bread texture, softness and shelf-life performance.", subgroups: {
     "Cake Ingredients": ["Cake Gel", "Cake Life", "Custard Powder"],
     "Bread Ingredients": ["Bread Yield Improver"], "Leavening Agents": ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder"], "Biscuit Ingredients": ["Biscuit Enhancer"],
     "Bakery Syrups": ["Cake Syrup"], "Shelf Life Improvers": ["Calcium Propionate (CP)"]
   }},
-  { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery-hero.png", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
+  { name: "Chocolate & Confectionery", icon: Sparkles, image: "/industries/chocolate-confectionery-hero.webp", accent: "#a76443", blurb: "Cocoa powder, cocoa butter, couverture, chocolate compounds and confectionery ingredients for professional production.", subgroups: {
     "Cocoa Products": ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder"], "Chocolate Range": ["Dark Chocolate", "Milk Chocolate", "White Chocolate"],
     "Choco Chips": ["White Chips", "Dark Chips", "Milk Chips"], "Chocomass": ["White Chocomass", "Dark Chocomass", "Milk Chocomass"],
     "Chocolate Paste": ["Choco Paste"], "Chocolate Beverage Solutions": ["Chocolate Drink"]
   }},
-  { name: "Dairy Products", icon: Milk, image: "/industries/dairy-ingredients-hero.png", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
+  { name: "Dairy Products", icon: Milk, image: "/industries/dairy-ingredients-hero.webp", accent: "#e8d8bb", blurb: "Milk powder and whey products for food manufacturers.", subgroups: {
     "Milk Powder": ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"]
   }},
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Natural Food and Beverage Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
-  { name: "Ice Cream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.png", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Ice Cream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Fruit Processing Ingredients", icon: Leaf, image: "/industries/fruit-processing-hero.png", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
+  { name: "Fruit Processing Ingredients", icon: Leaf, image: "/industries/fruit-processing-hero.webp", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
     "Fruit Fillings": ["Fruit Filling"], "Fruit Preparations": ["Fruit Crush"],
     "Gelling Agents": ["Genu Pectin"], "Glazes & Toppings": ["Glaze Gel"]
   }},
-  { name: "Hydrocolloid & Food Stabilizer", icon: Beaker, image: "/industries/hydrocolloids-stabilizers-hero.png", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
+  { name: "Hydrocolloid & Food Stabilizer", icon: Beaker, image: "/industries/hydrocolloids-stabilizers-hero.webp", accent: "#a97e56", blurb: "Pectin, gelatin, xanthan gum, guar gum and CMC for viscosity control, stability, texture and mouthfeel.", subgroups: {
     "Pectin": ["Genu Pectin (For Jam, Juice, Jelly, etc.)"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
-  { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches-hero.png", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
+  { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches-hero.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
     "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"], "Sugar Free": ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"],
     "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
-  { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients-hero.png", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
+  { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients-hero.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {
     "Emulsifiers": ["GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin"],
     "Proteins": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein", "Full-Fat Soya Flour", "Vital Wheat Gluten", "Skimmed Milk Powder"],
     "Processing Ingredients": ["Calcium Carbonate", "Calcium Chloride", "Calcium Gluconate", "Sodium Citrate", "Propylene Glycol (PG)", "Refined Glycerine"]
   }},
-  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma-hero.png", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
+  { name: "Nutraceutical & Pharma", icon: HeartPulse, image: "/industries/nutraceutical-pharma-hero.webp", accent: "#bf8c6e", blurb: "Proteins, gelatin, vitamins and mineral ingredients for nutraceutical, wellness and pharmaceutical product development.", subgroups: {
     "Protein Ingredients": ["Whey Protein", "Instantized Whey Protein", "Whey Powder", "Soya Protein"], "Gelatin": ["Gelatin 120 Bloom", "Gelatin 180 Bloom"],
     "Vitamins & Minerals": ["Ascorbic Acid", "Calcium Carbonate", "Calcium Gluconate"], "Sugar-Free Excipients": ["Isomalt", "SWEETPEARL® P 200 Maltitol"]
   }},
-  { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/industries/food-additives-preservatives-hero.png", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
+  { name: "Food Additives & Preservatives", icon: ShieldCheck, image: "/industries/food-additives-preservatives-hero.webp", accent: "#956039", blurb: "Food preservatives, acidulants, leavening agents, colours and flavours for shelf life, taste and processing control.", subgroups: {
     "Preservatives": ["Potassium Sorbate", "Sorbic Acid", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"],
     "Acidulants": ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Acetic Acid", "Vinegar", "Ascorbic Acid"],
     "Emulsifiers": ["Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "PGPR", "Soya Lecithin", "GMS Flakes", "GMS Powder", "Sorbitan Monostearate", "Finamul 90"],
@@ -153,35 +156,8 @@ function Logo({ light = false, withMascot = false }) {
   );
 }
 
-function QuoteForm({ selected, onDone }) {
-  const [sent, setSent] = useState(false);
-  const submit = (e) => { e.preventDefault(); setSent(true); setTimeout(() => onDone?.(), 3200); };
-  if (sent) return (
-    <div className="success-state">
-      <span><Check size={30}/></span><h3>Request confirmed.</h3>
-      <p>Thank you. A Vikranth ingredient specialist will contact you within one business day.</p>
-    </div>
-  );
-  return (
-    <form className="quote-form" onSubmit={submit}>
-      <div className="field-row">
-        <label>Your name<input placeholder="Full name" required /></label>
-        <label>Company name<input placeholder="Company" required /></label>
-      </div>
-      <div className="field-row">
-        <label>Work email<input type="email" placeholder="name@company.com" required /></label>
-        <label>Phone number<input type="tel" placeholder="+91" required /></label>
-      </div>
-      <label>Ingredient or application<input defaultValue={selected || ""} placeholder="e.g. Cocoa Powder" /></label>
-      <div className="field-row">
-        <label>Required quantity<input placeholder="e.g. 500 kg" required /></label>
-        <label>Delivery location<input placeholder="City / PIN code" required /></label>
-      </div>
-      <label>Message<textarea placeholder="Tell us about your product or requirement" rows="3" required /></label>
-      <button className="btn primary wide" type="submit">Confirm request <ArrowRight size={17}/></button>
-      <p className="form-note"><ShieldCheck size={14}/> Your details stay private and are used only for this enquiry.</p>
-    </form>
-  );
+function QuoteForm({ selected }) {
+  return <div className="quote-form"><h3>Tell us what you need</h3><p>Use our contact form to request current pricing, pack sizes, product documents and delivery options. Bulk, small-business and personal enquiries are welcome.</p>{selected && <p><strong>Your interest:</strong> {selected}</p>}<a className="btn primary wide" href={`/contact/?product=${encodeURIComponent(selected || "Food ingredients")}#enquiry`}>Continue to enquiry <ArrowRight size={17}/></a><p className="form-note">Our Chennai team confirms availability and minimum quantities for each product.</p></div>;
 }
 
 function AnimatedStat({ value, suffix = "+", label, Icon, delay = 0 }) {
@@ -270,7 +246,7 @@ function IngredientEcosystem() {
         <div className="vcc-ecosystem-column vcc-ecosystem-left">{ecosystemCategories.slice(0, 5).map(renderCard)}</div>
         <div className="vcc-ecosystem-centre">
           <div className="vcc-ecosystem-image-wrap">
-            <img src={ecosystemImage} alt="Vikranth food ingredient portfolio featuring bakery, chocolate, dairy, beverage, fruit and specialty ingredients" loading="lazy" decoding="async"/>
+            <img width="1200" height="569" src={ecosystemImage} alt="Vikranth food ingredient portfolio featuring bakery, chocolate, dairy, beverage, fruit and specialty ingredients" loading="lazy" decoding="async"/>
             <div className="vcc-ecosystem-badge"><IceCreamBowl aria-hidden="true"/><strong>B2B</strong><span>Ingredient<br/>Portfolio</span><i/></div>
           </div>
           <a className="vcc-ecosystem-cta" href="/products">Explore All Products</a>
@@ -285,6 +261,8 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [industryMegaOpen, setIndustryMegaOpen] = useState(false);
+  const [heroVideoPaused, setHeroVideoPaused] = useState(false);
+  const heroPauseRef = useRef(false);
   const [supplierMegaOpen, setSupplierMegaOpen] = useState(false);
   const [supplierQuery, setSupplierQuery] = useState("");
   const filteredSuppliers = partners.filter((partner) => partner.name.toLowerCase().includes(supplierQuery.trim().toLowerCase()));
@@ -332,7 +310,7 @@ export default function Home() {
     video.src = window.matchMedia("(max-width: 760px)").matches
       ? "/hero-home-mobile.mp4" : "/hero-home-desktop.mp4";
     const syncPlayback = () => {
-      if (visible && !document.hidden && !reducedMotion.matches && !connection?.saveData) {
+      if (visible && !heroPauseRef.current && !document.hidden && !reducedMotion.matches && !connection?.saveData) {
         video.play().catch(() => {});
       } else {
         video.pause();
@@ -490,7 +468,7 @@ export default function Home() {
   return (
     <main className="home-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
-        { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchemicalcorporation.com/#webpage", url: "https://www.vikranthchemicalcorporation.com/", name: "Food Ingredients Supplier in Chennai | Vikranth Chemical", description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.", isPartOf: { "@id": "https://www.vikranthchemicalcorporation.com/#website" }, about: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
+        { "@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.vikranthchemicalcorporation.com/#webpage", url: "https://www.vikranthchemicalcorporation.com/", name: "Food Ingredients Supplier in Chennai | Vikranth Chemical", description: business.description, isPartOf: { "@id": "https://www.vikranthchemicalcorporation.com/#website" }, about: { "@id": "https://www.vikranthchemicalcorporation.com/#organization" } },
         { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: homeFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
         { "@context": "https://schema.org", "@type": "ItemList", name: "Food ingredient categories", itemListElement: productCategories.map((category, index) => ({ "@type": "ListItem", position: index + 1, name: category.name, url: `https://www.vikranthchemicalcorporation.com${category.href}/` })) },
       ]) }} />
@@ -532,7 +510,7 @@ export default function Home() {
             <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu mobile-suppliers-list">Suppliers <ChevronDown size={14}/></button>
             <a className="mobile-products-link mobile-suppliers-link" href="/associates" onClick={jump}>Suppliers</a>
             <div id="mobile-suppliers-list" className={`mobile-suppliers-list ${supplierMegaOpen ? "open" : ""}`}>
-              {partners.map((partner) => <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}><span><img src={partner.logo} alt="" loading="lazy" decoding="async"/>{partner.name}</span><ArrowRight aria-hidden="true"/></a>)}
+              {partners.map((partner) => <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}><span><img width="180" height="80" src={partner.logo} alt="" loading="lazy" decoding="async"/>{partner.name}</span><ArrowRight aria-hidden="true"/></a>)}
               <a className="mobile-suppliers-all" href="/associates" onClick={jump}>View All Suppliers <ArrowRight aria-hidden="true"/></a>
             </div>
             <a href="/contact" onClick={jump}>Contact</a>
@@ -619,7 +597,7 @@ export default function Home() {
                 {productCategories.map((industry, index) => {
                   const IndustryIcon = productGroups[index]?.icon || Building2;
                   return (
-                    <a key={industry.id} className={index === 1 ? "featured" : ""} href={industry.href} onClick={jump}>
+                    <a key={industry.id} href={industry.href} onClick={jump}>
                       <IndustryIcon className="industry-showcase-icon" aria-hidden="true"/>
                       <strong>{industry.name}</strong>
                       <p>{industry.description}</p>
@@ -671,15 +649,16 @@ export default function Home() {
 
       <section className="hero" id="home">
         <img className="hero-media hero-poster" src="/hero-home-poster.webp" alt="" width="1280" height="720" fetchPriority="high" decoding="async" />
-        {heroVideoEnabled && <video ref={heroVideoRef} className="hero-media hero-video" muted loop playsInline preload="none" poster="/hero-home-poster.webp" aria-hidden="true" />}
+        {heroVideoEnabled && <video ref={heroVideoRef} className="hero-media hero-video" muted loop playsInline preload="none" poster="/hero-home-poster.webp" width="1280" height="720" aria-hidden="true" />}
         <div className="hero-shade"/>
+        {heroVideoEnabled && <button type="button" className="hero-video-control" aria-pressed={heroVideoPaused} onClick={() => { const paused = !heroVideoPaused; heroPauseRef.current = paused; setHeroVideoPaused(paused); if (paused) heroVideoRef.current?.pause(); else heroVideoRef.current?.play().catch(() => {}); }}>{heroVideoPaused ? "Play background video" : "Pause background video"}</button>}
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
           <span className="hero-mini-title">Food Ingredients · Chennai</span>
           <div className="hero-message">
             <h1 className="hero-title"><span>Food Ingredients Supplier</span><em>in Chennai</em></h1>
             <div className="hero-copy">
-              <p>Bakery, chocolate &amp; confectionery, dairy, beverage, ice cream, fruit processing, hydrocolloids, sweeteners, functional, nutraceutical and food additive ingredients. Explore listed portfolios from CAMPCO, Delta Nutritives, Anchor, Roquette, Döhler, CP Kelco and Nitta Gelatin India; availability and delivery are confirmed per enquiry.</p>
+              <p>Food ingredient supply and wholesale distribution from Chennai to South India and pan-India. Source bakery, chocolate, dairy, beverage and specialty ingredients for your business, with smaller orders welcome subject to available packs.</p>
               <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
               <div className="hero-buttons">
                 <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
@@ -692,6 +671,7 @@ export default function Home() {
         <div className="scroll-cue" aria-hidden="true"><span/> Scroll</div>
       </section>
 
+      <BuyerSupport />
       <section className="home-trust-strip botanical-light-section" aria-labelledby="trust-strip-title">
         <div className="container">
           <div className="trust-strip-copy">
@@ -1004,7 +984,7 @@ export default function Home() {
 
       <footer>
         <div className="container footer-grid">
-          <div><Logo light/><p>Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and specialty food ingredients to manufacturers and professional buyers from Chennai, India.</p></div>
+          <div><Logo light/><p>{business.description}</p></div>
           <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
           <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 87544 42924</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>

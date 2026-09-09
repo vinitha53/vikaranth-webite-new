@@ -13,6 +13,7 @@ export const aboutIndustries = [
 ];
 
 export const aboutBuyerLabels = [
+  "Small food businesses and home bakeries", "Individual ingredient buyers",
   "Food manufacturers", "Ingredient wholesalers and distributors", "Commercial bakeries", "Chocolate and confectionery businesses",
   "Dairy and beverage producers", "Ice cream and dessert producers",
   "Food processors and product-development teams"
@@ -26,6 +27,7 @@ export const aboutProcess = [
 ];
 
 export const aboutFaqs = [
+  ["Can small businesses and individual buyers purchase ingredients?", "Yes. Alongside wholesale supply, Vikranth supports small food businesses, home bakers and personal purchase enquiries. Available pack sizes, minimum quantities and delivery options are confirmed for each product."],
   ["What type of company is Vikranth Chemical Corporation?", "Vikranth Chemical Corporation is a Chennai-based B2B food ingredient distributor, supplier and wholesaler supporting manufacturers, bakeries, food processors, product developers and other professional buyers."],
   ["Which industries does Vikranth support?", "Vikranth supports chocolate, bakery, beverage, ice cream, dairy, fruit-processing, functional-food, nutraceutical, hydrocolloid, sweetener and food-additive requirements."],
   ["Does Vikranth supply ingredients outside Chennai?", "Yes. Vikranth supports B2B ingredient enquiries from Chennai, across South India and from serviceable locations Pan India. Supply options depend on the ingredient, quantity, pack size, availability, freight and delivery location."],

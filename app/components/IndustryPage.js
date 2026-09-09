@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buyerFaq } from "../data/business";
 import { notFound } from "next/navigation";
 import { ArrowRight, Box, Check, ClipboardList, FileCheck, FileText, Handshake, MapPin, PackageCheck, ShieldCheck, SlidersHorizontal, Truck } from "lucide-react";
 import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups, foodAdditiveProductSuppliers } from "../data/catalog";
@@ -24,22 +25,23 @@ const proofPointMap = {
 };
 const regionalBenefitIcons = [Box, SlidersHorizontal, FileCheck, Handshake];
 const industryHeroImages = {
-  "bakery-ingredients": "/industries/bakery-ingredients-hero.png",
-  "chocolate-confectionery": "/industries/chocolate-confectionery-hero.png",
-  "dairy-ingredients": "/industries/dairy-ingredients-hero.png",
-  "ice-cream-ingredients": "/industries/ice-cream-ingredients-hero.png",
-  "functional-ingredients": "/industries/functional-ingredients-hero.png",
-  "nutraceutical-pharma": "/industries/nutraceutical-pharma-hero.png",
-  "food-additives-preservatives": "/industries/food-additives-preservatives-hero.png",
-  "hydrocolloids-stabilizers": "/industries/hydrocolloids-stabilizers-hero.png",
-  "fruit-processing": "/industries/fruit-processing-hero.png",
-  "sweeteners-syrups-starches": "/industries/sweeteners-syrups-starches-hero.png"
+  "bakery-ingredients": "/industries/bakery-ingredients-hero.webp",
+  "chocolate-confectionery": "/industries/chocolate-confectionery-hero.webp",
+  "dairy-ingredients": "/industries/dairy-ingredients-hero.webp",
+  "ice-cream-ingredients": "/industries/ice-cream-ingredients-hero.webp",
+  "functional-ingredients": "/industries/functional-ingredients-hero.webp",
+  "nutraceutical-pharma": "/industries/nutraceutical-pharma-hero.webp",
+  "food-additives-preservatives": "/industries/food-additives-preservatives-hero.webp",
+  "hydrocolloids-stabilizers": "/industries/hydrocolloids-stabilizers-hero.webp",
+  "fruit-processing": "/industries/fruit-processing-hero.webp",
+  "sweeteners-syrups-starches": "/industries/sweeteners-syrups-starches-hero.webp"
 };
 
 function buildIndustryFaqs(industry, content) {
   const category = industry.name.toLowerCase();
   return [
     ...content.faq.slice(0, 2),
+    buyerFaq,
     [
       `Is Vikranth a ${category} wholesaler, distributor and supplier in Chennai?`,
       `Yes. Vikranth Chemical Corporation supports B2B ${category} enquiries as a Chennai-based supplier, distributor and wholesaler. Product, brand, grade, pack size, MOQ and current availability are confirmed for each requirement.`,
@@ -64,7 +66,7 @@ export async function generateMetadata({ params }) {
     title: content.title,
     description: content.description,
     alternates: { canonical },
-    robots: { index: true, follow: true },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
     openGraph: { type: "website", url: canonical, title: content.title, description: content.description, siteName: "Vikranth Chemical Corporation", locale: "en_IN", images: [{ url: industry.image, alt: content.h1 }] },
     twitter: { card: "summary_large_image", title: content.title, description: content.description, images: [industry.image] },
     other: { "geo.region": "IN-TN", "geo.placename": "Chennai" }
@@ -111,7 +113,7 @@ export default async function IndustryPage({ params }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <DetailHeader />
     <section className={styles.industryHero}>
-      <img className={styles.industryHeroImage} src={industryHeroImages[industry.slug] || industry.image} alt={`${industry.name} ingredients for commercial food production`} />
+      <img className={styles.industryHeroImage} src={industryHeroImages[industry.slug] || industry.image} alt={`${industry.name} ingredients for commercial food production`} width="1600" height="900" fetchPriority="high" decoding="async" />
       <div className={styles.industryHeroShade} />
       <div className={styles.industryHeroInner}>
         <nav className={styles.crumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/industries">Industries</Link><span>/</span><span>{industry.name}</span></nav>
@@ -136,7 +138,7 @@ export default async function IndustryPage({ params }) {
           <p>Explore relevant manufacturer portfolios and submit a requirement for current commercial availability.</p>
           <i aria-hidden="true"><b /></i>
         </div>
-        <div className={styles.partnerGrid}>{partners.map((partner) => <Link className={styles.partnerTile} href={`/associates/${partner.slug}`} key={partner.slug}><div>{partner.logo ? <img src={partner.logo} alt={`${partner.name} supplier logo`} /> : <b>{partner.name}</b>}</div><h3>{partner.name}</h3><span>Explore {partner.name} <ArrowRight size={14} /></span></Link>)}</div>
+        <div className={styles.partnerGrid}>{partners.map((partner) => <Link className={styles.partnerTile} href={`/associates/${partner.slug}`} key={partner.slug}><div>{partner.logo ? <img src={partner.logo} alt={`${partner.name} supplier logo`} width="180" height="80" loading="lazy" decoding="async" /> : <b>{partner.name}</b>}</div><h3>{partner.name}</h3><span>Explore {partner.name} <ArrowRight size={14} /></span></Link>)}</div>
       </section>}
 
       <IndustryApplicationGuide industry={industry} content={content} />
@@ -146,7 +148,7 @@ export default async function IndustryPage({ params }) {
           <div className={styles.regionalSupportCopy}>
             <div className={styles.regionalSupportEyebrow}><span>03 — Regional B2B sourcing</span><i /></div>
             <h2 id="regional-sourcing-title">{content.regionalHeading}</h2>
-            <p>{content.regionalCopy}</p>
+            <p>{content.regionalCopy}</p><p>Small businesses, home bakers and individual buyers are welcome to enquire. Share your required quantity so we can check available packs and minimum orders.</p>
             <div className={styles.regionalCoverageSteps} aria-label="Supply coverage">
               <span className={styles.regionalCoverageActive}><i />Chennai Hub</span>
               <span><i />South India</span>
@@ -205,7 +207,7 @@ export default async function IndustryPage({ params }) {
           <p>Continue into adjacent ingredient ranges already available on the website.</p>
           <i aria-hidden="true"><b /></i>
         </div>
-        <div>{relatedIndustries.map((related) => <Link href={`/industries/${related.slug}`} key={related.slug}><img src={related.image} alt={`${related.name} ingredient applications`} loading="lazy" /><span><strong>Explore {related.name}</strong><small>{related.summary}</small></span><ArrowRight /></Link>)}</div>
+        <div>{relatedIndustries.map((related) => <Link href={`/industries/${related.slug}`} key={related.slug}><img width="640" height="480" src={related.image} alt={`${related.name} ingredient applications`} loading="lazy" /><span><strong>Explore {related.name}</strong><small>{related.summary}</small></span><ArrowRight /></Link>)}</div>
       </section>
     </div>
 

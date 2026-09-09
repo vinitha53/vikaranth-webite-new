@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   if (!item) return {};
   const description = `${item.title} MEC3 products with item codes and pack sizes. Enquire through Vikranth Chemical Corporation in Chennai.`;
   const canonical = `/associates/delta-nutritives/mec3/${item.slug}/`;
-  return { title: `${item.title} - MEC3 Products | Vikranth`, description, alternates: { canonical }, robots: { index: true, follow: true }, openGraph: { type: "website", url: canonical, title: `${item.title} - MEC3 Products | Vikranth`, description }, twitter: { card: "summary_large_image", title: `${item.title} - MEC3 Products | Vikranth`, description } };
+  return { title: `${item.title} - MEC3 Products | Vikranth`, description, alternates: { canonical }, robots: { index: true, follow: true }, openGraph: { type: "website", url: canonical, title: `${item.title} - MEC3 Products | Vikranth`, description, images: [{ url: "/mec3/mec3-catalog-hero.webp", alt: `MEC3 ${item.title} gelato ingredients` }] }, twitter: { card: "summary_large_image", title: `${item.title} - MEC3 Products | Vikranth`, description, images: ["/mec3/mec3-catalog-hero.webp"] } };
 }
 
 export default async function Mec3RangePage({ params }) {
@@ -26,6 +26,7 @@ export default async function Mec3RangePage({ params }) {
   if (!item) notFound();
   const canonicalUrl = `https://www.vikranthchemicalcorporation.com/associates/delta-nutritives/mec3/${item.slug}/`;
   const faqs = [
+    ["Can a small gelato shop or home business order?", "Yes. Share the MEC3 item, quantity and delivery PIN code. Available catalogue packs, minimum orders and serviceability are confirmed for each enquiry."],
     [`What is included in the MEC3 ${item.title} range?`, `This page lists ${item.products.length} catalogue products with available item codes, descriptions and pack information. Confirm the exact grade, format and current availability before ordering.`],
     [`How can I request a quotation for ${item.title}?`, "Share the MEC3 product name or item code, application, required quantity, delivery city and document needs. Vikranth Chemical Corporation will confirm the available option and next commercial step."],
     [`Can buyers outside Chennai enquire about this range?`, "Yes. Vikranth is based in Chennai, Tamil Nadu, and reviews business enquiries from South India and other Indian locations subject to quantity, freight and serviceability."],

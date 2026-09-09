@@ -33,8 +33,10 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
 
   useEffect(() => {
     const product = new URLSearchParams(window.location.search).get("product")?.trim().slice(0, 80);
+    const buyer = new URLSearchParams(window.location.search).get("buyer");
+    if (["Bulk/Business", "Wholesale", "Retail/Small Quantity"].includes(buyer)) setValue("subject", buyer, { shouldValidate: true });
     if (product) {
-      setValue("subject", "Product / quotation", { shouldValidate: true });
+      setValue("subject", "Bulk/Business", { shouldValidate: true });
       setValue("message", `I would like to enquire about ${product}.`, { shouldValidate: true });
     }
   }, [setValue]);
@@ -67,7 +69,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
       if (submitHandler) await submitHandler(data);
       else await new Promise((resolve) => window.setTimeout(resolve, 650));
       setSubmitted(true);
-      onMascotState("success", "Got it! We'll be in touch soon.");
+      onMascotState("success", submitHandler ? "Your enquiry has been sent." : "Your email draft is ready. Send it from your email app.");
       if (!submitHandler) {
         const subject = `VCC contact enquiry - ${data.subject}`;
         const body = ["Name: " + data.name, "Company: " + (data.company || "Not provided"), "Email: " + data.email, "Phone: " + (data.phone || "Not provided"), "Enquiry type: " + data.subject, "", "Message: " + data.message].join("\n");
@@ -84,7 +86,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
         {submitted && (
           <div className={styles.successNotice} role="status" aria-live="polite">
             <CheckCircle2 />
-            <span><b>Enquiry received</b>We&apos;ll be in touch soon.</span>
+            <span><b>{submitHandler ? "Enquiry sent" : "Email draft prepared"}</b>{submitHandler ? "The team will respond using your contact details." : "Please send the message from your email app to complete your enquiry."}</span>
           </div>
         )}
 
@@ -153,7 +155,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             <span className={styles.fieldLabel}>Message <sup>*</sup></span>
             <span className={styles.fieldControl}>
               <MessageSquareText aria-hidden="true" />
-              <textarea suppressHydrationWarning id="contact-message" rows="4" placeholder="Tell us about your requirement..." {...bind("message", { required: "Please enter your message", minLength: { value: 12, message: "Please add a little more detail" } })} />
+              <textarea suppressHydrationWarning id="contact-message" rows="4" placeholder="Ingredient or brand, quantity, delivery city / PIN and any pack or document needs..." {...bind("message", { required: "Please enter your message", minLength: { value: 12, message: "Please add a little more detail" } })} />
               <Check className={styles.validTick} aria-hidden="true" />
             </span>
             {errors.message && <small id="message-error" className={styles.fieldError}>{errors.message.message}</small>}
@@ -167,7 +169,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
               <span>I agree to be contacted regarding my enquiry. <sup>*</sup></span>
             </label>
             {errors.consent && <small id="consent-error" className={styles.fieldError}>{errors.consent.message}</small>}
-            <small className={styles.privacy}><LockKeyhole /> Your details stay private and secure.</small>
+            <small className={styles.privacy}><LockKeyhole /> Your details are used to respond to your enquiry.</small>
           </div>
           <button suppressHydrationWarning type="submit" className={styles.professionalSubmit} disabled={isSubmitting}>
             {isSubmitting ? <><LoaderCircle className={styles.submitSpinner} /> Sending...</> : <>Send enquiry <ArrowRight /></>}

@@ -104,14 +104,14 @@ export default function Flipbook() {
         <div className={styles.bookScaler}>
           <div className={styles.book}>
             <div className={`${styles.sheet} ${styles.sheetOne} ${!mobile && view >= 1 ? styles.flipped : ""}`}>
-              <div className={styles.pageFront}><img src={pages[0]} alt="VCC brochure cover, page 1" draggable="false" /></div>
-              <div className={styles.pageBack}><img src={pages[1]} alt="VCC brochure page 2" draggable="false" /></div>
+              <div className={styles.pageFront}><img width="1012" height="1432" src={pages[0]} alt="VCC brochure cover, page 1" draggable="false" /></div>
+              <div className={styles.pageBack}><img width="1012" height="1432" src={pages[1]} alt="VCC brochure page 2" draggable="false" /></div>
             </div>
             <div className={`${styles.sheet} ${styles.sheetTwo} ${!mobile && view >= 2 ? styles.flipped : ""}`}>
-              <div className={styles.pageFront}><img src={pages[2]} alt="VCC brochure page 3" draggable="false" /></div>
-              <div className={styles.pageBack}><img src={pages[3]} alt="VCC brochure page 4" draggable="false" /></div>
+              <div className={styles.pageFront}><img width="1012" height="1432" src={pages[2]} alt="VCC brochure page 3" draggable="false" /></div>
+              <div className={styles.pageBack}><img width="1012" height="1432" src={pages[3]} alt="VCC brochure page 4" draggable="false" /></div>
             </div>
-            <div className={styles.mobilePage} key={view}><img src={pages[view]} alt={`VCC brochure page ${view + 1}`} draggable="false" /></div>
+            <div className={styles.mobilePage} key={view}><img width="1012" height="1432" src={pages[view]} alt={`VCC brochure page ${view + 1}`} draggable="false" /></div>
           </div>
         </div>
         <button className={`${styles.pageArrow} ${styles.nextArrow}`} type="button" onClick={() => go(1)} disabled={view === maxView} aria-label="Next page"><ChevronRight /></button>

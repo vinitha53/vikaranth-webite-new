@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Check, FileUp, MessageCircle } from "lucide-reac
 import styles from "../products/[slug]/product-landing.module.css";
 
 const initialValues = {
-  name: "", company: "", email: "", phone: "", city: "", application: "",
+  name: "", company: "", buyerType: "Business / bulk", email: "", phone: "", city: "", application: "",
   grade: "", quantity: "", requiredDate: "", sample: "No", documents: "Specification and COA",
   message: "", attachment: "", consent: false,
 };
@@ -29,11 +29,12 @@ export default function ProductQuoteForm({ product, applications = [], whatsappN
   function submit(event) {
     event.preventDefault();
     const message = [
-      `B2B enquiry reference: ${reference}`,
+      `Ingredient enquiry reference: ${reference}`,
+      `Buyer type: ${values.buyerType}`,
       `Product: ${product}`,
       `Name: ${values.name}`,
-      `Company: ${values.company}`,
-      `Work email: ${values.email}`,
+      `Company: ${values.company || "Personal purchase"}`,
+      `Email: ${values.email}`,
       `Phone / WhatsApp: ${values.phone}`,
       `Application: ${values.application}`,
       `Preferred grade / brand: ${values.grade || "Please advise"}`,
@@ -68,9 +69,10 @@ export default function ProductQuoteForm({ product, applications = [], whatsappN
 
       {step === 1 ? <fieldset className={styles.formStep}>
         <legend>Contact and delivery details</legend>
+        <label className={styles.formWide}>Buying for<select name="buyerType" value={values.buyerType} onChange={update}><option>Business / bulk</option><option>Small business / home bakery</option><option>Personal use / small quantity</option></select></label>
         <label>Your name<input name="name" value={values.name} onChange={update} autoComplete="name" placeholder="Enter your name" required /></label>
-        <label>Company<input name="company" value={values.company} onChange={update} autoComplete="organization" placeholder="Company name" required /></label>
-        <label>Work email<input name="email" value={values.email} onChange={update} type="email" autoComplete="email" placeholder="name@company.com" required /></label>
+        <label>Company / business (optional)<input name="company" value={values.company} onChange={update} autoComplete="organization" placeholder="Business name, if applicable" /></label>
+        <label>Email address<input name="email" value={values.email} onChange={update} type="email" autoComplete="email" placeholder="Your email address" required /></label>
         <label>Phone / WhatsApp<input name="phone" value={values.phone} onChange={update} type="tel" inputMode="tel" autoComplete="tel" placeholder="10-digit mobile number" required /></label>
         <label className={styles.formWide}>Delivery city / PIN<input name="city" value={values.city} onChange={update} autoComplete="postal-code" placeholder="e.g. Chennai 600001" required /></label>
         <button className={styles.formNext} type="submit">Continue to requirement <ArrowRight /></button>
@@ -85,7 +87,7 @@ export default function ProductQuoteForm({ product, applications = [], whatsappN
         <label className={styles.formWide}>Documents needed<select name="documents" value={values.documents} onChange={update}><option>Specification and COA</option><option>Specification, COA and SDS</option><option>Allergen statement</option><option>Certificates as applicable</option><option>Please advise</option></select></label>
         <label className={`${styles.formWide} ${styles.fileUpload}`}><FileUp /> Optional specification or formulation brief<input name="attachment" onChange={update} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,image/*" /><small>{values.attachment || "Choose a file; you can attach it after WhatsApp opens."}</small></label>
         <label className={styles.formWide}>Message<textarea name="message" value={values.message} onChange={update} rows="3" placeholder="Function, process, current product or technical requirement" /></label>
-        <label className={`${styles.formWide} ${styles.consent}`}><input name="consent" checked={values.consent} onChange={update} type="checkbox" required /><span>I consent to Vikranth using these details to respond to this B2B enquiry.</span></label>
+        <label className={`${styles.formWide} ${styles.consent}`}><input name="consent" checked={values.consent} onChange={update} type="checkbox" required /><span>I consent to Vikranth using these details to respond to this ingredient enquiry.</span></label>
         <div className={`${styles.formWide} ${styles.formActions}`}><button type="button" onClick={() => setStep(1)}><ArrowLeft /> Back</button><button type="submit"><MessageCircle /> Continue in WhatsApp</button></div>
       </fieldset>}
       <small className={styles.formPrivacy}>Your details stay in this browser until you continue to WhatsApp. This website does not store the form submission.</small>

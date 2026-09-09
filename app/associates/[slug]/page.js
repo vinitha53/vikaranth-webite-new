@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buyerFaq } from "../../data/business";
 import { notFound } from "next/navigation";
 import { ArrowRight, BadgeCheck, Check, FileCheck2, MapPin, PackageCheck, SearchCheck, ShieldCheck, Truck } from "lucide-react";
 import { partners, getPartner } from "../../data/partners";
@@ -49,12 +50,13 @@ export default async function PartnerPage({ params }) {
   const productNames = productLinks.map((product) => product.name).join(", ");
   const applicationNames = content.applications.join(", ");
   const faq = [
-    [`Can I buy ${partner.name} ingredients through Vikranth in Chennai?`, `Vikranth accepts B2B enquiries in Chennai for selected ${partner.name} products. Availability depends on the current supply arrangement, product, grade, pack size, MOQ and delivery location. Share your company, application, quantity and timeline so the team can confirm the appropriate next step.`],
+    buyerFaq,
+    [`Can I buy ${partner.name} ingredients through Vikranth in Chennai?`, `Vikranth accepts B2B enquiries in Chennai for selected ${partner.name} products. Availability depends on the current supply arrangement, product, grade, pack size, MOQ and delivery location. Share your application, quantity, delivery city and timeline so the team can confirm the appropriate next step.`],
     [`Which ${partner.name} products are available for enquiry?`, `The current page covers ${productNames}. The range can change. Vikranth confirms the exact grade, format, pack and commercial availability against current supplier information before quotation.`],
     [`Which applications use ${partner.name} ingredients?`, `The listed range is relevant to ${applicationNames}. Suitability depends on the selected product and grade, formulation, process conditions, regulatory requirements and finished-product target.`],
     [`Can I request ${partner.name} specifications, COA, SDS or samples?`, `You can request available technical and quality documents for a named ${partner.name} product. Specification, COA, SDS, allergen or certificate availability and sample conditions depend on the product, manufacturer documentation, grade and trial quantity.`],
     [`What are the MOQ and lead time for ${partner.name} products?`, `MOQ and lead time vary by product, pack, stock or indent status, quantity and destination. Vikranth confirms these details in the quotation rather than publishing one value for the entire brand.`],
-    [`Does Vikranth supply ${partner.name} products across India?`, `Vikranth accepts B2B enquiries from Chennai and other Indian locations. Delivery coverage, freight, cold-chain needs where relevant and lead time are confirmed for the specific product, quantity and destination.`],
+    [`Does Vikranth supply ${partner.name} products across India?`, `Vikranth supplies from Chennai to South India and pan-India, supporting wholesale, small-business and personal purchase enquiries. Delivery coverage, freight, cold-chain needs where relevant and lead time are confirmed for the specific product, quantity and destination.`],
   ];
   const structuredData = {
     "@context": "https://schema.org",

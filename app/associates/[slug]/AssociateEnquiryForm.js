@@ -27,7 +27,7 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
       `Supplier enquiry: ${supplier}`,
       `Name: ${values.name}`,
       `Company: ${values.company}`,
-      `Work email: ${values.email}`,
+      `Email address: ${values.email}`,
       `Phone: ${values.phone}`,
       `Delivery city: ${values.city}`,
       `Product: ${values.product}`,
@@ -52,8 +52,8 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
 
       {step === 1 && <fieldset><legend>Your business details</legend><div className={styles.fieldGrid}>
         <label>Name<input name="name" value={values.name} onChange={update} autoComplete="name" required /></label>
-        <label>Company<input name="company" value={values.company} onChange={update} autoComplete="organization" required /></label>
-        <label>Work email<input name="email" type="email" value={values.email} onChange={update} autoComplete="email" required /></label>
+        <label>Company (optional)<input name="company" value={values.company} onChange={update} autoComplete="organization" /></label>
+        <label>Email address<input name="email" type="email" value={values.email} onChange={update} autoComplete="email" required /></label>
         <label>Phone<input name="phone" type="tel" value={values.phone} onChange={update} autoComplete="tel" required /></label>
         <label className={styles.fullField}>Delivery city<input name="city" value={values.city} onChange={update} autoComplete="address-level2" required /></label>
       </div><button className={styles.nextButton} type="button" onClick={next}>Product requirement <ArrowRight /></button></fieldset>}
@@ -72,7 +72,7 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
         <label>Sample requirement<select name="sample" value={values.sample} onChange={update}><option>No</option><option>Yes</option><option>To be discussed</option></select></label>
         <label className={styles.fullField}>Message<textarea name="message" value={values.message} onChange={update} rows="4" /></label>
         <label className={`${styles.fullField} ${styles.fileField}`}><FileUp /> Reference file<input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" onChange={(event) => setFileName(event.target.files?.[0]?.name || "")} /><span>{fileName || "Choose a specification or reference file"}</span><small>The file stays on your device. Attach it manually after WhatsApp opens.</small></label>
-        <label className={`${styles.fullField} ${styles.consent}`}><input name="consent" type="checkbox" checked={values.consent} onChange={update} required /><span>I consent to Vikranth using these details to respond to this B2B enquiry.</span></label>
+        <label className={`${styles.fullField} ${styles.consent}`}><input name="consent" type="checkbox" checked={values.consent} onChange={update} required /><span>I consent to Vikranth using these details to respond to this ingredient enquiry.</span></label>
       </div><div className={styles.formButtons}><button type="button" onClick={() => setStep(2)}><ArrowLeft /> Back</button><button className={styles.submitButton} type="submit">Send on WhatsApp <ArrowRight /></button></div></fieldset>}
       <div className={`${styles.success} ${sent ? styles.successVisible : ""}`} role="status" aria-live="polite"><Check /> Enquiry prepared. WhatsApp is opening.</div>
     </form>

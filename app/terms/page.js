@@ -1,10 +1,11 @@
+import { withSocialMetadata } from "../data/metadata";
 import LegalPage from "../components/LegalPage";
 
-export const metadata = {
+export const metadata = withSocialMetadata({
   title: "Terms of Use | Vikranth Chemical Corporation",
   description: "Read the terms governing Vikranth's website, product information, enquiries, documents, trademarks and external links.",
   alternates: { canonical: "/terms/" },
-};
+});
 
 const sections = [
   { heading: "Legal-review notice and acceptance", content: ["These website terms are not a substitute for quotation, invoice or supply-contract terms. They require legal review and alignment with Vikranth Chemical Corporation's actual commercial practice.", "By using the website, you agree to use it lawfully and not interfere with its operation, security, content or availability. These terms apply from 19 August 2026."] },

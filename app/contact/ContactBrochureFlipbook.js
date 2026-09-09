@@ -14,7 +14,7 @@ const BookPage = forwardRef(function BookPage({ page, onError }, ref) {
   const isCover = page === 1 || page === TOTAL_PAGES;
   return (
     <div ref={ref} className={`${styles.page} ${isCover ? styles.hardPage : ""}`} data-density={isCover ? "hard" : "soft"}>
-      <img src={pageImage(page)} alt={`VCC product brochure page ${page}`} loading={page <= 3 ? "eager" : "lazy"} decoding="async" draggable="false" onError={onError} />
+      <img width="1012" height="1432" src={pageImage(page)} alt={`VCC product brochure page ${page}`} loading={page <= 3 ? "eager" : "lazy"} decoding="async" draggable="false" onError={onError} />
       <span aria-hidden="true">{page}</span>
     </div>
   );
@@ -161,7 +161,7 @@ export default function ContactBrochureFlipbook({ standalone = false }) {
 
       {thumbsOpen && <div className={`${styles.panel} ${styles.thumbsPanel}`} aria-label="Brochure thumbnails">
         <div className={styles.panelTitle}><b>All pages</b><button type="button" onClick={() => setThumbsOpen(false)} aria-label="Close thumbnails"><X /></button></div>
-        <div className={styles.thumbs}>{Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1).map((number) => <button type="button" key={number} className={number === page ? styles.currentThumb : ""} onClick={() => { goTo(number); if (window.innerWidth < 760) setThumbsOpen(false); }} aria-label={`Open page ${number}`}><img src={pageImage(number)} alt="" loading="lazy" /><span>Page {number}</span></button>)}</div>
+        <div className={styles.thumbs}>{Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1).map((number) => <button type="button" key={number} className={number === page ? styles.currentThumb : ""} onClick={() => { goTo(number); if (window.innerWidth < 760) setThumbsOpen(false); }} aria-label={`Open page ${number}`}><img width="1012" height="1432" src={pageImage(number)} alt="" loading="lazy" /><span>Page {number}</span></button>)}</div>
       </div>}
 
       <div className={styles.stage}>

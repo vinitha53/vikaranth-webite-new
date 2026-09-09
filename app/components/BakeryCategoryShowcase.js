@@ -52,7 +52,7 @@ export default function BakeryCategoryShowcase({ groups, products, categoryLabel
     </div>
     <div className={styles.bakeryProductGrid}>
       {available.map(product => <Link className={styles.bakeryProductCard} href={`/products/${product.slug}`} key={product.slug}>
-        <div className={styles.bakeryProductImage}><img src={productImages[product.name] || product.image || fallbackImage} alt={`${product.name} used for ${group.name}`}/><span>Available</span></div>
+        <div className={styles.bakeryProductImage}><img width="640" height="480" src={productImages[product.name] || product.image || fallbackImage} alt={`${product.name} used for ${group.name}`}/><span>Available</span></div>
         <div className={styles.bakeryProductCopy}><small>{group.name}</small><h4>{product.name}</h4><p>Commercial ingredient for {group.name.toLowerCase()}</p><strong>View ingredient page <span aria-hidden="true">-&gt;</span></strong></div>
       </Link>)}
     </div>

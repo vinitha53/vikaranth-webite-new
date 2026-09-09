@@ -22,6 +22,7 @@ import {
 } from "../data/catalog";
 import { partners } from "../data/partners";
 import styles from "./global-search.module.css";
+import { ingredientQuery } from "../data/search-intent.mjs";
 
 const industryGroups = [
   ["bakery-ingredients", bakeryProductGroups],
@@ -74,7 +75,7 @@ const searchIndex = (() => {
     const fields = {
       name: clean(product.name),
       alias: clean(aliases),
-      brand: clean(relatedBrands.map((partner) => partner.name)),
+      brand: clean([product.brand || "", ...relatedBrands.map((partner) => partner.name)]),
       category: clean([product.category, ...relatedApplications.map((group) => group.name)]),
       application: clean(relatedApplications.map((group) => group.description)),
       industry: clean(relatedIndustries.map((industry) => `${industry.name} ${industry.eyebrow}`)),
@@ -128,8 +129,9 @@ const searchIndex = (() => {
 })();
 
 export const rankSearchResults = (rawQuery) => {
-  const query = normalizeSearchText(rawQuery).slice(0, 80);
-  if (!query) return [];
+  const normalized = normalizeSearchText(rawQuery).slice(0, 120);
+  if (!normalized) return [];
+  const query = ingredientQuery(normalized);
   const tokens = query.split(" ");
 
   return searchIndex
@@ -259,7 +261,7 @@ export default function GlobalSearch({ onOpen }) {
             <p className={styles.count} aria-live="polite">{results.length} {results.length === 1 ? "result" : "results"} for “{debouncedQuery.trim()}”</p>
             {visibleResults.length ? <div id="global-search-results" className={styles.results} role="listbox" aria-label="Search results">
               {visibleResults.map((result, index) => <Link id={result.id} role="option" aria-selected={activeIndex === index} className={activeIndex === index ? styles.resultActive : styles.result} href={result.href} key={result.id} onClick={() => closeSearch(false)} onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)}>
-                {result.image && <img src={result.image} alt="" loading="lazy"/>}
+                {result.image && <img width="56" height="56" src={result.image} alt="" loading="lazy"/>}
                 <span className={styles.resultCopy}><small>{result.type}</small><strong><Highlight text={result.name} query={debouncedQuery}/></strong><span>{result.context}</span></span>
                 <ArrowRight aria-hidden="true"/>
               </Link>)}

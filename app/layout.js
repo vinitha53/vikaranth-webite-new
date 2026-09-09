@@ -1,4 +1,5 @@
 import "./globals.css";
+import { business, serviceAreas } from "./data/business";
 import "./responsive.css";
 import DeferredGlobalWidgets from "./components/DeferredGlobalWidgets";
 import WebVitals from "./components/WebVitals";
@@ -15,24 +16,24 @@ export const viewport = {
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
-  description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
+  title: "Food Ingredients Supplier Chennai | Pan-India | Vikranth",
+  description: business.description,
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     type: "website",
     url: "/",
-    title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
-    description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
-    images: [{ url: "/hero-chocolate-poster.jpg", width: 1920, height: 1080, alt: "Bakery, chocolate, dairy and beverage food ingredients supplied by Vikranth Chemical Corporation in Chennai" }],
+    title: "Food Ingredients Supplier Chennai | Pan-India | Vikranth",
+    description: business.description,
+    images: [{ url: "/hero-home-poster.webp", width: 1280, height: 720, alt: "Bakery, chocolate, dairy and beverage food ingredients supplied by Vikranth Chemical Corporation in Chennai" }],
     siteName: "Vikranth Chemical Corporation",
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Food Ingredients Supplier in Chennai | Vikranth Chemical",
-    description: "Vikranth Chemical Corporation supplies bakery, chocolate, dairy, beverage and food-additive ingredients across India. Request a quote today.",
-    images: ["/hero-chocolate-poster.jpg"],
+    title: "Food Ingredients Supplier Chennai | Pan-India | Vikranth",
+    description: business.description,
+    images: ["/hero-home-poster.webp"],
   },
 };
 
@@ -46,7 +47,7 @@ export default function RootLayout({ children }) {
       alternateName: ["Vikranth Chemicals", "VCC Chennai"],
       url: siteUrl,
       logo: `${siteUrl}/logo-vikranth.webp`,
-      description: "Vikranth Chemical Corporation is a Chennai-based supplier and distributor of bakery, chocolate, confectionery, dairy, beverage, ice cream, fruit-processing, hydrocolloid, sweetener, functional, nutraceutical and food-additive ingredients for professional buyers.",
+      description: business.description,
       taxID: "33AADFV9327N1ZO",
       telephone: "+91-87544-42924",
       email: "vikranth.chemicals@gmail.com",
@@ -58,7 +59,8 @@ export default function RootLayout({ children }) {
         { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "sales", areaServed: "IN", availableLanguage: ["en", "ta"] },
         { "@type": "ContactPoint", telephone: "+91-97909-20252", contactType: "customer service", areaServed: "IN", availableLanguage: ["en", "ta"] },
       ],
-      areaServed: [{ "@type": "City", name: "Chennai" }, { "@type": "Country", name: "India" }],
+      areaServed: serviceAreas,
+      address: { "@type": "PostalAddress", streetAddress: "Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu", addressLocality: "Chennai", addressRegion: "Tamil Nadu", postalCode: "600110", addressCountry: "IN" },
     },
     {
       "@context": "https://schema.org",

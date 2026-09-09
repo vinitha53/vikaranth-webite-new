@@ -1,10 +1,11 @@
+import { withSocialMetadata } from "../data/metadata";
 import LegalPage from "../components/LegalPage";
 
-export const metadata = {
+export const metadata = withSocialMetadata({
   title: "Privacy Policy | Vikranth Chemical Corporation",
   description: "Read how Vikranth Chemical Corporation handles website enquiries, contact information, analytics and business communications.",
   alternates: { canonical: "/privacy/" },
-};
+});
 
 const sections = [
   { heading: "Legal-review notice and scope", content: ["This policy describes the website's current intended data practices and must be reviewed against Vikranth Chemical Corporation's actual systems, vendors, retention periods and applicable Indian law by a qualified legal or privacy professional.", "It applies to information received through website forms and related business-enquiry channels from 19 August 2026."] },

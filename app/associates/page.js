@@ -1,3 +1,4 @@
+import { withSocialMetadata } from "../data/metadata";
 import { partners } from "../data/partners";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
 import AssociatesClient from "./AssociatesClient";
@@ -5,7 +6,7 @@ import AssociatesClient from "./AssociatesClient";
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const canonicalUrl = `${siteUrl}/associates/`;
 
-export const metadata = {
+export const metadata = withSocialMetadata({
   title: "Food Ingredient Manufacturers & Suppliers | Vikranth",
   description: "Explore ingredient manufacturers and product portfolios available for enquiry through Vikranth. Relationship details are confirmed per brand.",
   keywords: ["food ingredient supplier Chennai", "food ingredient distributor India", "CAMPCO supplier Chennai", "Döhler distributor India", "Roquette supplier India", "CP Kelco distributor Chennai", "Nitta Gelatin supplier Chennai", "bakery ingredient supplier Pan India", "cocoa powder supplier Chennai", "hydrocolloid supplier India", "starch derivative supplier India", "food emulsifier supplier Chennai"],
@@ -24,7 +25,7 @@ export const metadata = {
     description: "Browse manufacturer and supplier portfolios for bakery, chocolate, dairy, beverage and specialty food ingredient enquiries.",
     images: ["/ingredient-portfolio-seo.webp"],
   },
-};
+});
 
 const faqs = [
   { question: "Can I enquire about CAMPCO ingredients through Vikranth?", answer: "Yes. Vikranth accepts enquiries for listed CAMPCO cocoa and chocolate ingredients. Ask the team to confirm the current product, grade, availability and applicable commercial relationship before purchase." },

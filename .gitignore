@@ -8,3 +8,8 @@ dist/
 *-preview.png
 .next-dev/
 .next-dev-*
+
+# Local visual verification artifacts
+reports/layouts/
+reports/*-review.png
+reports/*-review.jpg

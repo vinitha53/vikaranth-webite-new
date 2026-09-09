@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buyerFaq } from "../../data/business";
 import { notFound } from "next/navigation";
 import { ArrowDown, BadgeCheck, Check, FileCheck2, FlaskConical, MapPin, MessageCircle, PackageCheck, SearchCheck, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import { products, getProduct, getIndustry } from "../../data/catalog";
@@ -40,6 +41,7 @@ const benefitByIndustry = {
 };
 
 const cakeGelFaq = [
+  buyerFaq,
   ["What is cake gel commonly evaluated for?", "Cake gel is commonly evaluated for batter stability, volume, texture and batch consistency in commercial cakes and other aerated bakery products."],
   ["Is Vikranth a cake gel wholesaler in Chennai?", "Vikranth supports wholesale and commercial cake gel enquiries. Share the monthly quantity, preferred pack, required documents and application for current options."],
   ["Can cake gel be supplied outside Chennai?", "South India and India enquiries are reviewed according to product availability, quantity, pack, freight and delivery serviceability."],
@@ -78,14 +80,15 @@ export default async function ProductPage({ params }) {
   const mappedPartners = partnersForProduct(product.name);
   const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
-  const relatedProducts = products.filter((item) => item.slug !== product.slug && item.industrySlug === product.industrySlug).slice(0, 4);
+  const relatedProducts = products.filter((item) => item.slug !== product.slug && item.industrySlug === product.industrySlug).sort((a, b) => { const relevance = item => (product.brand && item.brand === product.brand ? 2 : 0) + (product.usageCategory && item.usageCategory === product.usageCategory ? 1 : 0); return relevance(b) - relevance(a); }).slice(0, 4);
   const showProductBrand = product.brand && !productPartners.some((partner) => partner.name.toLowerCase() === product.brand.toLowerCase());
   const whatsappNumber = whatsappNumberForProduct(product, productPartners.map((partner) => partner.slug));
   const whatsapp = whatsappUrl(whatsappNumber, `Hi, I need a quotation for ${product.name}.`);
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
-  const pageDescription = `${product.name} for ${industry.name.toLowerCase()}, available for verified B2B sourcing enquiries through Vikranth Chemical Corporation.`;
+  const pageDescription = `${product.name} for ${industry.name.toLowerCase()}, supplied from Chennai by Vikranth Chemical Corporation for wholesale, small-business and personal purchase enquiries across India.`;
   const structuredData = [
-    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai`, description: pageDescription, mainEntity: { "@type": "Thing", name: product.name, image: `${siteUrl}${product.image}`, description: product.description }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
+    { "@context": "https://schema.org", "@type": "Product", "@id": `${canonicalUrl}#product`, name: product.name, url: canonicalUrl, image: `${siteUrl}${product.image}`, description: product.description, category: product.category, ...(product.brand ? { brand: { "@type": "Brand", name: product.brand } } : {}), mainEntityOfPage: { "@id": `${canonicalUrl}#webpage` } },
+    { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonicalUrl}#webpage`, url: canonicalUrl, name: `${product.name} Supplier in Chennai`, description: pageDescription, mainEntity: { "@id": `${canonicalUrl}#product` }, publisher: { "@id": `${siteUrl}/#organization` }, isPartOf: { "@id": `${siteUrl}/#website` }, inLanguage: "en-IN" },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/` }, { "@type": "ListItem", position: 3, name: product.name, item: canonicalUrl }] },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
@@ -121,7 +124,7 @@ export default async function ProductPage({ params }) {
         <span className={styles.eyebrow}>{product.brochureDisplayCategory || product.category}</span>
         <span className={styles.heroSupplyLabel}>{isCakeGel ? "Commercial bakery supply" : "Commercial ingredient supply"}</span>
         <h1><span>{product.name}</span><em>Supplier<br/>in Chennai</em></h1>
-        <p>{heroCopy}</p>
+        <p>{heroCopy}</p><p className={styles.buyerNote}>Wholesale supply across South India and pan-India. Small-business and personal enquiries are welcome; packs and minimum quantities vary by product.</p>
         <div className={styles.heroHighlights}>{applications.slice(0, 3).map((application) => <span key={application}><Check />{application}</span>)}</div>
         <div className={styles.actions}><a className={styles.whatsappButton} href="#quote">Request a Quote <ArrowDown /></a><a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle /> Ask on WhatsApp</a></div>
         <div className={styles.trust}>{proofPoints.map((point, index) => { const Icon = [FileCheck2, Truck, BadgeCheck][index]; return <span key={point}><Icon /> {point}</span>; })}</div>
@@ -136,12 +139,12 @@ export default async function ProductPage({ params }) {
     </div></section>
 
     <section className={styles.snapshotSection} id="snapshot"><div className={styles.wrap}>
-      <header className={styles.snapshotHeading}><span className={styles.eyebrow}>Product overview</span><h2><span>{product.name}</span> <em>Product Details</em></h2><p>Essential sourcing information for commercial {industry.name.toLowerCase()} enquiries.</p><i aria-hidden="true" /></header>
+      <header className={styles.snapshotHeading}><span className={styles.eyebrow}>Product overview</span><h2><span>{product.name}</span> <em>Product Details</em></h2><p>Pack, application and sourcing details to help you plan your {product.name} order.</p><i aria-hidden="true" /></header>
       <div className={styles.overviewShell}>
         <aside className={styles.overviewProduct}>
           <PackageCheck aria-hidden="true"/><small>Product</small><h3>{product.name}</h3><span>{product.brochureDisplayCategory || product.category}</span>
-          <dl><dt>Brand / Manufacturer</dt><dd>{product.brand || productPartners[0]?.name || "Vikranth"}</dd></dl>
-          <p>{isCakeGel ? "For commercial cake and sponge applications." : `For professional ${industry.name.toLowerCase()} applications.`}</p>
+          <dl><dt>Brand / Manufacturer</dt><dd>{product.brand || productPartners[0]?.name || "Confirmed on enquiry"}</dd></dl>
+          <p>{product.description}</p>
           <a href="#quote">Request Details <ArrowDown /></a>
         </aside>
         <div className={styles.overviewGrid}>{overviewCards.map(([Icon, label, value]) => <article key={label}><Icon aria-hidden="true"/><small>{label}</small><strong>{value}</strong></article>)}</div>
@@ -158,7 +161,7 @@ export default async function ProductPage({ params }) {
       <div className={styles.applicationRail}><h3>Application starting points</h3><div>{applications.map((application, index) => <a className={index === 0 ? styles.activeApplication : undefined} href="#quote" key={application}>{application}<ArrowDown /></a>)}</div></div>
       <div className={styles.buyerSupport}>
         <article><ShieldCheck aria-hidden="true"/><div><small>Technical buyer note</small><h3>Validate Before Commercial Use</h3><p>{technicalNote}</p><a href="#quote">Request Product Documents <ArrowDown /></a></div></article>
-        <article><MapPin aria-hidden="true"/><div><small>Chennai sourcing support</small><h3>Share Your Requirement</h3><p>{regionalCopy}</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> WhatsApp</a></div></div></article>
+        <article><MapPin aria-hidden="true"/><div><small>Chennai sourcing support</small><h3>Share Your Requirement</h3><p>{regionalCopy}</p><p>Ordering for a small business or personal use? Ask about available packs for your quantity.</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> WhatsApp</a></div></div></article>
       </div>
     </div></section>
 
@@ -170,7 +173,7 @@ export default async function ProductPage({ params }) {
 
     <section className={styles.relatedSection}><div className={styles.wrap}><header className={styles.sectionHeading}><span className={styles.eyebrow}>Continue sourcing</span><h2>Related Products and Industry</h2></header><div className={styles.relatedLinks}><Link href={`/industries/${industry.slug}/`}><strong>{industry.name}</strong><small>View the complete industry range</small></Link>{relatedProducts.map((item) => <Link href={`/products/${item.slug}/`} key={item.slug}><strong>{item.name}</strong><small>{item.usageCategory || item.category}</small></Link>)}</div></div></section>
 
-    <section className={styles.quoteSection} id="quote" aria-labelledby="quote-title"><div className={styles.wrap} data-reveal><div className={styles.quoteIntro}><span className={styles.eyebrow}>Request a quotation</span><h2 id="quote-title">Request {product.name} Price and Availability</h2><p>Share the application, required grade, quantity, documents and delivery city for current sourcing options.</p><ul><li><Check /> Product-aware B2B enquiry</li><li><Check /> Specifications and documents where available</li><li><Check /> Freight and serviceability confirmed per quotation</li></ul></div><ProductQuoteForm product={product.name} applications={applications} whatsappNumber={whatsappNumber} /></div></section>
+    <section className={styles.quoteSection} id="quote" aria-labelledby="quote-title"><div className={styles.wrap} data-reveal><div className={styles.quoteIntro}><span className={styles.eyebrow}>Request a quotation</span><h2 id="quote-title">Request {product.name} Price and Availability</h2><p>Share the application, required grade, quantity, documents and delivery city for current sourcing options.</p><ul><li><Check /> Product-specific enquiry</li><li><Check /> Specifications and documents where available</li><li><Check /> Freight and serviceability confirmed per quotation</li></ul></div><ProductQuoteForm product={product.name} applications={applications} whatsappNumber={whatsappNumber} /></div></section>
     <a className={styles.floatWhatsapp} href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Ask about ${product.name} on WhatsApp`}><MessageCircle /></a><DetailFooter />
   </main>;
 }

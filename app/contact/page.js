@@ -1,3 +1,4 @@
+import { withSocialMetadata } from "../data/metadata";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2, MapPin, PackageSearch, Truck } from "lucide-react";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
@@ -7,7 +8,7 @@ import CoreSeoContent from "../components/CoreSeoContent";
 import { coreContent } from "../data/core-content";
 import styles from "./contact.module.css";
 
-export const metadata = {
+export const metadata = withSocialMetadata({
   title: "Contact Food Ingredients Supplier Chennai | Vikranth",
   description: "Contact Vikranth for bakery, chocolate, dairy, beverage and specialty food ingredient enquiries in Chennai, South India and across India.",
   alternates: { canonical: "/contact/" },
@@ -23,7 +24,7 @@ export const metadata = {
     description: "Request food ingredient pricing, availability and delivery support from Vikranth Chemical Corporation.",
   },
   robots: { index: true, follow: true },
-};
+});
 
 const directions = "https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sri+Sai+Ram+Street+Jyothi+Nagar+Ponnimmanmedu+Chennai+600110";
 
@@ -49,7 +50,7 @@ export default function ContactPage() {
           <div className={styles.searchIntentLinks}>
             <Link href="/products/">Browse ingredients <ArrowRight aria-hidden="true" /></Link>
             <Link href="/industries/">Choose by industry <ArrowRight aria-hidden="true" /></Link>
-            <Link href="/suppliers/">View suppliers <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/associates/">View suppliers <ArrowRight aria-hidden="true" /></Link>
           </div>
         </div>
         <div className={styles.enquiryGuide}>

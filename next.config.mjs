@@ -4,6 +4,7 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 export default function nextConfig(phase) {
   return {
     images: { unoptimized: true },
+    ...(process.env.VCC_LOW_MEMORY_BUILD === "1" ? { experimental: { cpus: 1 } } : {}),
     output: "export",
     // Keep the live preview isolated from production build output.
     // A process-specific directory also prevents concurrent local previews

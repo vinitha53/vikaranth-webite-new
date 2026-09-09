@@ -1,0 +1,82 @@
+[
+  {
+    "source": "/industries/bakery-ingredients-hero.png",
+    "output": "/industries/bakery-ingredients-hero.webp",
+    "before": 2126731,
+    "after": 157638,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/chocolate-confectionery-hero.png",
+    "output": "/industries/chocolate-confectionery-hero.webp",
+    "before": 1933861,
+    "after": 130672,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/dairy-ingredients-hero.png",
+    "output": "/industries/dairy-ingredients-hero.webp",
+    "before": 1754314,
+    "after": 81402,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/food-additives-preservatives-hero.png",
+    "output": "/industries/food-additives-preservatives-hero.webp",
+    "before": 1991208,
+    "after": 119778,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/fruit-processing-hero.png",
+    "output": "/industries/fruit-processing-hero.webp",
+    "before": 2078449,
+    "after": 144990,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/functional-ingredients-hero.png",
+    "output": "/industries/functional-ingredients-hero.webp",
+    "before": 2107644,
+    "after": 150770,
+    "width": 1600,
+    "height": 901
+  },
+  {
+    "source": "/industries/hydrocolloids-stabilizers-hero.png",
+    "output": "/industries/hydrocolloids-stabilizers-hero.webp",
+    "before": 1785498,
+    "after": 93860,
+    "width": 1600,
+    "height": 901
+  },
+  {
+    "source": "/industries/ice-cream-ingredients-hero.png",
+    "output": "/industries/ice-cream-ingredients-hero.webp",
+    "before": 1980687,
+    "after": 139948,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/nutraceutical-pharma-hero.png",
+    "output": "/industries/nutraceutical-pharma-hero.webp",
+    "before": 2004429,
+    "after": 127434,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "source": "/industries/sweeteners-syrups-starches-hero.png",
+    "output": "/industries/sweeteners-syrups-starches-hero.webp",
+    "before": 1821026,
+    "after": 103634,
+    "width": 1600,
+    "height": 900
+  }
+]

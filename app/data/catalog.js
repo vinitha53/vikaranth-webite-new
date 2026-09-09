@@ -277,7 +277,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
     slug, name, industrySlug: primaryIndustry.slug, category: primaryIndustry.name, image: productImageByName[name] || primaryIndustry.image,
     brand: approved?.brand, range: approved?.range, packs: approved?.packs, itemCode: approved?.itemCode, dosage: approved?.dosage, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[primaryIndustry.slug]?.find((group) => group.ingredients.includes(name))?.name || primaryIndustry.name,
     summary: `${name} for consistent food production`,
-    description: approved?.description || `${name} is listed in Vikranth's ${industry.name} catalogue for professional B2B enquiry. Product identity and category are verified in the current structured catalogue; grade, specification, pack, documents and suitability require confirmation for the selected option.`
+    description: approved?.description || `${name} is part of our ${industry.name.toLowerCase()} range. Ask our Chennai team about the available grade, pack size and supply options for your application and quantity.`
   });
 }));
 

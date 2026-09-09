@@ -2382,3 +2382,19 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-sticky-spacer{height:106px;flex-basis:106px}
   .home-page .home-nav{inset-block-start:106px!important}
 }
+
+/* Keep essential buying information in normal flow on small screens. */
+@media(max-width:767px){
+  .home-page .hero{height:auto;min-height:760px;padding:0}
+  .home-page .hero .hero-content{width:100%;height:auto;min-height:760px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:100px 44px 90px}
+  .home-page .hero .hero-mini-title{position:static;transform:none;margin:0 0 24px;font-size:10px}
+  .home-page .hero .hero-message{position:relative;top:auto;left:auto;width:100%;transform:none;margin:0}
+  .home-page .hero-message .hero-title{font-size:clamp(30px,8vw,42px);line-height:1.08}
+  .home-page .hero-message .hero-title span{white-space:normal}
+  .home-page .hero-message .hero-copy{margin-top:24px}
+  .home-page .hero-message .hero-copy>p{display:block;font-size:13px;line-height:1.7;margin-bottom:24px;color:#fff0df}
+  .home-page .hero-message .hero-buttons{gap:10px}
+  .home-page .hero-message .hero-buttons .btn{min-height:46px;font-size:12px;padding-inline:12px}
+}
+
+@media(max-width:767px){.home-page .hero-message .hero-copy>p{width:calc(100% - 76px);max-width:280px!important;margin-inline:auto!important}.home-page .hero .hero-mini-title{inset:auto!important;align-self:center;transform:none!important;text-align:center}}

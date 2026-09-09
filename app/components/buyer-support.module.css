@@ -1,0 +1,15 @@
+.section{max-width:1240px;margin:0 auto;padding:76px 32px;color:#352015}
+.heading{display:grid;grid-template-columns:1.2fr 1fr;align-items:end;gap:48px;margin-bottom:30px}
+.heading span{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a64b20}
+.heading h2{font-family:Georgia,serif;font-size:clamp(30px,3.4vw,46px);font-weight:500;line-height:1.14;margin:12px 0 0;letter-spacing:-.03em}
+.heading p,.grid p,.coverage p{font-size:14px;line-height:1.75;color:#69574b;margin:0}
+.grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px}
+.grid article{min-width:0;display:flex;flex-direction:column;padding:28px;border:1px solid #e9dccc;border-radius:18px;background:#fffdf9;box-shadow:0 8px 28px #48281006}
+.grid article:first-child{background:#392318;color:#fff5e7;border-color:#392318}
+.grid article:first-child p{color:#e1cbbb}.grid article:first-child a{color:#f5bd77}
+.cardTop{display:flex;justify-content:space-between;align-items:center;color:#b86b36;margin-bottom:26px}.cardTop svg{width:28px;height:28px;stroke-width:1.5}.cardTop span{font-size:12px;letter-spacing:.12em}
+.grid h3{font-size:19px;line-height:1.35;margin:0 0 12px}.grid p{margin-bottom:24px}
+.grid a,.coverage a{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;color:#9b421c;font-size:13px;font-weight:750;text-decoration:none;margin-top:auto}.grid a svg,.coverage a svg{width:17px;flex-shrink:0}
+.grid a:focus-visible,.coverage a:focus-visible{outline:2px solid #cf783d;outline-offset:6px;border-radius:2px}
+.coverage{display:flex;gap:14px;align-items:center;border-top:1px solid #e9dccc;margin-top:26px;padding-top:22px}.coverage>svg{width:23px;flex-shrink:0;color:#a64b20}.coverage p{flex:1;font-size:13px}.coverage a{flex-shrink:0;margin:0}
+@media(max-width:800px){.section{padding:48px 22px}.heading{grid-template-columns:1fr;gap:18px}.grid{grid-template-columns:1fr}.grid article{padding:24px}.cardTop{margin-bottom:16px}.coverage{align-items:flex-start;flex-wrap:wrap}.coverage a{margin-left:37px}}

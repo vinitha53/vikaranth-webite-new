@@ -9,7 +9,11 @@
     "audit:all-pages": "node scripts/audit-all-pages.mjs",
     "start": "next start",
     "lint": "next lint",
-    "deploy:cloudflare": "npm run build && wrangler pages deploy"
+    "deploy:cloudflare": "npm run build && wrangler pages deploy",
+    "audit:search": "node scripts/audit-search-site.mjs",
+    "audit:media": "node scripts/audit-media.mjs",
+    "test:search": "node scripts/test-search-intent.mjs",
+    "verify:layouts": "node scripts/verify-layouts.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

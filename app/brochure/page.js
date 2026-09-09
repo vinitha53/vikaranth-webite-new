@@ -1,3 +1,4 @@
+import { withSocialMetadata } from "../data/metadata";
 import Link from "next/link";
 import { ArrowRight, Download, FileCheck2 } from "lucide-react";
 import { DetailFooter, DetailHeader } from "../components/DetailChrome";
@@ -6,12 +7,12 @@ import { coreContent } from "../data/core-content";
 import ContactBrochureFlipbook from "../contact/ContactBrochureFlipbook";
 import styles from "./brochure.module.css";
 
-export const metadata = {
+export const metadata = withSocialMetadata({
   title: "Food Ingredient Product Brochure | Vikranth Chennai",
   description: "View or download Vikranth's food ingredient brochure, then request current availability, product documents and a B2B quotation.",
   alternates: { canonical: "/brochure/" },
   robots: { index: true, follow: true },
-};
+});
 
 export default function BrochurePage() {
   const schema = [
