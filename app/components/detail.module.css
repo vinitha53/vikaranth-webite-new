@@ -568,3 +568,6 @@
 /* The collection component owns the industry catalogue surface. */
 .industryPage .catalogBrowser{padding:0;border:0;background:transparent;box-shadow:none}
 .industryPage .catalogBrowser>[data-range-catalog]{margin-top:0}
+
+/* Individual industry heroes no longer include the procurement proof strip. */
+.industryHeroGridSingle{grid-template-columns:minmax(0,1fr)}

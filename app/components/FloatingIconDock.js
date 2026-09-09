@@ -13,7 +13,7 @@ const quickQuestions = [
 const answers = {
   "Find an ingredient": "Tell us the finished product you make, such as bread, chocolate, beverages or dairy. We will help you narrow the suitable ingredient family.",
   "Request a quote": "Please share the ingredient name, required quantity and delivery city. Our team will confirm the suitable grade, pack size and availability.",
-  "Talk to our team": "You can call us on +91 87544 42924 or send your requirement through the enquiry form. Our B2B team will respond with the next step.",
+  "Talk to our team": "You can call us on +91 98409 92985 or send your requirement through the enquiry form. Our B2B team will respond with the next step.",
 };
 
 export default function FloatingIconDock() {
@@ -52,7 +52,7 @@ export default function FloatingIconDock() {
       </div>
 
       <div className="floating-site-dock floating-site-dock-right" role="navigation" aria-label="Quick contact">
-        <a className="floating-site-button" href="tel:+918754442924" aria-label="Call Vikranth Chemical Corporation"><img src="/floating-icons/phone.webp" alt="" width="70" height="70" decoding="async" /></a>
+        <a className="floating-site-button" href="tel:+919840992985" aria-label="Call Vikranth Chemical Corporation"><img src="/floating-icons/phone.webp" alt="" width="70" height="70" decoding="async" /></a>
         <a className="floating-site-button" href={"https://wa.me/" + whatsappNumber} target="_blank" rel="noreferrer" aria-label="Chat with Vikranth on WhatsApp"><img src="/whatsapp-branded-seo.webp" alt="" width="70" height="70" decoding="async" /></a>
         <button className="floating-site-button floating-site-chatbot" type="button" onClick={() => setChatOpen((open) => !open)} aria-label={chatOpen ? "Close ingredient chatbot" : "Open ingredient chatbot"} aria-expanded={chatOpen}>
           <img src="/chatbot-chef.webp" alt="" width="70" height="70" decoding="async" />

@@ -9,37 +9,11 @@ import { buildProductFaqs } from "../../data/product-faqs";
 import { getPartner, partnersForProduct } from "../../data/partners";
 import { brandLogos } from "../../data/brand-logos";
 import { whatsappNumberForProduct, whatsappUrl } from "../../data/whatsapp";
+import { getProductApplications } from "../../data/product-applications";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
 
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
-const applicationsByIndustry = {
-  "bakery-ingredients": ["Commercial cakes and sponges", "Bread and baked goods", "Bakery fillings and desserts", "Commercial bakery production"],
-  "chocolate-confectionery": ["Chocolate and confectionery", "Cakes and bakery products", "Desserts and fillings", "Professional food production"],
-  "dairy-ingredients": ["Dairy formulations", "Cakes and desserts", "Beverage applications", "Professional food production"],
-  "beverage-ingredients": ["Hot and cold beverages", "Flavoured drinks", "Food-service beverages", "Commercial beverage production"],
-  "ice-cream-ingredients": ["Ice cream and gelato", "Frozen desserts", "Food-service desserts", "Commercial frozen production"],
-  "fruit-processing": ["Fruit preparations", "Bakery and dessert fillings", "Beverages and dairy products", "Commercial food processing"],
-  "hydrocolloids-stabilizers": ["Texture and viscosity control", "Product stabilisation", "Moisture and suspension systems", "Commercial food formulations"],
-  "sweeteners-syrups-starches": ["Bakery and confectionery", "Beverages and desserts", "Body and solids adjustment", "Commercial food processing"],
-  "functional-ingredients": ["Texture and structure", "Emulsification and stability", "Protein and nutrition systems", "Commercial food production"],
-  "nutraceutical-pharma": ["Nutraceutical formulations", "Nutrition products", "Protein and mineral systems", "Professional product development"],
-  "food-additives-preservatives": ["Process control", "Preservation systems", "Bakery and beverage production", "Commercial food manufacturing"],
-};
-const benefitByIndustry = {
-  "bakery-ingredients": ["Commercial bakery batches", "Texture and structure", "Process-fit evaluation", "Batch consistency"],
-  "chocolate-confectionery": ["Chocolate applications", "Flavour and colour", "Processing format", "Production evaluation"],
-  "dairy-ingredients": ["Dairy solids", "Body and creaminess", "Cross-category use", "Production evaluation"],
-  "beverage-ingredients": ["Beverage formulation", "Body and mouthfeel", "Process compatibility", "Commercial evaluation"],
-  "ice-cream-ingredients": ["Frozen desserts", "Body and texture", "Process compatibility", "Batch evaluation"],
-  "fruit-processing": ["Fruit applications", "Filling and texture", "Format selection", "Production evaluation"],
-  "hydrocolloids-stabilizers": ["Viscosity target", "Suspension target", "Texture management", "Process evaluation"],
-  "sweeteners-syrups-starches": ["Sweetness and solids", "Body and bulking", "Texture contribution", "Process evaluation"],
-  "functional-ingredients": ["Required function", "Process conditions", "Grade selection", "Application trial"],
-  "nutraceutical-pharma": ["Required grade", "Format compatibility", "Document review", "Application trial"],
-  "food-additives-preservatives": ["Required function", "Process conditions", "Grade verification", "Compliance review"],
-};
-
 const cakeGelFaq = [
   buyerFaq,
   ["What is cake gel commonly evaluated for?", "Cake gel is commonly evaluated for batter stability, volume, texture and batch consistency in commercial cakes and other aerated bakery products."],
@@ -74,8 +48,8 @@ export default async function ProductPage({ params }) {
   if (!product) notFound();
   const industry = getIndustry(product.industrySlug);
   const isCakeGel = product.slug === "cake-gel";
-  const applications = isCakeGel ? ["Sponge cakes", "Cupcakes", "Aerated cake batters", "Commercial bakery batches"] : applicationsByIndustry[product.industrySlug];
-  const benefits = isCakeGel ? ["Batter stability", "Cake volume", "Texture", "Batch consistency"] : benefitByIndustry[product.industrySlug];
+  const applicationDetails = getProductApplications(product);
+  const applications = applicationDetails.map(({ title }) => title);
   const faq = isCakeGel ? cakeGelFaq : buildProductFaqs(product, industry, applications);
   const mappedPartners = partnersForProduct(product.name);
   const catalogSupplier = product.range === "imported" ? getPartner("delta-nutritives") : product.range === "indian" ? getPartner("campco") : null;
@@ -92,24 +66,11 @@ export default async function ProductPage({ params }) {
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/` }, { "@type": "ListItem", position: 3, name: product.name, item: canonicalUrl }] },
     { "@context": "https://schema.org", "@type": "FAQPage", "@id": `${canonicalUrl}#faq`, mainEntity: faq.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) },
   ];
-  const evaluationCards = benefits.map((benefit, index) => ({
-    icon: [FileCheck2, SearchCheck, PackageCheck, Truck][index],
-    title: benefit,
-    copy: [
-      `Assess suitability for the selected ${industry.name.toLowerCase()} recipe.`,
-      "Compare the chosen grade against the target profile and appearance.",
-      "Review format, handling and behaviour under the intended process.",
-      "Validate through controlled trials before commercial adoption.",
-    ][index],
+  const evaluationCards = applicationDetails.map(({ title, description }, index) => ({
+    icon: [PackageCheck, SearchCheck, FlaskConical, Truck][index],
+    title,
+    copy: description,
   }));
-  const overviewCards = [
-    [PackageCheck, "Category", product.brochureDisplayCategory || product.category],
-    [FlaskConical, "Form / type", product.usageCategory || "Confirmed per enquiry"],
-    [SearchCheck, "Applications", applications.join(" · ")],
-    [Truck, "Pack & minimum quantity", product.packs || "Confirmed per enquiry"],
-    [FileCheck2, "Documents", "Requested for the selected product and grade"],
-    [BadgeCheck, "Availability", "Confirmed against product, quantity and delivery location"],
-  ];
   const heroCopy = isCakeGel ? "Source cake gel for commercial cakes, sponge products and other aerated bakery applications. Vikranth helps buyers confirm the available product, pack, documents, sample options and commercial quotation." : `Source ${product.name} for ${applications.slice(0, 3).join(", ").toLowerCase()}. Vikranth supports professional buyers with product, grade, pack, document and current commercial-availability confirmation.`;
   const proofPoints = isCakeGel ? ["Commercial bakery supply", "Documents on request", "India enquiries reviewed"] : ["B2B supply enquiry", "Documents on request", "India enquiries reviewed"];
   const technicalNote = isCakeGel ? "Dosage, composition, storage, shelf life and performance depend on the selected product and grade. Review the current specification and validate the ingredient in a controlled formulation trial." : "Performance depends on the exact grade, supplier specification, formulation and process. Review current product documents and validate suitability through the buyer's own technical and quality process.";
@@ -135,33 +96,19 @@ export default async function ProductPage({ params }) {
           <strong><small>Brand</small>{product.brand}</strong>
         </div>}
         {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}><img src={partner.logo} alt="" width="180" height="72" loading="lazy" decoding="async" /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" width="156" height="73" loading="lazy" decoding="async" /><strong>Vikranth</strong></div>}</div></div></div></div>
-      <a href="#snapshot" className={styles.scrollCue} data-scroll-cue><span>Product details</span><ArrowDown /></a>
+      <a href="#uses" className={styles.scrollCue} data-scroll-cue><span>Applications</span><ArrowDown /></a>
     </div></section>
 
-    <section className={styles.snapshotSection} id="snapshot"><div className={styles.wrap}>
-      <header className={styles.snapshotHeading}><span className={styles.eyebrow}>Product overview</span><h2><span>{product.name}</span> <em>Product Details</em></h2><p>Pack, application and sourcing details to help you plan your {product.name} order.</p><i aria-hidden="true" /></header>
-      <div className={styles.overviewShell}>
-        <aside className={styles.overviewProduct}>
-          <PackageCheck aria-hidden="true"/><small>Product</small><h3>{product.name}</h3><span>{product.brochureDisplayCategory || product.category}</span>
-          <dl><dt>Brand / Manufacturer</dt><dd>{product.brand || productPartners[0]?.name || "Confirmed on enquiry"}</dd></dl>
-          <p>{product.description}</p>
-          <a href="#quote">Request Details <ArrowDown /></a>
-        </aside>
-        <div className={styles.overviewGrid}>{overviewCards.map(([Icon, label, value]) => <article key={label}><Icon aria-hidden="true"/><small>{label}</small><strong>{value}</strong></article>)}</div>
-      </div>
-      <div className={styles.overviewCta}><MessageCircle aria-hidden="true"/><div><strong>Need pack size, pricing or documents?</strong><span>Send the required quantity and delivery location for a commercial check.</span></div><a href="#quote">Send an Enquiry <ArrowDown /></a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle /> Ask on WhatsApp</a></div>
-    </div></section>
-
-    <section className={styles.uses} aria-labelledby="uses-title"><div className={styles.wrap}>
-      <header className={styles.evaluationHeading} data-heading><div><span className={styles.eyebrow}>{product.name} &nbsp;•&nbsp; Benefits &amp; Applications</span><h2 id="uses-title">Evaluate the <em>Right Grade</em> for Your Application</h2><p>Review flavour, colour, format and process suitability before commercial adoption.</p></div><div><a href="#quote">Request a Sample</a><a href={whatsapp} target="_blank" rel="noopener noreferrer">Talk to a Supplier</a></div></header>
+    <section className={styles.uses} id="uses" aria-labelledby="uses-title"><div className={styles.wrap}>
+      <header className={styles.evaluationHeading} data-heading><div><span className={styles.eyebrow}>{product.name} &nbsp;•&nbsp; Product Applications</span><h2 id="uses-title">Applications for <em>{product.name}</em></h2><p>Four practical ways to use this product in commercial food and beverage production.</p></div><div><a href="#quote">Request a Sample</a><a href={whatsapp} target="_blank" rel="noopener noreferrer">Talk to a Supplier</a></div></header>
       <div className={styles.evaluationFramework} data-stagger>
-        {evaluationCards.map(({ icon: Icon, title, copy }, index) => <article className={styles.evaluationCard} key={title}><span className={styles.evaluationIcon}><Icon aria-hidden="true"/></span><div><h3>{title}</h3><p>{copy}</p><a href="#quote">Review checkpoint <ArrowDown /></a></div><b>0{index + 1}</b></article>)}
-        <div className={styles.evaluationCore}><small>Evaluation framework</small><strong>{product.name}</strong><i aria-hidden="true"/><span>4 commercial checkpoints</span><a href="#quote">Start Your Enquiry <ArrowDown /></a></div>
+        {evaluationCards.map(({ icon: Icon, title, copy }, index) => <article className={styles.evaluationCard} key={title}><span className={styles.evaluationIcon}><Icon aria-hidden="true"/></span><div><h3>{title}</h3><p>{copy}</p><a href="#quote">Discuss this application <ArrowDown /></a></div><b>0{index + 1}</b></article>)}
+        <div className={styles.evaluationCore}><small>Product application guide</small><strong>{product.name}</strong><i aria-hidden="true"/><span>4 practical uses</span><a href="#quote">Start Your Enquiry <ArrowDown /></a></div>
       </div>
-      <div className={styles.applicationRail}><h3>Application starting points</h3><div>{applications.map((application, index) => <a className={index === 0 ? styles.activeApplication : undefined} href="#quote" key={application}>{application}<ArrowDown /></a>)}</div></div>
+      <div className={styles.applicationRail}><h3>Choose your application</h3><div>{applications.map((application, index) => <a className={index === 0 ? styles.activeApplication : undefined} href="#quote" key={application}>{application}<ArrowDown /></a>)}</div></div>
       <div className={styles.buyerSupport}>
-        <article><ShieldCheck aria-hidden="true"/><div><small>Technical buyer note</small><h3>Validate Before Commercial Use</h3><p>{technicalNote}</p><a href="#quote">Request Product Documents <ArrowDown /></a></div></article>
-        <article><MapPin aria-hidden="true"/><div><small>Chennai sourcing support</small><h3>Share Your Requirement</h3><p>{regionalCopy}</p><p>Ordering for a small business or personal use? Ask about available packs for your quantity.</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> WhatsApp</a></div></div></article>
+        <article><ShieldCheck aria-hidden="true"/><div><small>Application guidance</small><h3>Confirm Suitability for Your Recipe</h3><p>{technicalNote}</p><a href="#quote">Request Product Documents <ArrowDown /></a></div></article>
+        <article><MapPin aria-hidden="true"/><div><small>Application enquiry</small><h3>Discuss Your Production Need</h3><p>Tell us which {product.name} application you selected, your finished product, process and required result.</p><p>{regionalCopy}</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> WhatsApp</a></div></div></article>
       </div>
     </div></section>
 

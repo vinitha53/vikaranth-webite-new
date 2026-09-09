@@ -1,28 +1,15 @@
 import Link from "next/link";
 import { buyerFaq } from "../data/business";
 import { notFound } from "next/navigation";
-import { ArrowRight, Box, Check, ClipboardList, FileCheck, FileText, Handshake, MapPin, PackageCheck, ShieldCheck, SlidersHorizontal, Truck } from "lucide-react";
+import { ArrowRight, Box, Check, ClipboardList, FileCheck, Handshake, MapPin, PackageCheck, ShieldCheck, SlidersHorizontal, Truck } from "lucide-react";
 import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups, foodAdditiveProductSuppliers } from "../data/catalog";
 import { industryContent } from "../data/industry-content";
-import { partnersForIndustry } from "../data/partners";
+import { partnersForIndustry, partnersForProduct } from "../data/partners";
 import { DetailHeader, DetailFooter, PageCta, styles } from "./DetailChrome";
 import IndustryApplicationGuide from "./IndustryApplicationGuide";
 import RangeCatalog from "./RangeCatalog";
 
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
-const proofPointMap = {
-  "bakery-ingredients": ["Commercial packs", "Document support", "Application-led sourcing"],
-  "chocolate-confectionery": ["Indian and imported ranges", "Commercial quantities", "Grade confirmation"],
-  "beverage-ingredients": ["Formulation-relevant options", "Commercial packs", "Document requests"],
-  "ice-cream-ingredients": ["Bases to toppings", "Texture support", "Commercial sourcing"],
-  "functional-ingredients": ["Function-led selection", "Grade checks", "Technical documents"],
-  "nutraceutical-pharma": ["Specification checks", "Document coordination", "Commercial pack guidance"],
-  "dairy-ingredients": ["Dairy powder options", "Commercial packs", "Delivery coordination"],
-  "food-additives-preservatives": ["Grade confirmation", "Document support", "Commercial quantities"],
-  "hydrocolloids-stabilizers": ["Function-led sourcing", "Multiple gum families", "Document support"],
-  "fruit-processing": ["Fruit and finishing range", "Commercial packs", "Format confirmation"],
-  "sweeteners-syrups-starches": ["Liquid and dry options", "Commercial packs", "Cross-category sourcing"]
-};
 const regionalBenefitIcons = [Box, SlidersHorizontal, FileCheck, Handshake];
 const industryHeroImages = {
   "bakery-ingredients": "/industries/bakery-ingredients-hero.webp",
@@ -96,7 +83,15 @@ export default async function IndustryPage({ params }) {
     const product = products.find((item) => item.name === name);
     const industryGroup = groups?.find((group) => group.ingredients.includes(name));
     const brochureSupplier = industry.slug === "food-additives-preservatives" ? foodAdditiveProductSuppliers[name] : null;
-    return product ? { ...product, brand: brochureSupplier || product.brand, brandOnImageOnly: Boolean(brochureSupplier), usageCategory: industryGroup?.name || product.usageCategory } : null;
+    const productSupplier = partnersForProduct(name)[0];
+    return product ? {
+      ...product,
+      brand: brochureSupplier || product.brand,
+      brandOnImageOnly: Boolean(brochureSupplier),
+      usageCategory: industryGroup?.name || product.usageCategory,
+      supplierLogo: productSupplier?.logo,
+      supplierName: productSupplier?.name,
+    } : null;
   }).filter(Boolean);
   const partners = partnersForIndustry(industry.slug);
   const relatedIndustries = content.related.map((slug) => getIndustry(slug)).filter(Boolean);
@@ -117,9 +112,8 @@ export default async function IndustryPage({ params }) {
       <div className={styles.industryHeroShade} />
       <div className={styles.industryHeroInner}>
         <nav className={styles.crumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/industries">Industries</Link><span>/</span><span>{industry.name}</span></nav>
-        <div className={styles.industryHeroGrid}>
+        <div className={`${styles.industryHeroGrid} ${styles.industryHeroGridSingle}`}>
           <div><span className={styles.heroKicker}>{content.eyebrow}</span><h1>{content.h1}</h1><p>{content.summary}</p><div className={styles.heroActions}><Link href="#industry-products">Explore Product Range <ArrowRight size={16} /></Link><Link href="/contact/#enquiry">Discuss Your Requirement</Link></div></div>
-          <aside className={styles.heroProof}><span>Procurement support</span><ul>{proofPointMap[industry.slug].map((point, index) => { const Icon = [PackageCheck, FileText, Truck][index]; return <li key={point}><Icon /><b>{point}</b></li>; })}</ul></aside>
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 "use client";
 
 import "./sections-v2.css";
-import BuyerSupport from "./components/BuyerSupport";
 import { business, buyerFaq } from "./data/business";
 
 import { useEffect, useRef, useState } from "react";
@@ -479,14 +478,14 @@ export default function Home() {
               <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
               <span className="utility-tag">Chennai · India</span>
-              <a className="utility-contact" href="tel:+918754442924"><Phone size={14}/> +91 87544 42924</a>
+              <a className="utility-contact" href="tel:+919840992985"><Phone size={14}/> +91 98409 92985</a>
               <a className="utility-contact" href="mailto:vikranth.chemicals@gmail.com"><Mail size={14}/> vikranth.chemicals@gmail.com</a>
             </div>
             <div className="utility-set" aria-hidden="true">
               <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
               <span className="utility-tag">Chennai · India</span>
-              <span className="utility-contact"><Phone size={14}/> +91 87544 42924</span>
+              <span className="utility-contact"><Phone size={14}/> +91 98409 92985</span>
               <span className="utility-contact"><Mail size={14}/> vikranth.chemicals@gmail.com</span>
             </div>
           </div>
@@ -654,15 +653,16 @@ export default function Home() {
         {heroVideoEnabled && <button type="button" className="hero-video-control" aria-pressed={heroVideoPaused} onClick={() => { const paused = !heroVideoPaused; heroPauseRef.current = paused; setHeroVideoPaused(paused); if (paused) heroVideoRef.current?.pause(); else heroVideoRef.current?.play().catch(() => {}); }}>{heroVideoPaused ? "Play background video" : "Pause background video"}</button>}
         <div className="hero-grain" aria-hidden="true"/>
         <div className="container hero-content">
-          <span className="hero-mini-title">Food Ingredients · Chennai</span>
+          <span className="hero-mini-title">Food Ingredients Trader · Chennai</span>
           <div className="hero-message">
-            <h1 className="hero-title"><span>Food Ingredients Supplier</span><em>in Chennai</em></h1>
+            <h1 className="hero-title"><span>Food Ingredients Supplier</span></h1>
             <div className="hero-copy">
-              <p>Food ingredient supply and wholesale distribution from Chennai to South India and pan-India. Source bakery, chocolate, dairy, beverage and specialty ingredients for your business, with smaller orders welcome subject to available packs.</p>
+              <p className="hero-copy-desktop">Food ingredient supply and wholesale distribution from Chennai to South India and pan-India. Source bakery, chocolate, dairy, beverage and specialty ingredients for your business, with smaller orders welcome subject to available packs.</p>
+              <p className="hero-copy-mobile">Food ingredients for every need.<br/>Bulk and small orders across India.</p>
               <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
               <div className="hero-buttons">
                 <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
-                <a className="btn ghost" href="https://wa.me/918754442924">WhatsApp Us</a>
+                <a className="btn ghost" href={"https://wa.me/" + WHATSAPP_NUMBERS.general}>WhatsApp Us</a>
                 <a className="btn ghost hero-catalogue-link" href="/brochure/">Download Product Catalogue</a>
               </div>
             </div>
@@ -671,12 +671,11 @@ export default function Home() {
         <div className="scroll-cue" aria-hidden="true"><span/> Scroll</div>
       </section>
 
-      <BuyerSupport />
       <section className="home-trust-strip botanical-light-section" aria-labelledby="trust-strip-title">
         <div className="container">
           <div className="trust-strip-copy">
             <span className="trust-eyebrow">Why Vikranth</span>
-            <h2 id="trust-strip-title">Reliable Food<br/>Ingredient Sourcing<br/><em>Across South India</em></h2>
+            <h2 id="trust-strip-title">Reliable Food<br/>Ingredient Sourcing<br/><em>Across India</em></h2>
             <span className="trust-ornament" aria-hidden="true"/>
             <p>Source bakery, chocolate, dairy, beverage and food-processing ingredients with clear commercial support from Chennai.</p>
             <div className="trust-actions">
@@ -796,7 +795,7 @@ export default function Home() {
               </ul>
               <div className="enquiry-card-actions">
                 <a className="btn gold" href="/contact/#enquiry">Start Business Enquiry <ArrowRight size={18}/></a>
-                <a className="enquiry-text-link" href="https://wa.me/918754442924">Talk on WhatsApp <ArrowRight size={16}/></a>
+                <a className="enquiry-text-link" href={"https://wa.me/" + WHATSAPP_NUMBERS.general}>Talk on WhatsApp <ArrowRight size={16}/></a>
               </div>
             </article>
             <article className="enquiry-card enquiry-card-small">
@@ -968,7 +967,7 @@ export default function Home() {
           <span className="eyebrow light-text">Tell us what you need</span>
           <h2>Looking for a Food Ingredient<br/><em>Supplier in Chennai?</em></h2>
           <p>Share your required ingredient, application, quantity and delivery location. The Vikranth team will review the requirement and respond with availability and the next steps.</p>
-          <div><a className="btn gold" href="/contact/#enquiry">Request a Quote <ArrowRight size={17}/></a><a className="btn ghost" href="tel:+918754442924"><Phone size={16}/> Call Vikranth</a></div>
+          <div><a className="btn gold" href="/contact/#enquiry">Request a Quote <ArrowRight size={17}/></a><a className="btn ghost" href="tel:+919840992985"><Phone size={16}/> Call Vikranth</a></div>
         </div>
       </section>
 
@@ -976,7 +975,7 @@ export default function Home() {
         <BotanicalCorners/>
         <div className="container contact-strip-grid">
           <div><span className="eyebrow">Start your ingredient enquiry</span><h2>Vikranth Chemical Corporation</h2></div>
-          <div className="contact-phone-card"><Phone/><span><small>Phone</small><a className="contact-phone-number" href="tel:+918754442924"><strong>General Enquiries</strong><b>+91 87544 42924</b></a><a className="contact-phone-number" href="tel:+918754429922"><strong>Anchor Products</strong><b>+91 87544 29922</b></a><a className="contact-phone-number" href="tel:+919841068559"><strong>Delta Nutritives</strong><b>+91 98410 68559</b></a></span></div>
+          <div className="contact-phone-card"><Phone/><span><small>Phone</small><a className="contact-phone-number" href="tel:+919840992985"><strong>General Enquiries</strong><b>+91 98409 92985</b></a><a className="contact-phone-number" href="tel:+918754429922"><strong>Anchor Products</strong><b>+91 87544 29922</b></a><a className="contact-phone-number" href="tel:+919841068559"><strong>Delta Nutritives</strong><b>+91 98410 68559</b></a><a className="contact-phone-number" href="tel:+918754442924"><strong>Other Brands</strong><b>+91 87544 42924</b></a></span></div>
           <a href="mailto:vikranth.chemicals@gmail.com"><Mail/><span><small>Email</small><b>vikranth.chemicals@gmail.com</b></span></a>
           <a href="https://www.google.com/maps/search/?api=1&query=Plot+No+2+Sri+Sai+Ram+Street+Jyothi+Nagar+Ponnimmanmedu+Chennai+600110" target="_blank" rel="noreferrer"><MapPin/><span><small>Address & directions</small><b>Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu, Chennai 600110</b></span></a>
         </div>
@@ -987,7 +986,7 @@ export default function Home() {
           <div><Logo light/><p>{business.description}</p></div>
           <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
           <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
-          <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 87544 42924</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
+          <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiries</strong><span>+91 98409 92985</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor Products</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta Nutritives</strong><span>+91 98410 68559</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.otherBrands} target="_blank" rel="noreferrer"><strong>Other Brands</strong><span>+91 87544 42924</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
       </footer>
@@ -1000,7 +999,7 @@ export default function Home() {
           <h2>Tell us what<br/>you’re making.</h2>
           <p>Share your ingredient, application, quantity and delivery location. Our team will confirm availability and suitable next steps.</p>
           <QuoteForm selected={selectedProduct} onDone={() => setQuoteOpen(false)}/>
-          <div className="drawer-contact"><Phone/><span><small>Prefer to talk?</small><b>+91 87544 42924</b></span></div>
+          <div className="drawer-contact"><Phone/><span><small>Prefer to talk?</small><b>+91 98409 92985</b></span></div>
         </aside>
       </div>
     </main>

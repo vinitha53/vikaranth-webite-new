@@ -15,7 +15,7 @@ const rows = [
   ["ARYZTA","imported","bakery-ingredients","Croissant Eggless 30 g|Croissant Eggless 50 g|Croissant Eggless 70 g|Mini Chocolate Roll Eggless 33 g|Mini Cinnamon Whirl Eggless 33 g"],
   ["Sosa","imported","functional-ingredients","Whole Freeze-Dried Raspberries|Raspberry Crispy|Strawberry Crispy|Pineapple Crispy|Passion Fruit Crispy|Yocrispy|Potatowhip|Fruit Pectin NH|Pectina 325 NH 95"],
   ["Les Vergers Boiron","imported","fruit-processing","Boiron Blackberry Puree|Boiron Coconut Puree|Boiron Mango Puree|Boiron Pineapple Puree|Boiron Raspberry Puree|Boiron Strawberry Puree"],
-  ["Anchor","imported","chocolate-confectionery","Indonesia cocoa powder - BG 1000/2000"],
+  ["Anchor","imported","chocolate-confectionery","Indonesia cocoa powder - BG 1000/2000|Black Cocoa Powder"],
   ["Celebre","indian","bakery-ingredients","Red Velvet Cake Mix|Classic Cake Mix Range|Eggless Molten Lava Cake Mix|Waffle Mix|Plum Cake Premix|Sugar Paste / Rolling Fondant|Hot Glaze Neutral|Hot Glaze Fruit"],
   ["Celebre","indian","ice-cream-ingredients","Softy Ice Cream Mix"],
   ["Celebre","indian","fruit-processing","Celebre IQF Fruits|Celebre Fruit Purees"],
@@ -191,7 +191,7 @@ const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogu
 export const approvedRangeProducts = [...new Map([...rowRangeProducts, ...mec3RangeProducts].map((item) => [item.name, item])).values()];
 export const productsForRangeSupplier = (slug) =>
   slug === "delta-nutritives"
-    ? approvedRangeProducts.filter((item) => item.range === "imported" && item.brochureCategory)
+    ? approvedRangeProducts.filter((item) => (item.range === "imported" && item.brochureCategory) || item.brand === "Celebre")
     : slug === "anchor"
       ? approvedRangeProducts.filter((item) => item.brand === "Anchor")
       : [];

@@ -12,6 +12,7 @@ import { brandLogos } from "../data/brand-logos";
 const MEC3_FILTER = "__mec3_catalog__";
 const RANGE_QUERY_PARAM = "catalogRange";
 const CATEGORY_QUERY_PARAM = "catalogCategory";
+const BRAND_QUERY_PARAM = "catalogBrand";
 
 
 
@@ -32,15 +33,20 @@ const brandEyebrows = {
   Celebre: "Indian bakery & dessert range",
 };
 
-export default function RangeCatalog({ products, indianNames = [], supplierMode = false, supplierLogo, supplierName, categoryField = "usageCategory", mec3Catalog = false, collectionTitle = "Ingredient" }) {
+export default function RangeCatalog({ products, indianNames = [], supplierMode = false, supplierLogo, supplierName, categoryField = "usageCategory", mec3Catalog = false, brandDrilldown = false, collectionTitle = "Ingredient" }) {
   const categoryFor = (product) => product[categoryField] || product.usageCategory || product.category;
   const collectionMode = supplierMode || categoryField === "brochureDisplayCategory";
   const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const initialRange = ranges[0] || "indian";
-  const initialCategory = collectionMode ? categoryFor(normalized.find((product) => product.range === initialRange && categoryFor(product)) || {}) || "all" : "all";
+  const allBrands = [...new Set(normalized.map((product) => product.brand).filter(Boolean))];
+  const initialBrand = brandDrilldown ? allBrands[0] || null : null;
+  const initialProduct = brandDrilldown
+    ? normalized.find((product) => product.brand === initialBrand && categoryFor(product))
+    : normalized.find((product) => product.range === initialRange && categoryFor(product));
+  const initialCategory = collectionMode ? categoryFor(initialProduct || {}) || "all" : "all";
   const [active, setActive] = useState(initialRange);
-  const [activeBrand, setActiveBrand] = useState(null);
+  const [activeBrand, setActiveBrand] = useState(initialBrand);
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [openGroups, setOpenGroups] = useState({});
@@ -53,20 +59,25 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     const nav = categoryNavRef.current;
     setCanScrollCategories(Boolean(nav && nav.scrollHeight - nav.clientHeight - nav.scrollTop > 2));
   };
-  const inRange = normalized.filter((product) => product.range === active);
+  const inRange = brandDrilldown ? normalized : normalized.filter((product) => product.range === active);
   const brands = [...new Set(inRange.map((product) => product.brand).filter(Boolean))];
   const hasBrandDirectory = brands.length > 0;
   const selectedBrandProducts = activeBrand ? inRange.filter((product) => product.brand === activeBrand) : [];
   const brandCategories = [...new Set(selectedBrandProducts.map(categoryFor).filter(Boolean))];
-  const categories = [...new Set(inRange.map(categoryFor).filter(Boolean))];
+  const categories = brandDrilldown ? brandCategories : [...new Set(inRange.map(categoryFor).filter(Boolean))];
   const defaultIndustryCategory = categories[0] || "all";
   const selectedCollectionName = activeCategory === "all" ? "All Products" : activeCategory;
   const normalizedQuery = searchQuery.trim().toLowerCase();
-  const categoryFilteredProducts = activeCategory === "all" ? inRange : inRange.filter((product) => categoryFor(product) === activeCategory);
+  const productScope = brandDrilldown ? selectedBrandProducts : inRange;
+  const categoryFilteredProducts = activeCategory === "all" ? productScope : productScope.filter((product) => categoryFor(product) === activeCategory);
   const selectedCollectionProducts = normalizedQuery
     ? categoryFilteredProducts.filter((product) => Object.values(product).map((value) => Array.isArray(value) ? value.join(" ") : typeof value === "object" && value ? JSON.stringify(value) : String(value ?? "")).join(" ").toLowerCase().includes(normalizedQuery))
     : categoryFilteredProducts;
-  const collectionHeading = normalizedQuery && activeCategory === "all" ? "Search Results" : selectedCollectionName;
+  const collectionHeading = normalizedQuery && activeCategory === "all"
+    ? "Search Results"
+    : brandDrilldown && activeBrand
+      ? `${activeBrand} · ${selectedCollectionName}`
+      : selectedCollectionName;
   const visibleGroups = hasBrandDirectory
     ? !activeBrand
       ? categories.map((category) => ({ category, products: inRange.filter((product) => categoryFor(product) === category) }))
@@ -96,8 +107,14 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
       const requestedRange = params.get(RANGE_QUERY_PARAM);
       const availableRanges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
       const restoredRange = availableRanges.includes(requestedRange) ? requestedRange : initialRange;
-      const restoredCategories = [...new Set(normalized
-        .filter((product) => product.range === restoredRange)
+      const availableProducts = brandDrilldown ? normalized : normalized.filter((product) => product.range === restoredRange);
+      const availableBrands = [...new Set(availableProducts.map((product) => product.brand).filter(Boolean))];
+      const requestedBrand = params.get(BRAND_QUERY_PARAM);
+      const restoredBrand = brandDrilldown
+        ? availableBrands.includes(requestedBrand) ? requestedBrand : availableBrands[0] || null
+        : null;
+      const restoredCategories = [...new Set(availableProducts
+        .filter((product) => !restoredBrand || product.brand === restoredBrand)
         .map((product) => product[categoryField] || product.usageCategory || product.category)
         .filter(Boolean))];
       const requestedCategory = params.get(CATEGORY_QUERY_PARAM);
@@ -106,7 +123,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         : restoredCategories[0] || "all";
 
       setActive(restoredRange);
-      setActiveBrand(null);
+      setActiveBrand(restoredBrand);
       setActiveCategory(restoredCategory);
       setSearchQuery("");
       setOpenGroups({});
@@ -116,16 +133,22 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     restoreCatalogState();
     window.addEventListener("popstate", restoreCatalogState);
     return () => window.removeEventListener("popstate", restoreCatalogState);
-  }, [categoryField, collectionMode, initialRange, normalized]);
+  }, [brandDrilldown, categoryField, collectionMode, initialRange, normalized]);
 
   useEffect(() => {
     if (!collectionMode || !catalogStateReady) return;
 
     const url = new URL(window.location.href);
-    url.searchParams.set(RANGE_QUERY_PARAM, active);
+    if (brandDrilldown) {
+      url.searchParams.delete(RANGE_QUERY_PARAM);
+      if (activeBrand) url.searchParams.set(BRAND_QUERY_PARAM, activeBrand);
+    } else {
+      url.searchParams.set(RANGE_QUERY_PARAM, active);
+      url.searchParams.delete(BRAND_QUERY_PARAM);
+    }
     url.searchParams.set(CATEGORY_QUERY_PARAM, activeCategory || "all");
     window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
-  }, [active, activeCategory, catalogStateReady, collectionMode]);
+  }, [active, activeBrand, activeCategory, brandDrilldown, catalogStateReady, collectionMode]);
 
   const selectRange = (range) => {
     setActive(range);
@@ -136,6 +159,14 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     setOpenGroups({});
   };
   const selectBrand = (brand) => {
+    if (brandDrilldown) {
+      const firstProduct = normalized.find((product) => product.brand === brand && categoryFor(product));
+      setActiveBrand(brand);
+      setActiveCategory(categoryFor(firstProduct || {}) || "all");
+      setSearchQuery("");
+      setOpenGroups({});
+      return;
+    }
     setActiveBrand(brand);
     setActiveCategory(brand === "MEC3" ? MEC3_FILTER : null);
     setOpenGroups({});
@@ -169,24 +200,13 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     }
   };
 
-  const categoryBrowser = <div className={styles.categorySection}>
-      <div className={styles.filterHeading}><div><small>Browse by category</small><h3>Find the right ingredient category</h3></div><p>Select a catalogue category to quickly narrow {inRange.length} {rangeLabel.toLowerCase()} products.</p></div>
-      <div className={styles.categoryRail} role="group" aria-label={`Filter ${rangeLabel.toLowerCase()} products by category`}>
-        <button type="button" aria-pressed={activeCategory === "all"} onClick={() => setActiveCategory("all")}>All products <span>{inRange.length}</span></button>
-        {categories.map((category) => <button type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} key={category}>{category} <span>{inRange.filter((product) => categoryFor(product) === category).length}</span></button>)}
-      </div>
-      <div className={styles.resultsSummary} aria-live="polite"><strong>{activeCategory === "all" ? `All ${rangeLabel.toLowerCase()} products` : activeCategory}</strong><span>{collectionMode ? selectedCollectionProducts.length : categoryFilteredProducts.length} ingredients</span></div>
-    </div>;
-
   if (!ranges.length) return null;
 
   return <div className={styles.catalog} data-range-catalog>
-    {ranges.length === 2 && <div className={styles.tabs} role="tablist" aria-label="Product origin range">
+    {!brandDrilldown && ranges.length === 2 && <div className={styles.tabs} role="tablist" aria-label="Product origin range">
       <button type="button" role="tab" aria-selected={active === "indian"} onClick={() => selectRange("indian")}>Indian Range</button>
       <button type="button" role="tab" aria-selected={active === "imported"} onClick={() => selectRange("imported")}>Imported Range <small>International brands</small></button>
     </div>}
-
-    {collectionMode && categoryBrowser}
 
     {collectionMode && <section ref={productFinderRef} className={styles.productFinder} aria-label="Search and filter products">
       <div className={styles.productSearch}>
@@ -200,12 +220,17 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         {searchQuery && <button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }} aria-label="Clear product search"><X aria-hidden="true" /></button>}
       </div>
       <label className={styles.productFilter}>
-        <SlidersHorizontal aria-hidden="true" />
-        <span>Filter</span>
-        <select value={activeCategory} onChange={(event) => selectIndustryCategory(event.target.value)} aria-label="Filter products by category">
-          <option value="all">All categories</option>
-          {categories.map((category) => <option value={category} key={category}>{category}</option>)}
-        </select>
+        <span className={styles.filterIcon}><SlidersHorizontal aria-hidden="true" /></span>
+        <span className={styles.filterControl}>
+          <span className={styles.filterPrompt}>
+            <strong>Choose Category</strong>
+            <small>{categories.length} {categories.length === 1 ? "category" : "categories"} available</small>
+          </span>
+          <select value={activeCategory} onChange={(event) => selectIndustryCategory(event.target.value)} aria-label="Choose a product category">
+            <option value="all">All categories</option>
+            {categories.map((category) => <option value={category} key={category}>{category}</option>)}
+          </select>
+        </span>
       </label>
       <div className={styles.finderSummary} aria-live="polite">
         <strong>{selectedCollectionProducts.length}</strong>
@@ -217,11 +242,29 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     {collectionMode ? <section className={styles.collectionBrowser} aria-label={`${collectionTitle} collections`}>
       <div className={styles.collectionShell}>
         <div className={styles.collectionSidebar}>
-        <nav ref={categoryNavRef} onScroll={updateCategoryScroll} className={styles.collectionTabs} aria-label={`${collectionTitle} categories`}>
-          {supplierMode && <button type="button" aria-pressed={activeCategory === "all"} onClick={() => selectIndustryCategory("all")}><strong>All products</strong><ArrowRight aria-hidden="true" /></button>}
-          {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
-            <strong>{category}</strong><ArrowRight aria-hidden="true" />
-          </button>)}
+        <nav ref={categoryNavRef} onScroll={updateCategoryScroll} className={`${styles.collectionTabs} ${brandDrilldown ? styles.brandDrilldownTabs : ""}`} aria-label={brandDrilldown ? "Delta brands and categories" : `${collectionTitle} categories`}>
+          {brandDrilldown ? brands.map((brand) => {
+            const logo = brandLogos[brand];
+            const isSelected = activeBrand === brand;
+            const productCount = inRange.filter((product) => product.brand === brand).length;
+            return <div className={styles.drilldownBrand} key={brand}>
+              <button className={styles.drilldownBrandButton} type="button" aria-expanded={isSelected} onClick={() => selectBrand(brand)}>
+                <span className={styles.drilldownBrandLogo}>{logo ? <img src={logo} alt="" width="92" height="40" loading="lazy" /> : <b>{brand}</b>}</span>
+                <span><strong>{brand}</strong><small>{productCount} {productCount === 1 ? "product" : "products"}</small></span>
+                <ArrowRight aria-hidden="true" />
+              </button>
+              {isSelected && <div className={styles.drilldownCategories}>
+                {brandCategories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
+                  <strong>{category}</strong><ArrowRight aria-hidden="true" />
+                </button>)}
+              </div>}
+            </div>;
+          }) : <>
+            {supplierMode && <button type="button" aria-pressed={activeCategory === "all"} onClick={() => selectIndustryCategory("all")}><strong>All products</strong><ArrowRight aria-hidden="true" /></button>}
+            {categories.map((category) => <button type="button" aria-pressed={selectedCollectionName === category} onClick={() => selectIndustryCategory(category)} key={category}>
+              <strong>{category}</strong><ArrowRight aria-hidden="true" />
+            </button>)}
+          </>}
         </nav>
         <div className={styles.categoryScrollFooter}>
           {canScrollCategories && <button type="button" className={styles.categoryScrollHint} onClick={() => {
@@ -241,8 +284,8 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
             {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
               <span className={styles.collectionImage}>
                 <img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" />
-                {(brandLogos[product.brand] || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
-                  <img src={brandLogos[product.brand] || supplierLogo} alt={`${product.brand || supplierName} logo`} width="100" height="44" loading="lazy" />
+                {(brandLogos[product.brand] || product.supplierLogo || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
+                  <img src={brandLogos[product.brand] || product.supplierLogo || supplierLogo} alt={`${product.brand || product.supplierName || supplierName} logo`} width="100" height="44" loading="lazy" />
                 </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null}
               </span>
               <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
@@ -290,7 +333,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           })}
         </nav>
       </section>}
-    </> : categoryBrowser}
+    </> : null}
 
     {!collectionMode && <div className={styles.groups} key={`${active}-${activeBrand}-${activeCategory}`}>{visibleGroups.map((group, groupIndex) => {
       const headingId = `range-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
@@ -307,8 +350,8 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <div className={styles.grid}>{group.products.map((product, productIndex) => <Link prefetch={false} className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
             <div className={styles.image}>
               <img src={product.image} alt={`${product.name} by ${product.brand || "Vikranth"}`} width="640" height="640" loading="lazy" />
-              {brandLogos[product.brand]
-                ? <span className={styles.brandLogoBadge} title={product.brand} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand]} alt={`${product.brand} logo`} width="160" height="64" loading="lazy" /></span>
+              {brandLogos[product.brand] || product.supplierLogo
+                ? <span className={styles.brandLogoBadge} title={product.brand || product.supplierName} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand] || product.supplierLogo} alt={`${product.brand || product.supplierName} logo`} width="160" height="64" loading="lazy" /></span>
                 : <span>{product.brand || (active === "indian" ? "Indian range" : "Imported range")}</span>}
             </div>
             <div><small>{categoryFor(product)}</small><h3>{product.name}</h3>{product.cocoaPercentage && <p>{product.cocoaPercentage}</p>}{product.packs && <p>{product.packs}</p>}<b>Explore product <i>→</i></b></div>

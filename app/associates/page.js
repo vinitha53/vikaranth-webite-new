@@ -31,10 +31,10 @@ const faqs = [
   { question: "Can I enquire about CAMPCO ingredients through Vikranth?", answer: "Yes. Vikranth accepts enquiries for listed CAMPCO cocoa and chocolate ingredients. Ask the team to confirm the current product, grade, availability and applicable commercial relationship before purchase." },
   { question: "Does Vikranth handle enquiries outside Chennai?", answer: "Vikranth is based in Chennai and accepts B2B enquiries from other Indian locations. Delivery coverage, freight and lead time are confirmed for the specific product, quantity and destination." },
   { question: "Which manufacturer portfolios can I enquire about?", answer: "The directory currently presents 12 ingredient portfolios. A listing or logo does not by itself claim an authorised distributorship; relationship type, territory, product range and availability are confirmed against current information." },
-  { question: "How do I request a sample or SDS (Safety Data Sheet) from Vikranth?", answer: "You can request samples, spec sheets or SDS documents by calling +91 87544 42924, emailing vikranth.chemicals@gmail.com, or submitting an enquiry through the Request a Quote form on this page." },
+  { question: "How do I request a sample or SDS (Safety Data Sheet) from Vikranth?", answer: "You can request samples, spec sheets or SDS documents by calling +91 98409 92985, emailing vikranth.chemicals@gmail.com, or submitting an enquiry through the Request a Quote form on this page." },
   { question: "Is there a minimum order quantity for bulk ingredient orders?", answer: "Minimum order quantities vary by product and brand. Share your requirement through the enquiry form or WhatsApp and our team will confirm pricing and MOQ for your specific ingredient." },
   { question: "Which industries can submit ingredient enquiries?", answer: "Vikranth supports enquiries from bakery, chocolate and confectionery, dairy, beverage, ice cream and other professional food-processing businesses." },
-  { question: "How can I contact Vikranth Chemical Corporation directly?", answer: "Call +91 87544 42924 or email vikranth.chemicals@gmail.com." },
+  { question: "How can I contact Vikranth Chemical Corporation directly?", answer: "Call +91 98409 92985 or email vikranth.chemicals@gmail.com." },
 ];
 
 export default function AssociatesPage() {

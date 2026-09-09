@@ -8,7 +8,7 @@ import styles from "./contact.module.css";
 
 gsap.registerPlugin(useGSAP);
 
-const WHATSAPP_NUMBER = "918754442924";
+const WHATSAPP_NUMBER = "919840992985";
 const WHATSAPP_MESSAGE = "Hello Vikranth Chemical Corporation, I would like to enquire about your food ingredients and request product details.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, FileUp } from "lucide-react";
 import styles from "./associate-detail.module.css";
+import { WHATSAPP_NUMBERS } from "../../data/whatsapp";
 
 const initial = { name: "", company: "", email: "", phone: "", city: "", product: "", application: "", grade: "", quantity: "", requiredDate: "", documents: "", sample: "No", message: "", consent: false };
 
-export default function AssociateEnquiryForm({ supplier, products, whatsappNumber = "918754442924" }) {
+export default function AssociateEnquiryForm({ supplier, products, whatsappNumber = WHATSAPP_NUMBERS.otherBrands }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initial);
   const [fileName, setFileName] = useState("");

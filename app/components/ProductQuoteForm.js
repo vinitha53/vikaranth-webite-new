@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, FileUp, MessageCircle } from "lucide-react";
 import styles from "../products/[slug]/product-landing.module.css";
+import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const initialValues = {
   name: "", company: "", buyerType: "Business / bulk", email: "", phone: "", city: "", application: "",
@@ -10,7 +11,7 @@ const initialValues = {
   message: "", attachment: "", consent: false,
 };
 
-export default function ProductQuoteForm({ product, applications = [], whatsappNumber = "918754442924" }) {
+export default function ProductQuoteForm({ product, applications = [], whatsappNumber = WHATSAPP_NUMBERS.otherBrands }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);

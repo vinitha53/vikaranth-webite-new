@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./associates.module.css";
 import cards from "./supplier-cards.module.css";
+import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const categoryLabels = {
   campco: "Cocoa & chocolate",
@@ -153,7 +154,7 @@ export default function AssociatesClient({ partners, faqs }) {
         })}</div>
       </section>
 
-      <section className={styles.finalCta}><div><Truck /><div><span>Chennai based · Delivery confirmed per enquiry</span><h2>Start your ingredient enquiry</h2><p>Share the product, grade, application, quantity and delivery city. Our team will confirm the practical next step.</p></div><div className={styles.finalActions}><Link href="/contact#enquiry">Request a quote <ArrowRight /></Link><a href="https://wa.me/918754442924" target="_blank" rel="noreferrer">WhatsApp us</a></div></div></section>
+      <section className={styles.finalCta}><div><Truck /><div><span>Chennai based · Delivery confirmed per enquiry</span><h2>Start your ingredient enquiry</h2><p>Share the product, grade, application, quantity and delivery city. Our team will confirm the practical next step.</p></div><div className={styles.finalActions}><Link href="/contact#enquiry">Request a quote <ArrowRight /></Link><a href={"https://wa.me/" + WHATSAPP_NUMBERS.otherBrands} target="_blank" rel="noreferrer">WhatsApp us</a></div></div></section>
     </div>
   );
 }

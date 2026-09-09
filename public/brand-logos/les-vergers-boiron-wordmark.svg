@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" role="img" aria-labelledby="title">
+  <title id="title">Les Vergers Boiron</title>
+  <rect width="300" height="100" rx="12" fill="#fff"/>
+  <circle cx="43" cy="50" r="27" fill="#b7272c"/>
+  <path d="M33 52c10-18 22-24 33-23-10 7-17 17-20 31-4-5-8-8-13-8Z" fill="#fff"/>
+  <text x="81" y="43" fill="#6a2225" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1">LES VERGERS</text>
+  <text x="80" y="68" fill="#b7272c" font-family="Georgia,serif" font-size="28" font-weight="700">BOIRON</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 100" role="img" aria-labelledby="title">
+  <title id="title">Mona Lisa</title>
+  <rect width="260" height="100" rx="12" fill="#fff"/>
+  <path d="M42 22c14 0 25 11 25 25S56 72 42 72 17 61 17 47s11-25 25-25Zm0 10c-8 0-15 7-15 15s7 15 15 15 15-7 15-15-7-15-15-15Z" fill="#8f2c24"/>
+  <path d="M33 49c7-12 16-18 27-19-6 5-10 12-11 21-5-3-10-4-16-2Z" fill="#d29a3e"/>
+  <text x="77" y="49" fill="#4a1f1a" font-family="Georgia,serif" font-size="26" font-weight="700">MONA LISA</text>
+  <text x="79" y="69" fill="#9b6b45" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="2">DECORATIONS</text>
+</svg>

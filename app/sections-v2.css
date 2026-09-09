@@ -2307,7 +2307,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
  .home-page .enquiry-type-grid{gap:1.2rem}
  .home-page .enquiry-type-grid .enquiry-card{min-height:465px;padding:1.5rem 1.25rem;border-radius:18px}
  .home-page .enquiry-card-actions{left:1.25rem;right:1.25rem;bottom:1.35rem;align-items:stretch;flex-direction:column;gap:.9rem}
- .home-page .enquiry-card-actions .btn{width:100%;justify-content:center}.home-page .enquiry-text-link{align-self:center}
+ .home-page .enquiry-card-actions .btn{width:calc(100% + .3rem);min-width:0;align-self:center;justify-content:center}.home-page .enquiry-text-link{align-self:center}
  .home-page .enquiry-requirement-banner{grid-template-columns:auto 1fr;padding:1.1rem;gap:1rem}
  .home-page .enquiry-requirement-banner .btn{grid-column:1/-1;width:100%;min-width:0}
  .home-page .enquiry-requirement-banner h3{font-size:1.2rem}
@@ -2398,3 +2398,16 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 }
 
 @media(max-width:767px){.home-page .hero-message .hero-copy>p{width:calc(100% - 76px);max-width:280px!important;margin-inline:auto!important}.home-page .hero .hero-mini-title{inset:auto!important;align-self:center;transform:none!important;text-align:center}}
+
+/* Use concise two-line hero copy on phones only. */
+.home-page .hero-message .hero-copy>.hero-copy-mobile{display:none!important}
+@media(max-width:600px){
+  .home-page .hero-message .hero-copy>.hero-copy-desktop{display:none!important}
+  .home-page .hero-message .hero-copy>.hero-copy-mobile{display:block!important;width:auto;max-width:none!important;white-space:nowrap}
+  .home-page .hero{min-height:650px}
+  .home-page .hero .hero-content{min-height:650px;padding:62px 44px 48px}
+  .home-page .hero .hero-mini-title{margin-bottom:16px}
+  .home-page .hero-message .hero-copy{margin-top:16px}
+  .home-page .hero-message .hero-copy>.hero-copy-mobile{margin-bottom:16px!important}
+  .home-page .hero-message .hero-buttons{gap:8px}
+}

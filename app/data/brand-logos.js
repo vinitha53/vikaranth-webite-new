@@ -2,6 +2,7 @@ export const brandLogos = {
   CAMPCO: "/partners/campco-heart.webp",
   Anchor: "/partners/anchor.webp",
   Callebaut: "/brand-logos/callebaut.webp",
+  "Mona Lisa": "/brand-logos/mona-lisa-wordmark.svg",
   "Cacao Barry": "/brand-logos/cacao-barry-seo.webp",
   "Molino Dallagiovanna": "/brand-logos/molino-dallagiovanna-seo.webp",
   "DLA Naturals": "/brand-logos/dla-naturals-seo.webp",
@@ -13,6 +14,7 @@ export const brandLogos = {
   ARYZTA: "/brand-logos/aryzta-seo.webp",
   Pernigotti: "/brand-logos/pernigotti-seo.webp",
   Sosa: "/brand-logos/sosa-clean-seo.webp",
+  "Les Vergers Boiron": "/brand-logos/les-vergers-boiron-wordmark.svg",
   Celebre: "/brand-logos/celebre-seo.webp",
   "CSM / Ulmer Spatz": "/brand-logos/csm-clean-seo.webp",
 };

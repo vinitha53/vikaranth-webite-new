@@ -3,7 +3,7 @@ import { deltaProductImages } from "./delta-product-images";
 export const partners = [
   {slug:"campco",name:"CAMPCO",logo:"/partners/campco-heart.webp",image:"/industries/chocolate-confectionery.webp",summary:"cocoa and chocolate ingredient options for bakery, confectionery, desserts and beverage formulations",about:"CAMPCO is associated with cocoa and chocolate products. Exact catalogue, grade, pack size and commercial availability must be confirmed from current supplier documentation.",products:["Cocoa Powder","Cocoa Butter","Cocoa Mass","Choco Paste","White Chips","Milk Chips","Dark Chips","White Chocomass","Milk Chocomass","Dark Chocomass","Chocolate Drink","White Chocolate","Milk Chocolate","Dark Chocolate"],industries:["chocolate-confectionery","bakery-ingredients"]},
   {slug:"delta-nutritives",name:"Delta Nutritives",logo:"/partners/delta.webp",image:"/industries/ice-cream-ingredients.webp",summary:"dessert, chocolate, frozen fruit, dairy, ice cream and bakery ingredient options",about:"Delta Nutritives presents a portfolio spanning chocolate, ice cream, frozen fruit, fruit filling and dairy applications. Current products and packs must be verified before quotation.",products:[],industries:["ice-cream-ingredients","fruit-processing","chocolate-confectionery","dairy-ingredients"]},
-  {slug:"anchor",name:"Anchor",logo:"/partners/anchor.webp",image:"/industries/bakery-ingredients.webp",summary:"Vikranth's in-house food ingredient range for bakery and food manufacturing applications",about:"Anchor is Vikranth Chemical Corporation's in-house manufacturing brand. Only products, grades, pack sizes and application notes supported by current internal specifications and production records are presented.",products:["Cake Life","Cake Gel","Cake Syrup","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Custard Powder","Baking Powder","Indonesia cocoa powder - BG 1000/2000","Liquid Glucose","Vinegar","Refined Glycerine","Biscuit Enhancer"],industries:["chocolate-confectionery","bakery-ingredients","functional-ingredients","food-additives-preservatives","sweeteners-syrups-starches"]},
+  {slug:"anchor",name:"Anchor",logo:"/partners/anchor.webp",image:"/industries/bakery-ingredients.webp",summary:"Vikranth's in-house food ingredient range for bakery and food manufacturing applications",about:"Anchor is Vikranth Chemical Corporation's in-house manufacturing brand. Only products, grades, pack sizes and application notes supported by current internal specifications and production records are presented.",products:["Cake Life","Cake Gel","Cake Syrup","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Custard Powder","Baking Powder","Indonesia cocoa powder - BG 1000/2000","Black Cocoa Powder","Liquid Glucose","Vinegar","Refined Glycerine","Biscuit Enhancer"],industries:["chocolate-confectionery","bakery-ingredients","functional-ingredients","food-additives-preservatives","sweeteners-syrups-starches"]},
   {slug:"roquette",name:"Roquette",logo:"/partners/roquette.webp",image:"/industries/sweeteners-syrups-starches.webp",summary:"plant-based ingredients, starches, sweeteners and selected pharmaceutical solutions",about:"Roquette is known for plant-based ingredient solutions across food, nutrition and pharmaceutical applications. Availability is confirmed against the current approved catalogue.",products:["Liquid Glucose","Dextrose Monohydrate","Glucose D","High Maltose Syrups","Maize Starch Powder","Maltodextrin Powder","Maize Starch"],industries:["sweeteners-syrups-starches","functional-ingredients","nutraceutical-pharma"]},
   {slug:"nitta-gelatin-india-ltd",name:"Nitta Gelatin India Ltd.",logo:"/partners/nitta.webp",image:"/industries/hydrocolloids-stabilizers.webp",summary:"gelatin solutions and related functional applications",about:"Nitta Gelatin India is associated with gelatin solutions for food, nutraceutical and selected pharmaceutical uses. Bloom strength, grade and documents require product-specific confirmation.",products:["Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom"],industries:["hydrocolloids-stabilizers","nutraceutical-pharma"]},
   {slug:"doehler",name:"Döhler",logo:"/partners/doehler.webp",image:"/industries/beverage-ingredients.webp",summary:"natural ingredients, fruit products and integrated food and beverage systems",about:"Döhler develops natural ingredient and application systems for food and beverage markets. Vikranth provides a Chennai enquiry route subject to current range and supply confirmation.",products:["Natural Food and Beverage Ingredients"],industries:["beverage-ingredients","fruit-processing"]},
@@ -67,7 +67,7 @@ export const partnerProductImages = {
   },
   "cp-kelco": {
     hero: "/partner-products/cp-kelco-products.webp",
-    products: {"Sodium CMC":"/partner-products/cp-kelco-products.webp","Distilled Monoglycerides (DMG)":"/product-images/cp-kelco/distilled-monoglycerides.png","Propylene Glycol Monostearate (PGMS)":"/product-images/cp-kelco/propylene-glycol-monostearate.webp"}
+    products: {"Sodium CMC":"/partner-products/cp-kelco-products.webp","Distilled Monoglycerides (DMG)":"/product-images/cp-kelco/distilled-monoglycerides.png","Propylene Glycol Monostearate (PGMS)":"/product-images/catalog/propylene-glycol-monostearate-pgms.png"}
   },
   "calpro-specialities-pvt-ltd": {
     hero: "/product-images/calpro/amaze-ice-cream-stabilizer.webp",
@@ -79,7 +79,10 @@ export const partnerProductImages = {
   },
   "fine-organics": {
     hero: "/partner-products/fine-food-ingredients.webp",
-    products: Object.fromEntries(["GMS Flakes","GMS Powder","Propylene Glycol Monostearate (PGMS)","Sorbitan Monostearate"].map(name=>[name,"/partner-products/fine-food-ingredients.webp"]))
+    products: {
+      ...Object.fromEntries(["GMS Flakes","GMS Powder","Sorbitan Monostearate"].map(name=>[name,"/partner-products/fine-food-ingredients.webp"])),
+      "Propylene Glycol Monostearate (PGMS)": "/product-images/catalog/propylene-glycol-monostearate-pgms.png"
+    }
   },
   "shree-gluco-biotech-pvt-ltd": {
     hero: "/partner-products/shree-gluco-products.webp",
@@ -93,6 +96,7 @@ export const partnerProductImages = {
     hero: "/industries/bakery-ingredients.webp",
     products: {
       "Indonesia cocoa powder - BG 1000/2000": "/product-images/anchor/indonesia-cocoa-powder-bg-1000-2000.png",
+      "Black Cocoa Powder": "/product-images/anchor/black-cocoa-powder.png",
       "Liquid Glucose": "/product-images/anchor/liquid-glucose.png",
       "Vinegar": "/product-images/anchor/vinegar.png",
       "Refined Glycerine": "/product-images/anchor/refined-glycerine.png",
@@ -368,7 +372,7 @@ const catalogProductImages = {
   "Acetic Acid": "/product-images/catalog/acetic-acid.webp",
   "Ammonium Bicarbonate": "/product-images/catalog/ammonium-bicarbonate.webp",
   "Ascorbic Acid": "/product-images/catalog/ascorbic-acid.webp",
-  "Black Cocoa Powder": "/product-images/catalog/black-cocoa-powder.webp",
+  "Black Cocoa Powder": "/product-images/anchor/black-cocoa-powder.png",
   "Citric Acid Anhydrous": "/product-images/catalog/citric-acid-anhydrous.webp",
   "Citric Acid Monohydrate": "/product-images/catalog/citric-acid-monohydrate.webp",
   "Full-Fat Soya Flour": "/product-images/catalog/full-fat-soya-flour.webp",
