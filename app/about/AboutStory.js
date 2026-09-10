@@ -2,12 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Building2, FileCheck2, MapPin, PackageCheck, Phone, Search, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, MapPin, Phone, ShieldCheck, Truck } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
 import { partners } from "../data/partners";
-import { aboutBuyerLabels, aboutFaqs, aboutIndustries, aboutProcess } from "../data/about-content";
+import { aboutBuyerLabels, aboutFaqs, aboutIndustries } from "../data/about-content";
 import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const frameCount = 300;
@@ -211,10 +211,29 @@ export default function AboutStory() {
       <Link className={styles.sectionCta} href="/industries/">Explore Industries <ArrowRight /></Link>
     </section>
 
-    <section className={styles.processSection} aria-labelledby="process-title">
-      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Commercial ingredient sourcing</span><h2 id="process-title">Built Around the Buyer’s Requirement</h2><p>Every enquiry starts with the finished product and the result the buyer needs—not with a generic product list.</p></div>
-      <div className={styles.processGrid}>{aboutProcess.map(([title, copy], index) => { const Icon = [Search, PackageCheck, FileCheck2, Truck][index]; return <article className="aboutReveal" key={title}><span>0{index + 1}</span><Icon /><h3>{title}</h3><p>{copy}</p></article>; })}</div>
-      <Link className={styles.sectionCta} href="/contact/#enquiry">Start an Ingredient Enquiry <ArrowRight /></Link>
+    <section className={styles.warehouseSection} aria-labelledby="warehouse-title">
+      <div className={styles.warehouseGallery + " aboutReveal"}>
+        <figure className={styles.warehousePhotoPrimary}>
+          <img src="/about-warehouse-facility.jpg" width="1536" height="1024" alt="Vikranth warehouse facility in Chennai" loading="lazy" decoding="async" />
+          <figcaption>Warehouse facility</figcaption>
+        </figure>
+        <figure className={styles.warehousePhotoSecondary}>
+          <img src="/about-warehouse-operations.jpg" width="1536" height="1024" alt="Vikranth warehouse and dispatch building in Chennai" loading="lazy" decoding="async" />
+          <figcaption>Operations &amp; dispatch</figcaption>
+        </figure>
+      </div>
+      <div className={styles.warehouseCopy + " aboutReveal"}>
+        <span className={styles.eyebrow}>Warehouse &amp; distribution</span>
+        <h2 id="warehouse-title">The Practical Base Behind Every Ingredient Delivery</h2>
+        <p>From our Chennai warehouse base, Vikranth coordinates the day-to-day work that connects ingredient enquiries with commercial supply. Our facilities support stock handling, order preparation and dispatch planning for professional buyers.</p>
+        <p>Every requirement is reviewed around the exact product, grade, pack size, quantity and delivery location—helping our team prepare the right next step with clarity.</p>
+        <ul className={styles.warehousePoints}>
+          <li><Building2 /><span><strong>Chennai warehouse base</strong><small>Supporting commercial food ingredient requirements.</small></span></li>
+          <li><BadgeCheck /><span><strong>Requirement-led handling</strong><small>Products and packs checked against each enquiry.</small></span></li>
+          <li><Truck /><span><strong>Dispatch coordination</strong><small>For Chennai, South India and serviceable locations across India.</small></span></li>
+        </ul>
+        <Link className={styles.warehouseCta} href="/contact/#enquiry">Discuss Your Requirement <ArrowRight /></Link>
+      </div>
     </section>
 
     <section className={styles.documentationSection} aria-labelledby="documentation-title">
@@ -226,6 +245,35 @@ export default function AboutStory() {
       <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Verified portfolio navigation</span><h2 id="network-title">Manufacturer &amp; Supplier Network</h2><p>Vikranth’s portfolio includes ingredient options associated with established manufacturers and suppliers. Exact product, brand, grade, availability, documentation and commercial relationship are confirmed for each enquiry.</p></div>
       <div className={styles.networkGrid}>{partners.map((partner) => <Link href={"/associates/" + partner.slug} key={partner.slug}><img src={partner.logo} width="150" height="60" alt={partner.name + " logo"} loading="lazy" /><strong>{partner.name}</strong><ArrowRight /></Link>)}</div>
       <Link className={styles.sectionCta} href="/associates/">View All Suppliers <ArrowRight /></Link>
+    </section>
+
+    <section className={styles.anchorSpotlight} aria-labelledby="anchor-spotlight-title">
+      <div className={styles.anchorStory + " aboutReveal"}>
+        <div className={styles.anchorIdentity}>
+          <img src="/partners/anchor.webp" width="180" height="80" alt="Anchor by Vikranth food ingredients" loading="lazy" decoding="async" />
+          <span>Vikranth’s own manufacturing brand</span>
+        </div>
+        <span className={styles.eyebrow}>Our own product range</span>
+        <h2 id="anchor-spotlight-title">Anchor Food Ingredients for Professional Bakery Production</h2>
+        <p className={styles.anchorAnswer}><strong>What is Anchor?</strong> Anchor is Vikranth Chemical Corporation’s in-house manufacturing brand for professional bakery and food-manufacturing applications.</p>
+        <p>The Anchor range gives bakeries and commercial food producers a direct route to application-focused ingredients backed by Vikranth’s product guidance, enquiry support and supply coordination from Chennai.</p>
+        <div className={styles.anchorProof}><span>In-house manufacturing brand</span><span>Bakery-focused range</span><span>Direct product support</span></div>
+        <div className={styles.anchorActions}>
+          <Link href="/associates/anchor/">Explore the Full Anchor Range <ArrowRight /></Link>
+          <a href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor + "?text=I%20would%20like%20to%20enquire%20about%20Anchor%20products"} target="_blank" rel="noreferrer">Ask for Price &amp; Availability</a>
+        </div>
+      </div>
+      <div className={styles.anchorProducts + " aboutReveal"} aria-label="Popular Anchor bakery products">
+        <Link href="/products/cake-gel/" className={styles.anchorProductCard}>
+          <div><span>Popular bakery enquiry</span><strong>Anchor Cake Gel</strong><p>For commercial cakes and sponge products where volume, fine grain, texture and softness retention matter.</p><small>Check current packs and availability <ArrowRight /></small></div>
+          <img src="/product-images/other-products/cake-gel.webp" width="520" height="520" alt="Anchor Cake Gel for professional bakery production" loading="lazy" decoding="async" />
+        </Link>
+        <Link href="/products/baking-powder/" className={styles.anchorProductCard}>
+          <div><span>Popular bakery enquiry</span><strong>Anchor Baking Powder</strong><p>Reliable leavening support for consistent rise, light texture and dependable commercial baking performance.</p><small>Request a current quotation <ArrowRight /></small></div>
+          <img src="/product-images/other-products/baking-powder.webp" width="520" height="520" alt="Anchor Baking Powder for cakes, biscuits and bakery applications" loading="lazy" decoding="async" />
+        </Link>
+        <p className={styles.anchorAvailability}>Product format, grade, pack size, price and current availability are confirmed for each commercial enquiry.</p>
+      </div>
     </section>
 
     <section className={styles.coverageSection} aria-labelledby="coverage-title">
