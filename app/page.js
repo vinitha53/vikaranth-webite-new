@@ -48,7 +48,7 @@ const allProductGroups = [
   { name: "Beverage Ingredients", icon: FlaskConical, image: "/industries/beverage-ingredients.webp", accent: "#d68d55", blurb: "Beverage flavours, fruit bases, sweeteners and stabilizing ingredients for consistent commercial drink formulations.", subgroups: {
     "Beverage Flavours": ["Natural Food and Beverage Ingredients"], "Beverage Bases": ["Chocolate Drink"]
   }},
-  { name: "Ice Cream Products", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
+  { name: "Ice Cream Ingredients", icon: IceCreamBowl, image: "/industries/ice-cream-ingredients-hero.webp", accent: "#f4cfc2", blurb: "Ice cream bases, flavours, dessert toppings and stabilizers for smooth texture, body and reliable batch consistency.", subgroups: {
     "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Fruit Processing Ingredients", icon: Leaf, image: "/industries/fruit-processing-hero.webp", accent: "#c68556", blurb: "Fruit fillings, purees, preparations, pectin and glaze solutions for bakery, beverage and dessert applications.", subgroups: {
@@ -107,7 +107,7 @@ const ecosystemCategories = [
   { number: "01", name: <>Chocolate &amp;<br/>Confectionery</>, label: "Chocolate & Confectionery", icon: Box, href: "/industries/chocolate-confectionery", groupIndex: 0 },
   { number: "02", name: <>Bakery<br/>Ingredients</>, label: "Bakery Ingredients", icon: Wheat, href: "/industries/bakery-ingredients", groupIndex: 1 },
   { number: "03", name: <>Beverage<br/>Ingredients</>, label: "Beverage Ingredients", icon: FlaskConical, href: "/industries/beverage-ingredients", groupIndex: 2 },
-  { number: "04", name: <>Ice Cream<br/>Products</>, label: "Ice Cream Products", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
+  { number: "04", name: <>Ice Cream<br/>Ingredients</>, label: "Ice Cream Ingredients", icon: IceCreamBowl, href: "/industries/ice-cream-ingredients", groupIndex: 3 },
   { number: "05", name: <>Functional<br/>Ingredients</>, label: "Functional Ingredients", icon: Sparkles, href: "/industries/functional-ingredients", groupIndex: 4 },
   { number: "06", name: <>Nutraceutical &amp;<br/>Pharma</>, label: "Nutraceutical & Pharma", icon: HeartPulse, href: "/industries/nutraceutical-pharma", groupIndex: 5 },
   { number: "07", name: <>Dairy<br/>Products</>, label: "Dairy Products", icon: Milk, href: "/industries/dairy-ingredients", groupIndex: 6 },

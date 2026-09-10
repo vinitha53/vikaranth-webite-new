@@ -54,8 +54,8 @@ export const partnerProductImages = {
     products: {"Fruit Filling":"/product-images/fruit-processing/fruit-filling.webp"}
   },
   roquette: {
-    hero: "/product-images/roquette/liquid-glucose.webp",
-    products: {"Liquid Glucose":"/product-images/roquette/liquid-glucose.webp","Dextrose Monohydrate":"/product-images/roquette/dextrose-monohydrate.webp","Glucose D":"/product-images/roquette/glucose-d.webp","High Maltose Syrups":"/product-images/roquette/high-maltose-syrups.webp","Maize Starch Powder":"/product-images/roquette/maize-starch-powder.webp","Maltodextrin Powder":"/product-images/roquette/maltodextrin-powder.webp","Maize Starch":"/partner-products/roquette-products.webp"}
+    hero: "/product-images/other-products/liquid-glucose.webp",
+    products: {"Liquid Glucose":"/product-images/other-products/liquid-glucose.webp","Dextrose Monohydrate":"/product-images/roquette/dextrose-monohydrate.webp","Glucose D":"/product-images/roquette/glucose-d.webp","High Maltose Syrups":"/product-images/roquette/high-maltose-syrups.webp","Maize Starch Powder":"/product-images/roquette/maize-starch-powder.webp","Maltodextrin Powder":"/product-images/roquette/maltodextrin-powder.webp","Maize Starch":"/partner-products/roquette-products.webp"}
   },
   "nitta-gelatin-india-ltd": {
     hero: "/product-images/nitta-gelatin/gelatin-120-bloom.webp",
@@ -86,18 +86,18 @@ export const partnerProductImages = {
   },
   "shree-gluco-biotech-pvt-ltd": {
     hero: "/partner-products/shree-gluco-products.webp",
-    products: Object.fromEntries(["Liquid Glucose","Dextrose Monohydrate","Maltodextrin Powder","Maize Starch"].map(name=>[name,"/partner-products/shree-gluco-products.webp"]))
+    products: {"Liquid Glucose":"/product-images/other-products/liquid-glucose.webp",...Object.fromEntries(["Dextrose Monohydrate","Maltodextrin Powder","Maize Starch"].map(name=>[name,"/partner-products/shree-gluco-products.webp"]))}
   },
   "paramesu-biotech-ltd": {
     hero: "/partner-products/paramesu-maize-starch.webp",
-    products: {"Maize Starch":"/partner-products/paramesu-maize-starch.webp","Liquid Glucose":"/partner-products/paramesu-liquid-glucose.webp","Dextrose Monohydrate":"/partner-products/paramesu-maize-starch.webp","Maltodextrin Powder":"/partner-products/paramesu-maize-starch.webp"}
+    products: {"Maize Starch":"/partner-products/paramesu-maize-starch.webp","Liquid Glucose":"/product-images/other-products/liquid-glucose.webp","Dextrose Monohydrate":"/partner-products/paramesu-maize-starch.webp","Maltodextrin Powder":"/partner-products/paramesu-maize-starch.webp"}
   },
   anchor: {
     hero: "/industries/bakery-ingredients.webp",
     products: {
       "Indonesia cocoa powder - BG 1000/2000": "/product-images/anchor/indonesia-cocoa-powder-bg-1000-2000.png",
       "Black Cocoa Powder": "/product-images/anchor/black-cocoa-powder.png",
-      "Liquid Glucose": "/product-images/anchor/liquid-glucose.png",
+      "Liquid Glucose": "/product-images/other-products/liquid-glucose.webp",
       "Vinegar": "/product-images/anchor/vinegar.png",
       "Refined Glycerine": "/product-images/anchor/refined-glycerine.png",
       "Biscuit Enhancer": "/product-images/anchor/biscuit-enhancer.png"

@@ -8,7 +8,7 @@ import { DetailHeader, DetailFooter, PageCta, styles } from "./components/Detail
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const industryOrder = ["chocolate-confectionery","bakery-ingredients","beverage-ingredients","ice-cream-ingredients","functional-ingredients","nutraceutical-pharma","dairy-ingredients","food-additives-preservatives","hydrocolloids-stabilizers","fruit-processing","sweeteners-syrups-starches"];
 const orderedIndustries = industryOrder.map((slug) => industries.find((industry) => industry.slug === slug)).filter(Boolean);
-const industryLabel = (industry) => industry.slug === "ice-cream-ingredients" ? "Ice Cream & Frozen Desserts" : industry.name;
+const industryLabel = (industry) => industry.slug === "ice-cream-ingredients" ? "Ice Cream Ingredients" : industry.name;
 
 export const metadata = withSocialMetadata({
   title: hubContent.title,

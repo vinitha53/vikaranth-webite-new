@@ -20,7 +20,7 @@ export default function IndustryApplicationGuide({ content }) {
   return <section className={styles.applicationJourney} aria-labelledby="application-guide-title">
     <div className={styles.applicationJourneyHead}>
         <span>Application Guide</span>
-      <h2 id="application-guide-title">Choose the Format. <em>We’ll Shape the Solution.</em></h2>
+      <h2 id="application-guide-title">Choose Your Application. <em>We’ll Shape the Solution.</em></h2>
       <p>Explore ingredient solutions designed around texture, flavour, stability and production performance.</p>
       <i aria-hidden="true"><b /></i>
     </div>

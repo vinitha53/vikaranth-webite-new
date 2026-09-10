@@ -47,10 +47,10 @@ export const industryContent = {
     related: ["fruit-processing","dairy-ingredients","hydrocolloids-stabilizers"]
   }),
   "ice-cream-ingredients": entry({
-    title: "Ice Cream Products Supplier Chennai | Vikranth",
+    title: "Ice Cream Ingredients Supplier Chennai | Vikranth",
     description: "Source ice cream and gelato bases, pastes, flavours, toppings and stabilizers from a Chennai supplier serving South India and India enquiries.",
     eyebrow: "Creamier, Smoother, Reliable",
-    h1: "Ice Cream Products Supplier in Chennai",
+    h1: "Ice Cream Ingredients Supplier in Chennai",
     summary: "Explore bases, flavours, pastes, toppings and stabilizers for smooth body, controlled melt, flavour impact and reliable frozen-dessert production.",
     productFamilies: ["Ice cream bases","Gelato pastes","Flavours","Fruit preparations","Toppings","Coatings","Stabilizers","Emulsifiers","Dairy powders","Sweeteners"],
     applications: [["Ice cream","Ingredients for body, flavour and melt performance."],["Gelato","Bases, pastes and finishing options."],["Soft serve","Base and texture systems for soft formats."],["Frozen desserts","Ingredients for varied frozen applications."],["Ripple and variegates","Fruit, chocolate and textured inclusions."],["Coated novelties","Coatings and finishing ingredients."]],
