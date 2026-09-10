@@ -111,6 +111,12 @@ const usageCategoryFor = (industrySlug, name, range) => {
 };
 
 const featuredChocolateDetails = {
+  "Lactée Barry (35.3%)": { chocolateType: "Milk Chocolate" },
+  "Zephyr Caramel (35%)": { chocolateType: "White Chocolate" },
+  "Excellence (55%)": { chocolateType: "Dark Chocolate" },
+  "Extrabitter Guayaquil (64%)": { chocolateType: "Dark Chocolate" },
+  "Favorites Mi-Amere (58%)": { chocolateType: "Dark Chocolate" },
+  "Blanc Satin (29.2%)": { chocolateType: "White Chocolate" },
   "Dark Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian dark chocolate for adding a crisp finishing touch to desserts and pastries." },
   "Milk Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian milk chocolate for professional dessert, pastry and ice-cream applications." },
   "White Chocolate Coated Cereals": { packs: "800 g", description: "Mona Lisa Crispearls with a toasted biscuit cereal heart coated in Belgian white chocolate for professional dessert, pastry and ice-cream applications." },
@@ -164,6 +170,8 @@ const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => n
     usageCategory: usageCategoryFor(industrySlug, name, range),
     brochureCategory: range === "imported" ? brochureCategoryFor(brand) : undefined,
     brochureDisplayCategory: range === "imported" ? brochureDisplayCategoryFor(brand, name) : undefined,
+    displayName: featuredDetails?.chocolateType ? `${name} (${featuredDetails.chocolateType})` : name,
+    chocolateType: featuredDetails?.chocolateType,
     cocoaPercentage: featuredDetails?.cocoaPercentage,
     packs: featuredDetails?.packs || "Pack size confirmed on enquiry",
     description: featuredDetails?.description || `${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`,

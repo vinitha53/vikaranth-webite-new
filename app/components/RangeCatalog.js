@@ -283,12 +283,12 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           <div ref={collectionContentRef} className={styles.collectionContent}>
             {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
               <span className={styles.collectionImage}>
-                <img src={product.image} alt={`${product.name} ingredient`} width="520" height="360" loading="lazy" />
+                <img src={product.image} alt={`${product.displayName || product.name} ingredient`} width="520" height="360" loading="lazy" />
                 {(brandLogos[product.brand] || product.supplierLogo || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
                   <img src={brandLogos[product.brand] || product.supplierLogo || supplierLogo} alt={`${product.brand || product.supplierName || supplierName} logo`} width="100" height="44" loading="lazy" />
                 </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null}
               </span>
-              <span className={styles.collectionCardCopy}><strong>{product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
+              <span className={styles.collectionCardCopy}><strong>{product.displayName || product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
             </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}
           </div>
         </section>
