@@ -11,7 +11,7 @@ const initialValues = {
   message: "", attachment: "", consent: false,
 };
 
-export default function ProductQuoteForm({ product, applications = [], whatsappNumber = WHATSAPP_NUMBERS.otherBrands }) {
+export default function ProductQuoteForm({ product, applications = [], whatsappNumber = WHATSAPP_NUMBERS.supplierBrands }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);

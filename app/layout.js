@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
         { "@type": "ContactPoint", telephone: "+91-98409-92985", contactType: "general enquiries", areaServed: "IN", availableLanguage: ["en", "ta"] },
         { "@type": "ContactPoint", telephone: "+91-87544-29922", contactType: "Anchor products", areaServed: "IN", availableLanguage: ["en", "ta"] },
         { "@type": "ContactPoint", telephone: "+91-98410-68559", contactType: "Delta Nutritives", areaServed: "IN", availableLanguage: ["en", "ta"] },
-        { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "other brands", areaServed: "IN", availableLanguage: ["en", "ta"] },
+        { "@type": "ContactPoint", telephone: "+91-87544-42924", contactType: "Campco, Roquette, Nitta Gelatin, Fine Organics, CP Kelco and Calpro", areaServed: "IN", availableLanguage: ["en", "ta"] },
       ],
       areaServed: serviceAreas,
       address: { "@type": "PostalAddress", streetAddress: "Plot No. 2, Sri Sai Ram Street, 1st Floor, Jyothi Nagar, Ponnimmanmedu", addressLocality: "Chennai", addressRegion: "Tamil Nadu", postalCode: "600110", addressCountry: "IN" },

@@ -10,7 +10,12 @@ import { partners } from "../data/partners";
 import { aboutBuyerLabels, aboutFaqs, aboutIndustries } from "../data/about-content";
 import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
-const frameCount = 300;
+// Skip the full laboratory tube and juice-bottle scene, including its transitions.
+const heroFrames = [
+  ...Array.from({ length: 120 }, (_, index) => index + 1),
+  ...Array.from({ length: 91 }, (_, index) => index + 210),
+];
+const frameCount = heroFrames.length;
 const storyChapters = [
   {
     eyebrow: "01 / 04 - From cocoa to possibility",
@@ -26,7 +31,7 @@ const storyChapters = [
   },
   {
     eyebrow: "03 / 04 - Wholesale supply support",
-    title: "Built for Commercial Buyers Across South India",
+    title: "Built for Commercial Buyers across India",
     copy: "We help clarify grades, pack sizes, quantities and available product documents before coordinating quotations and dispatch.",
     highlight: "Practical support from requirement to repeat supply."
   },
@@ -38,7 +43,7 @@ const storyChapters = [
     actions: true
   }
 ];
-const frameUrl = (index) => "/about-distribution-sequence/ezgif-frame-" + String(index + 1).padStart(3, "0") + ".webp";
+const frameUrl = (index) => "/about-distribution-sequence/ezgif-frame-" + String(heroFrames[index]).padStart(3, "0") + ".webp";
 const motionProfile = () => window.innerWidth <= 600
   ? { step: 4, cacheLimit: 12, preloadRadius: 2 }
   : window.innerWidth <= 1024
@@ -201,7 +206,7 @@ export default function AboutStory() {
     </section>
 
     <section className={styles.companyIntro} aria-labelledby="company-intro-title">
-      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Chennai Distributor with a Pan-India Supply Outlook</h2><p>Vikranth works with procurement teams, product developers, wholesalers, commercial bakeries, food processors and hospitality buyers that need a practical route from ingredient enquiry to commercial supply.</p><p>Tell us the product, application or functional result you need. We help identify the relevant grade, pack size, commercial quantity and available documentation, then coordinate quotation and dispatch for Chennai, South India and serviceable locations across India.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
+      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Chennai Distributor with a Pan-India Supply Outlook</h2><p>Vikranth Chemical Corporation (VCC) is a Chennai-based food ingredient distributor, supplier and wholesaler, providing quality food and specialty ingredients to manufacturers, processors, commercial bakeries and food businesses across India.</p><p>Our portfolio includes ingredients for bakery, chocolate and confectionery, dairy, beverages, ice cream, fruit processing, food additives, functional ingredients and nutraceutical applications. We work with procurement teams, commercial buyers and sourcing professionals to identify the right ingredient, grade, pack size and quantity for their requirements.</p><p>From ingredient enquiry and sourcing to product documentation, quotation and dispatch, VCC provides practical ingredient supply support across Chennai, South India and serviceable locations throughout India.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
       <div className={styles.companyImage + " aboutReveal"}><img src="/about-overview.webp" width="760" height="820" alt="Food ingredients prepared for commercial sourcing review" loading="lazy" /><div><small>Application-first support</small><strong>Ingredients, people and practical supply conversations.</strong></div></div>
     </section>
 
@@ -214,12 +219,12 @@ export default function AboutStory() {
     <section className={styles.warehouseSection} aria-labelledby="warehouse-title">
       <div className={styles.warehouseGallery + " aboutReveal"}>
         <figure className={styles.warehousePhotoPrimary}>
-          <img src="/about-warehouse-facility.jpg" width="1536" height="1024" alt="Vikranth warehouse facility in Chennai" loading="lazy" decoding="async" />
-          <figcaption>Warehouse facility</figcaption>
+          <img src="/about-warehouse-exterior-v2.webp" width="1536" height="1024" alt="Professional food ingredient warehouse facility serving Chennai" loading="lazy" decoding="async" />
+          <figcaption>01 &nbsp; Warehouse facility</figcaption>
         </figure>
         <figure className={styles.warehousePhotoSecondary}>
-          <img src="/about-warehouse-operations.jpg" width="1536" height="1024" alt="Vikranth warehouse and dispatch building in Chennai" loading="lazy" decoding="async" />
-          <figcaption>Operations &amp; dispatch</figcaption>
+          <img src="/about-warehouse-dispatch-v2.webp" width="1536" height="1024" alt="Organised food ingredient warehouse stock checking and dispatch preparation" loading="lazy" decoding="async" />
+          <figcaption>02 &nbsp; Operations &amp; dispatch</figcaption>
         </figure>
       </div>
       <div className={styles.warehouseCopy + " aboutReveal"}>
@@ -237,8 +242,18 @@ export default function AboutStory() {
     </section>
 
     <section className={styles.documentationSection} aria-labelledby="documentation-title">
-      <div className="aboutReveal"><span className={styles.eyebrow}>Quality and documentation</span><h2 id="documentation-title">Product-Specific Information, Clearly Shared</h2><p>Ingredient performance depends on the exact product, grade, supplier specification, formulation and process. Where available, Vikranth coordinates specifications, certificates of analysis, technical data sheets, safety data sheets and related supplier information for buyer review.</p><aside><ShieldCheck /><p>Website information supports product discovery and sourcing; final trials, dosage, technical suitability and regulatory approval remain with the buyer’s qualified team.</p></aside></div>
-      <img className="aboutReveal" src="/about-quality.webp" width="720" height="640" alt="Food ingredient samples and documentation reviewed for sourcing" loading="lazy" />
+      <div className="aboutReveal"><span className={styles.eyebrow}>Quality and documentation</span><h2 id="documentation-title">Product-Specific Information, Clearly Shared</h2><p>Ingredient performance depends on the exact product, grade, supplier specification, formulation and process. Where available, Vikranth coordinates specifications, certificates of analysis, technical data sheets, safety data sheets and related supplier information for buyer review.</p><div className={styles.documentTypes}><span>FSSAI Certificate</span><span>Specifications</span><span>COA</span><span>TDS</span><span>SDS</span></div><aside><ShieldCheck /><p>Website information supports product discovery and sourcing; final trials, dosage, technical suitability and regulatory approval remain with the buyer’s qualified team.</p></aside></div>
+      <div className={styles.certificateShowcase + " aboutReveal"} aria-label="FSSAI certificate and product documentation">
+        <div className={styles.certificatePaper}>
+          <div className={styles.certificateTop}><span>Food safety compliance</span><ShieldCheck /></div>
+          <small>Regulatory document</small>
+          <strong>FSSAI Certificate</strong>
+          <p>Certificate details are shared from the approved document for buyer verification.</p>
+          <div className={styles.certificateSeal}><ShieldCheck /><span>FSSAI</span></div>
+          <div className={styles.certificateLines}><i /><i /><i /></div>
+        </div>
+        <div className={styles.certificateFooter}><span><BadgeCheck /> Compliance documentation</span><Link href="/contact/#enquiry">Request a certificate copy <ArrowRight /></Link></div>
+      </div>
     </section>
 
     <section className={styles.networkSection} aria-labelledby="network-title">
@@ -264,13 +279,13 @@ export default function AboutStory() {
         </div>
       </div>
       <div className={styles.anchorProducts + " aboutReveal"} aria-label="Popular Anchor bakery products">
-        <Link href="/products/cake-gel/" className={styles.anchorProductCard}>
-          <div><span>Popular bakery enquiry</span><strong>Anchor Cake Gel</strong><p>For commercial cakes and sponge products where volume, fine grain, texture and softness retention matter.</p><small>Check current packs and availability <ArrowRight /></small></div>
-          <img src="/product-images/other-products/cake-gel.webp" width="520" height="520" alt="Anchor Cake Gel for professional bakery production" loading="lazy" decoding="async" />
+        <Link href="/products/cake-syrup/" className={styles.anchorProductCard}>
+          <div><span>Popular bakery enquiry</span><strong>Anchor Cake Syrup</strong><p>Helps cakes retain moisture, freshness and softness while reducing dryness during storage.</p><small>Check current packs and availability <ArrowRight /></small></div>
+          <img src="/product-images/other-products/corn-syrup.webp" width="520" height="520" alt="Anchor Cake Syrup for moisture and softness in professional bakery production" loading="lazy" decoding="async" />
         </Link>
-        <Link href="/products/baking-powder/" className={styles.anchorProductCard}>
-          <div><span>Popular bakery enquiry</span><strong>Anchor Baking Powder</strong><p>Reliable leavening support for consistent rise, light texture and dependable commercial baking performance.</p><small>Request a current quotation <ArrowRight /></small></div>
-          <img src="/product-images/other-products/baking-powder.webp" width="520" height="520" alt="Anchor Baking Powder for cakes, biscuits and bakery applications" loading="lazy" decoding="async" />
+        <Link href="/products/biscuit-enhancer/" className={styles.anchorProductCard}>
+          <div><span>Popular bakery enquiry</span><strong>Anchor Biscuit Enhancer</strong><p>Supports consistent texture, handling and finished-product quality in professional biscuit production.</p><small>Request a current quotation <ArrowRight /></small></div>
+          <img src="/product-images/anchor/biscuit-enhancer.png" width="520" height="520" alt="Anchor Biscuit Enhancer for professional biscuit production" loading="lazy" decoding="async" />
         </Link>
         <p className={styles.anchorAvailability}>Product format, grade, pack size, price and current availability are confirmed for each commercial enquiry.</p>
       </div>

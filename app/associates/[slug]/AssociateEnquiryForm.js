@@ -7,7 +7,7 @@ import { WHATSAPP_NUMBERS } from "../../data/whatsapp";
 
 const initial = { name: "", company: "", email: "", phone: "", city: "", product: "", application: "", grade: "", quantity: "", requiredDate: "", documents: "", sample: "No", message: "", consent: false };
 
-export default function AssociateEnquiryForm({ supplier, products, whatsappNumber = WHATSAPP_NUMBERS.otherBrands }) {
+export default function AssociateEnquiryForm({ supplier, products, whatsappNumber = WHATSAPP_NUMBERS.supplierBrands }) {
   const [step, setStep] = useState(1);
   const [values, setValues] = useState(initial);
   const [fileName, setFileName] = useState("");
