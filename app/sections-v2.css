@@ -2324,6 +2324,9 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
 .home-page .enquiry-cocoa-art{position:absolute;z-index:1;right:-2%;bottom:-2%;width:49%;height:auto;object-fit:contain;pointer-events:none}
 .home-page .enquiry-card-business .enquiry-cocoa-art{filter:saturate(.9) brightness(.82)}
 .home-page .enquiry-card-small .enquiry-cocoa-art{width:47%;right:-2%;bottom:0}
+@media(min-width:601px){
+ .home-page .enquiry-card .enquiry-cocoa-art{top:calc(48px + 3.05rem);bottom:auto}
+}
 .home-page .enquiry-card-business:before{z-index:0;background:linear-gradient(90deg,#311306 0%,rgba(49,19,6,.96) 48%,rgba(49,19,6,.12) 82%,transparent)}
 .home-page .enquiry-card-small:before{z-index:0;background:linear-gradient(90deg,#fffaf3 0%,rgba(255,250,243,.97) 53%,rgba(255,250,243,.18) 84%,transparent)}
 .home-page .enquiry-card>*:not(.enquiry-cocoa-art){position:relative;z-index:2}

@@ -799,7 +799,7 @@ export default function Home() {
               </div>
             </article>
             <article className="enquiry-card enquiry-card-small">
-              <img className="enquiry-cocoa-art" src="/enquiry-cocoa-beans-powder.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
+              <img className="enquiry-cocoa-art" src="/enquiry-small-quantity-packs.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
               <div className="enquiry-card-kicker"><span><PackageCheck aria-hidden="true"/></span>02 · Small Quantity</div>
               <h3>Small Quantity</h3>
               <p>Selected ingredients for trials, small businesses and individual requirements.</p>
