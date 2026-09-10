@@ -201,7 +201,7 @@ export default async function IndustryPage({ params }) {
           <p>Continue into adjacent ingredient ranges already available on the website.</p>
           <i aria-hidden="true"><b /></i>
         </div>
-        <div>{relatedIndustries.map((related) => <Link href={`/industries/${related.slug}`} key={related.slug}><img width="640" height="480" src={related.image} alt={`${related.name} ingredient applications`} loading="lazy" /><span><strong>Explore {related.name}</strong><small>{related.summary}</small></span><ArrowRight /></Link>)}</div>
+        <div>{relatedIndustries.map((related) => <Link href={`/industries/${related.slug}`} key={related.slug}><img width="640" height="480" src={industryHeroImages[related.slug] || related.image} alt={`${related.name} ingredient applications`} loading="lazy" /><span><strong>Explore {related.name}</strong><small>{related.summary}</small></span><ArrowRight /></Link>)}</div>
       </section>
     </div>
 
