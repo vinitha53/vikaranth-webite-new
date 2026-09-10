@@ -478,14 +478,14 @@ export default function Home() {
               <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
               <span className="utility-tag">Chennai · India</span>
-              <a className="utility-contact" href="tel:+919840992985"><Phone size={14}/> +91 98409 92985</a>
+              <a className="utility-contact" href="tel:+918754429922"><Phone size={14}/> +91 87544 29922</a>
               <a className="utility-contact" href="mailto:vikranth.chemicals@gmail.com"><Mail size={14}/> vikranth.chemicals@gmail.com</a>
             </div>
             <div className="utility-set" aria-hidden="true">
               <span><BadgeCheck size={14}/> Food Ingredients</span>
               <span><MapPin size={14}/> Chennai</span>
               <span className="utility-tag">Chennai · India</span>
-              <span className="utility-contact"><Phone size={14}/> +91 98409 92985</span>
+              <span className="utility-contact"><Phone size={14}/> +91 87544 29922</span>
               <span className="utility-contact"><Mail size={14}/> vikranth.chemicals@gmail.com</span>
             </div>
           </div>

@@ -30,7 +30,7 @@ const industryIconBySlug = {
 };
 const industryIcons = categories.map(({ slug }) => industryIconBySlug[slug] || Building2);
 
-const UtilitySet = ({ hidden = false }) => <div className={styles.utilitySet} aria-hidden={hidden || undefined}><span><BadgeCheck/> Food Ingredients</span><span><MapPin/> Chennai</span><span>Chennai · India</span><a href="tel:+919840992985"><Phone/> +91 98409 92985</a><a href="mailto:vikranth.chemicals@gmail.com"><Mail/> vikranth.chemicals@gmail.com</a></div>;
+const UtilitySet = ({ hidden = false }) => <div className={styles.utilitySet} aria-hidden={hidden || undefined}><span><BadgeCheck/> Food Ingredients</span><span><MapPin/> Chennai</span><span>Chennai · India</span><a href="tel:+918754429922"><Phone/> +91 87544 29922</a><a href="mailto:vikranth.chemicals@gmail.com"><Mail/> vikranth.chemicals@gmail.com</a></div>;
 
 export default function DetailHeaderClient() {
   const pathname = usePathname();
