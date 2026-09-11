@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
 import { partners } from "../data/partners";
-import { aboutBuyerLabels, aboutFaqs, aboutIndustries } from "../data/about-content";
+import { aboutBuyerLabels, aboutFaqs } from "../data/about-content";
 import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 // Skip the full laboratory tube and juice-bottle scene, including its transitions.
@@ -206,32 +206,26 @@ export default function AboutStory() {
     </section>
 
     <section className={styles.companyIntro} aria-labelledby="company-intro-title">
-      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Chennai Distributor with a Pan-India Supply Outlook</h2><p>Vikranth Chemical Corporation (VCC) is a Chennai-based food ingredient distributor, supplier and wholesaler, providing quality food and specialty ingredients to manufacturers, processors, commercial bakeries and food businesses across India.</p><p>Our portfolio includes ingredients for bakery, chocolate and confectionery, dairy, beverages, ice cream, fruit processing, food additives, functional ingredients and nutraceutical applications. We work with procurement teams, commercial buyers and sourcing professionals to identify the right ingredient, grade, pack size and quantity for their requirements.</p><p>From ingredient enquiry and sourcing to product documentation, quotation and dispatch, VCC provides practical ingredient supply support across Chennai, South India and serviceable locations throughout India.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
+      <div className="aboutReveal"><span className={styles.eyebrow}>Who we are</span><h2 id="company-intro-title">A Chennai Distributor with a Pan-India Supply Outlook</h2><p>Vikranth Chemical Corporation (VCC) is a Chennai-based food ingredient distributor, supplier and wholesaler, providing quality food and specialty ingredients to manufacturers, processors, commercial bakeries and food businesses across India.</p><p>Our portfolio includes ingredients for bakery, chocolate and confectionery, dairy, beverages, ice cream, fruit processing, food additives, functional ingredients and nutraceutical applications.</p><p>From ingredient enquiry and sourcing to product documentation, quotation and dispatch, VCC provides practical ingredient supply support across Chennai, South India and serviceable locations throughout India.</p><div className={styles.buyerLabels}>{aboutBuyerLabels.map((label) => <span key={label}>{label}</span>)}</div></div>
       <div className={styles.companyImage + " aboutReveal"}><img src="/about-overview.webp" width="760" height="820" alt="Food ingredients prepared for commercial sourcing review" loading="lazy" /><div><small>Application-first support</small><strong>Ingredients, people and practical supply conversations.</strong></div></div>
-    </section>
-
-    <section className={styles.portfolioSection} aria-labelledby="portfolio-title">
-      <div className={styles.sectionHeading + " aboutReveal"}><span className={styles.eyebrow}>Industry portfolio</span><h2 id="portfolio-title">Ingredients Organised Around Production Needs</h2><p>The portfolio connects ingredient families with the products they help create. Explore each industry page to find relevant options for flavour, texture, structure, stability, nutrition, preservation and processing performance.</p></div>
-      <div className={styles.industryLinks}>{aboutIndustries.map(([label, href], index) => <Link href={href} key={href}><span>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong><ArrowRight /></Link>)}</div>
-      <Link className={styles.sectionCta} href="/industries/">Explore Industries <ArrowRight /></Link>
     </section>
 
     <section className={styles.warehouseSection} aria-labelledby="warehouse-title">
       <div className={styles.warehouseGallery + " aboutReveal"}>
         <figure className={styles.warehousePhotoPrimary}>
-          <img src="/about-warehouse-exterior-v2.webp" width="1536" height="1024" alt="Professional food ingredient warehouse facility serving Chennai" loading="lazy" decoding="async" />
+          <img src="/1st iamge.png" width="1536" height="1024" alt="Professional food ingredient warehouse facility serving Chennai" loading="lazy" decoding="async" />
           <figcaption>01 &nbsp; Warehouse facility</figcaption>
         </figure>
         <figure className={styles.warehousePhotoSecondary}>
-          <img src="/about-warehouse-dispatch-v2.webp" width="1536" height="1024" alt="Organised food ingredient warehouse stock checking and dispatch preparation" loading="lazy" decoding="async" />
+          <img src="/2nd iamge.png" width="1536" height="1024" alt="Organised food ingredient warehouse stock checking and dispatch preparation" loading="lazy" decoding="async" />
           <figcaption>02 &nbsp; Operations &amp; dispatch</figcaption>
         </figure>
       </div>
       <div className={styles.warehouseCopy + " aboutReveal"}>
         <span className={styles.eyebrow}>Warehouse &amp; distribution</span>
-        <h2 id="warehouse-title">The Practical Base Behind Every Ingredient Delivery</h2>
-        <p>From our Chennai warehouse base, Vikranth coordinates the day-to-day work that connects ingredient enquiries with commercial supply. Our facilities support stock handling, order preparation and dispatch planning for professional buyers.</p>
-        <p>Every requirement is reviewed around the exact product, grade, pack size, quantity and delivery location—helping our team prepare the right next step with clarity.</p>
+        <h2 id="warehouse-title">Reliable Ingredient Supply, From Stock to Delivery</h2>
+        <p>Our Chennai warehouse supports the day-to-day handling and distribution of food ingredients for customers across India. From receiving and storing products to order preparation and dispatch, we maintain a practical supply process built around customer requirements.</p>
+        <p>We work with our sourcing and distribution network to support consistent availability of ingredients across bakery, confectionery, beverages, dairy and other food applications.</p>
         <ul className={styles.warehousePoints}>
           <li><Building2 /><span><strong>Chennai warehouse base</strong><small>Supporting commercial food ingredient requirements.</small></span></li>
           <li><BadgeCheck /><span><strong>Requirement-led handling</strong><small>Products and packs checked against each enquiry.</small></span></li>
