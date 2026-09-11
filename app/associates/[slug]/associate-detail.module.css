@@ -12,7 +12,8 @@
 .hero{background:#fdf9f4;color:#25150d}.hero:before{display:none}.breadcrumbs{color:#725f51}.hero h1{color:#25150d}.heroCopy>p{color:#725f51}.heroTrust span{color:#725f51}
 /* Secondary hero action on the light supplier template. */
 .hero .secondaryButton{color:#25150d;background:transparent}.hero .secondaryButton:hover{background:#25150d;color:#fff}
-/* Supplier About template: editorial story, application cards and assurance bar. */
+/* Supplier About template: editorial story, product cards and assurance bar. */
+.applicationFeatureCard{color:inherit;text-decoration:none}
 .aboutFeatureGrid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(45px,7vw,90px);align-items:center}.aboutFeatureCopy{max-width:590px}.aboutFeatureCopy h2{margin:0 0 22px;color:#25150d;font:800 clamp(37px,4.3vw,62px)/1.08 'Manrope',sans-serif;letter-spacing:-.05em}.aboutFeatureCopy p{margin:0;color:#725f51;font-size:16px;line-height:1.8}.aboutSupplierLogo{display:flex;min-height:70px;margin-top:25px;padding:13px 20px;align-items:center;gap:16px;border:1px solid #e7cdb8;border-radius:12px;background:#fff;box-shadow:0 8px 20px rgba(76,38,12,.06)}.aboutSupplierLogo img{width:58px;height:42px;object-fit:contain}.aboutSupplierLogo strong{color:#25150d;font:800 15px 'Manrope'}.aboutProfileLink{display:inline-flex;margin-top:22px;align-items:center;gap:8px;color:#d65e24;font:800 13px 'Manrope';text-decoration:none}.aboutProfileLink svg{width:17px;transition:transform .25s}.aboutProfileLink:hover svg{transform:translateX(5px)}.applicationFeatureGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.applicationFeatureCard{display:flex;min-height:192px;padding:23px;align-items:center;gap:20px;border:1px solid #e7cdb8;border-radius:15px;background:#fff;box-shadow:0 10px 26px rgba(76,38,12,.07);transition:transform var(--motion-standard),box-shadow var(--motion-standard),border-color var(--motion-fast)}.applicationFeatureCard:hover{transform:translateY(-4px);border-color:#d98a56;box-shadow:0 17px 30px rgba(76,38,12,.12)}.applicationFeatureCard img{width:104px;height:104px;flex:0 0 104px;border-radius:50%;object-fit:cover}.applicationFeatureCard h3{margin:0 0 10px;color:#25150d;font:800 18px/1.2 'Manrope'}.applicationFeatureCard p{margin:0;color:#725f51;font-size:13px;line-height:1.55}.aboutAssurance{display:flex;margin-top:58px;padding:22px 28px;align-items:center;gap:22px;border:1px solid #e7cdb8;border-radius:15px;background:#fff;box-shadow:0 8px 20px rgba(76,38,12,.05)}.aboutAssurance>svg{width:35px;height:35px;flex:0 0 35px;color:#d65e24}.aboutAssurance span{color:#25150d;font-size:14px}.aboutAssurance a{display:inline-flex;margin-left:auto;min-height:44px;padding:0 22px;align-items:center;gap:9px;border:1px solid #25150d;border-radius:8px;color:#25150d;font:800 12px 'Manrope';text-decoration:none;white-space:nowrap;transition:background var(--motion-fast),color var(--motion-fast)}.aboutAssurance a:hover{background:#25150d;color:#fff}.aboutAssurance a svg{width:16px}
 @media(max-width:960px){.aboutFeatureGrid{grid-template-columns:1fr}.aboutFeatureCopy{max-width:720px}.aboutAssurance{margin-top:42px}}
 @media(max-width:620px){.applicationFeatureGrid{grid-template-columns:1fr;gap:12px}.applicationFeatureCard{min-height:145px;padding:17px;gap:15px}.applicationFeatureCard img{width:82px;height:82px;flex-basis:82px}.applicationFeatureCard h3{font-size:16px}.aboutAssurance{align-items:flex-start;flex-wrap:wrap;padding:20px}.aboutAssurance a{width:100%;justify-content:center;margin-left:0}.aboutFeatureCopy h2{font-size:36px}}
@@ -160,3 +161,28 @@
 .productsSection .anchorProductGrid .productCardContent p{margin:12px 0 18px;color:#725f51;font-size:13px;line-height:1.55}
 @media(max-width:960px){.productsSection .anchorProductGrid{max-width:680px;gap:18px}.productsSection .anchorProductGrid .productCard{flex-basis:calc(50% - 9px)}.productsSection .anchorProductGrid .productCard>img{height:225px;flex-basis:225px}}
 @media(max-width:620px){.productsSection .anchorProductGrid{max-width:360px}.productsSection .anchorProductGrid .productCard{flex-basis:100%}.productsSection .anchorProductGrid .productCard>img{height:250px;flex-basis:250px}}
+
+/* Full-bleed supplier hero: the supplier image fills the section like industry pages. */
+.hero{min-height:710px;padding:70px 0 82px;background:#160b06;color:#fff}
+.heroImage{position:absolute;z-index:0;top:-4%;right:0;left:0;width:100%;height:108%;object-fit:cover;object-position:center}
+.heroShade{position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(19,8,3,.93) 0%,rgba(24,10,4,.82) 34%,rgba(24,10,4,.42) 57%,rgba(17,7,3,.08) 82%),linear-gradient(0deg,rgba(17,7,3,.4),transparent 48%)}
+.hero>.wrap{position:relative;z-index:2}
+.heroGrid{display:block;max-width:730px}
+.heroCopy{max-width:700px}
+.breadcrumbs{color:rgba(255,255,255,.76)}
+.breadcrumbs a{color:#ff9b54}
+.hero .eyebrow{display:inline-flex;padding:11px 16px;border:1px solid rgba(239,129,55,.75);border-radius:999px;background:rgba(27,11,4,.38);color:#ffad69;backdrop-filter:blur(7px)}
+.hero h1{color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.35)}
+.heroCopy>p{color:rgba(255,255,255,.88);text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.heroTrust span{color:rgba(255,255,255,.82)}
+.hero .secondaryButton{border-color:rgba(255,255,255,.72);background:rgba(15,6,2,.28);color:#fff}
+.hero .secondaryButton:hover{background:#fff;color:#25150d}
+@media(max-width:680px){
+  .hero{min-height:590px!important;padding:38px 0 42px!important;display:flex;align-items:flex-end}
+  .heroImage{object-position:64% center}
+  .heroShade{background:linear-gradient(90deg,rgba(18,7,3,.93),rgba(18,7,3,.65)),linear-gradient(0deg,rgba(18,7,3,.55),transparent 60%)}
+  .hero .eyebrow{margin-bottom:14px;padding:9px 12px}
+  .hero h1{color:#fff!important}
+  .heroCopy>p{color:rgba(255,255,255,.88)!important}
+  .heroTrust span{color:rgba(255,255,255,.82)!important}
+}

@@ -31,7 +31,7 @@ export const partnerSpecialties = {
 };
 export const partnerProductImages = {
   campco: {
-    hero: "/partner-products/campco-cocoa.webp",
+    hero: "/supplier-heroes/campco.webp",
     products: {
       "Cocoa Powder": "/partner-products/Campco/Cocoa Powder.webp",
       "Cocoa Butter": "/partner-products/Campco/Cocoa Butter.webp",
@@ -50,50 +50,50 @@ export const partnerProductImages = {
     }
   },
   "delta-nutritives": {
-    hero: "/partner-products/delta-frozen-fruits.webp",
+    hero: "/supplier-heroes/delta-nutritives.webp",
     products: {"Fruit Filling":"/product-images/fruit-processing/fruit-filling.webp"}
   },
   roquette: {
-    hero: "/product-images/other-products/liquid-glucose.webp",
+    hero: "/supplier-heroes/roquette.webp",
     products: {"Liquid Glucose":"/product-images/other-products/liquid-glucose.webp","Dextrose Monohydrate":"/product-images/roquette/dextrose-monohydrate.webp","Glucose D":"/product-images/roquette/glucose-d.webp","High Maltose Syrups":"/product-images/roquette/high-maltose-syrups.webp","Maize Starch Powder":"/product-images/roquette/maize-starch-powder.webp","Maltodextrin Powder":"/product-images/roquette/maltodextrin-powder.webp","Maize Starch":"/partner-products/roquette-products.webp"}
   },
   "nitta-gelatin-india-ltd": {
-    hero: "/product-images/nitta-gelatin/gelatin-120-bloom.webp",
+    hero: "/supplier-heroes/nitta-gelatin-india-ltd.webp",
     products: {"Gelatin 120 Bloom":"/product-images/nitta-gelatin/gelatin-120-bloom.webp","Gelatin 160 Bloom":"/product-images/nitta-gelatin/gelatin-160-bloom.webp","Gelatin 180 Bloom":"/partner-products/nitta-gelatin.webp"}
   },
   doehler: {
-    hero: "/product-images/doehler/fruit-ingredients.webp",
+    hero: "/supplier-heroes/doehler.webp",
     products: {"Natural Food and Beverage Ingredients":"/partner-products/natural-food-beverage-ingredients-seo.webp"}
   },
   "cp-kelco": {
-    hero: "/partner-products/cp-kelco-products.webp",
+    hero: "/supplier-heroes/cp-kelco.webp",
     products: {"Sodium CMC":"/partner-products/cp-kelco-products.webp","Distilled Monoglycerides (DMG)":"/product-images/cp-kelco/distilled-monoglycerides.png","Propylene Glycol Monostearate (PGMS)":"/product-images/catalog/propylene-glycol-monostearate-pgms.png"}
   },
   "calpro-specialities-pvt-ltd": {
-    hero: "/product-images/calpro/amaze-ice-cream-stabilizer.webp",
+    hero: "/supplier-heroes/calpro-specialities-pvt-ltd.webp",
     products: {"Cocoa Powder":"/partner-products/calpro-products.webp","Whey Protein":"/partner-products/calpro-products.webp","Whey Powder":"/partner-products/calpro-products.webp","Skimmed Milk Powder":"/partner-products/calpro-products.webp","Amaze Ice Cream Stabilizer":"/product-images/calpro/amaze-ice-cream-stabilizer.webp","Calcium Propionate (CP)":"/product-images/calpro/calcium-propionate.webp","Sodium Propionate":"/product-images/calpro/sodium-propionate.webp","Vital Wheat Gluten":"/product-images/calpro/vital-wheat-gluten.webp"}
   },
   "gujarat-ambuja-exports-ltd": {
-    hero: "/partner-products/gujarat-ambuja-corn-products.webp",
+    hero: "/supplier-heroes/gujarat-ambuja-exports-ltd.webp",
     products: {"Sorbitol 70% Solution":"/partner-products/gujarat-ambuja-corn-products.webp"}
   },
   "fine-organics": {
-    hero: "/partner-products/fine-food-ingredients.webp",
+    hero: "/supplier-heroes/fine-organics.webp",
     products: {
       ...Object.fromEntries(["GMS Flakes","GMS Powder","Sorbitan Monostearate"].map(name=>[name,"/partner-products/fine-food-ingredients.webp"])),
       "Propylene Glycol Monostearate (PGMS)": "/product-images/catalog/propylene-glycol-monostearate-pgms.png"
     }
   },
   "shree-gluco-biotech-pvt-ltd": {
-    hero: "/partner-products/shree-gluco-products.webp",
+    hero: "/supplier-heroes/shree-gluco-biotech-pvt-ltd.webp",
     products: {"Liquid Glucose":"/product-images/other-products/liquid-glucose.webp",...Object.fromEntries(["Dextrose Monohydrate","Maltodextrin Powder","Maize Starch"].map(name=>[name,"/partner-products/shree-gluco-products.webp"]))}
   },
   "paramesu-biotech-ltd": {
-    hero: "/partner-products/paramesu-maize-starch.webp",
+    hero: "/supplier-heroes/paramesu-biotech-ltd.webp",
     products: {"Maize Starch":"/partner-products/paramesu-maize-starch.webp","Liquid Glucose":"/product-images/other-products/liquid-glucose.webp","Dextrose Monohydrate":"/partner-products/paramesu-maize-starch.webp","Maltodextrin Powder":"/partner-products/paramesu-maize-starch.webp"}
   },
   anchor: {
-    hero: "/industries/bakery-ingredients.webp",
+    hero: "/supplier-heroes/anchor.webp",
     products: {
       "Indonesia cocoa powder - BG 1000/2000": "/product-images/anchor/indonesia-cocoa-powder-bg-1000-2000.png",
       "Black Cocoa Powder": "/product-images/anchor/black-cocoa-powder.png",
