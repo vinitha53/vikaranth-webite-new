@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowRight, Search, X } from "lucide-react";
 import {
   additiveProductGroups,
@@ -242,7 +243,7 @@ export default function GlobalSearch({ onOpen }) {
     <button suppressHydrationWarning ref={triggerRef} className={styles.trigger} type="button" onClick={openSearch} aria-label="Search the Vikranth website" aria-expanded={open} aria-controls="global-search-dialog">
       <Search aria-hidden="true"/><span>Search products…</span>
     </button>
-    {open && <div className={styles.backdrop} onMouseDown={(event) => { if (event.target === event.currentTarget) closeSearch(); }}>
+    {open && typeof document !== "undefined" && createPortal(<div className={styles.backdrop} onMouseDown={(event) => { if (event.target === event.currentTarget) closeSearch(); }}>
       <section ref={panelRef} id="global-search-dialog" className={styles.panel} role="dialog" aria-modal="true" aria-labelledby="global-search-title">
         <div className={styles.panelHead}>
           <div><span>Vikranth global search</span><h2 id="global-search-title">Find the right ingredient</h2></div>
@@ -272,6 +273,6 @@ export default function GlobalSearch({ onOpen }) {
           </>}
         </div>
       </section>
-    </div>}
+    </div>, document.body)}
   </>;
 }

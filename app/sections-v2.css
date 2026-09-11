@@ -1897,8 +1897,10 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   flex-direction:column;
   gap:11px;
   transform:translateY(-50%);
+  transition:opacity .2s ease,visibility .2s ease,transform .2s ease;
 }
 .floating-site-dock-left{right:auto;left:20px!important}
+.floating-site-dock-hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-50%) scale(.92)}
 .floating-site-dock-right{right:20px}
 .floating-site-dock .floating-site-button,.floating-site-chatbot{
   position:relative;
@@ -2307,7 +2309,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
  .home-page .enquiry-type-grid{gap:1.2rem}
  .home-page .enquiry-type-grid .enquiry-card{min-height:465px;padding:1.5rem 1.25rem;border-radius:18px}
  .home-page .enquiry-card-actions{left:1.25rem;right:1.25rem;bottom:1.35rem;align-items:stretch;flex-direction:column;gap:.9rem}
- .home-page .enquiry-card-actions .btn{width:calc(100% + .3rem);min-width:0;align-self:center;justify-content:center}.home-page .enquiry-text-link{align-self:center}
+ .home-page .enquiry-card-actions .btn{width:calc(100% - 1rem);min-width:0;margin-inline:auto;align-self:center;justify-content:center}.home-page .enquiry-text-link{align-self:center}
  .home-page .enquiry-requirement-banner{grid-template-columns:auto 1fr;padding:1.1rem;gap:1rem}
  .home-page .enquiry-requirement-banner .btn{grid-column:1/-1;width:100%;min-width:0}
  .home-page .enquiry-requirement-banner h3{font-size:1.2rem}
@@ -2413,4 +2415,35 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   .home-page .hero-message .hero-copy{margin-top:16px}
   .home-page .hero-message .hero-copy>.hero-copy-mobile{margin-bottom:16px!important}
   .home-page .hero-message .hero-buttons{gap:8px}
+}
+
+/* Footer spacing and compact homepage grid. */
+.home-page footer .footer-grid,.home-page footer .footer-bottom{padding-right:clamp(16px,2vw,32px);padding-left:clamp(16px,2vw,32px)}
+@media(max-width:767px){
+  .home-page .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 20px}
+  .home-page .footer-grid>div{min-width:0}
+  .home-page .footer-grid>div:first-child,.home-page .footer-grid>.footer-contact{grid-column:1/-1}
+  .home-page .footer-grid a{overflow-wrap:anywhere}
+  .home-page .footer-contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 18px;align-content:start}
+  .home-page .footer-contact>h4,.home-page .footer-contact>a:last-of-type,.home-page .footer-contact>p{grid-column:1/-1}
+  .home-page .footer-contact-number{min-width:0;margin-bottom:9px!important}
+}
+/* Keep the See All FAQs action centered at every viewport size. */
+.home-page .faq-section .faq-layout>.faq-contact{display:flex;width:max-content;margin:28px auto 0!important}
+@media(max-width:540px){.home-page .faq-section .faq-layout>.faq-contact{margin-top:22px!important}}
+
+/* Keep enquiry card actions anchored evenly inside each card. */
+.home-page .enquiry-card>.enquiry-card-actions{position:absolute}
+
+/* Keep the homepage navigation fully visible on narrow phones. */
+@media(max-width:375px){
+  .home-page .nav-wrap{width:calc(100% - 20px)}
+  .home-page .nav-actions{gap:3px}
+  .home-page .header-quote{font-size:12px!important}
+}
+@media(max-width:340px){
+  .home-page .nav-wrap{width:calc(100% - 16px)}
+  .home-page header button[aria-label="Search the Vikranth website"]{width:36px;min-width:36px;height:36px}
+  .home-page .header-quote{padding-inline:7px!important;font-size:10px!important}
+  .home-page .menu-trigger{width:36px;height:36px;min-width:36px;flex-basis:36px}
 }

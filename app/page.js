@@ -662,8 +662,8 @@ export default function Home() {
               <small className="hero-tagline" aria-hidden="true">Your Product Vision. Our Ingredient Expertise.</small>
               <div className="hero-buttons">
                 <a className="btn gold" href="/contact/#enquiry">Request Quote <ArrowRight size={17}/></a>
-                <a className="btn ghost" href={"https://wa.me/" + WHATSAPP_NUMBERS.general}>WhatsApp Us</a>
-                <a className="btn ghost hero-catalogue-link" href="/brochure/">Download Product Catalogue</a>
+                <a className="btn ghost" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+                <a className="btn ghost hero-catalogue-link" href="/brochures/vcc-product-brochure.pdf" download="Vikranth-Product-Catalogue.pdf">Download Product Catalogue</a>
               </div>
             </div>
           </div>
@@ -985,7 +985,7 @@ export default function Home() {
         <div className="container footer-grid">
           <div><Logo light/><p>{business.description}</p></div>
           <div><h4>Explore</h4><a href="/about">About</a><a href="/products/">Products</a><a href="/industries/">Industries</a><a href="/associates/">Suppliers</a><a href="/brochure">Brochure</a><a href="/contact">Contact</a><a href="/faq/">FAQs</a></div>
-          <div><h4>Product families</h4>{productGroups.slice(0,5).map((g,i) => <a key={g.name} href={`/industries/${industrySlugs[i]}`}>{g.name}</a>)}</div>
+          <div><h4>Industries</h4>{industries.map((industry) => <a key={industry.slug} href={`/industries/${industry.slug}`}>{industry.name}</a>)}</div>
           <div className="footer-contact"><h4>Contact</h4><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.general} target="_blank" rel="noreferrer"><strong>General Enquiry</strong><span>+91 98409 92985</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.anchor} target="_blank" rel="noreferrer"><strong>Anchor</strong><span>+91 87544 29922</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.delta} target="_blank" rel="noreferrer"><strong>Delta</strong><span>+91 98410 68559</span></a><a className="footer-contact-number" href={"https://wa.me/" + WHATSAPP_NUMBERS.supplierBrands} target="_blank" rel="noreferrer"><strong>Campco, Roquette, Nitta Gelatin, Fine Organics, CP Kelco, Calpro</strong><span>+91 87544 42924</span></a><a href="mailto:vikranth.chemicals@gmail.com">vikranth.chemicals@gmail.com</a><p>GSTIN: 33AADFV9327N1ZO</p><p>Serving Chennai and business enquiries across India.</p></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Vikranth Chemical Corporation</span><span className="footer-secondary-links"><a href="/site-map/">HTML Sitemap</a> · <a href="/sitemap.xml">XML Sitemap</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="#contact">LinkedIn</a></span></div>
