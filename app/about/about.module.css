@@ -293,3 +293,73 @@
 .certificateFooter svg{width:16px}.certificateFooter a{color:#f0a56e;text-decoration:none}.certificateFooter a:hover{color:#fff}
 @media(max-width:900px){.documentationSection{grid-template-columns:1fr}.certificateShowcase{max-width:720px}.warehouseGallery{grid-template-columns:1fr 1fr}.warehouseGallery figure{aspect-ratio:4/3}}
 @media(max-width:560px){.warehouseGallery{grid-template-columns:1fr}.warehouseGallery figure{aspect-ratio:16/10}.certificateShowcase{padding:12px;border-radius:14px}.certificatePaper{min-height:360px;padding:32px 27px}.certificatePaper:before{inset:9px}.certificatePaper>strong{font-size:34px}.certificateSeal{right:27px;bottom:32px;width:82px;height:82px}.certificateLines{right:128px;bottom:39px;left:27px}.certificateFooter{align-items:flex-start;flex-direction:column;padding:14px 2px 2px}}
+
+/* Compact, balanced About hero on phones. The fixed chrome is 110px tall
+   (102px on narrow phones), so the film should occupy only the space below it. */
+@media(max-width:560px) and (orientation:portrait){
+  .sequence{height:230svh}
+  .sticky{top:110px;height:calc(100svh - 110px);min-height:0}
+  .shade{background:linear-gradient(0deg,rgba(19,7,2,.94) 0%,rgba(19,7,2,.72) 42%,rgba(19,7,2,.16) 76%,rgba(19,7,2,.05) 100%)}
+  .storyCopy{top:52%;right:22px;bottom:auto;left:22px;width:auto;transform:translateY(-50%)}
+  .storyChapter>span{font-size:9px;line-height:1.35;letter-spacing:.12em}
+  .storyCopy h1,.storyCopy h2{max-width:480px;margin:12px 0 14px;font-size:clamp(30px,8.7vw,38px);line-height:1.06;letter-spacing:-.04em;text-wrap:balance}
+  .storyCopy p{max-width:500px;font-size:13px;line-height:1.5;-webkit-line-clamp:3}
+  .storyCopy strong{display:none}
+  .heroButtons{margin-top:15px}
+}
+@media(max-width:420px) and (orientation:portrait){
+  .sticky{top:102px;height:calc(100svh - 102px)}
+  .storyCopy{right:18px;left:18px}
+}
+/* Two-column supplier-logo grid on phones. */
+@media(max-width:560px){
+  .networkGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .networkGrid>a{min-height:112px;padding:12px 8px}
+  .networkGrid img{width:min(100%,100px);height:42px}
+  .networkGrid strong{font-size:10px;line-height:1.35}
+}
+/* Center the About FAQ title in the same editorial style as section headings. */
+.aboutFaq{display:block}
+.aboutFaq .sectionHeading{max-width:none;margin:0 auto clamp(42px,5vw,64px);text-align:center}
+.aboutFaq .sectionHeading .eyebrow{color:#8f3f21;font-size:12px;letter-spacing:.16em}
+.aboutFaq .sectionHeading h2{max-width:820px;margin:24px auto 0}
+.aboutFaq .sectionHeading::after{display:block;width:74px;height:3px;margin:27px auto 0;background:#b9784e;content:""}
+.aboutFaq>div:last-child{width:min(100%,1040px);margin:0 auto}
+@media(max-width:560px){
+  .aboutFaq .sectionHeading{margin-bottom:36px}
+  .aboutFaq .sectionHeading .eyebrow{font-size:10px}
+  .aboutFaq .sectionHeading h2{margin-top:18px;font-size:34px;line-height:1.1}
+  .aboutFaq .sectionHeading::after{width:58px;height:2px;margin-top:21px}
+}
+/* Keep the final About-page actions centered and evenly sized on phones. */
+@media(max-width:560px){
+  .finalCta>div{width:100%;align-items:center}
+  .finalCta>div a{width:min(100%,388px);margin-right:auto;margin-left:auto;justify-content:center;text-align:center}
+}
+/* Remove the oversized gap between coverage and About FAQ sections. */
+.coverageSection{padding-bottom:clamp(38px,4vw,52px)}
+.aboutFaq{padding-top:clamp(38px,4vw,52px)}
+@media(max-width:560px){
+  .coverageSection{padding-bottom:34px}
+  .aboutFaq{padding-top:40px}
+}
+/* Match the supplier-network heading to the centered FAQ section style. */
+.networkSection .sectionHeading{max-width:1040px;margin:0 auto clamp(42px,5vw,64px);text-align:center}
+.networkSection .sectionHeading .eyebrow{color:#8f3f21;font-size:12px;letter-spacing:.16em}
+.networkSection .sectionHeading h2{max-width:820px;margin:24px auto 0}
+.networkSection .sectionHeading h2::after{display:block;width:74px;height:3px;margin:27px auto 0;background:#b9784e;content:""}
+.networkSection .sectionHeading p{max-width:960px;margin:26px auto 0}
+@media(max-width:560px){
+  .networkSection .sectionHeading{margin-bottom:36px}
+  .networkSection .sectionHeading .eyebrow{font-size:10px}
+  .networkSection .sectionHeading h2{margin-top:18px;font-size:34px;line-height:1.1}
+  .networkSection .sectionHeading h2::after{width:58px;height:2px;margin-top:21px}
+  .networkSection .sectionHeading p{margin-top:22px}
+}
+/* Remove the oversized gap between the Anchor spotlight and coverage section. */
+.anchorSpotlight{padding-bottom:clamp(36px,3.5vw,50px)}
+.coverageSection{padding-top:clamp(36px,3.5vw,50px)}
+@media(max-width:560px){
+  .anchorSpotlight{padding-bottom:34px}
+  .coverageSection{padding-top:36px}
+}
