@@ -52,7 +52,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const [openGroups, setOpenGroups] = useState({});
   const [catalogStateReady, setCatalogStateReady] = useState(false);
   const productFinderRef = useRef(null);
-  const collectionContentRef = useRef(null);
+  const collectionPanelRef = useRef(null);
   const categoryNavRef = useRef(null);
   const [canScrollCategories, setCanScrollCategories] = useState(false);
   const updateCategoryScroll = () => {
@@ -179,10 +179,10 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
     setActiveCategory(category);
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const finder = productFinderRef.current;
-      const firstRow = collectionContentRef.current;
-      if (!finder || !firstRow) return;
+      const panel = collectionPanelRef.current;
+      if (!finder || !panel) return;
       const stickyTop = Number.parseFloat(getComputedStyle(finder).top) || 0;
-      const targetTop = window.scrollY + firstRow.getBoundingClientRect().top - stickyTop - finder.offsetHeight - 12;
+      const targetTop = window.scrollY + panel.getBoundingClientRect().top - stickyTop - finder.offsetHeight - 12;
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? "auto" : "smooth" });
     }));
@@ -274,13 +274,13 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
           }}>Scroll down <ArrowDown aria-hidden="true" /></button>}
         </div>
         </div>
-        <section className={styles.collectionPanel} aria-labelledby="selected-collection-title">
+        <section ref={collectionPanelRef} className={styles.collectionPanel} aria-labelledby="selected-collection-title">
           <div className={styles.collectionPanelHeading}>
             <span className={styles.collectionHeadingIcon}><PackageOpen aria-hidden="true" /></span>
             <strong id="selected-collection-title">{collectionHeading}</strong>
             <span className={styles.collectionCount}>{selectedCollectionProducts.length} {selectedCollectionProducts.length === 1 ? "product" : "products"}</span>
           </div>
-          <div ref={collectionContentRef} className={styles.collectionContent}>
+          <div className={styles.collectionContent}>
             {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
               <span className={styles.collectionImage}>
                 <img src={product.image} alt={`${product.displayName || product.name} ingredient`} width="520" height="360" loading="lazy" />
