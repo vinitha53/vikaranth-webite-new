@@ -79,6 +79,10 @@ export default async function PartnerPage({ params }) {
       <section className={`${styles.hero} ${heroFix.heroBoundary}`}>
         <img className={styles.heroImage} src={partner.image} alt={`${partner.name} ${content.category.toLowerCase()} for professional applications`} width="1600" height="900" fetchPriority="high" data-associate-hero-image />
         <div className={styles.heroShade} aria-hidden="true" />
+        <div className={styles.heroSupplierLogo} aria-label={`${partner.name} supplier`}>
+          <span>Supplier</span>
+          <img src={partner.logo} alt={`${partner.name} logo`} width="180" height="72" decoding="async" />
+        </div>
         <div className={styles.wrap}>
           <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/associates">Associates</Link><span>/</span><span>{partner.name}</span></nav>
           <div className={styles.heroGrid}>

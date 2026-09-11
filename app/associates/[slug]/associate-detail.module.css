@@ -166,6 +166,9 @@
 .hero{min-height:710px;padding:70px 0 82px;background:#160b06;color:#fff}
 .heroImage{position:absolute;z-index:0;top:-4%;right:0;left:0;width:100%;height:108%;object-fit:cover;object-position:center}
 .heroShade{position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(19,8,3,.93) 0%,rgba(24,10,4,.82) 34%,rgba(24,10,4,.42) 57%,rgba(17,7,3,.08) 82%),linear-gradient(0deg,rgba(17,7,3,.4),transparent 48%)}
+.heroSupplierLogo{position:absolute;z-index:3;top:28px;right:max(24px,calc((100vw - 1180px)/2));display:grid;width:190px;min-height:96px;padding:12px 16px;place-items:center;border:1px solid rgba(223,165,94,.72);border-radius:16px;background:rgba(255,250,244,.96);box-shadow:0 16px 38px rgba(18,7,3,.3);backdrop-filter:blur(10px)}
+.heroSupplierLogo span{justify-self:start;color:#98502a;font:800 8px/1 "Manrope",sans-serif;letter-spacing:.15em;text-transform:uppercase}
+.heroSupplierLogo img{display:block;width:auto;height:auto;max-width:158px;max-height:58px;object-fit:contain}
 .hero>.wrap{position:relative;z-index:2}
 .heroGrid{display:block;max-width:730px}
 .heroCopy{max-width:700px}
@@ -181,6 +184,9 @@
   .hero{min-height:590px!important;padding:38px 0 42px!important;display:flex;align-items:flex-end}
   .heroImage{object-position:64% center}
   .heroShade{background:linear-gradient(90deg,rgba(18,7,3,.93),rgba(18,7,3,.65)),linear-gradient(0deg,rgba(18,7,3,.55),transparent 60%)}
+  .heroSupplierLogo{top:16px;right:12px;width:132px;min-height:70px;padding:8px 11px;border-radius:12px}
+  .heroSupplierLogo span{font-size:7px}
+  .heroSupplierLogo img{max-width:108px;max-height:42px}
   .hero .eyebrow{margin-bottom:14px;padding:9px 12px}
   .hero h1{color:#fff!important}
   .heroCopy>p{color:rgba(255,255,255,.88)!important}
