@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Box, Check, ClipboardList, FileCheck, Handshake, MapPin, PackageCheck, ShieldCheck, SlidersHorizontal, Truck } from "lucide-react";
 import { industries, products, getIndustry, bakeryProductGroups, chocolateProductGroups, dairyProductGroups, beverageProductGroups, iceCreamProductGroups, fruitProductGroups, hydrocolloidProductGroups, sweetenerProductGroups, functionalProductGroups, nutraceuticalProductGroups, additiveProductGroups, foodAdditiveProductSuppliers } from "../data/catalog";
 import { industryContent } from "../data/industry-content";
-import { partnersForIndustry, partnersForProduct } from "../data/partners";
+import { getPartner, partnersForIndustry, partnersForProduct } from "../data/partners";
 import { DetailHeader, DetailFooter, PageCta, styles } from "./DetailChrome";
 import IndustryApplicationGuide from "./IndustryApplicationGuide";
 import RangeCatalog from "./RangeCatalog";
@@ -79,20 +79,43 @@ export default async function IndustryPage({ params }) {
   const content = industry && industryContent[industry.slug];
   if (!industry || !content) notFound();
   const [groups, guideLabel] = groupMap[industry.slug] || [null, ""];
-  const items = industry.products.map((name) => {
+  const items = industry.products.flatMap((name) => {
     const product = products.find((item) => item.name === name);
     const industryGroup = groups?.find((group) => group.ingredients.includes(name));
     const brochureSupplier = industry.slug === "food-additives-preservatives" ? foodAdditiveProductSuppliers[name] : null;
     const productSupplier = partnersForProduct(name)[0];
-    return product ? {
+    if (!product) return [];
+    const hideSupplierIdentity = name === "Distilled Monoglycerides (DMG)" || (industry.slug === "chocolate-confectionery" && industryGroup?.name === "Milk Powders" && productSupplier?.slug === "calpro-specialities-pvt-ltd");
+    const catalogProduct = {
       ...product,
       brand: brochureSupplier || product.brand,
       brandOnImageOnly: Boolean(brochureSupplier),
+      hideBrandLogo: industry.slug === "chocolate-confectionery" && industryGroup?.name === "Cocoa Ingredients" && product.brand === "Anchor",
       usageCategory: industryGroup?.name || product.usageCategory,
-      supplierLogo: productSupplier?.logo,
-      supplierName: productSupplier?.name,
-    } : null;
-  }).filter(Boolean);
+      supplierLogo: hideSupplierIdentity ? undefined : productSupplier?.logo,
+      supplierName: hideSupplierIdentity ? undefined : productSupplier?.name,
+    };
+    if (name !== "Liquid Glucose") return [catalogProduct];
+
+    const shreeGluco = getPartner("shree-gluco-biotech-pvt-ltd");
+    const anchor = getPartner("anchor");
+    return [
+      {
+        ...catalogProduct,
+        catalogKey: `${product.slug}-shree-gluco`,
+        image: shreeGluco?.productImages?.[name] || product.image,
+        supplierLogo: shreeGluco?.logo,
+        supplierName: shreeGluco?.name,
+      },
+      {
+        ...catalogProduct,
+        catalogKey: `${product.slug}-anchor`,
+        image: "/product-images/anchor/liquid-glucose.png",
+        supplierLogo: anchor?.logo,
+        supplierName: anchor?.name,
+      },
+    ];
+  });
   const partners = partnersForIndustry(industry.slug);
   const relatedIndustries = content.related.map((slug) => getIndustry(slug)).filter(Boolean);
   const industryFaqs = buildIndustryFaqs(industry, content);

@@ -60,7 +60,7 @@ const allProductGroups = [
     "Food Gums": ["Xanthan Gum", "Guar Gum", "Sodium CMC"], "Ice Cream Stabilizers": ["Ice Cream Stabilizer"]
   }},
   { name: "Sweeteners, Syrups & Starches", icon: Wheat, image: "/industries/sweeteners-syrups-starches-hero.webp", accent: "#d0a34f", blurb: "Liquid glucose, sorbitol, dextrose, maltodextrin and food starches for sweetness, body and processing performance.", subgroups: {
-    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"], "Sugar Free": ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"],
+    "Liquid Sweeteners": ["Liquid Glucose", "High Maltose Corn Syrups", "Sorbitol 70% Solution", "Invert Sugar"], "Sweeteners": ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"], "Sugar Free": ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"],
     "Starches": ["Maize Starch", "Maize Starch Powder", "Potato Starch"], "Carbohydrates": ["Dextrose Monohydrate", "Maltodextrin Powder"], "Syrups": ["Cake Syrup"]
   }},
   { name: "Functional Ingredients", icon: CircleGauge, image: "/industries/functional-ingredients-hero.webp", accent: "#b97547", blurb: "Food emulsifiers, proteins and processing aids selected for dependable texture, structure, stability and production efficiency.", subgroups: {

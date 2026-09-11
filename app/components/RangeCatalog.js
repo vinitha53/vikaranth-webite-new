@@ -281,12 +281,12 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
             <span className={styles.collectionCount}>{selectedCollectionProducts.length} {selectedCollectionProducts.length === 1 ? "product" : "products"}</span>
           </div>
           <div className={styles.collectionContent}>
-            {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.slug}>
+            {selectedCollectionProducts.length ? <div className={styles.collectionGrid}>{selectedCollectionProducts.map((product) => <Link prefetch={false} className={styles.collectionCard} href={`/products/${product.slug}`} key={product.catalogKey || product.slug}>
               <span className={styles.collectionImage}>
                 <img src={product.image} alt={`${product.displayName || product.name} ingredient`} width="520" height="360" loading="lazy" />
-                {(brandLogos[product.brand] || product.supplierLogo || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
+                {!product.hideBrandLogo && ((brandLogos[product.brand] || product.supplierLogo || (!product.brand && supplierLogo)) ? <span className={styles.collectionBrandBadge}>
                   <img src={brandLogos[product.brand] || product.supplierLogo || supplierLogo} alt={`${product.brand || product.supplierName || supplierName} logo`} width="100" height="44" loading="lazy" />
-                </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null}
+                </span> : product.brand ? <span className={styles.collectionBrandBadge}>{product.brand}</span> : null)}
               </span>
               <span className={styles.collectionCardCopy}><strong>{product.displayName || product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
             </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}
@@ -347,10 +347,10 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
         </button>
         {isOpen && <div className={styles.groupContent} id={contentId}>
           <p className={styles.groupIntroduction}>Explore {group.products.length} professional {group.category.toLowerCase()} {group.products.length === 1 ? "ingredient" : "ingredients"}. Open a product for sourcing, pack, specification and enquiry details.</p>
-          <div className={styles.grid}>{group.products.map((product, productIndex) => <Link prefetch={false} className={styles.card} href={`/products/${product.slug}`} key={product.slug}>
+          <div className={styles.grid}>{group.products.map((product, productIndex) => <Link prefetch={false} className={styles.card} href={`/products/${product.slug}`} key={product.catalogKey || product.slug}>
             <div className={styles.image}>
               <img src={product.image} alt={`${product.name} by ${product.brand || "Vikranth"}`} width="640" height="640" loading="lazy" />
-              {brandLogos[product.brand] || product.supplierLogo
+              {product.hideBrandLogo ? null : brandLogos[product.brand] || product.supplierLogo
                 ? <span className={styles.brandLogoBadge} title={product.brand || product.supplierName} style={{ "--brand-float-delay": `${(productIndex % 6) * -0.32}s` }}><img src={brandLogos[product.brand] || product.supplierLogo} alt={`${product.brand || product.supplierName} logo`} width="160" height="64" loading="lazy" /></span>
                 : <span>{product.brand || (active === "indian" ? "Indian range" : "Imported range")}</span>}
             </div>

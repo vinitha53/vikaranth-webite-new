@@ -14,7 +14,7 @@ export const industries = [
   group("food-additives-preservatives", "Food Additives & Preservatives", "Food Additives & Preservatives", "/industries/food-additives-preservatives.webp", "Preservation, acidity, leavening, emulsification, texture, flavour and processing-control ingredients.", ["Potassium Sorbate","Sorbic Acid","Sodium Benzoate","Sodium Propionate","Potassium Metabisulphite (KMS)","Sodium Metabisulphite (SMBS)","Citric Acid Monohydrate","Citric Acid Anhydrous","Sodium Citrate","Malic Acid","Acetic Acid","Vinegar","Ascorbic Acid","Fumaric Acid","Tartaric Acid","Boric Acid","Phosphoric Acid","Formic Acid","Distilled Monoglycerides (DMG)","Propylene Glycol Monostearate (PGMS)","SMS","PGPR","Soya Lecithin","GMS Flakes","GMS Powder","Sorbitan Monostearate","Finamul 90","Xanthan Gum","Guar Gum","Sodium CMC","Algel Pro","Sempoorna","Ice Pro","Invert Sugar","Aspartame Powder","Sucralose","Acesulfame K","Saccharin","Isomalt","Maltitol","Sucrose","Potato Starch","Vital Wheat Gluten","Whey Protein Concentrate","Isolate Soya Protein","Ammonium Bicarbonate","Sodium Bicarbonate","SAPP (Sodium Acid Pyrophosphate)","Calcium Carbonate","Calcium Chloride","Propylene Glycol (PG)","Refined Glycerine","Skimmed Milk Powder","Whey Powder","Whole Milk Powder","Milk Powder Added Glucose","Malt Extract Powder","Black Cocoa Powder","Caramel","Extra Pure Vanillin","Orange Oil","Saucetec"]),
   group("hydrocolloids-stabilizers", "Hydrocolloids", "Hydrocolloids", "/industries/hydrocolloids-stabilizers.webp", "Hydrocolloids and gums for viscosity control, stability, texture and mouthfeel.", ["Genu Pectin","GENU® Pectin MRS 115","Gelatin 120 Bloom","Gelatin 160 Bloom","Gelatin 180 Bloom","Xanthan Gum","Guar Gum","Sodium CMC","Sodium Alginate FG","Ice Cream Stabilizer"]),
   group("fruit-processing", "Fruit Processing", "Fruit Processing Ingredients", "/industries/fruit-processing.webp", "Fruit fillings, preparations, pectin and glazes for bakery, beverage and dessert applications.", ["Fruit Filling","Fruit Crush","Genu Pectin","Glaze Gel"]),
-  group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Syrups","Sorbitol 70% Solution","Invert Sugar","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame Powder","Sucralose","Acesulfame K","Saccharin","Maltitol","Sucrose","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Cake Syrup","CLEARAM® CH 20 20"])
+  group("sweeteners-syrups-starches", "Sweeteners, Syrups & Starches", "Sweeteners, Syrups & Starches", "/industries/sweeteners-syrups-starches.webp", "Sweeteners, carbohydrates and starches for sweetness, body, solids and processing performance.", ["Liquid Glucose","Glucose D","High Maltose Corn Syrups","Sorbitol 70% Solution","Invert Sugar","Isomalt","SWEETPEARL® P 200 Maltitol","Aspartame Powder","Sucralose","Acesulfame K","Saccharin","Maltitol","Sucrose","Maize Starch","Maize Starch Powder","Potato Starch","Dextrose Monohydrate","Cake Syrup","CLEARAM® CH 20 20"])
 ];
 
 const primaryIndustrySlugByProductName = new Map();
@@ -66,8 +66,8 @@ export const hydrocolloidProductGroups = [
 ];
 
 export const sweetenerProductGroups = [
-  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Dextrose Monohydrate", "Cake Syrup", "Sorbitol 70% Solution", "Sucrose"] },
-  { name: "Beverages & Syrups", description: "Ingredients for sweetness, solids and body in beverages, concentrates, drink mixes and flavoured syrups.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Syrups", "Invert Sugar", "Aspartame Powder", "Dextrose Monohydrate", "Cake Syrup"] },
+  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Corn Syrups", "Invert Sugar", "Dextrose Monohydrate", "Cake Syrup", "Sorbitol 70% Solution", "Sucrose"] },
+  { name: "Beverages & Syrups", description: "Ingredients for sweetness, solids and body in beverages, concentrates, drink mixes and flavoured syrups.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Corn Syrups", "Invert Sugar", "Aspartame Powder", "Dextrose Monohydrate", "Cake Syrup"] },
   { name: "Sugar Free", description: "Alternative sweetening ingredients for reduced-sugar, sugar-free and calorie-managed formulations.", ingredients: ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol"] },
   { name: "Texture, Body & Thickening", description: "Starches and carbohydrates for viscosity, binding, bulking, crispness and processing performance.", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch", "Dextrose Monohydrate", "CLEARAM® CH 20 20"] }
 ];
@@ -173,7 +173,7 @@ export const productMenuGroupsByIndustrySlug = {
     { name: "Ice Cream Stabilizers", ingredients: ["Ice Cream Stabilizer"] }
   ],
   "sweeteners-syrups-starches": [
-    { name: "Liquid Sweeteners", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Sorbitol 70% Solution", "Invert Sugar"] },
+    { name: "Liquid Sweeteners", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Sorbitol 70% Solution", "Invert Sugar"] },
     { name: "Sweeteners", ingredients: ["Glucose D", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Sucrose"] },
     { name: "Sugar Free", ingredients: ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol"] },
     { name: "Starches", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch"] },
@@ -211,9 +211,9 @@ export const sharedApplicationGroupsByIndustrySlug = {
     { name: "Leavening & Preservation", description: "Leavening salts and preservatives used in cakes, biscuits, cookies, crackers, bread and related bakery products.", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)", "Potassium Sorbate", "Sodium Benzoate"] }
   ],
   "chocolate-confectionery": [
-    { name: "Sweeteners & Bulking Ingredients", description: "Sweeteners and carbohydrates for confectionery texture, solids, reduced-sugar recipes and fillings.", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
-    { name: "Dairy Ingredients", description: "Milk and whey powders for milk chocolate, centres, coatings and confectionery formulations.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
-    { name: "Emulsifiers & Texture", description: "Emulsifiers and gelling ingredients for flow, dispersion, moulding, fillings, gummies and aerated confectionery.", ingredients: ["PGPR", "Soya Lecithin", "GMS Powder", "Distilled Monoglycerides (DMG)", "Gelatin 120 Bloom", "Gelatin 160 Bloom", "Gelatin 180 Bloom", "Genu Pectin"] }
+    { name: "Sweeteners & Bulking Ingredients", description: "Sweeteners and carbohydrates for confectionery texture, solids, reduced-sugar recipes and fillings.", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
+    { name: "Milk Powders", description: "Milk and whey powders for milk chocolate, centres, coatings and confectionery formulations.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
+    { name: "Emulsifiers & Texture", description: "Emulsifiers and gelling ingredients for flow, dispersion, moulding, fillings, gummies and aerated confectionery.", ingredients: ["PGPR", "Soya Lecithin", "Full-Fat Soya Flour", "GMS Powder", "Distilled Monoglycerides (DMG)", "Gelatin 120 Bloom", "Gelatin 160 Bloom", "Gelatin 180 Bloom", "Genu Pectin"] }
   ],
   "dairy-ingredients": [
     { name: "Stabilizers & Texture", description: "Hydrocolloids and emulsifiers for body, suspension, creaminess and stability in dairy systems.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG", "Genu Pectin", "GMS Powder", "Sodium Citrate"] },
@@ -221,7 +221,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
     { name: "Flavours, Cocoa & Fruit", description: "Cocoa, chocolate and fruit ingredients for flavoured dairy products and desserts.", ingredients: ["Cocoa Powder", "Chocolate Drink", "Fruit Filling", "Fruit Crush", "Natural Food and Beverage Ingredients"] }
   ],
   "beverage-ingredients": [
-    { name: "Sweeteners & Beverage Solids", description: "Sweeteners, syrups and carriers for drinks, concentrates, premixes and reduced-sugar beverages.", ingredients: ["Liquid Glucose", "High Maltose Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Aspartame Powder", "Sucralose", "Acesulfame K", "Saccharin", "Dextrose Monohydrate", "Maltodextrin Powder"] },
+    { name: "Sweeteners & Beverage Solids", description: "Sweeteners, syrups and carriers for drinks, concentrates, premixes and reduced-sugar beverages.", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Aspartame Powder", "Sucralose", "Acesulfame K", "Saccharin", "Dextrose Monohydrate", "Maltodextrin Powder"] },
     { name: "Fruit, Cocoa & Dairy", description: "Fruit, cocoa and dairy ingredients for juices, shakes, flavoured milk and drink mixes.", ingredients: ["Fruit Crush", "Cocoa Powder", "Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder"] },
     { name: "Acidulants & Preservation", description: "Acids and preservatives for pH, flavour balance and shelf-life support in beverage formulations.", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Ascorbic Acid", "Phosphoric Acid", "Potassium Sorbate", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"] },
     { name: "Gums & Stabilizers", description: "Hydrocolloids for suspension, viscosity, mouthfeel and emulsion stability in beverages.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Genu Pectin"] }
@@ -270,7 +270,7 @@ approvedRangeProducts.forEach((item) => {
 
 const productMap = new Map();
 industries.forEach((industry) => industry.products.forEach((name) => {
-  const slug = name === "Natural Food and Beverage Ingredients" ? "flavours-and-natural-ingredients" : name === "Aspartame Powder" ? "aspartame" : slugify(name);
+  const slug = name === "Natural Food and Beverage Ingredients" ? "flavours-and-natural-ingredients" : name === "Aspartame Powder" ? "aspartame" : name === "High Maltose Corn Syrups" ? "high-maltose-syrups" : slugify(name);
   const approved = approvedRangeProducts.find((item) => item.name === name);
   const primaryIndustry = industries.find((entry) => entry.slug === primaryIndustrySlugByProductName.get(name)) || industry;
   if (!productMap.has(slug)) productMap.set(slug, {

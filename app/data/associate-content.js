@@ -17,7 +17,7 @@ export const associateContent = {
   },
   roquette: {
     title: "Roquette Ingredients Supplier Chennai & India | Vikranth",
-    description: "Enquire for selected Roquette starches, glucose products, high maltose syrups and maltodextrin through Vikranth in Chennai and across India.",
+    description: "Enquire for selected Roquette starches, glucose products, high maltose corn syrups and maltodextrin through Vikranth in Chennai and across India.",
     h1: "Roquette Food Ingredients Supplier in Chennai",
     category: "Plant-based starches and sweetener ingredients",
     about: "Roquette is known for plant-based ingredients used to support nutrition, taste, texture and formulation performance. Its global food portfolio includes plant proteins, specialty starches, fibers, cereal sugars, maltodextrins and polyols. This page separates products currently available for Vikranth enquiry from Roquette's broader global catalogue.",
