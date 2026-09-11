@@ -24,7 +24,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
 approvedRangeProducts.forEach((item) => primaryIndustrySlugByProductName.set(item.name, item.industrySlug));
 
 export const bakeryProductGroups = [
-  { name: "Cake", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
+  { name: "Cake Ingredients", description: "Ingredients for making cakes, cupcakes, muffins and sponge products with consistent volume, softness and shelf life.", ingredients: ["Cake Gel", "Cake Life", "Baking Powder", "MACP (Mono Acid Calcium Phosphate)", "Cake Syrup"] },
   { name: "Bread", description: "Ingredients for making bread, buns, pav and rolls with dependable dough performance, yield, texture and freshness.", ingredients: ["Bread Yield Improver", "Calcium Propionate (CP)", "Sodium Propionate", "Baking Powder"] },
   { name: "Biscuits, Cookies & Crackers", description: "Leavening and sweetening ingredients used in biscuits, cookies and cracker production.", ingredients: ["MACP (Mono Acid Calcium Phosphate)", "Baking Powder", "Biscuit Enhancer", "Cake Syrup"] },
   { name: "Pastry & Desserts", description: "Ingredients for making pastries, tarts, cream buns, fillings and desserts.", ingredients: ["Custard Powder", "Cake Syrup"] }
