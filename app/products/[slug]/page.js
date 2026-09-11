@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { buyerFaq } from "../../data/business";
 import { notFound } from "next/navigation";
-import { ArrowDown, BadgeCheck, Check, FileCheck2, FlaskConical, MapPin, MessageCircle, PackageCheck, SearchCheck, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { ArrowDown, BadgeCheck, Check, FileCheck2, FlaskConical, MapPin, PackageCheck, SearchCheck, ShieldCheck, Sparkles, Truck } from "lucide-react";
 import { products, getProduct, getIndustry } from "../../data/catalog";
 import { DetailHeader, DetailFooter } from "../../components/DetailChrome";
 import ProductQuoteForm from "../../components/ProductQuoteForm";
@@ -12,6 +12,12 @@ import { whatsappNumberForProduct, whatsappUrl } from "../../data/whatsapp";
 import { getProductApplications } from "../../data/product-applications";
 import ProductMotion from "./ProductMotion";
 import styles from "./product-landing.module.css";
+
+function WhatsAppIcon() {
+  return <svg className={styles.whatsappIcon} viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.148-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.438-9.887 9.892-9.887a9.82 9.82 0 0 1 7.021 2.91 9.82 9.82 0 0 1 2.9 7.024c-.003 5.45-4.439 9.885-9.889 9.885m8.413-18.297A11.81 11.81 0 0 0 12.055 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.689 1.448h.005c6.558 0 11.893-5.335 11.896-11.893a11.82 11.82 0 0 0-3.487-8.413"/>
+  </svg>;
+}
 
 const siteUrl = "https://www.vikranthchemicalcorporation.com";
 const cakeGelFaq = [
@@ -87,7 +93,7 @@ export default async function ProductPage({ params }) {
         <h1><span>{product.name}</span><em>Supplier<br/>in Chennai</em></h1>
         <p>{heroCopy}</p><p className={styles.buyerNote}>Wholesale supply across South India and pan-India. Small-business and personal enquiries are welcome; packs and minimum quantities vary by product.</p>
         <div className={styles.heroHighlights}>{applications.slice(0, 3).map((application) => <span key={application}><Check />{application}</span>)}</div>
-        <div className={styles.actions}><a className={styles.whatsappButton} href="#quote">Request a Quote <ArrowDown /></a><a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle /> Ask on WhatsApp</a></div>
+        <div className={styles.actions}><a className={styles.whatsappButton} href="#quote">Request a Quote <ArrowDown /></a><a className={styles.callButton} href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /> Ask on WhatsApp</a></div>
         <div className={styles.trust}>{proofPoints.map((point, index) => { const Icon = [FileCheck2, Truck, BadgeCheck][index]; return <span key={point}><Icon /> {point}</span>; })}</div>
       </div><div className={styles.visualColumn}><div className={styles.productVisual} data-product-stage><span className={styles.visualWord} aria-hidden="true">{product.name}</span><img data-product-image src={product.image} alt={product.name} width="900" height="900" loading="eager" fetchPriority="high" decoding="async" /><span className={styles.bulkBadge}><PackageCheck /> Bulk enquiry</span><div className={styles.imageLabel}><FlaskConical /><small>Commercial sourcing</small><strong>{product.name}</strong></div></div>
       <div className={`${styles.partnerPanel} ${showProductBrand ? styles.partnerPanelWithBrand : ""}`} data-partner-badge><span>{showProductBrand ? "Product brand & supplier" : productPartners.length ? "Verified product partner" : "Sourcing contact"}</span><div className={styles.partnerLogos}>
@@ -108,19 +114,19 @@ export default async function ProductPage({ params }) {
       <div className={styles.applicationRail}><h3>Choose your application</h3><div>{applications.map((application, index) => <a className={index === 0 ? styles.activeApplication : undefined} href="#quote" key={application}>{application}<ArrowDown /></a>)}</div></div>
       <div className={styles.buyerSupport}>
         <article><ShieldCheck aria-hidden="true"/><div><small>Application guidance</small><h3>Confirm Suitability for Your Recipe</h3><p>{technicalNote}</p><a href="#quote">Request Product Documents <ArrowDown /></a></div></article>
-        <article><MapPin aria-hidden="true"/><div><small>Application enquiry</small><h3>Discuss Your Production Need</h3><p>Tell us which {product.name} application you selected, your finished product, process and required result.</p><p>{regionalCopy}</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> WhatsApp</a></div></div></article>
+        <article><MapPin aria-hidden="true"/><div><small>Application enquiry</small><h3>Discuss Your Production Need</h3><p>Tell us which {product.name} application you selected, your finished product, process and required result.</p><p>{regionalCopy}</p><div><a href="#quote">Request a Quote</a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon/> WhatsApp</a></div></div></article>
       </div>
     </div></section>
 
     <section className={styles.faqSection} aria-labelledby="faq-title"><div className={styles.wrap}>
       <header className={styles.faqHeading} data-heading><div><span className={styles.eyebrow}>Product questions</span><h2 id="faq-title">Frequently Asked Questions <em>About {product.name}</em></h2></div><p>Clear sourcing answers for professional buyers evaluating {product.name}, from grade selection and documents to samples, quotation and delivery.</p></header>
       <div className={styles.faqList} data-reveal>{faq.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>0{index + 1}</span><b>{question}</b><i aria-hidden="true"/></summary><p>{answer}</p></details>)}</div>
-      <div className={styles.faqCta}><div><small>Need a product-specific answer?</small><strong>Share your application, quantity and delivery city.</strong></div><a href="#quote">Send an Enquiry <ArrowDown/></a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle/> Ask on WhatsApp</a></div>
+      <div className={styles.faqCta}><div><small>Need a product-specific answer?</small><strong>Share your application, quantity and delivery city.</strong></div><a href="#quote">Send an Enquiry <ArrowDown/></a><a href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon/> Ask on WhatsApp</a></div>
     </div></section>
 
     <section className={styles.relatedSection}><div className={styles.wrap}><header className={styles.sectionHeading}><span className={styles.eyebrow}>Continue sourcing</span><h2>Related Products and Industry</h2></header><div className={styles.relatedLinks}><Link href={`/industries/${industry.slug}/`}><strong>{industry.name}</strong><small>View the complete industry range</small></Link>{relatedProducts.map((item) => <Link href={`/products/${item.slug}/`} key={item.slug}><strong>{item.name}</strong><small>{item.usageCategory || item.category}</small></Link>)}</div></div></section>
 
     <section className={styles.quoteSection} id="quote" aria-labelledby="quote-title"><div className={styles.wrap} data-reveal><div className={styles.quoteIntro}><span className={styles.eyebrow}>Request a quotation</span><h2 id="quote-title">Request {product.name} Price and Availability</h2><p>Share the application, required grade, quantity, documents and delivery city for current sourcing options.</p><ul><li><Check /> Product-specific enquiry</li><li><Check /> Specifications and documents where available</li><li><Check /> Freight and serviceability confirmed per quotation</li></ul></div><ProductQuoteForm product={product.name} applications={applications} whatsappNumber={whatsappNumber} /></div></section>
-    <a className={styles.floatWhatsapp} href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Ask about ${product.name} on WhatsApp`}><MessageCircle /></a><DetailFooter />
+    <a className={styles.floatWhatsapp} href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`Ask about ${product.name} on WhatsApp`}><WhatsAppIcon /></a><DetailFooter />
   </main>;
 }

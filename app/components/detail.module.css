@@ -759,3 +759,27 @@
     height: 36px;
   }
 }
+/* Two supplier-logo cards per row on mobile industry pages. */
+@media(max-width:560px){
+  .industryPage .partnerSection .partnerGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .industryPage .partnerSection .partnerTile{min-width:0;padding:14px 10px}
+  .industryPage .partnerSection .partnerTile>div{height:70px}
+  .industryPage .partnerSection .partnerTile img{max-width:110px;max-height:46px}
+  .industryPage .partnerSection .partnerTile h3{margin:14px 0 6px;font-size:14px;line-height:1.25}
+  .industryPage .partnerSection .partnerTile span{margin-top:8px;font-size:10px;line-height:1.3}
+}
+/* Keep application-guide benefits in one horizontal row on mobile. */
+@media(max-width:700px){
+  .applicationJourneyBenefits{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}
+  .applicationJourneyBenefits span{min-width:0;min-height:58px;padding:6px 3px;justify-content:center;gap:5px;border-right:1px solid #ead8ca;border-bottom:0;font-size:8px;line-height:1.25;white-space:nowrap}
+  .applicationJourneyBenefits span:last-child{border-right:0}
+  .applicationJourneyBenefits svg{width:16px;height:16px;flex:0 0 16px}
+}
+/* Keep all four regional assurances in one single row on mobile. */
+@media(max-width:700px){
+  .regionalAssurances{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .regionalAssurances span,.regionalAssurances span:nth-child(2){min-width:0;min-height:60px;padding:6px 2px;justify-content:center;gap:4px;border-right:1px solid #ead8ca;border-bottom:0;font-size:7px;line-height:1.2;white-space:nowrap}
+  .regionalAssurances span:last-child{border-right:0;border-bottom:0}
+  .regionalAssurances svg{width:14px;height:14px;flex:0 0 14px}
+}
+@media(max-width:380px){.regionalAssurances span,.regionalAssurances span:nth-child(2){font-size:6.5px}}

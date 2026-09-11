@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -16,6 +19,26 @@ const icons = [ClipboardCheck, PackageCheck, Layers, Target, ClipboardCheck, Box
 
 export default function IndustryApplicationGuide({ content }) {
   const applications = content.applications;
+  const [activeApplication, setActiveApplication] = useState(0);
+
+  const updateActiveApplication = (event) => {
+    const viewport = event.currentTarget;
+    const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+    const slides = [...viewport.querySelectorAll("[data-application-slide]")];
+    let nextIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(slideCenter - viewportCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        nextIndex = index;
+      }
+    });
+
+    setActiveApplication((current) => current === nextIndex ? current : nextIndex);
+  };
 
   return <section className={styles.applicationJourney} aria-labelledby="application-guide-title">
     <div className={styles.applicationJourneyHead}>
@@ -26,16 +49,16 @@ export default function IndustryApplicationGuide({ content }) {
     </div>
 
     <div className={styles.applicationJourneyPanel}>
-      <div className={styles.applicationJourneyProgress} aria-label={`${applications.length} applications`}>
-        <span>01 / {String(applications.length).padStart(2, "0")}</span>
-        <i>{applications.map((_, index) => <b className={index === 0 ? styles.applicationJourneyProgressActive : ""} key={index} />)}</i>
+      <div className={styles.applicationJourneyProgress} aria-label={`Application ${activeApplication + 1} of ${applications.length}`}>
+        <span>{String(activeApplication + 1).padStart(2, "0")} / {String(applications.length).padStart(2, "0")}</span>
+        <i>{applications.map((_, index) => <b className={index === activeApplication ? styles.applicationJourneyProgressActive : ""} key={index} />)}</i>
       </div>
 
-      <div className={styles.applicationJourneyViewport}>
+      <div className={styles.applicationJourneyViewport} onScroll={updateActiveApplication}>
         <div className={styles.applicationJourneyTrack} style={{ "--application-count": applications.length }}>
           {applications.map(([name, description], index) => {
             const Icon = icons[index % icons.length];
-            return <article className={styles.applicationJourneyItem} key={name}>
+            return <article className={styles.applicationJourneyItem} data-application-slide key={name}>
               <span className={styles.applicationJourneyConnector} aria-hidden="true" />
               <div className={styles.applicationJourneyNode}>
                 <Icon aria-hidden="true" />

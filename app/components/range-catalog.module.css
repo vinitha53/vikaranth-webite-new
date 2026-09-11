@@ -172,3 +172,8 @@
   .collectionSidebar .brandDrilldownTabs .drilldownBrandButton{width:100%;min-width:0;max-width:none;height:62px;min-height:62px}
   .collectionSidebar .brandDrilldownTabs .drilldownCategories button{width:100%;min-width:0;max-width:none}
 }
+
+/* Stronger range labels across desktop, tablet, and mobile. */
+.tabs button{font-size:20px;font-weight:900}
+@media(max-width:760px){.tabs button{font-size:18px;font-weight:900}}
+@media(max-width:520px){.tabs button{font-size:19px;font-weight:900}}
