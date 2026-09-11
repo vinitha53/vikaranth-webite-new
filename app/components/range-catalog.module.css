@@ -89,6 +89,7 @@
 .collectionCard:hover{border-color:#ce6b38;box-shadow:0 12px 25px rgba(70,32,14,.13);transform:translateY(-4px)}
 .collectionImage{display:block;height:205px;overflow:hidden;background:#f1e3d6}
 .collectionImage img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;image-rendering:-webkit-optimize-contrast;filter:contrast(1.025) saturate(1.015);transform:none;transition:filter .25s ease}
+.collectionImage img.logoFreeCrop{object-position:center bottom}
 .collectionCard:hover .collectionImage>img:first-child{filter:contrast(1.04) saturate(1.025);transform:none}
 .collectionCardCopy{position:relative;display:block;min-height:78px;padding:12px 32px 11px 12px}
 .collectionCardCopy strong{display:block;font-size:14px;line-height:1.25}
@@ -143,6 +144,7 @@
 .collectionImage{position:relative}
 .collectionBrandBadge{position:absolute;z-index:1;top:8px;right:8px;display:flex;width:86px;max-width:calc(100% - 16px);height:42px;padding:0;align-items:center;justify-content:center;border:0;border-radius:0;background:transparent;box-shadow:none;color:#713216;font-size:10px;font-weight:700;text-align:center;line-height:1.2}
 .collectionImage .collectionBrandBadge img{width:100%;height:100%;object-fit:contain;transform:none;transition:none}
+.collectionImage .solidBrandBadge{width:116px;height:48px;padding:5px 7px;border-radius:5px;background:#fff;box-shadow:0 3px 10px rgba(43,24,15,.16)}
 .collectionCard:hover .collectionBrandBadge img{transform:none}
 @media(max-width:440px){.collectionBrandBadge{top:6px;right:6px;width:66px;height:32px;padding:0}}
 

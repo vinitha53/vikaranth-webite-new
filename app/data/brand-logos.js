@@ -1,6 +1,9 @@
 export const brandLogos = {
   CAMPCO: "/partners/campco-heart.webp",
   Anchor: "/partners/anchor.webp",
+  "Fine Organics": "/partners/fine-organics.webp",
+  "Calpro Specialities Pvt. Ltd.": "/partners/calpro.webp",
+  AMIT: "/brand-logos/amit.webp",
   Callebaut: "/brand-logos/callebaut.webp",
   "Mona Lisa": "/brand-logos/mona-lisa-wordmark.svg",
   "Cacao Barry": "/brand-logos/cacao-barry-seo.webp",

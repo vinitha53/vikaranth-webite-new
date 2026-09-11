@@ -3,6 +3,18 @@ import { approvedRangeProducts } from "./catalog-ranges";
 
 const group = (slug, name, eyebrow, image, summary, products) => ({ slug, name, eyebrow, image, summary, products });
 
+const productBrandOverrides = {
+  "Sodium Propionate": "Fine Organics",
+  "Ice Cream Stabilizer": "Calpro Specialities Pvt. Ltd.",
+  "Sodium CMC": "AMIT",
+  "Sodium CMC Stabilizer Grade": "AMIT",
+  "Sodium CMC Thick Shake Grade": "AMIT",
+};
+
+const productDisplayNameOverrides = {
+  "Maize Starch Powder": "Maize Starch IP/BP Grade",
+};
+
 export const industries = [
   group("chocolate-confectionery", "Chocolate & Confectionery", "Chocolate & Confectionery Ingredients", "/industries/chocolate-confectionery.webp", "Cocoa, couverture, compounds and confectionery ingredients for dependable flavour, colour and processing performance.", ["Cocoa Butter","Cocoa Mass","Cocoa Powder","Dark Chocolate","Milk Chocolate","White Chocolate","White Chips","Dark Chips","Milk Chips","White Chocomass","Dark Chocomass","Milk Chocomass","Choco Paste","Chocolate Drink"]),
   group("bakery-ingredients", "Bakery Ingredients", "Bakery Ingredients", "/industries/bakery-ingredients.webp", "Functional bakery ingredients for consistent volume, texture, freshness and efficient commercial production.", ["Cake Gel","Cake Life","Custard Powder","Bread Yield Improver","MACP (Mono Acid Calcium Phosphate)","Baking Powder","Biscuit Enhancer","Cake Syrup","Calcium Propionate (CP)","Sodium Propionate"]),
@@ -205,7 +217,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
   "bakery-ingredients": [
     { name: "Chocolate, Cocoa & Inclusions", description: "Cocoa and chocolate ingredients for cakes, cookies, brownies, pastries, fillings, coatings and decorations.", ingredients: ["Cocoa Butter", "Cocoa Mass", "Cocoa Powder", "Dark Chocolate", "Milk Chocolate", "White Chocolate", "White Chips", "Dark Chips", "Milk Chips", "White Chocomass", "Dark Chocomass", "Milk Chocomass", "Choco Paste"] },
     { name: "Fruit Fillings & Finishing", description: "Fruit preparations, pectin and glazes for cake layers, pies, pastries, tarts and decorative finishing.", ingredients: ["Fruit Filling", "Fruit Crush", "Genu Pectin", "Glaze Gel"] },
-    { name: "Dairy Powders", description: "Milk and whey powders for flavour, browning, enrichment, body and bakery mix formulation.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
+    { name: "Milk Powders", description: "Milk and whey powders for flavour, browning, enrichment, body and bakery mix formulation.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
     { name: "Sweeteners, Syrups & Starches", description: "Sweeteners, syrups and carbohydrates for sweetness, moisture, body, binding and texture in bakery products.", ingredients: ["Liquid Glucose", "Invert Sugar", "Sorbitol 70% Solution", "Dextrose Monohydrate", "Maltodextrin Powder", "Maize Starch", "Maize Starch Powder", "Potato Starch"] },
     { name: "Emulsifiers, Gums & Dough Aids", description: "Functional ingredients for aeration, dough strength, softness, moisture retention and process consistency.", ingredients: ["GMS Flakes", "GMS Powder", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)", "SMS", "Soya Lecithin", "Vital Wheat Gluten", "Xanthan Gum", "Guar Gum", "Sodium CMC"] },
     { name: "Leavening & Preservation", description: "Leavening salts and preservatives used in cakes, biscuits, cookies, crackers, bread and related bakery products.", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)", "Potassium Sorbate", "Sodium Benzoate"] }
@@ -222,7 +234,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
   ],
   "beverage-ingredients": [
     { name: "Sweeteners & Beverage Solids", description: "Sweeteners, syrups and carriers for drinks, concentrates, premixes and reduced-sugar beverages.", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Aspartame Powder", "Sucralose", "Acesulfame K", "Saccharin", "Dextrose Monohydrate", "Maltodextrin Powder"] },
-    { name: "Fruit, Cocoa & Dairy", description: "Fruit, cocoa and dairy ingredients for juices, shakes, flavoured milk and drink mixes.", ingredients: ["Fruit Crush", "Cocoa Powder", "Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder"] },
+    { name: "Cocoa & Dairy", description: "Fruit, cocoa and dairy ingredients for juices, shakes, flavoured milk and drink mixes.", ingredients: ["Fruit Crush", "Cocoa Powder", "Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder"] },
     { name: "Acidulants & Preservation", description: "Acids and preservatives for pH, flavour balance and shelf-life support in beverage formulations.", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Ascorbic Acid", "Phosphoric Acid", "Potassium Sorbate", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"] },
     { name: "Gums & Stabilizers", description: "Hydrocolloids for suspension, viscosity, mouthfeel and emulsion stability in beverages.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Genu Pectin"] }
   ],
@@ -275,8 +287,8 @@ industries.forEach((industry) => industry.products.forEach((name) => {
   const primaryIndustry = industries.find((entry) => entry.slug === primaryIndustrySlugByProductName.get(name)) || industry;
   if (!productMap.has(slug)) productMap.set(slug, {
     slug, name, industrySlug: primaryIndustry.slug, category: primaryIndustry.name, image: productImageByName[name] || primaryIndustry.image,
-    displayName: approved?.displayName || name, chocolateType: approved?.chocolateType,
-    brand: approved?.brand, range: approved?.range, packs: approved?.packs, itemCode: approved?.itemCode, dosage: approved?.dosage, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[primaryIndustry.slug]?.find((group) => group.ingredients.includes(name))?.name || primaryIndustry.name,
+    displayName: approved?.displayName || productDisplayNameOverrides[name] || name, chocolateType: approved?.chocolateType,
+    brand: productBrandOverrides[name] || approved?.brand, range: approved?.range, packs: approved?.packs, itemCode: approved?.itemCode, dosage: approved?.dosage, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[primaryIndustry.slug]?.find((group) => group.ingredients.includes(name))?.name || primaryIndustry.name,
     summary: `${name} for consistent food production`,
     description: approved?.description || `${name} is part of our ${industry.name.toLowerCase()} range. Ask our Chennai team about the available grade, pack size and supply options for your application and quantity.`
   });
