@@ -227,9 +227,9 @@ export const sharedApplicationGroupsByIndustrySlug = {
     { name: "Gums & Stabilizers", description: "Hydrocolloids for suspension, viscosity, mouthfeel and emulsion stability in beverages.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Genu Pectin"] }
   ],
   "ice-cream-ingredients": [
-    { name: "Dairy & Protein", description: "Milk, whey and protein ingredients for dairy solids, creaminess, body and nutrition in frozen desserts.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose", "Whey Protein"] },
+    { name: "Milk Powders & Protein", description: "Milk, whey and protein ingredients for dairy solids, creaminess, body and nutrition in frozen desserts.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose", "Whey Protein"] },
     { name: "Sweeteners & Solids", description: "Sweeteners and carbohydrates for freezing-point control, body, solids and reduced-sugar formulations.", ingredients: ["Liquid Glucose", "Glucose D", "Invert Sugar", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol", "Dextrose Monohydrate", "Maltodextrin Powder"] },
-    { name: "Fruit, Cocoa & Chocolate", description: "Fruit, cocoa and chocolate ingredients for flavours, ripples, coatings, inclusions and toppings.", ingredients: ["Fruit Filling", "Fruit Crush", "Cocoa Powder", "Chocolate Drink", "Dark Chocolate", "Milk Chocolate", "White Chocolate", "White Chips", "Dark Chips", "Milk Chips"] },
+    { name: "Cocoa & Chocolate", description: "Cocoa and chocolate ingredients for flavours, coatings, inclusions and toppings.", ingredients: ["Cocoa Powder", "Chocolate Drink", "Dark Chocolate", "Milk Chocolate", "White Chocolate", "White Chips", "Dark Chips", "Milk Chips"] },
     { name: "Gums & Emulsifiers", description: "Hydrocolloids and emulsifiers for overrun, body, melt resistance and storage stability.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG", "Genu Pectin", "GMS Flakes", "GMS Powder", "Distilled Monoglycerides (DMG)", "Sorbitan Monostearate"] }
   ],
   "fruit-processing": [

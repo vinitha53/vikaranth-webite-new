@@ -74,7 +74,7 @@ const brochureDisplayCategoryFor = (brand, name) => {
       ["Copertura Dips & Coverings", /copertura|covering stracciatella/i],
       ["Creams, Pastes & Specialities", /quella amarena|quella mango|variegato dubai/i],
       ["Quella Toppings", /^quella/i],
-      ["Nut Pastes & Cookies Range", /pistacchio copa|pure sicily pistachio|cookies black|cookies spicy|mandorla|vanilla madagaskar|french vanilla/i],
+      ["Almond (FLAVOURS FOR PREMIUM GELATO)", /mandorla/i],
       ["Creams, Pastes & Specialities", /.*/],
     ],
     DIRA: [
@@ -159,6 +159,11 @@ const featuredChocolateDetails = {
   "Tropical Filling": { packs: "2.7 kg" },
 };
 
+const removedLegacyMec3Categories = new Set([
+  "Gelato Bases & Functional Ingredients",
+  "Copertura Dips & Coverings",
+]);
+
 const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => names.split("|").map(name => {
   const featuredDetails = featuredChocolateDetails[name];
   return {
@@ -176,7 +181,7 @@ const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => n
     packs: featuredDetails?.packs || "Pack size confirmed on enquiry",
     description: featuredDetails?.description || `${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`,
   };
-}));
+})).filter((item) => !removedLegacyMec3Categories.has(item.brochureDisplayCategory));
 
 const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogueCategory.products.map((item) => ({
   name: item.name,
