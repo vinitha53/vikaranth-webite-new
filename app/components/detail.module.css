@@ -316,7 +316,7 @@
 .header nav a[aria-current="page"]::after{transform:scaleX(1)}
 .productsTrigger{position:relative}
 .productsTrigger[aria-current="page"]::after{content:"";position:absolute;right:0;bottom:20px;left:0;height:2px;border-radius:2px;background:#a85227}
-@media(max-width:850px){.header nav a[aria-current="page"]{padding-left:15px!important;background:rgba(168,82,39,.08);color:#a85227!important}.header nav a[aria-current="page"]::after{bottom:7px}}
+@media(max-width:850px){.header nav a[aria-current="page"]{padding-left:15px!important;background:rgba(168,82,39,.08);color:#a85227!important}.header nav a[aria-current="page"]::after{display:none}}
 
 /* Homepage-matched 11-industry navigation showcase shared by every inner page. */
 .industriesShowcaseMenu{width:min(1180px,calc(100vw - 24px));max-width:1180px}

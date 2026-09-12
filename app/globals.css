@@ -443,7 +443,7 @@ header nav a:hover,.nav-product:hover,header nav a:focus-visible,.nav-product:fo
 header nav a:hover::after,.nav-product:hover::after,header nav a:focus-visible::after,.nav-product:focus-visible::after{transform:scaleX(1)}
 .logo .brand-logo-image{transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s ease}
 .logo:hover .brand-logo-image{filter:drop-shadow(0 7px 9px rgba(75,32,10,.18));transform:translateY(-2px) scale(1.02)}
-@media(max-width:900px){header nav a::after,.nav-product::after{bottom:7px}}
+@media(max-width:900px){header nav a::after,.nav-product::after{display:none}}
 @media(prefers-reduced-motion:reduce){header nav a,.nav-product,header nav a::after,.nav-product::after,.logo .brand-logo-image{transition:none!important;transform:none!important}}
 
 /* Reference capsule CTA used consistently across the homepage. */

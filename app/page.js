@@ -13,7 +13,7 @@ import {
   Search, ShieldCheck, Sparkles, Truck, Wheat, X, Zap
 } from "lucide-react";
 import CocoaMascot from "./components/CocoaMascot/CocoaMascot";
-import { getProductHref, industries, productMenuGroupsByIndustrySlug } from "./data/catalog";
+import { industries } from "./data/catalog";
 import { partners, partnerSpecialties } from "./data/partners";
 import { WHATSAPP_NUMBERS } from "./data/whatsapp";
 
@@ -258,15 +258,12 @@ function IngredientEcosystem() {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
   const [industryMegaOpen, setIndustryMegaOpen] = useState(false);
   const [heroVideoPaused, setHeroVideoPaused] = useState(false);
   const heroPauseRef = useRef(false);
   const [supplierMegaOpen, setSupplierMegaOpen] = useState(false);
   const [supplierQuery, setSupplierQuery] = useState("");
   const filteredSuppliers = partners.filter((partner) => partner.name.toLowerCase().includes(supplierQuery.trim().toLowerCase()));
-  const [activeGroup, setActiveGroup] = useState(1);
-  const [thumbnailStart, setThumbnailStart] = useState(0);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -370,17 +367,15 @@ export default function Home() {
   }, [quoteOpen, menuOpen]);
 
   useEffect(() => {
-    if (!megaOpen && !industryMegaOpen && !supplierMegaOpen) return;
+    if (!industryMegaOpen && !supplierMegaOpen) return;
     const closeOnOutsideClick = (event) => {
       if (!megaMenuRef.current?.contains(event.target)) {
-        setMegaOpen(false);
         setIndustryMegaOpen(false);
         setSupplierMegaOpen(false);
       }
     };
     const closeOnEscape = (event) => {
       if (event.key === "Escape") {
-        setMegaOpen(false);
         setIndustryMegaOpen(false);
         setSupplierMegaOpen(false);
       }
@@ -391,15 +386,10 @@ export default function Home() {
       document.removeEventListener("pointerdown", closeOnOutsideClick);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [megaOpen, industryMegaOpen, supplierMegaOpen]);
-
-  useEffect(() => {
-    if (activeGroup < thumbnailStart) setThumbnailStart(activeGroup);
-    if (activeGroup > thumbnailStart + 4) setThumbnailStart(activeGroup - 4);
-  }, [activeGroup, thumbnailStart]);
+  }, [industryMegaOpen, supplierMegaOpen]);
 
   const openQuote = (product = "") => { setSelectedProduct(product); setQuoteOpen(true); setMenuOpen(false); };
-  const jump = () => { setMenuOpen(false); setMegaOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); };
+  const jump = () => { setMenuOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); };
   const updateFeatureSpotlight = (event) => {
     const card = event.currentTarget;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -445,10 +435,6 @@ export default function Home() {
     if (supplierControlTimer.current) window.clearTimeout(supplierControlTimer.current);
     supplierControlTimer.current = window.setTimeout(() => motion.updatePlaybackRate(1), 720);
   };
-  const activeMegaCategory = productCategories[activeGroup] || productCategories[0];
-  const activeMegaIndustry = industries[activeGroup] || industries[0];
-  const activeMegaGroups = productMenuGroupsByIndustrySlug[activeMegaIndustry.slug] || [{ name: "Ingredients", ingredients: activeMegaIndustry.products }];
-
 
   const moveCustomerCarousel = (direction) => {
     const track = customerTrackRef.current;
@@ -498,15 +484,14 @@ export default function Home() {
           <nav id="home-navigation" className={`home-nav ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
             <a href="#home" onClick={jump}>Home</a>
             <a href="/about" onClick={jump}>About</a>
-            <button className="nav-product" onClick={() => { setMegaOpen(v => !v); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={megaOpen} aria-controls="products-mega-menu">Products <ChevronDown size={14}/></button>
-            <a className="mobile-products-link" href="/products" onClick={jump}>Products</a>
-            <button className="nav-product nav-industry" onClick={() => { setIndustryMegaOpen(v => !v); setMegaOpen(false); setSupplierMegaOpen(false); }} aria-expanded={industryMegaOpen} aria-controls="industries-mega-menu mobile-industries-list">Industries <ChevronDown size={14}/></button>
+            <a href="/products" onClick={jump}>Products</a>
+            <button className="nav-product nav-industry" onClick={() => { setIndustryMegaOpen(v => !v); setSupplierMegaOpen(false); }} aria-expanded={industryMegaOpen} aria-controls="industries-mega-menu mobile-industries-list">Industries <ChevronDown size={14}/></button>
             <a className="mobile-products-link mobile-industries-link" href="/industries" onClick={jump}>Industries</a>
             <div id="mobile-industries-list" className={`mobile-industries-list ${industryMegaOpen ? "open" : ""}`}>
               {productCategories.map((industry) => <a key={industry.id} href={industry.href} onClick={jump}>{industry.name}<ArrowRight aria-hidden="true"/></a>)}
               <a className="mobile-industries-all" href="/industries" onClick={jump}>View All Industries <ArrowRight aria-hidden="true"/></a>
             </div>
-            <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setMegaOpen(false); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu mobile-suppliers-list">Suppliers <ChevronDown size={14}/></button>
+            <button className="nav-product nav-supplier" onClick={() => { setSupplierMegaOpen(v => !v); setIndustryMegaOpen(false); }} aria-expanded={supplierMegaOpen} aria-controls="suppliers-mega-menu mobile-suppliers-list">Suppliers <ChevronDown size={14}/></button>
             <a className="mobile-products-link mobile-suppliers-link" href="/associates" onClick={jump}>Suppliers</a>
             <div id="mobile-suppliers-list" className={`mobile-suppliers-list ${supplierMegaOpen ? "open" : ""}`}>
               {partners.map((partner) => <a key={partner.slug} href={`/associates/${partner.slug}`} onClick={jump}><span><img width="180" height="80" src={partner.logo} alt="" loading="lazy" decoding="async"/>{partner.name}</span><ArrowRight aria-hidden="true"/></a>)}
@@ -515,65 +500,9 @@ export default function Home() {
             <a href="/contact" onClick={jump}>Contact</a>
           </nav>
           <div className="nav-actions">
-            <GlobalSearch onOpen={() => { setMenuOpen(false); setMegaOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }}/>
+            <GlobalSearch onOpen={() => { setMenuOpen(false); setIndustryMegaOpen(false); setSupplierMegaOpen(false); }}/>
             <button className="btn primary header-quote" onClick={() => openQuote("Header quote request")}>Request a Quote <ArrowRight size={16}/></button>
             <button className="menu-trigger" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="home-navigation">{menuOpen ? <X/> : <Menu/>}</button>
-          </div>
-        </div>
-        <div id="products-mega-menu" className={`mega-menu vcc-products-mega-menu latest-mega-menu ${megaOpen ? "show" : ""}`} aria-hidden={!megaOpen}>
-          <span className="latest-mega-pointer" aria-hidden="true"/>
-          <div className="latest-mega-surface">
-            <aside className="latest-mega-selector" aria-label="Product categories">
-              <div className="latest-mega-selector-head">
-                <Wheat aria-hidden="true"/>
-                <div>
-                  <span>Product Categories</span>
-                  <small>{productCategories.length} industries</small>
-                </div>
-                <p>Ingredients organised by industry.</p>
-              </div>
-              <div className="latest-mega-selector-list">
-                {productCategories.map((category, index) => (
-                  <button
-                    key={category.id}
-                    className={activeGroup === index ? "active" : ""}
-                    type="button"
-                    onMouseEnter={() => setActiveGroup(index)}
-                    onFocus={() => setActiveGroup(index)}
-                    onClick={() => setActiveGroup(index)}
-                  >
-                    <small aria-hidden="true">{String(index + 1).padStart(2, "0")}</small>
-                    <span>{category.name}</span>
-                    <ChevronRight aria-hidden="true"/>
-                  </button>
-                ))}
-              </div>
-            </aside>
-            <section className="latest-mega-product-panel" aria-live="polite">
-              <div className="latest-mega-product-head">
-                <div>
-                  <span>Ingredients for</span>
-                  <h2>{activeMegaCategory.name}</h2>
-                  <p>{activeMegaCategory.description}</p>
-                </div>
-                <a href={activeMegaCategory.href} onClick={jump}>Explore category <ArrowRight aria-hidden="true"/></a>
-              </div>
-              <div className="latest-mega-product-groups">
-                {activeMegaGroups.map((group) => (
-                  <div className="latest-mega-product-group" key={group.name}>
-                    <h3>{group.name}</h3>
-                    <div>
-                      {group.ingredients.map((product) => (
-                        <a key={`${group.name}-${product}`} href={getProductHref(product)} onClick={jump}>
-                          <span>{product}</span>
-                          <ArrowRight aria-hidden="true"/>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
         </div>
         <div id="industries-mega-menu" className={`mega-menu latest-mega-menu industry-mega-menu industries-showcase-menu ${industryMegaOpen ? "show" : ""}`} aria-hidden={!industryMegaOpen}>

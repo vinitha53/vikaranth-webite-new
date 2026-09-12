@@ -8,6 +8,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./products.module.css";
 import { industries, products } from "../data/catalog";
+import { brandLogos } from "../data/brand-logos";
+import { partnersForProduct } from "../data/partners";
 
 
 const productByName = new Map(products.map((item) => [item.name, item]));
@@ -30,7 +32,7 @@ export default function ProductsCatalog({ children }) {
   const normalizedQuery = query.trim().toLowerCase();
   const visibleCategories = useMemo(() => categories.map((category) => ({
     ...category,
-    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products.slice(0, 8),
+    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${product.brand || ""} ${product.range || ""} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products,
   })).filter((category) => category.products.length), [categories, normalizedQuery]);
   const resultCount = visibleCategories.reduce((total, category) => total + category.products.length, 0);
 
@@ -65,15 +67,21 @@ export default function ProductsCatalog({ children }) {
 
       <section className={styles.guidance} aria-label="Catalogue guidance"><SlidersHorizontal aria-hidden="true" /><div><strong>Choose by product family or search by ingredient.</strong><p>A listing is a catalogue reference, not a stock or suitability guarantee. Confirm the grade, specification and current commercial terms before ordering.</p></div><span>{productCount} ingredient pages</span></section>
 
-      {children}
-
       <section className={styles.catalogue} id="catalogue" aria-labelledby="catalogue-title">
         <div className={styles.catalogueHead}><div><span className={styles.eyebrow}>Product categories</span><h2 id="catalogue-title">Find the right ingredient family</h2></div><label className={styles.searchBox}><Search aria-hidden="true" /><span className={styles.srOnly}>Search ingredients</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search cocoa, pectin, starch..." />{query && <button type="button" onClick={() => setQuery("")} aria-label="Clear ingredient search"><X /></button>}</label></div>
         <nav className={styles.categoryNav} aria-label="Product category shortcuts">{categories.map((category, index) => <a href={`#${category.slug}`} key={category.slug}><span>{String(index + 1).padStart(2, "0")}</span>{category.name}</a>)}</nav>
         {query && <p className={styles.results} role="status">{resultCount} matching catalogue entries</p>}
-        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGrid}>{category.products.map((product) => <Link prefetch={false} className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 45vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} /></span><span className={styles.productCopy}><strong>{product.name}</strong><small>View product <ArrowRight /></small></span></Link>)}</div></section>)}</div>
+        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGrid}>{category.products.map((product) => {
+          const partner = partnersForProduct(product.name)[0];
+          const brandName = product.brand || partner?.name;
+          const brandLogo = brandLogos[product.brand] || partner?.logo;
+          const rangeLabel = product.range === "imported" ? "Imported" : "India";
+          return <Link prefetch={false} className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 90vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} /><span className={styles.rangeBadge}>{rangeLabel}</span>{brandLogo && <span className={styles.brandBadge}><img src={brandLogo} alt={`${brandName} logo`} width="110" height="44" loading="lazy" decoding="async" /></span>}</span><span className={styles.productCopy}><strong>{product.displayName || product.name}</strong><small className={styles.productMeta}>{rangeLabel} · {product.usageCategory || category.name}</small><span className={styles.productAction}>View product <ArrowRight /></span></span></Link>;
+        })}</div></section>)}</div>
         {!visibleCategories.length && <div className={styles.empty}><h2>No ingredient found</h2><p>Try a broader product name or send us the specification you need.</p><Link href="/contact#enquiry">Ask our sourcing team <ArrowRight /></Link></div>}
       </section>
+
+      {children}
     </div>
   );
 }

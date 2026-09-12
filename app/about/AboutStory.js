@@ -82,7 +82,8 @@ export default function AboutStory() {
     gsap.registerPlugin(ScrollTrigger);
     let cancelled = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) return undefined;
+    const mobileView = window.matchMedia("(max-width: 600px)").matches;
+    if (reducedMotion || mobileView) return undefined;
     const profile = motionProfile();
     const cache = new Map();
     let requestedFrame = 0;
@@ -169,6 +170,9 @@ export default function AboutStory() {
   }, []);
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileView = window.matchMedia("(max-width: 600px)").matches;
+    if (reducedMotion || mobileView) return undefined;
     gsap.registerPlugin(ScrollTrigger);
     const reveals = gsap.utils.toArray(".aboutReveal").map((item, index) => gsap.fromTo(item, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 88%", once: true }, delay: (index % 3) * 0.05 }));
     return () => reveals.forEach((tween) => { tween.scrollTrigger?.kill(); tween.kill(); });
@@ -239,12 +243,14 @@ export default function AboutStory() {
       <div className="aboutReveal"><span className={styles.eyebrow}>Quality and documentation</span><h2 id="documentation-title">Product-Specific Information, Clearly Shared</h2><p>Ingredient performance depends on the exact product, grade, supplier specification, formulation and process. Where available, Vikranth coordinates specifications, certificates of analysis, technical data sheets, safety data sheets and related supplier information for buyer review.</p><div className={styles.documentTypes}><span>FSSAI Certificate</span><span>Specifications</span><span>COA</span><span>TDS</span><span>SDS</span></div><aside><ShieldCheck /><p>Website information supports product discovery and sourcing; final trials, dosage, technical suitability and regulatory approval remain with the buyer’s qualified team.</p></aside></div>
       <div className={styles.certificateShowcase + " aboutReveal"} aria-label="FSSAI certificate and product documentation">
         <div className={styles.certificatePaper}>
-          <div className={styles.certificateTop}><span>Food safety compliance</span><ShieldCheck /></div>
-          <small>Regulatory document</small>
-          <strong>FSSAI Certificate</strong>
-          <p>Certificate details are shared from the approved document for buyer verification.</p>
-          <div className={styles.certificateSeal}><ShieldCheck /><span>FSSAI</span></div>
-          <div className={styles.certificateLines}><i /><i /><i /></div>
+          <img
+            src="/fssai-license-badge.png"
+            width="1254"
+            height="1254"
+            alt="FSSAI licensed food safety compliance badge for Vikranth Chemical Corporation"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className={styles.certificateFooter}><span><BadgeCheck /> Compliance documentation</span><Link href="/contact/#enquiry">Request a certificate copy <ArrowRight /></Link></div>
       </div>
