@@ -62,6 +62,7 @@ export default async function ProductPage({ params }) {
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
   const relatedProducts = products.filter((item) => item.slug !== product.slug && item.industrySlug === product.industrySlug).sort((a, b) => { const relevance = item => (product.brand && item.brand === product.brand ? 2 : 0) + (product.usageCategory && item.usageCategory === product.usageCategory ? 1 : 0); return relevance(b) - relevance(a); }).slice(0, 4);
   const showProductBrand = product.brand && !productPartners.some((partner) => partner.name.toLowerCase() === product.brand.toLowerCase());
+  const hideProductPartnerLogos = ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine"].includes(product.name);
   const whatsappNumber = whatsappNumberForProduct(product, productPartners.map((partner) => partner.slug));
   const whatsapp = whatsappUrl(whatsappNumber, `Hi, I need a quotation for ${product.name}.`);
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;
@@ -101,7 +102,7 @@ export default async function ProductPage({ params }) {
           {brandLogos[product.brand] && <img src={brandLogos[product.brand]} alt={`${product.brand} logo`} width="100" height="44" loading="lazy" decoding="async" />}
           <strong><small>Brand</small>{product.brand}</strong>
         </div>}
-        {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}><img src={partner.logo} alt="" width="180" height="72" loading="lazy" decoding="async" /><strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" width="156" height="73" loading="lazy" decoding="async" /><strong>Vikranth</strong></div>}</div></div>}</div></div>
+        {productPartners.length ? productPartners.map((partner) => <Link href={`/associates/${partner.slug}/`} key={partner.slug}>{!hideProductPartnerLogos && <img src={partner.logo} alt="" width="180" height="72" loading="lazy" decoding="async" />}<strong>{partner.name}</strong></Link>) : <div className={styles.vccPartner}><img src="/logo-vikranth.webp" alt="Vikranth Chemical Corporation" width="156" height="73" loading="lazy" decoding="async" /><strong>Vikranth</strong></div>}</div></div>}</div></div>
       <a href="#uses" className={styles.scrollCue} data-scroll-cue><span>Applications</span><ArrowDown /></a>
     </div></section>
 

@@ -37,7 +37,11 @@ const brandEyebrows = {
 export default function RangeCatalog({ products, indianNames = [], supplierMode = false, supplierLogo, supplierName, categoryField = "usageCategory", mec3Catalog = false, brandDrilldown = false, collectionTitle = "Ingredient" }) {
   const categoryFor = (product) => product[categoryField] || product.usageCategory || product.category;
   const collectionMode = supplierMode || categoryField === "brochureDisplayCategory";
-  const normalized = useMemo(() => products.map((product) => ({ ...product, range: product.range || (indianNames.includes(product.name) ? "indian" : "imported") })), [products, indianNames]);
+  const normalized = useMemo(() => products.map((product) => ({
+    ...product,
+    range: product.range || (indianNames.includes(product.name) ? "indian" : "imported"),
+    hideBrandLogo: product.hideBrandLogo || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine"].includes(product.name),
+  })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const initialRange = ranges[0] || "indian";
   const allBrands = [...new Set(normalized.map((product) => product.brand).filter(Boolean))];
