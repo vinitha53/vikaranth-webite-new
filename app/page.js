@@ -706,48 +706,32 @@ export default function Home() {
         <BotanicalCorners/>
         <div className="container enquiry-options-inner">
           <div className="enquiry-options-head">
-            <span className="eyebrow">Enquiry Options</span>
-            <h2 id="enquiry-types-title">Choose the <em>Right Way</em> to Source</h2>
-            <p>Bulk, wholesale and selected small-quantity enquiries—all handled through one clear process.</p>
-            <span className="enquiry-head-rule" aria-hidden="true"/>
+            <div>
+              <span className="eyebrow">Ingredients for your next step</span>
+              <h2 id="enquiry-types-title">From your first batch<br/>to your next production run.</h2>
+            </div>
+            <p>Commercial sourcing is our focus. Whether you buy for a factory, a growing business or your own kitchen, our Chennai team can help you check the right supply option.</p>
           </div>
           <div className="enquiry-type-grid">
             <article className="enquiry-card enquiry-card-business">
-              <img className="enquiry-cocoa-art" src="/enquiry-cocoa-beans-powder.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
-              <div className="enquiry-card-kicker"><span><Building2 aria-hidden="true"/></span>01 · Business</div>
-              <h3>Bulk &amp; Business</h3>
-              <p>For manufacturers, bakeries, cafés, food processors and commercial buyers.</p>
-              <ul>
-                <li><Check aria-hidden="true"/>Bulk and wholesale quantities</li>
-                <li><Check aria-hidden="true"/>Commercial sourcing support</li>
-                <li><Check aria-hidden="true"/>Delivery planning by enquiry</li>
-              </ul>
-              <div className="enquiry-card-actions">
-                <a className="btn gold" href="/contact/#enquiry">Start Business Enquiry <ArrowRight size={18}/></a>
-                <a className="enquiry-text-link" href={"https://wa.me/" + WHATSAPP_NUMBERS.general}>Talk on WhatsApp <ArrowRight size={16}/></a>
-              </div>
+              <div className="enquiry-card-top"><span className="enquiry-card-icon"><Building2 aria-hidden="true"/></span><span className="enquiry-card-number">01</span></div>
+              <h3>Manufacturers &amp; wholesale buyers</h3>
+              <p>Plan bulk purchases and repeat supply. Share your grade, monthly volume, delivery schedule and document requirements.</p>
+              <a className="enquiry-card-link" href="/contact/#enquiry">Discuss bulk supply <ArrowRight aria-hidden="true"/></a>
             </article>
-            <article className="enquiry-card enquiry-card-small">
-              <img className="enquiry-cocoa-art" src="/enquiry-small-quantity-packs.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"/>
-              <div className="enquiry-card-kicker"><span><PackageCheck aria-hidden="true"/></span>02 · Small Quantity</div>
-              <h3>Small Quantity</h3>
-              <p>Selected ingredients for trials, small businesses and individual requirements.</p>
-              <ul>
-                <li><Check aria-hidden="true"/>Selected products only</li>
-                <li><Check aria-hidden="true"/>Subject to current availability</li>
-                <li><Check aria-hidden="true"/>Quantity confirmed on enquiry</li>
-              </ul>
-              <div className="enquiry-card-actions">
-                <a className="btn gold" href="/contact/#enquiry">Check Availability <ArrowRight size={18}/></a>
-                <a className="enquiry-text-link" href="/products/">Explore Products <ArrowRight size={16}/></a>
-              </div>
+            <article className="enquiry-card">
+              <div className="enquiry-card-top"><span className="enquiry-card-icon"><CakeSlice aria-hidden="true"/></span><span className="enquiry-card-number">02</span></div>
+              <h3>Bakeries &amp; growing businesses</h3>
+              <p>Source ingredients for your bakery, café, restaurant or new food business. Ask about available packs for your batch size.</p>
+              <a className="enquiry-card-link" href="/contact/#enquiry">Find your pack size <ArrowRight aria-hidden="true"/></a>
+            </article>
+            <article className="enquiry-card">
+              <div className="enquiry-card-top"><span className="enquiry-card-icon"><PackageCheck aria-hidden="true"/></span><span className="enquiry-card-number">03</span></div>
+              <h3>Home bakers &amp; personal buyers</h3>
+              <p>Have a smaller requirement? Tell us what you need. We’ll confirm suitable products, pack sizes and minimum quantities.</p>
+              <a className="enquiry-card-link" href="/contact/#enquiry">Ask about a small order <ArrowRight aria-hidden="true"/></a>
             </article>
           </div>
-          <aside className="enquiry-requirement-banner">
-            <span className="enquiry-banner-icon"><PackageCheck aria-hidden="true"/></span>
-            <div><h3>Know the product and quantity you need?</h3><p>Share the product name, required quantity and delivery location.</p></div>
-            <a className="btn gold" href="/contact/#enquiry">Send Your Requirement <ArrowRight size={18}/></a>
-          </aside>
         </div>
       </section>
 
