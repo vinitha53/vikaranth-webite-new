@@ -66,26 +66,26 @@ export const celebreBrochureProducts = [
 
 
   ...[
-    ["Blueberry Fruit Filling", "blueberry-fruit-filling.png"],
-    ["Classic Blueberry Fruit Filling", "classic-blueberry-fruit-filling.png"],
-    ["Mango Fruit Filling", "mango-fruit-filling.png"],
-    ["Pineapple Fruit Filling", "pineapple-fruit-filling.png"],
-    ["Orange Fruit Filling", "orange-fruit-filling.png"],
-    ["Raspberry Fruit Filling", "raspberry-fruit-filling.png"],
-    ["Strawberry Fruit Filling", "strawberry-fruit-filling.png"],
-    ["Cherry Fruit Filling", "cherry-fruit-filling.png"],
+    ["Blueberry Fruit Filling", "blueberry-fruit-filling.webp"],
+    ["Classic Blueberry Fruit Filling", "classic-blueberry-fruit-filling.webp"],
+    ["Mango Fruit Filling", "mango-fruit-filling.webp"],
+    ["Pineapple Fruit Filling", "pineapple-fruit-filling.webp"],
+    ["Orange Fruit Filling", "orange-fruit-filling.webp"],
+    ["Raspberry Fruit Filling", "raspberry-fruit-filling.webp"],
+    ["Strawberry Fruit Filling", "strawberry-fruit-filling.webp"],
+    ["Cherry Fruit Filling", "cherry-fruit-filling.webp"],
   ].map(([name, image]) => product("Fruit Filling", "fruit-processing", name, "1 kg and 2 kg", { image: `/product-images/celebre/${image}` })),
 
   ...["Blueberry", "Strawberry", "Raspberry", "Mango", "Passion Fruit"].map((flavour) => product("Insert Jelly", "fruit-processing", `${flavour} Insert Jelly`, "1 kg")),
-  product("Ganache", "chocolate-confectionery", "Dark Chocolate Ganache", "1 kg and 2.5 kg"),
-  product("Ganache", "chocolate-confectionery", "Milk Chocolate Ganache", "1 kg and 2.5 kg"),
+  product("Ganache", "chocolate-confectionery", "Dark Chocolate Ganache", "1 kg and 2.5 kg", { image: "/product-images/celebre/dark-chocolate-ganache.webp" }),
+  product("Ganache", "chocolate-confectionery", "Milk Chocolate Ganache", "1 kg and 2.5 kg", { image: "/product-images/celebre/milk-chocolate-ganache.webp" }),
 
   ...[
-    ["Strawberry", "500 ml, 1 ltr. and 5 ltr."],
-    ["Apple Butter Scotch", "500 ml, 1 ltr. and 5 ltr."],
+    ["Strawberry", "500 ml, 1 ltr. and 5 ltr.", "strawberry-fruit-crush.webp"],
+    ["Apple Butter Scotch", "500 ml, 1 ltr. and 5 ltr.", "apple-butter-scotch-fruit-crush.webp"],
     ["Litchi", "1 ltr. and 5 ltr."],
-    ["Kiwi", "500 ml, 1 ltr. and 5 ltr."],
-    ["Orange", "500 ml, 1 ltr. and 5 ltr."],
+    ["Kiwi", "500 ml, 1 ltr. and 5 ltr.", "kiwi-fruit-crush.webp"],
+    ["Orange", "500 ml, 1 ltr. and 5 ltr.", "orange-fruit-crush.webp"],
     ["Pink Guava", "1 ltr."],
     ["Ras Malai", "1 ltr."],
     ["Blueberry", "500 ml, 1 ltr. and 5 ltr."],
@@ -93,7 +93,7 @@ export const celebreBrochureProducts = [
     ["Green Apple", "1 ltr."],
     ["Black Currant", "500 ml, 1 ltr. and 5 ltr."],
     ["Raspberry", "1 ltr."],
-  ].map(([name, packs]) => product("Fruit Crush", "fruit-processing", `${name} Fruit Crush`, packs)),
+  ].map(([name, packs, image]) => product("Fruit Crush", "fruit-processing", `${name} Fruit Crush`, packs, image ? { image: `/product-images/celebre/${image}` } : {})),
 
   ...[
     "Celebre Frozen Fruits Blueberry", "Celebre Frozen Fruits Raspberry", "Celebre Frozen Fruits Strawberry",
@@ -103,11 +103,13 @@ export const celebreBrochureProducts = [
   ].map((name) => product("IQF Frozen Fruits & Purees", "fruit-processing", name, "1 kg")),
 
   ...["DX-100", "DX-300", "DX-500"].map((name) => product("Bread Improver", "bakery-ingredients", name, "1 kg")),
-  product("Specialities", "bakery-ingredients", "Choco Hazelnut Spread", "1 kg"),
+  product("Specialities", "bakery-ingredients", "Choco Hazelnut Spread", "1 kg", { image: "/product-images/celebre/choco-hazelnut-spread.webp" }),
   product("Specialities", "bakery-ingredients", "Chocofill Crunchy", "1 kg"),
   product("Specialities", "bakery-ingredients", "Toffee Caramel", "1 kg and 2.5 kg"),
-  product("Specialities", "bakery-ingredients", "Pistachio Paste (No Added Sugar)", "1 kg"),
-  ...["Carabisc Biscuit Spread", "Dubai Pista Filling", "Pista Praline Paste", "Coffee Spread"].map((name) => product("Specialities", "bakery-ingredients", name, "1 kg")),
+  product("Specialities", "bakery-ingredients", "Pistachio Paste (No Added Sugar)", "1 kg", { image: "/product-images/celebre/pistachio-paste.webp" }),
+  product("Specialities", "bakery-ingredients", "Carabisc Biscuit Spread", "1 kg", { image: "/product-images/celebre/carabisc-spread.webp" }),
+  product("Specialities", "bakery-ingredients", "Dubai Pista Filling", "1 kg", { image: "/product-images/celebre/dubai-pista-filling.webp" }),
+  ...["Pista Praline Paste", "Coffee Spread"].map((name) => product("Specialities", "bakery-ingredients", name, "1 kg")),
 
   ...[
     "Dyo Softy Mix Vanilla Flavour", "Dyo Softy Mix Chocolate Flavour", "Dyo Softy Mix Classic Chocolate Flavour",
