@@ -1,4 +1,5 @@
 import { mec3Categories } from "./mec3-catalog";
+import { celebreBrochureProducts } from "./celebre-catalog";
 
 const rows = [
   ["Callebaut","imported","chocolate-confectionery","Dark Couverture 811 (54.5%)|Milk Couverture 823 (33.6%)|White Couverture W2 (28.0%)|Dark Couverture 70-30 (70.5%)|Gold Chocolate (30.4%)|Ruby Chocolate (47.3%)|Ecuador Single Origin (70.4%)|Sao Thome Single Origin (70%)|Madagascar Single Origin (67.4%)|Arriba Single Origin (39%)|Java Single Origin (32.5%)|Milk Chocolate (MALCHOC - Milk 33.9%)|White Chocolate (MALCHOC - White 30.6%)|Dark Chocolate (MALCHOC - Dark 53.9%)|Dark Truffle Shells|Milk Truffle Shells|White Truffle Shells|Hazelnut Praline PRA 663|Hazelnut Praline PRA 660|Caramel Fill|Pale Gianduja (Milk Chocolate + Hazelnut)|Paillete Feuilletine - M7 French Biscuit Crunch|Pure Hazelnut Paste|Pure Pistachio Paste|Cocoa Nibs|Mycryo Cocoa Butter"],
@@ -16,9 +17,6 @@ const rows = [
   ["Sosa","imported","functional-ingredients","Whole Freeze-Dried Raspberries|Raspberry Crispy|Strawberry Crispy|Pineapple Crispy|Passion Fruit Crispy|Yocrispy|Potatowhip|Fruit Pectin NH|Pectina 325 NH 95"],
   ["Les Vergers Boiron","imported","fruit-processing","Boiron Blackberry Puree|Boiron Coconut Puree|Boiron Mango Puree|Boiron Pineapple Puree|Boiron Raspberry Puree|Boiron Strawberry Puree"],
   ["Anchor","imported","chocolate-confectionery","Indonesia cocoa powder - BG 1000/2000|Black Cocoa Powder"],
-  ["Celebre","indian","bakery-ingredients","Red Velvet Cake Mix|Classic Cake Mix Range|Eggless Molten Lava Cake Mix|Waffle Mix|Plum Cake Premix|Sugar Paste / Rolling Fondant|Hot Glaze Neutral|Hot Glaze Fruit"],
-  ["Celebre","indian","ice-cream-ingredients","Softy Ice Cream Mix"],
-  ["Celebre","indian","fruit-processing","Celebre IQF Fruits|Celebre Fruit Purees"],
 ];
 const categories={"chocolate-confectionery":"Chocolate & Confectionery","bakery-ingredients":"Bakery Ingredients","fruit-processing":"Fruit Processing","ice-cream-ingredients":"Ice Cream Ingredients","dairy-ingredients":"Dairy Products","functional-ingredients":"Functional Ingredients"};
 // One main Delta category per product. These are the category names used by
@@ -201,7 +199,7 @@ const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogu
 // The June 2026 MEC3 catalogue is the single source of truth for matching
 // products. Its category, pack, code and description override older row data,
 // while newer MEC3 products not present in that brochure remain available.
-export const approvedRangeProducts = [...new Map([...rowRangeProducts, ...mec3RangeProducts].map((item) => [item.name, item])).values()];
+export const approvedRangeProducts = [...new Map([...rowRangeProducts, ...celebreBrochureProducts, ...mec3RangeProducts].map((item) => [item.name, item])).values()];
 export const productsForRangeSupplier = (slug) =>
   slug === "delta-nutritives"
     ? approvedRangeProducts.filter((item) => (item.range === "imported" && item.brochureCategory) || item.brand === "Celebre")

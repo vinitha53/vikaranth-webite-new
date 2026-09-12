@@ -286,7 +286,7 @@ industries.forEach((industry) => industry.products.forEach((name) => {
   const approved = approvedRangeProducts.find((item) => item.name === name);
   const primaryIndustry = industries.find((entry) => entry.slug === primaryIndustrySlugByProductName.get(name)) || industry;
   if (!productMap.has(slug)) productMap.set(slug, {
-    slug, name, industrySlug: primaryIndustry.slug, category: primaryIndustry.name, image: productImageByName[name] || primaryIndustry.image,
+    slug, name, industrySlug: primaryIndustry.slug, category: primaryIndustry.name, image: approved?.image || productImageByName[name] || primaryIndustry.image,
     displayName: approved?.displayName || productDisplayNameOverrides[name] || name, chocolateType: approved?.chocolateType,
     brand: productBrandOverrides[name] || approved?.brand, range: approved?.range, packs: approved?.packs, itemCode: approved?.itemCode, dosage: approved?.dosage, cocoaPercentage: approved?.cocoaPercentage, brochureCategory: approved?.brochureCategory, brochureDisplayCategory: approved?.brochureDisplayCategory, usageCategory: approved?.usageCategory || productMenuGroupsByIndustrySlug[primaryIndustry.slug]?.find((group) => group.ingredients.includes(name))?.name || primaryIndustry.name,
     summary: `${name} for consistent food production`,
