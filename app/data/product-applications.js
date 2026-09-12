@@ -304,7 +304,7 @@ const rules = [
   [/natural food and beverage ingredients|extra pure vanillin|orange oil|malt extract powder|^caramel$/i, "flavour"],
   [/refined glycerine|propylene glycol/i, "carrier"],
   [/saucetec/i, "sauceSystem"],
-  [/baklava|barazek|pistacchio|pistachio|mandorla|kulfi|mastic|cappuccino|chocomilky|sticky toffee|saffron|vanilla/i, "gelatoPaste"],
+  [/baklava|pistacchio|pistachio|mandorla|vanilla/i, "gelatoPaste"],
 ];
 
 const fallback = {

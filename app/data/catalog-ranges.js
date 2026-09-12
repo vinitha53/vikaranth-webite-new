@@ -7,7 +7,7 @@ const rows = [
   ["Cacao Barry","imported","chocolate-confectionery","Tanzanie (75%)|Saint Domingue (70%)|Venezuela (72%)|Ghana (40%)|Alunga Milk Organic (41%)|Lactée Barry (35.3%)|Zephyr Caramel (35%)|Excellence (55%)|Extrabitter Guayaquil (64%)|Favorites Mi-Amere (58%)|Blanc Satin (29.2%)|Plein Arôme Cocoa Powder (22/24% Fat)|CB Grand Caraque 100% Cocoa Mass|Extra Brute Cocoa Powder (22/24% Fat)|Cara Crakine|Praline Feuilletine"],
   ["Molino Dallagiovanna","imported","bakery-ingredients","Neapolitan Pizza Flour|T55 Strong Flour for Ciabatta|T45 Special Flour for Baguette"],
   ["DLA Naturals","imported","fruit-processing","Apple Filling|Apple Cinnamon Filling|Bakers Cream Vanilla|Bakers Cream Cinnamon|Banana Filling|Blueberry Filling|Coconut Filling|Dark Cherry Filling|Passion Fruit Filling|Pineapple Filling|Raspberry Filling|Red Cherry Filling|Strawberry Filling|Tropical Filling"],
-  ["MEC3","imported","ice-cream-ingredients","Baklava Paste|Baklava Pistachio Cream|Baklava Walnut Cream|Barazek Cream|Instacrumble Pistacchio|Instacrumble Limone GF|Kulfi Cream|Mastic Paste|Cappuccino Paste|Crema Chocomilky|Sticky Toffee|Quella Amarena Crunchy|Quella Mango & Passion Crunchy|Saffron Cream|Variegato Dubai Chocolate|Variegato Blond Brownie|Variegato Caramel Butterscotch|Variegato Crispy Peanut|Variegato Coffee Fudge|Variegato Milk & Cream|Velvet Blueberry|Pistacchio Copa D'Oro|Pure Sicily Pistachio|Cookies Black|Cookies Spicy|Mandorla|Vanilla Madagaskar|French Vanilla|Base 6|Neutralin|Panna Base MEC3|Base 50|Base Alba|Base Frutta Frutta|Gelmix|Mec Fibra Plus|Softin|Base Divina|Copertura Caramello|Copertura Fondente|Copertura Fragola|Copertura Limone|Copertura Nocciola|Copertura Pistachio|Covering Stracciatella|Quella|Quella Crunchy|Quella Dark|Quella Ruby|Quella Pistacchio Crunchy|Quella Vaniglia|Quella Arancia E Mandorle"],
+  ["MEC3","imported","ice-cream-ingredients","Pistacchio Copa D'Oro|Pure Sicily Pistachio|Cookies Black|Cookies Spicy|Mandorla|Vanilla Madagaskar|French Vanilla|Base 6|Neutralin|Panna Base MEC3|Base 50|Base Alba|Base Frutta Frutta|Gelmix|Mec Fibra Plus|Softin|Base Divina|Copertura Caramello|Copertura Fondente|Copertura Fragola|Copertura Limone|Copertura Nocciola|Copertura Pistachio|Covering Stracciatella|Quella|Quella Crunchy|Quella Dark|Quella Ruby|Quella Pistacchio Crunchy|Quella Vaniglia|Quella Arancia E Mandorle"],
   ["Elle & Vire Professionnel","imported","dairy-ingredients","Excellence Whipping Cream 35.3%|Extra Dry Butter 84%|UHT Mascarpone"],
   ["Corman","imported","dairy-ingredients","Corman Dairy Butter 82%|Corman Sculpture Whipping Speciality"],
   ["DIRA","imported","fruit-processing","Passion Fruit Puree|Mango Puree|Coconut Puree|Raspberry Puree|Apple Puree|Lime Puree|Pineapple Puree|Banana Puree|Mandarine Puree|Apricot Puree|Blackberry Puree|Acai Puree|Strawberry Puree|Blueberry Puree|Strawberry Frozen|Blackberry Frozen|Red Currant Frozen|Black Currant Frozen|Blueberry Frozen|Cranberries Frozen|Fruit of the Forest Frozen|Raspberry Frozen|Sour Cherry Frozen|Rhubarb Frozen"],
@@ -41,7 +41,7 @@ const brochureCategoryFor = (brand) => ({
 // Delta's brochure sometimes provides a subcategory (or a brand heading)
 // beneath the main category. Use that more specific heading when it exists;
 // otherwise retain the main brochure category as the catalogue heading.
-const novita2026SpecialtiesPattern = /^(?:baklava paste|baklava pistachio cream|baklava walnut cream|barazek cream|instacrumble pistacchio|instacrumble limone gf|kulfi cream|mastic paste|cappuccino paste|crema chocomilky|sticky toffee|quella amarena crunchy|quella mango & passion crunchy|saffron cream|variegato dubai chocolate|variegato blond brownie|variegato caramel butterscotch|variegato crispy peanut|variegato coffee fudge|variegato milk & cream|velvet blueberry)$/i;
+
 
 const brochureDisplayCategoryFor = (brand, name) => {
   const mainCategory = brochureCategoryFor(brand);
@@ -67,7 +67,7 @@ const brochureDisplayCategoryFor = (brand, name) => {
       ["Cacao Barry Specialities", /cara crakine|praline feuilletine/i],
     ],
     MEC3: [
-      ["Novità 2026 Specialties", novita2026SpecialtiesPattern],
+
       ["Gelato Bases & Functional Ingredients", /base 6|neutralin|panna base|base 50|base alba|base frutta|gelmix|mec fibra plus|softin|base divina/i],
       ["Copertura Dips & Coverings", /copertura|covering stracciatella/i],
       ["Creams, Pastes & Specialities", /quella amarena|quella mango|variegato dubai/i],
@@ -100,7 +100,7 @@ const usageCategoryFor = (industrySlug, name, range) => {
     "chocolate-confectionery": [["Pure Cocoa Products", /plein arôme cocoa powder|cb grand caraque|extra brute cocoa powder/i], ["Cocoa Ingredients", /cocoa powder|cocoa mass/i], ["Praline Fillings", /hazelnut praline|caramel fill|pale gianduja/i], ["Cacao Barry Specialities", /cara crakine|praline feuilletine/i], ["Specialities", /paillete feuilletine|pure hazelnut paste|pure pistachio paste|cocoa nibs|mycryo cocoa butter/i], ["Decorations & Inclusions", /crispearls|truffle shells/i], ["No Added Sugar Chocolate (Maltitol)", /malchoc/i], ["Milk, Dark & White Couverture Chocolate", /lactée barry|zephyr caramel|^excellence \(|extrabitter guayaquil|favorites mi-amere|blanc satin/i], ["Single-Origin Couverture", /ecuador|sao thome|madagascar|arriba|java|tanzanie|saint domingue|venezuela|ghana|alto el sol/i], ["Milk & White Couverture", /milk couverture|white couverture|alunga milk/i], ["Dark Couverture", /dark couverture/i], ["Speciality Couverture", /.*/]],
     "bakery-ingredients": [["Flours", /flour/i], ["Pastry Sheets & Dough", /sheet|patti|filo|paratha|dough/i], ["Frozen & Ready-to-Bake", /croissant|chocolate roll|cinnamon whirl/i], ["Mixes, Grains & Improvers", /.*/]],
     "fruit-processing": [["DLA Naturals Bake Stable Fruit & Pie Fillings", /apple (?:cinnamon )?filling|bakers cream (?:vanilla|cinnamon)|banana filling|blueberry filling|coconut filling|dark cherry filling|passion fruit filling|pineapple filling|raspberry filling|red cherry filling|strawberry filling|tropical filling/i], ["Bakery Cream Fillings", /bakers cream/i], ["Apple Fillings", /apple filling/i], ["Berry & Cherry Fillings", /blueberry filling|cherry filling|raspberry filling|strawberry filling/i], ["Tropical Fruit Fillings", /filling/i], ["Frozen Fruits", /frozen/i], ["Boiron Fruit Purees", /boiron.*puree/i], ["Tropical Fruit Purees", /passion fruit puree|mango puree|coconut puree|lime puree|pineapple puree|banana puree|mandarine puree|acai puree/i], ["Berry Fruit Purees", /raspberry puree|blackberry puree|strawberry puree|blueberry puree/i], ["Orchard Fruit Purees", /apple puree|apricot puree/i], ["Fruit Preparations", /.*/]],
-    "ice-cream-ingredients": [["Novità 2026 Specialties", novita2026SpecialtiesPattern], ["Bases & Stabilizers", /base|neutralin|gelmix|fibra|softin/i], ["Quella & Variegato Toppings", /quella|variegato/i], ["Gelato Coatings", /copertura|covering/i], ["Inclusions & Crunch", /instacrumble|cookies/i], ["Nut & Traditional Flavours", /baklava|barazek|pistacchio|pistachio|mandorla/i], ["Classic Flavour Pastes", /kulfi|mastic|cappuccino|chocomilky|sticky toffee|saffron/i], ["Fruit & Vanilla Flavours", /.*/]],
+    "ice-cream-ingredients": [["Bases & Stabilizers", /base|neutralin|gelmix|fibra|softin/i], ["Quella & Variegato Toppings", /quella|variegato/i], ["Gelato Coatings", /copertura|covering/i], ["Inclusions & Crunch", /cookies/i], ["Nut & Traditional Flavours", /pistacchio|pistachio|mandorla/i], ["Fruit & Vanilla Flavours", /.*/]],
     "dairy-ingredients": [["Dairy & Ice Cream Products", /cream|mascarpone|sculpture/i], ["Professional Butter", /butter/i], ["Other Dairy Ingredients", /.*/]],
     "functional-ingredients": [["Fruit Inclusions", /raspberr|strawberr|pineapple|passion fruit|yocrispy/i], ["Whipping & Aeration", /potatowhip/i], ["Pectins & Texture", /pectin/i], ["Functional Ingredients", /.*/]],
   };
@@ -157,11 +157,6 @@ const featuredChocolateDetails = {
   "Tropical Filling": { packs: "2.7 kg" },
 };
 
-const removedLegacyMec3Categories = new Set([
-  "Gelato Bases & Functional Ingredients",
-  "Copertura Dips & Coverings",
-]);
-
 const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => names.split("|").map(name => {
   const featuredDetails = featuredChocolateDetails[name];
   return {
@@ -179,7 +174,7 @@ const rowRangeProducts = rows.flatMap(([brand, range, industrySlug, names]) => n
     packs: featuredDetails?.packs || "Pack size confirmed on enquiry",
     description: featuredDetails?.description || `${name} by ${brand} for professional ${categories[industrySlug].toLowerCase()} applications. Ask Vikranth for the current format, pack, specification, availability and B2B quotation.`,
   };
-})).filter((item) => !removedLegacyMec3Categories.has(item.brochureDisplayCategory));
+})).filter((item) => item.brand !== "MEC3");
 
 const mec3RangeProducts = mec3Categories.flatMap((catalogueCategory) => catalogueCategory.products.map((item) => ({
   name: item.name,
