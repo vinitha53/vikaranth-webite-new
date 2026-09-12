@@ -5,8 +5,8 @@ import styles from "./buyer-support.module.css";
 
 const buyers = [
   { icon: Building2, title: "Manufacturers & wholesale buyers", text: "Plan bulk purchases and repeat supply. Share your grade, monthly volume, delivery schedule and document requirements.", type: "Bulk/Business", link: "Discuss bulk supply" },
-  { icon: Store, title: "Bakeries & growing businesses", text: "Source ingredients for your bakery, café, restaurant or new food business. Ask about available packs for your batch size.", type: "Wholesale", link: "Find your pack size" },
-  { icon: ShoppingBag, title: "Home bakers & personal buyers", text: "Have a smaller requirement? Tell us what you need. We’ll confirm suitable products, pack sizes and minimum quantities.", type: "Retail/Small Quantity", link: "Ask about a small order" },
+  { icon: Store, title: "Bakeries and Startup Business", text: "Source ingredients for your bakery, café, restaurant or new food business. Ask about available packs for your batch size.", type: "Wholesale", link: "Find your pack size" },
+  { icon: ShoppingBag, title: "Food Business and Retail Buyers", text: "Have a smaller requirement? Tell us what you need. We’ll confirm suitable products, pack sizes and minimum quantities.", type: "Retail/Small Quantity", link: "Ask about a small order" },
 ];
 
 export default function BuyerSupport() {

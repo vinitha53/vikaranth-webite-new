@@ -1,74 +1,80 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, FileUp, MessageCircle } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import styles from "../products/[slug]/product-landing.module.css";
-import { WHATSAPP_NUMBERS } from "../data/whatsapp";
 
 const initialValues = {
-  name: "", company: "", buyerType: "Business / bulk", email: "", phone: "", city: "", application: "",
-  grade: "", quantity: "", requiredDate: "", sample: "No", documents: "Specification and COA",
-  message: "", attachment: "", consent: false,
+  name: "",
+  company: "",
+  buyerType: "Business / bulk",
+  email: "",
+  phone: "",
+  city: "",
 };
 
-export default function ProductQuoteForm({ product, applications = [], whatsappNumber = WHATSAPP_NUMBERS.supplierBrands }) {
-  const [step, setStep] = useState(1);
+export default function ProductQuoteForm({ product }) {
   const [values, setValues] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const reference = useMemo(() => `VCC-${product.replace(/[^a-z0-9]/gi, "").slice(0, 5).toUpperCase()}-${Date.now().toString().slice(-6)}`, [product]);
 
-  const update = (event) => {
-    const { name, type, checked, value, files } = event.target;
-    setValues((current) => ({ ...current, [name]: type === "checkbox" ? checked : type === "file" ? (files?.[0]?.name || "") : value }));
+  const update = ({ target }) => {
+    setValues((current) => ({ ...current, [target.name]: target.value }));
   };
 
-  function next(event) {
+  async function submit(event) {
     event.preventDefault();
-    if (event.currentTarget.reportValidity()) setStep(2);
-  }
-
-  function submit(event) {
-    event.preventDefault();
-    const message = [
-      `Ingredient enquiry reference: ${reference}`,
-      `Buyer type: ${values.buyerType}`,
-      `Product: ${product}`,
-      `Name: ${values.name}`,
-      `Company: ${values.company || "Personal purchase"}`,
-      `Email: ${values.email}`,
-      `Phone / WhatsApp: ${values.phone}`,
-      `Application: ${values.application}`,
-      `Preferred grade / brand: ${values.grade || "Please advise"}`,
-      `Quantity: ${values.quantity}`,
-      `Delivery city / PIN: ${values.city}`,
-      `Required date: ${values.requiredDate || "To be discussed"}`,
-      `Sample required: ${values.sample}`,
-      `Documents: ${values.documents}`,
-      `Attachment selected: ${values.attachment || "None"}`,
-      `Message: ${values.message || "None"}`,
-    ].join("\n");
-    setSubmitted(true);
-    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+    if (!event.currentTarget.reportValidity()) return;
+    setIsSending(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: `Product quote - ${product}`,
+          name: values.name,
+          email: values.email,
+          details: {
+            Reference: reference,
+            Product: product,
+            "Buyer type": values.buyerType,
+            Company: values.company || "Personal purchase",
+            "Phone / WhatsApp": values.phone,
+            "Delivery city / PIN": values.city,
+          },
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to send enquiry");
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSending(false);
+    }
   }
 
   if (submitted) return (
     <div className={styles.formSuccess} role="status" aria-live="polite">
       <span><Check /></span>
-      <small>Enquiry ready</small>
-      <h3>Thank you. Continue in WhatsApp to send your request.</h3>
+      <small>Enquiry sent</small>
+      <h3>Thank you. Your product enquiry has been emailed to our team.</h3>
       <p>Keep this reference number for follow-up:</p>
       <strong>{reference}</strong>
-      <button type="button" onClick={() => setSubmitted(false)}>Review enquiry</button>
+      <button type="button" onClick={() => setSubmitted(false)}>Send another enquiry</button>
     </div>
   );
 
   return (
-    <form className={styles.form} onSubmit={step === 1 ? next : submit} data-product={product} data-enquiry-source="product-page">
-      <div className={styles.formProgress} aria-label={`Step ${step} of 2`}>
-        <div><span style={{ width: `${step * 50}%` }} /></div><b>Step {step} of 2</b>
+    <form className={styles.form} onSubmit={submit} data-product={product} data-enquiry-source="product-page">
+      <div className={styles.formProgress} aria-label="Single-step enquiry form">
+        <div><span style={{ width: "100%" }} /></div><b>Enquiry form</b>
       </div>
 
-      {step === 1 ? <fieldset className={styles.formStep}>
+      <fieldset className={styles.formStep}>
         <legend>Contact and delivery details</legend>
         <label className={styles.formWide}>Buying for<select name="buyerType" value={values.buyerType} onChange={update}><option>Business / bulk</option><option>Small business / home bakery</option><option>Personal use / small quantity</option></select></label>
         <label>Your name<input name="name" value={values.name} onChange={update} autoComplete="name" placeholder="Enter your name" required /></label>
@@ -76,22 +82,10 @@ export default function ProductQuoteForm({ product, applications = [], whatsappN
         <label>Email address<input name="email" value={values.email} onChange={update} type="email" autoComplete="email" placeholder="Your email address" required /></label>
         <label>Phone / WhatsApp<input name="phone" value={values.phone} onChange={update} type="tel" inputMode="tel" autoComplete="tel" placeholder="10-digit mobile number" required /></label>
         <label className={styles.formWide}>Delivery city / PIN<input name="city" value={values.city} onChange={update} autoComplete="postal-code" placeholder="e.g. Chennai 600001" required /></label>
-        <button className={styles.formNext} type="submit">Continue to requirement <ArrowRight /></button>
-      </fieldset> : <fieldset className={styles.formStep}>
-        <legend>Product requirement</legend>
-        <label>Product<input value={product} readOnly aria-readonly="true" /></label>
-        <label>Application<select name="application" value={values.application} onChange={update} required><option value="">Select application</option>{applications.map((item) => <option key={item}>{item}</option>)}<option>Other / discuss with team</option></select></label>
-        <label>Preferred grade / brand<input name="grade" value={values.grade} onChange={update} placeholder="Optional" /></label>
-        <label>Quantity and unit<input name="quantity" value={values.quantity} onChange={update} placeholder="e.g. 100 kg per month" required /></label>
-        <label>Required date<input name="requiredDate" value={values.requiredDate} onChange={update} type="date" /></label>
-        <label>Sample required<select name="sample" value={values.sample} onChange={update}><option>No</option><option>Yes</option><option>Please advise</option></select></label>
-        <label className={styles.formWide}>Documents needed<select name="documents" value={values.documents} onChange={update}><option>Specification and COA</option><option>Specification, COA and SDS</option><option>Allergen statement</option><option>Certificates as applicable</option><option>Please advise</option></select></label>
-        <label className={`${styles.formWide} ${styles.fileUpload}`}><FileUp /> Optional specification or formulation brief<input name="attachment" onChange={update} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,image/*" /><small>{values.attachment || "Choose a file; you can attach it after WhatsApp opens."}</small></label>
-        <label className={styles.formWide}>Message<textarea name="message" value={values.message} onChange={update} rows="3" placeholder="Function, process, current product or technical requirement" /></label>
-        <label className={`${styles.formWide} ${styles.consent}`}><input name="consent" checked={values.consent} onChange={update} type="checkbox" required /><span>I consent to Vikranth using these details to respond to this ingredient enquiry.</span></label>
-        <div className={`${styles.formWide} ${styles.formActions}`}><button type="button" onClick={() => setStep(1)}><ArrowLeft /> Back</button><button type="submit"><MessageCircle /> Continue in WhatsApp</button></div>
-      </fieldset>}
-      <small className={styles.formPrivacy}>Your details stay in this browser until you continue to WhatsApp. This website does not store the form submission.</small>
+        {submitError && <p className={styles.formWide} role="alert">{submitError}</p>}
+        <button className={styles.formNext} type="submit" disabled={isSending}>{isSending ? "Sending..." : "Submit enquiry"} <ArrowRight /></button>
+      </fieldset>
+      <small className={styles.formPrivacy}>Your details are emailed securely to the Vikranth team and are used only to respond to this enquiry.</small>
     </form>
   );
 }

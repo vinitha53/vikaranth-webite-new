@@ -2454,7 +2454,7 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   background:#f4f3f1;
   color:#38302c;
 }
-.home-page .enquiry-types .botanical-corners{opacity:.13}
+.home-page .enquiry-types>.botanical-corners{opacity:1}
 .home-page .enquiry-options-inner{
   display:block!important;
   width:min(1220px,calc(100% - 4rem));
@@ -2466,11 +2466,11 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   width:100%!important;
   max-width:none!important;
   min-height:0!important;
-  grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
-  align-items:end;
-  gap:clamp(3rem,7vw,7rem);
+  grid-template-columns:1fr;
+  justify-items:center;
+  gap:1.4rem;
   margin:0 0 clamp(2.1rem,4vw,3.4rem)!important;
-  text-align:left;
+  text-align:center;
   transform:none!important;
 }
 .home-page .enquiry-options-head .eyebrow{
@@ -2483,20 +2483,20 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   text-transform:uppercase;
 }
 .home-page .enquiry-options-head h2{
-  max-width:680px;
-  margin:0;
-  color:#4a4240;
-  font:500 clamp(2.55rem,4.7vw,4.7rem)/.98 'Playfair Display',Georgia,serif;
+  max-width:820px;
+  margin:0 auto;
+  color:#9e3e17;
+  font:500 clamp(2.2rem,3.8vw,3.8rem)/1.02 'Playfair Display',Georgia,serif;
   letter-spacing:-.045em;
-  text-align:left;
+  text-align:center;
 }
 .home-page .enquiry-options-head>p{
   max-width:510px;
-  margin:0 0 .35rem;
+  margin:0 auto .35rem;
   color:#736c68;
   font-size:.98rem;
   line-height:1.7;
-  text-align:left;
+  text-align:center;
 }
 .home-page .enquiry-type-grid{
   display:grid!important;
@@ -2533,15 +2533,15 @@ html,body,button,input,textarea{font-family:Inter,-apple-system,BlinkMacSystemFo
   box-shadow:0 14px 32px rgba(48,36,31,.08);
 }
 .home-page .enquiry-type-grid .enquiry-card-business{
-  border-color:#615654;
-  background:linear-gradient(135deg,#645957,#514746);
-  box-shadow:0 15px 35px rgba(57,45,42,.16);
+  border-color:#7f2f11;
+  background:linear-gradient(135deg,#3b160b 0%,#70270f 55%,#a94418 100%);
+  box-shadow:0 15px 35px rgba(91,32,10,.22);
   color:#fff;
 }
 .home-page .enquiry-type-grid .enquiry-card-business:hover{
-  border-color:#615654;
-  background:linear-gradient(135deg,#645957,#514746);
-  box-shadow:0 18px 40px rgba(57,45,42,.2);
+  border-color:#9e3e17;
+  background:linear-gradient(135deg,#43180a 0%,#7d2c10 55%,#b84b1b 100%);
+  box-shadow:0 18px 40px rgba(91,32,10,.28);
 }
 .home-page .enquiry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem}
 .home-page .enquiry-card-icon{display:grid;width:30px;height:30px;place-items:center;color:#ad6c56}

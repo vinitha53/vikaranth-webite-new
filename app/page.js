@@ -721,13 +721,13 @@ export default function Home() {
             </article>
             <article className="enquiry-card">
               <div className="enquiry-card-top"><span className="enquiry-card-icon"><CakeSlice aria-hidden="true"/></span><span className="enquiry-card-number">02</span></div>
-              <h3>Bakeries &amp; growing businesses</h3>
+              <h3>Bakeries and Startup Business</h3>
               <p>Source ingredients for your bakery, café, restaurant or new food business. Ask about available packs for your batch size.</p>
               <a className="enquiry-card-link" href="/contact/#enquiry">Find your pack size <ArrowRight aria-hidden="true"/></a>
             </article>
             <article className="enquiry-card">
               <div className="enquiry-card-top"><span className="enquiry-card-icon"><PackageCheck aria-hidden="true"/></span><span className="enquiry-card-number">03</span></div>
-              <h3>Home bakers &amp; personal buyers</h3>
+              <h3>Food Business and Retail Buyers</h3>
               <p>Have a smaller requirement? Tell us what you need. We’ll confirm suitable products, pack sizes and minimum quantities.</p>
               <a className="enquiry-card-link" href="/contact/#enquiry">Ask about a small order <ArrowRight aria-hidden="true"/></a>
             </article>

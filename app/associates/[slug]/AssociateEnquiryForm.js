@@ -12,6 +12,8 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
   const [values, setValues] = useState(initial);
   const [fileName, setFileName] = useState("");
   const [sent, setSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const update = ({ target }) => setValues((current) => ({ ...current, [target.name]: target.type === "checkbox" ? target.checked : target.value }));
 
   function next(event) {
@@ -21,7 +23,7 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
     setStep((current) => Math.min(3, current + 1));
   }
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
     const message = [
@@ -41,8 +43,42 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
       `Message: ${values.message || "None"}`,
       fileName ? `Reference file selected: ${fileName} (I will attach it in WhatsApp)` : "",
     ].filter(Boolean).join("\n");
-    setSent(true);
-    window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+    setIsSending(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: `Supplier enquiry - ${supplier}`,
+          name: values.name,
+          email: values.email,
+          details: {
+            Supplier: supplier,
+            Company: values.company || "Not provided",
+            Phone: values.phone,
+            "Delivery city": values.city,
+            Product: values.product,
+            Application: values.application,
+            "Preferred grade": values.grade || "To be discussed",
+            Quantity: values.quantity,
+            "Required date": values.requiredDate || "To be discussed",
+            Documents: values.documents || "To be discussed",
+            "Sample required": values.sample,
+            Message: values.message || "None",
+            "Reference file selected": fileName || "None",
+          },
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to send enquiry");
+      setSent(true);
+      window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
@@ -74,8 +110,8 @@ export default function AssociateEnquiryForm({ supplier, products, whatsappNumbe
         <label className={styles.fullField}>Message<textarea name="message" value={values.message} onChange={update} rows="4" /></label>
         <label className={`${styles.fullField} ${styles.fileField}`}><FileUp /> Reference file<input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" onChange={(event) => setFileName(event.target.files?.[0]?.name || "")} /><span>{fileName || "Choose a specification or reference file"}</span><small>The file stays on your device. Attach it manually after WhatsApp opens.</small></label>
         <label className={`${styles.fullField} ${styles.consent}`}><input name="consent" type="checkbox" checked={values.consent} onChange={update} required /><span>I consent to Vikranth using these details to respond to this ingredient enquiry.</span></label>
-      </div><div className={styles.formButtons}><button type="button" onClick={() => setStep(2)}><ArrowLeft /> Back</button><button className={styles.submitButton} type="submit">Send on WhatsApp <ArrowRight /></button></div></fieldset>}
-      <div className={`${styles.success} ${sent ? styles.successVisible : ""}`} role="status" aria-live="polite"><Check /> Enquiry prepared. WhatsApp is opening.</div>
+      </div>{submitError && <p role="alert">{submitError}</p>}<div className={styles.formButtons}><button type="button" onClick={() => setStep(2)}><ArrowLeft /> Back</button><button className={styles.submitButton} type="submit" disabled={isSending}>{isSending ? "Sending..." : "Send enquiry & open WhatsApp"} <ArrowRight /></button></div></fieldset>}
+      <div className={`${styles.success} ${sent ? styles.successVisible : ""}`} role="status" aria-live="polite"><Check /> Enquiry emailed. WhatsApp is opening.</div>
     </form>
   );
 }

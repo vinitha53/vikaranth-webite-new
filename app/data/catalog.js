@@ -64,7 +64,7 @@ export const iceCreamProductGroups = [
 ];
 
 export const fruitProductGroups = [
-  { name: "Bakery Fillings", description: "Fruit ingredients for making pie fillings, cake layers, pastries, tarts and filled bakery products.", ingredients: ["Fruit Filling", "Genu Pectin", "Glaze Gel"] },
+  { name: "Bakery Fillings", description: "Fruit ingredients for making pie fillings, cake layers, pastries, tarts and filled bakery products.", ingredients: ["Fruit Filling", "Genu Pectin"] },
   { name: "Fruit Beverages", description: "Fruit products for making juices, coolers, smoothies, milkshakes and mocktails.", ingredients: ["Fruit Crush"] },
   { name: "Jams & Preserves", description: "Texturizing ingredients for making jams, jellies and preserves.", ingredients: ["Genu Pectin"] },
   { name: "Desserts & Toppings", description: "Fruit ingredients for desserts, yogurt, ice cream, cheesecake toppings and decorative finishing.", ingredients: ["Fruit Filling", "Fruit Crush", "Glaze Gel"] }
@@ -78,7 +78,7 @@ export const hydrocolloidProductGroups = [
 ];
 
 export const sweetenerProductGroups = [
-  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Corn Syrups", "Invert Sugar", "Dextrose Monohydrate", "Cake Syrup", "Sorbitol 70% Solution", "Sucrose"] },
+  { name: "Bakery & Confectionery", description: "Sweeteners and syrups for cakes, cookies, fillings, candies, chocolates and confectionery products.", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Invert Sugar", "Dextrose Monohydrate", "Cake Syrup", "Sorbitol 70% Solution", "Sucrose"] },
   { name: "Beverages & Syrups", description: "Ingredients for sweetness, solids and body in beverages, concentrates, drink mixes and flavoured syrups.", ingredients: ["Liquid Glucose", "Glucose D", "High Maltose Corn Syrups", "Invert Sugar", "Aspartame Powder", "Dextrose Monohydrate", "Cake Syrup"] },
   { name: "Sugar Free", description: "Alternative sweetening ingredients for reduced-sugar, sugar-free and calorie-managed formulations.", ingredients: ["Sucralose", "Acesulfame K", "Aspartame Powder", "Saccharin", "Maltitol", "Sorbitol 70% Solution", "Isomalt", "SWEETPEARL® P 200 Maltitol"] },
   { name: "Texture, Body & Thickening", description: "Starches and carbohydrates for viscosity, binding, bulking, crispness and processing performance.", ingredients: ["Maize Starch", "Maize Starch Powder", "Potato Starch", "Dextrose Monohydrate", "CLEARAM® CH 20 20"] }
@@ -247,7 +247,7 @@ export const sharedApplicationGroupsByIndustrySlug = {
   "fruit-processing": [
     { name: "Sweeteners, Syrups & Starches", description: "Sweeteners and carbohydrates for jams, fillings, fruit preparations, beverages and toppings.", ingredients: ["Liquid Glucose", "Invert Sugar", "Sorbitol 70% Solution", "Dextrose Monohydrate", "Maltodextrin Powder", "Maize Starch", "Potato Starch"] },
     { name: "Acidulants & Preservatives", description: "Acids and preservatives for flavour balance, pH control and shelf-life support in fruit products.", ingredients: ["Citric Acid Monohydrate", "Citric Acid Anhydrous", "Malic Acid", "Ascorbic Acid", "Potassium Sorbate", "Sodium Benzoate", "Potassium Metabisulphite (KMS)"] },
-    { name: "Gums & Gelling Agents", description: "Hydrocolloids for setting, thickening, suspension and texture in fruit systems.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG"] }
+    { name: "Gums & Gelling Agents", description: "Hydrocolloids for setting, thickening, suspension and texture in fruit systems.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG", "Genu Pectin"] }
   ]
 };
 

@@ -67,14 +67,27 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
   const submit = async (data) => {
     try {
       if (submitHandler) await submitHandler(data);
-      else await new Promise((resolve) => window.setTimeout(resolve, 650));
-      setSubmitted(true);
-      onMascotState("success", submitHandler ? "Your enquiry has been sent." : "Your email draft is ready. Send it from your email app.");
-      if (!submitHandler) {
-        const subject = `VCC contact enquiry - ${data.subject}`;
-        const body = ["Name: " + data.name, "Company: " + (data.company || "Not provided"), "Email: " + data.email, "Phone: " + (data.phone || "Not provided"), "Enquiry type: " + data.subject, "", "Message: " + data.message].join("\n");
-        window.setTimeout(() => { window.location.href = `mailto:vikranth.chemicals@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; }, 650);
+      else {
+        const response = await fetch("/api/enquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            source: `Contact form - ${data.subject}`,
+            name: data.name,
+            email: data.email,
+            details: {
+              Company: data.company || "Not provided",
+              Phone: data.phone || "Not provided",
+              "Enquiry type": data.subject,
+              Message: data.message,
+            },
+          }),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Unable to send enquiry");
       }
+      setSubmitted(true);
+      onMascotState("success", "Your enquiry has been sent.");
     } catch {
       onMascotState("error", "Something interrupted us. Please retry or call the Vikranth team.");
     }
@@ -86,7 +99,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
         {submitted && (
           <div className={styles.successNotice} role="status" aria-live="polite">
             <CheckCircle2 />
-            <span><b>{submitHandler ? "Enquiry sent" : "Email draft prepared"}</b>{submitHandler ? "The team will respond using your contact details." : "Please send the message from your email app to complete your enquiry."}</span>
+            <span><b>Enquiry sent</b>The team will respond using your contact details.</span>
           </div>
         )}
 

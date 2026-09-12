@@ -88,6 +88,7 @@ export default async function IndustryPage({ params }) {
     const hideSupplierIdentity = name === "Distilled Monoglycerides (DMG)" || name === "Propylene Glycol Monostearate (PGMS)" || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine", "Finamul 90", "Vital Wheat Gluten"].includes(name) || ((industry.slug === "chocolate-confectionery" && industryGroup?.name === "Milk Powders" || industry.slug === "ice-cream-ingredients" && industryGroup?.name === "Milk Powders & Protein") && productSupplier?.slug === "calpro-specialities-pvt-ltd");
     const catalogProduct = {
       ...product,
+      displayName: industry.slug === "fruit-processing" && name === "Maize Starch" ? "Maize Starch IP/GP Grade" : product.displayName,
       brand: brochureSupplier || product.brand,
       brandOnImageOnly: Boolean(brochureSupplier),
       hideBrandLogo: industry.slug === "chocolate-confectionery" && industryGroup?.name === "Cocoa Ingredients" && product.brand === "Anchor",
