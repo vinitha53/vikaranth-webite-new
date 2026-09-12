@@ -158,6 +158,46 @@
   .storyChapter:first-child{display:block!important}
 }
 
+/* Buyer journey from small batches to repeat commercial supply. */
+.buyerJourney{padding:clamp(76px,8vw,112px) max(5vw,calc((100vw - 1380px)/2));background:#fff;color:#2a190f}
+.buyerJourney .eyebrow{color:#8b3f1d}
+.buyerJourneyIntro{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:clamp(54px,9vw,150px);align-items:end}
+.buyerJourneyIntro h2{max-width:670px;margin:18px 0 0;color:#2a190f;font:800 clamp(44px,5vw,68px)/1.06 'Manrope','Segoe UI',sans-serif;letter-spacing:-.05em;text-wrap:balance}
+.buyerJourneyIntro>p{max-width:580px;margin:0 0 17px;color:#736861;font-size:16px;line-height:1.8}
+.buyerJourneyGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(50px,6vw,76px)}
+.buyerJourneyGrid article{display:flex;min-height:320px;padding:34px 32px 28px;flex-direction:column;border:1px solid #dfd2c8;border-radius:18px;background:#fffdfa;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.buyerJourneyGrid article:hover{border-color:#c47a4f;box-shadow:0 20px 42px rgba(66,35,20,.1);transform:translateY(-5px)}
+.buyerJourneyGrid article.buyerJourneyFeatured{border-color:#665a56;background:#665a56;color:#fff}
+.buyerJourneyMeta{display:flex;align-items:center;justify-content:space-between;color:#c75822}
+.buyerJourneyMeta svg{width:27px;height:27px;stroke-width:1.7}
+.buyerJourneyMeta span{color:#b9aea8;font:800 11px/1 'Manrope';letter-spacing:.08em}
+.buyerJourneyFeatured .buyerJourneyMeta span{color:#efb59a}
+.buyerJourneyGrid h3{margin:34px 0 14px;color:#4a403c;font:800 clamp(18px,1.7vw,23px)/1.25 'Manrope','Segoe UI',sans-serif;letter-spacing:-.035em;text-transform:capitalize}
+.buyerJourneyGrid p{max-width:390px;margin:0;color:#7b7068;font-size:14px;line-height:1.72}
+.buyerJourneyFeatured h3,.buyerJourneyFeatured p{color:#fff}
+.buyerJourneyGrid a{display:flex;margin-top:auto;padding-top:28px;align-items:center;justify-content:space-between;gap:16px;color:#a74d2c;font:800 12px/1.3 'Manrope','Segoe UI',sans-serif;text-decoration:none;text-transform:capitalize}
+.buyerJourneyGrid a svg{width:17px;transition:transform .22s ease}
+.buyerJourneyGrid a:hover svg{transform:translateX(4px)}
+.buyerJourneyFeatured a{color:#f3b777}
+@media(max-width:900px){
+  .buyerJourney{padding:68px clamp(22px,5vw,42px)}
+  .buyerJourneyIntro{grid-template-columns:1fr;gap:28px;align-items:start}
+  .buyerJourneyIntro h2{max-width:760px;font-size:clamp(44px,8vw,66px)}
+  .buyerJourneyIntro>p{max-width:650px;margin:0}
+  .buyerJourneyGrid{grid-template-columns:1fr;gap:13px;margin-top:48px}
+  .buyerJourneyGrid article{min-height:270px}
+}
+@media(max-width:560px){
+  .buyerJourney{padding:56px 18px}
+  .buyerJourneyIntro{gap:22px}
+  .buyerJourneyIntro h2{margin-top:14px;font-size:clamp(38px,12vw,51px);line-height:1.02}
+  .buyerJourneyIntro>p{font-size:14px;line-height:1.7}
+  .buyerJourneyGrid{margin-top:36px}
+  .buyerJourneyGrid article{min-height:255px;padding:27px 24px 23px;border-radius:14px}
+  .buyerJourneyGrid h3{margin-top:28px;font-size:20px}
+  .buyerJourneyGrid p{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.buyerJourneyGrid article,.buyerJourneyGrid a svg{transition:none}.buyerJourneyGrid article:hover{transform:none}}
 /* Warehouse story replacing the former commercial-sourcing steps. */
 .portfolioSection{padding-bottom:clamp(34px,3vw,46px)}
 .warehouseSection{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);gap:clamp(36px,4.5vw,68px);padding:clamp(52px,5vw,70px) max(5vw,calc((100vw - 1380px)/2));align-items:center;overflow:hidden;background:linear-gradient(135deg,#fffaf5 0%,#f3e7d9 100%)}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Building2, MapPin, Phone, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, CakeSlice, Factory, MapPin, Phone, ShieldCheck, ShoppingBasket, Truck } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./about.module.css";
@@ -172,10 +172,11 @@ export default function AboutStory() {
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobileView = window.matchMedia("(max-width: 600px)").matches;
-    if (reducedMotion || mobileView) return undefined;
+    if (reducedMotion) return undefined;
     gsap.registerPlugin(ScrollTrigger);
-    const reveals = gsap.utils.toArray(".aboutReveal").map((item, index) => gsap.fromTo(item, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 88%", once: true }, delay: (index % 3) * 0.05 }));
-    return () => reveals.forEach((tween) => { tween.scrollTrigger?.kill(); tween.kill(); });
+    const reveals = mobileView ? [] : gsap.utils.toArray(".aboutReveal:not([data-buyer-reveal])").map((item, index) => gsap.fromTo(item, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 88%", once: true }, delay: (index % 3) * 0.05 }));
+    const buyerReveals = gsap.utils.toArray("[data-buyer-reveal]").map((item, index) => gsap.fromTo(item, { autoAlpha: 0, y: 38, scale: index ? .975 : 1 }, { autoAlpha: 1, y: 0, scale: 1, duration: .82, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 90%", once: true }, delay: index * .1 }));
+    return () => [...reveals, ...buyerReveals].forEach((tween) => { tween.scrollTrigger?.kill(); tween.kill(); });
   }, []);
 
   return <>
@@ -214,6 +215,35 @@ export default function AboutStory() {
       <div className={styles.companyImage + " aboutReveal"}><img src="/about-overview.webp" width="760" height="820" alt="Food ingredients prepared for commercial sourcing review" loading="lazy" /><div><small>Application-first support</small><strong>Ingredients, people and practical supply conversations.</strong></div></div>
     </section>
 
+    <section className={styles.buyerJourney} aria-labelledby="buyer-journey-title">
+      <div className={styles.buyerJourneyIntro + " aboutReveal"} data-buyer-reveal="heading">
+        <div>
+          <span className={styles.eyebrow}>Ingredients for your next step</span>
+          <h2 id="buyer-journey-title">From your first batch to your next production run.</h2>
+        </div>
+        <p>Commercial sourcing is our focus. Whether you buy for a factory, a growing business or your own kitchen, our Chennai team can help you check the right supply option.</p>
+      </div>
+      <div className={styles.buyerJourneyGrid}>
+        <article className={styles.buyerJourneyFeatured + " aboutReveal"} data-buyer-reveal="card">
+          <div className={styles.buyerJourneyMeta}><Factory /><span>01</span></div>
+          <h3>Manufacturers &amp;<br />wholesale buyers</h3>
+          <p>Plan bulk purchases and repeat supply. Share your grade, monthly volume, delivery schedule and document requirements.</p>
+          <Link href="/contact/#enquiry">Discuss bulk supply <ArrowRight /></Link>
+        </article>
+        <article className="aboutReveal" data-buyer-reveal="card">
+          <div className={styles.buyerJourneyMeta}><CakeSlice /><span>02</span></div>
+          <h3>Bakeries &amp; growing businesses</h3>
+          <p>Source ingredients for your bakery, cafe, restaurant or growing food business. Ask about available packs for your batch size.</p>
+          <Link href="/contact/#enquiry">Find your pack size <ArrowRight /></Link>
+        </article>
+        <article className="aboutReveal" data-buyer-reveal="card">
+          <div className={styles.buyerJourneyMeta}><ShoppingBasket /><span>03</span></div>
+          <h3>Home bakers &amp; personal buyers</h3>
+          <p>Have a smaller requirement? Tell us what you need. We will confirm suitable products, pack sizes and minimum quantities.</p>
+          <Link href="/contact/#enquiry">Ask about a small order <ArrowRight /></Link>
+        </article>
+      </div>
+    </section>
     <section className={styles.warehouseSection} aria-labelledby="warehouse-title">
       <div className={styles.warehouseGallery + " aboutReveal"}>
         <figure className={styles.warehousePhotoPrimary}>

@@ -27,7 +27,7 @@ export const celebreBrochureProducts = [
   product("Eggless Cake Concentrate", "bakery-ingredients", "Eggless Cake Concentrate - Vanilla", "2 kg"),
   product("Eggless Cake Concentrate", "bakery-ingredients", "Eggless Cake Concentrate - Chocolate", "2 kg"),
   product("Eggless Cake Concentrate", "bakery-ingredients", "Eggless Muffin Concentrate", "2 kg"),
-  ...["EMC 001", "EMC 002", "EMC 003"].map((name) => product("Eggless Cake Concentrate", "bakery-ingredients", name, "2 kg")),
+
 
   product("Eggless Cake Premix", "bakery-ingredients", "Eggless Cake Premix - Vanilla", "1 kg and 3 kg", { image: "/product-images/celebre/eggless-cake-premix-vanilla.png" }),
   product("Eggless Cake Premix", "bakery-ingredients", "Eggless Cake Premix - Dark", "1 kg and 3 kg", { image: "/product-images/celebre/eggless-cake-premix-dark.png" }),
@@ -63,7 +63,7 @@ export const celebreBrochureProducts = [
     ["Orange Glaze Gel", "orange-glaze-gel.png", "1 kg and 2.5 kg"],
     ["Black Currant Glaze Gel", "black-currant-glaze-gel.png", "2.5 kg"],
   ].map(([name, image, packs]) => product("Flavoured & Glazing Gels", "fruit-processing", name, packs, { image: `/product-images/celebre/${image}` })),
-  product("Flavoured & Glazing Gels", "fruit-processing", "Strawberry with Seeds Glaze Gel", "2.5 kg"),
+
 
   ...[
     ["Blueberry Fruit Filling", "blueberry-fruit-filling.png"],
@@ -107,7 +107,7 @@ export const celebreBrochureProducts = [
   product("Specialities", "bakery-ingredients", "Chocofill Crunchy", "1 kg"),
   product("Specialities", "bakery-ingredients", "Toffee Caramel", "1 kg and 2.5 kg"),
   product("Specialities", "bakery-ingredients", "Pistachio Paste (No Added Sugar)", "1 kg"),
-  ...["Carabisc Biscuit Spread", "Dubai Pista Filling", "Pista Praline Paste", "Orange Spread", "Coconut Spread", "Coffee Spread", "Dates & Walnut Filling", "Fig & Honey Filling"].map((name) => product("Specialities", "bakery-ingredients", name, "1 kg")),
+  ...["Carabisc Biscuit Spread", "Dubai Pista Filling", "Pista Praline Paste", "Coffee Spread"].map((name) => product("Specialities", "bakery-ingredients", name, "1 kg")),
 
   ...[
     "Dyo Softy Mix Vanilla Flavour", "Dyo Softy Mix Chocolate Flavour", "Dyo Softy Mix Classic Chocolate Flavour",
@@ -115,13 +115,13 @@ export const celebreBrochureProducts = [
     "Dyo Softy Mix Strawberry Flavour", "Dyo Softy Mix Salted Butter Caramel Flavour",
   ].map((name) => product("Softy Ice Cream Premix", "ice-cream-ingredients", name, "1 kg")),
   product("Frozen Yoghurt Premix", "ice-cream-ingredients", "Frozen Yoghurt Premix", "1.5 kg"),
-  product("Candied Fruits", "fruit-processing", "Light-Orange Candied Fruit", "1 kg and 5 kg"),
+
   product("Plum Cake Premix", "bakery-ingredients", "Plum Cake Premix", null),
-  product("Drinking Chocolate Powder", "beverage-ingredients", "Drinking Chocolate Powder", null),
+
   product("Hot Glaze", "bakery-ingredients", "Hot Glaze", null),
 
   ...["Chocolate", "Caramel", "Salted Butter Caramel", "Spicy Butter Caramel", "Butterscotch"].map((name) => product("Dessert Toppings", "ice-cream-ingredients", `${name} Dessert Topping`, "1 kg and 5 kg")),
-  product("Marzipan (Almond Paste)", "bakery-ingredients", "Marzipan - 36% Almond", "1 kg"),
-  product("Croissant Mix", "bakery-ingredients", "Croissant Mix", null),
+
+
   ...["Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Brown", "Purple", "Orange"].map((colour) => product("Sugar Paste (Rolling Fondant)", "bakery-ingredients", `${colour} Sugar Paste (Rolling Fondant)`, "1 kg")),
 ];

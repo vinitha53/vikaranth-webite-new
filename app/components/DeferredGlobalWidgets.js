@@ -11,6 +11,7 @@ export default function DeferredGlobalWidgets() {
   const [ready, setReady] = useState(false);
   const pathname = usePathname();
   const isContactPage = pathname === "/contact" || pathname?.startsWith("/contact/");
+  const isBrochurePage = pathname === "/brochure" || pathname?.startsWith("/brochure/");
 
   useEffect(() => {
     const reveal = () => setReady(true);
@@ -27,5 +28,6 @@ export default function DeferredGlobalWidgets() {
     };
   }, []);
 
-  return ready ? <>{!isContactPage && <FloatingCocoaGuide/>}<FloatingIconDock/></> : null;
+  if (!ready || isBrochurePage) return null;
+  return <>{!isContactPage && <FloatingCocoaGuide/>}<FloatingIconDock/></>;
 }
