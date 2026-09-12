@@ -107,7 +107,7 @@ export const additiveProductGroups = [
   { name: "Leavening & Baking Ingredients", description: "Leavening and baking ingredients for cakes, biscuits, cookies, crackers and other bakery products.", ingredients: ["Ammonium Bicarbonate", "Sodium Bicarbonate", "SAPP (Sodium Acid Pyrophosphate)"] },
   { name: "Minerals & Processing Ingredients", description: "Minerals, carriers and processing ingredients for formulation and production requirements.", ingredients: ["Calcium Carbonate", "Calcium Chloride", "Propylene Glycol (PG)", "Refined Glycerine"] },
   { name: "Milk Powder", description: "Milk and whey powders for dairy solids, protein contribution, body and flavour.", ingredients: ["Skimmed Milk Powder", "Whey Powder", "Whole Milk Powder", "Milk Powder Added Glucose"] },
-  { name: "Other Food Additives", description: "Additional food additives, flavours and processing ingredients available for commercial enquiry.", ingredients: ["Malt Extract Powder", "Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] }
+  { name: "Flours & Extracts", description: "Specialty flours, extracts, flavours and related ingredients available for commercial enquiry.", ingredients: ["Malt Extract Powder", "Black Cocoa Powder", "Caramel", "Extra Pure Vanillin", "Orange Oil", "Saucetec"] }
 ];
 
 export const foodAdditiveProductSuppliers = {
@@ -229,8 +229,8 @@ export const sharedApplicationGroupsByIndustrySlug = {
   ],
   "dairy-ingredients": [
     { name: "Stabilizers & Texture", description: "Hydrocolloids and emulsifiers for body, suspension, creaminess and stability in dairy systems.", ingredients: ["Xanthan Gum", "Guar Gum", "Sodium CMC", "Sodium Alginate FG", "Genu Pectin", "GMS Powder", "Sodium Citrate"] },
-    { name: "Sweeteners & Carriers", description: "Sweeteners and carbohydrates for flavoured milk, yogurt, dairy desserts and powdered mixes.", ingredients: ["Liquid Glucose", "Invert Sugar", "Sorbitol 70% Solution", "Dextrose Monohydrate", "Maltodextrin Powder"] },
-    { name: "Flavours, Cocoa & Fruit", description: "Cocoa, chocolate and fruit ingredients for flavoured dairy products and desserts.", ingredients: ["Cocoa Powder", "Chocolate Drink", "Fruit Filling", "Fruit Crush", "Natural Food and Beverage Ingredients"] }
+    { name: "Sweeteners & Carbohydrates", description: "Sweeteners and carbohydrates for flavoured milk, yogurt, dairy desserts and powdered mixes.", ingredients: ["Liquid Glucose", "Invert Sugar", "Sorbitol 70% Solution", "Dextrose Monohydrate", "Maltodextrin Powder"] },
+    { name: "Flavours & Cocoa", description: "Flavour, cocoa and chocolate ingredients for flavoured dairy products and desserts.", ingredients: ["Cocoa Powder", "Chocolate Drink", "Natural Food and Beverage Ingredients"] }
   ],
   "beverage-ingredients": [
     { name: "Sweeteners & Beverage Solids", description: "Sweeteners, syrups and carriers for drinks, concentrates, premixes and reduced-sugar beverages.", ingredients: ["Liquid Glucose", "High Maltose Corn Syrups", "Invert Sugar", "Sorbitol 70% Solution", "Aspartame Powder", "Sucralose", "Acesulfame K", "Saccharin", "Dextrose Monohydrate", "Maltodextrin Powder"] },

@@ -62,7 +62,7 @@ export default async function ProductPage({ params }) {
   const productPartners = mappedPartners.length ? mappedPartners : catalogSupplier ? [catalogSupplier] : [];
   const relatedProducts = products.filter((item) => item.slug !== product.slug && item.industrySlug === product.industrySlug).sort((a, b) => { const relevance = item => (product.brand && item.brand === product.brand ? 2 : 0) + (product.usageCategory && item.usageCategory === product.usageCategory ? 1 : 0); return relevance(b) - relevance(a); }).slice(0, 4);
   const showProductBrand = product.brand && !productPartners.some((partner) => partner.name.toLowerCase() === product.brand.toLowerCase());
-  const hideProductPartnerLogos = ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine"].includes(product.name);
+  const hideProductPartnerLogos = ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine", "Finamul 90", "Vital Wheat Gluten"].includes(product.name);
   const whatsappNumber = whatsappNumberForProduct(product, productPartners.map((partner) => partner.slug));
   const whatsapp = whatsappUrl(whatsappNumber, `Hi, I need a quotation for ${product.name}.`);
   const canonicalUrl = `${siteUrl}/products/${product.slug}/`;

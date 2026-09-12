@@ -85,7 +85,7 @@ export default async function IndustryPage({ params }) {
     const brochureSupplier = industry.slug === "food-additives-preservatives" ? foodAdditiveProductSuppliers[name] : null;
     const productSupplier = partnersForProduct(name)[0];
     if (!product) return [];
-    const hideSupplierIdentity = name === "Distilled Monoglycerides (DMG)" || name === "Propylene Glycol Monostearate (PGMS)" || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine"].includes(name) || ((industry.slug === "chocolate-confectionery" && industryGroup?.name === "Milk Powders" || industry.slug === "ice-cream-ingredients" && industryGroup?.name === "Milk Powders & Protein") && productSupplier?.slug === "calpro-specialities-pvt-ltd");
+    const hideSupplierIdentity = name === "Distilled Monoglycerides (DMG)" || name === "Propylene Glycol Monostearate (PGMS)" || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine", "Finamul 90", "Vital Wheat Gluten"].includes(name) || ((industry.slug === "chocolate-confectionery" && industryGroup?.name === "Milk Powders" || industry.slug === "ice-cream-ingredients" && industryGroup?.name === "Milk Powders & Protein") && productSupplier?.slug === "calpro-specialities-pvt-ltd");
     const catalogProduct = {
       ...product,
       brand: brochureSupplier || product.brand,
@@ -115,7 +115,7 @@ export default async function IndustryPage({ params }) {
         supplierName: anchor?.name,
       },
     ];
-  });
+  }).filter((item) => industry.slug !== "food-additives-preservatives" || item.range !== "imported");
   const partners = partnersForIndustry(industry.slug);
   const relatedIndustries = content.related.map((slug) => getIndustry(slug)).filter(Boolean);
   const industryFaqs = buildIndustryFaqs(industry, content);

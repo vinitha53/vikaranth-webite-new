@@ -40,7 +40,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
   const normalized = useMemo(() => products.map((product) => ({
     ...product,
     range: product.range || (indianNames.includes(product.name) ? "indian" : "imported"),
-    hideBrandLogo: product.hideBrandLogo || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine"].includes(product.name),
+    hideBrandLogo: product.hideBrandLogo || ["Skimmed Milk Powder", "Whey Protein", "Whey Powder", "Refined Glycerine", "Finamul 90", "Vital Wheat Gluten"].includes(product.name),
   })), [products, indianNames]);
   const ranges = ["indian", "imported"].filter((range) => normalized.some((product) => product.range === range));
   const initialRange = ranges[0] || "indian";
@@ -291,7 +291,7 @@ export default function RangeCatalog({ products, indianNames = [], supplierMode 
                 <img className={["Skimmed Milk Powder", "Whey Powder", "Distilled Monoglycerides (DMG)", "Propylene Glycol Monostearate (PGMS)"].includes(product.name) ? styles.logoFreeCrop : undefined} src={product.image} alt={`${product.displayName || product.name} ingredient`} width="520" height="360" loading="lazy" />
                 {!product.hideBrandLogo && !productsWithoutLogoBadges.has(product.name) && ((brandLogos[product.brand] || product.supplierLogo || (!product.brand && supplierLogo)) ? <span className={`${styles.collectionBrandBadge} ${product.name === "Sodium Propionate" ? styles.solidBrandBadge : ""}` }>
                   <img src={brandLogos[product.brand] || product.supplierLogo || supplierLogo} alt={`${product.brand || product.supplierName || supplierName} logo`} width="100" height="44" loading="lazy" />
-                </span> : product.brand ? <span className={`${styles.collectionBrandBadge} ${product.name === "Sodium Propionate" ? styles.solidBrandBadge : ""}` }>{product.brand}</span> : null)}
+                </span> : product.brand ? <span className={`${styles.collectionBrandBadge} ${styles.textBrandBadge} ${product.name === "Sodium Propionate" ? styles.solidBrandBadge : ""}` }>{product.brand}</span> : null)}
               </span>
               <span className={styles.collectionCardCopy}><strong>{product.displayName || product.name}</strong><small>{product.brandOnImageOnly ? product.usageCategory || selectedCollectionName : product.brand || product.usageCategory || selectedCollectionName}</small>{supplierMode && product.supplierDescription && <small>{product.supplierDescription}</small>}<ArrowRight aria-hidden="true" /></span>
             </Link>)}</div> : <div className={styles.noProducts}><Search aria-hidden="true" /><strong>No matching products</strong><p>Try another product name, brand, application or category.</p><button type="button" onClick={() => { setSearchQuery(""); setActiveCategory(defaultIndustryCategory); }}>Clear search</button></div>}

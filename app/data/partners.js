@@ -475,6 +475,7 @@ export const productImageByName = {
   "Extra Pure Vanillin": "/product-images/other-products/extra-pure-vanillin.webp",
   "Full-Fat Soya Flour": "/product-images/other-products/full-fat-soya-flour.webp",
   "Instantized Whey Protein": "/product-images/other-products/instantized-whey-protein.webp",
+  "Isolate Soya Protein": "/product-images/other-products/isolate-soya-protein.png",
   "Isomalt": "/product-images/other-products/isomalt.webp",
   "Liquid Glucose": "/product-images/other-products/liquid-glucose.webp",
   "Malt Extract Powder": "/product-images/other-products/malt-extract-powder.webp",
@@ -489,6 +490,7 @@ export const productImageByName = {
   "Sorbitol 70% Solution": "/product-images/other-products/sorbitol-70-percent-solution.webp",
   "Soya Lecithin": "/product-images/other-products/soya-lecithin.webp",
   "Vital Wheat Gluten": "/product-images/other-products/vital-wheat-gluten.webp",
+  "Whey Protein Concentrate": "/product-images/other-products/whey-protein-concentrate.png",
   ...catalogProductImages,
   ...bakeryProductImages,
   ...deltaProductImages
