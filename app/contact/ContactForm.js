@@ -26,6 +26,7 @@ const prompts = {
 
 export default function ContactForm({ onMascotState = () => {}, onSubmit: submitHandler }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const { register, handleSubmit, setValue, trigger, formState: { errors, isValid, isSubmitting } } = useForm({
     mode: "onChange",
     defaultValues: { name: "", company: "", email: "", phone: "", subject: "", message: "", consent: false },
@@ -65,6 +66,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
   };
 
   const submit = async (data) => {
+    setSubmitError("");
     try {
       if (submitHandler) await submitHandler(data);
       else {
@@ -88,7 +90,8 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
       }
       setSubmitted(true);
       onMascotState("success", "Your enquiry has been sent.");
-    } catch {
+    } catch (error) {
+      setSubmitError(error.message || "We could not send your enquiry. Please retry.");
       onMascotState("error", "Something interrupted us. Please retry or call the Vikranth team.");
     }
   };
@@ -168,7 +171,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             <span className={styles.fieldLabel}>Message <sup>*</sup></span>
             <span className={styles.fieldControl}>
               <MessageSquareText aria-hidden="true" />
-              <textarea suppressHydrationWarning id="contact-message" rows="4" placeholder="Ingredient or brand, quantity, delivery city / PIN and any pack or document needs..." {...bind("message", { required: "Please enter your message", minLength: { value: 12, message: "Please add a little more detail" } })} />
+              <textarea suppressHydrationWarning id="contact-message" rows="4" placeholder="Ingredient or brand, quantity, delivery city / PIN and any pack or document needs..." {...bind("message", { required: "Please enter your message", minLength: { value: 3, message: "Please enter at least 3 characters" } })} />
               <Check className={styles.validTick} aria-hidden="true" />
             </span>
             {errors.message && <small id="message-error" className={styles.fieldError}>{errors.message.message}</small>}
@@ -183,6 +186,7 @@ export default function ContactForm({ onMascotState = () => {}, onSubmit: submit
             </label>
             {errors.consent && <small id="consent-error" className={styles.fieldError}>{errors.consent.message}</small>}
             <small className={styles.privacy}><LockKeyhole /> Your details are used to respond to your enquiry.</small>
+            {submitError && <small className={styles.fieldError} role="alert">{submitError}</small>}
           </div>
           <button suppressHydrationWarning type="submit" className={styles.professionalSubmit} disabled={isSubmitting}>
             {isSubmitting ? <><LoaderCircle className={styles.submitSpinner} /> Sending...</> : <>Send enquiry <ArrowRight /></>}
