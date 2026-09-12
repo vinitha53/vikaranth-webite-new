@@ -18,6 +18,16 @@ const catalogueCategories = industries.map((industry) => ({
   products: industry.products.map((name) => productByName.get(name)).filter(Boolean),
 }));
 
+const groupProductsByHeading = (items, fallbackHeading) => {
+  const groups = new Map();
+  items.forEach((product) => {
+    const heading = product.brochureDisplayCategory || product.usageCategory || fallbackHeading;
+    if (!groups.has(heading)) groups.set(heading, []);
+    groups.get(heading).push(product);
+  });
+  return [...groups].map(([heading, products]) => ({ heading, products }));
+};
+
 const cocoaStages = [
   { name: "Cocoa bean", note: "The origin", image: "/contact/cocoa-bean-three-quarter.webp", className: styles.bean },
   { name: "Cocoa mass", note: "The foundation", image: "/partner-products/Campco/Cocoa Mass.webp", className: styles.mass },
@@ -32,7 +42,7 @@ export default function ProductsCatalog({ children }) {
   const normalizedQuery = query.trim().toLowerCase();
   const visibleCategories = useMemo(() => categories.map((category) => ({
     ...category,
-    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${product.brand || ""} ${product.range || ""} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products,
+    products: normalizedQuery ? category.products.filter((product) => `${product.name} ${product.brand || ""} ${product.range || ""} ${product.brochureDisplayCategory || ""} ${product.usageCategory || ""} ${category.name}`.toLowerCase().includes(normalizedQuery)) : category.products,
   })).filter((category) => category.products.length), [categories, normalizedQuery]);
   const resultCount = visibleCategories.reduce((total, category) => total + category.products.length, 0);
 
@@ -71,13 +81,13 @@ export default function ProductsCatalog({ children }) {
         <div className={styles.catalogueHead}><div><span className={styles.eyebrow}>Product categories</span><h2 id="catalogue-title">Find the right ingredient family</h2></div><label className={styles.searchBox}><Search aria-hidden="true" /><span className={styles.srOnly}>Search ingredients</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search cocoa, pectin, starch..." />{query && <button type="button" onClick={() => setQuery("")} aria-label="Clear ingredient search"><X /></button>}</label></div>
         <nav className={styles.categoryNav} aria-label="Product category shortcuts">{categories.map((category, index) => <a href={`#${category.slug}`} key={category.slug}><span>{String(index + 1).padStart(2, "0")}</span>{category.name}</a>)}</nav>
         {query && <p className={styles.results} role="status">{resultCount} matching catalogue entries</p>}
-        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGrid}>{category.products.map((product) => {
+        <div className={styles.categoryList}>{visibleCategories.map((category) => <section className={styles.categorySection} id={category.slug} key={category.slug}><div className={styles.categoryIntro}><span>{String(categories.findIndex((item) => item.slug === category.slug) + 1).padStart(2, "0")}</span><div><small>Ingredient family</small><h2>{category.name}</h2><p>{category.summary}</p><Link href={`/industries/${category.slug}`}>Application guide <ArrowRight /></Link></div></div><div className={styles.productGroups}>{groupProductsByHeading(category.products, category.name).map((group) => <section className={styles.productGroup} key={`${category.slug}-${group.heading}`}><header className={styles.productGroupHeading}><h3>{group.heading}</h3><span>{group.products.length} {group.products.length === 1 ? "product" : "products"}</span></header><div className={styles.productGrid}>{group.products.map((product) => {
           const partner = partnersForProduct(product.name)[0];
           const brandName = product.brand || partner?.name;
           const brandLogo = brandLogos[product.brand] || partner?.logo;
           const rangeLabel = product.range === "imported" ? "Imported" : "India";
-          return <Link prefetch={false} className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 90vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} />{rangeLabel === "Imported" && <span className={styles.rangeBadge}>{rangeLabel}</span>}{!["Whey Powder", "Distilled Monoglycerides (DMG)"].includes(product.name) && brandLogo && <span className={styles.brandBadge}><img src={brandLogo} alt={`${brandName} logo`} width="110" height="44" loading="lazy" decoding="async" /></span>}</span><span className={styles.productCopy}><strong>{product.displayName || product.name}</strong><small className={styles.productMeta}>{rangeLabel} · {product.usageCategory || category.name}</small><span className={styles.productAction}>View product <ArrowRight /></span></span></Link>;
-        })}</div></section>)}</div>
+          return <Link prefetch={false} className={styles.productCard} href={`/products/${product.slug}`} key={`${category.slug}-${product.slug}`}><span className={styles.productImage}><Image src={product.image} fill sizes="(max-width: 620px) 90vw, (max-width: 1000px) 28vw, 190px" alt={`${product.name} for commercial food production`} />{rangeLabel === "Imported" && <span className={styles.rangeBadge}>{rangeLabel}</span>}{!["Skimmed Milk Powder", "Whey Powder", "Distilled Monoglycerides (DMG)", "Indonesia cocoa powder - BG 1000/2000", "Black Cocoa Powder"].includes(product.name) && brandLogo && <span className={styles.brandBadge}><img src={brandLogo} alt={`${brandName} logo`} width="110" height="44" loading="lazy" decoding="async" /></span>}</span><span className={styles.productCopy}><strong>{product.displayName || product.name}</strong><small className={styles.productMeta}>{rangeLabel} · {product.usageCategory || category.name}</small><span className={styles.productAction}>View product <ArrowRight /></span></span></Link>;
+        })}</div></section>)}</div></section>)}</div>
         {!visibleCategories.length && <div className={styles.empty}><h2>No ingredient found</h2><p>Try a broader product name or send us the specification you need.</p><Link href="/contact#enquiry">Ask our sourcing team <ArrowRight /></Link></div>}
       </section>
 

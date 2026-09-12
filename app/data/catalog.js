@@ -280,8 +280,11 @@ approvedRangeProducts.forEach((item) => {
   if (industry && !industry.products.includes(item.name)) industry.products.push(item.name);
 });
 
+export const productCollectionHeadings = new Set(["Fruit Filling", "Fruit Crush"]);
+
 const productMap = new Map();
 industries.forEach((industry) => industry.products.forEach((name) => {
+  if (productCollectionHeadings.has(name)) return;
   const slug = name === "Natural Food and Beverage Ingredients" ? "flavours-and-natural-ingredients" : name === "Aspartame Powder" ? "aspartame" : name === "High Maltose Corn Syrups" ? "high-maltose-syrups" : slugify(name);
   const approved = approvedRangeProducts.find((item) => item.name === name);
   const primaryIndustry = industries.find((entry) => entry.slug === primaryIndustrySlugByProductName.get(name)) || industry;
@@ -297,6 +300,10 @@ industries.forEach((industry) => industry.products.forEach((name) => {
 export const products = [...productMap.values()];
 const normalizeProductLookup = (value) => slugify(String(value).replace(/®/g, "registered"));
 const productSlugByLookup = new Map(products.map((product) => [normalizeProductLookup(product.name), product.slug]));
-export const getProductHref = (name) => `/products/${productSlugByLookup.get(normalizeProductLookup(name)) || slugify(name)}`;
+const collectionHrefByLookup = new Map([
+  [normalizeProductLookup("Fruit Filling"), "/industries/fruit-processing/?catalogCategory=Fruit+Filling#catalog-browser"],
+  [normalizeProductLookup("Fruit Crush"), "/industries/fruit-processing/?catalogCategory=Fruit+Crush#catalog-browser"],
+]);
+export const getProductHref = (name) => collectionHrefByLookup.get(normalizeProductLookup(name)) || `/products/${productSlugByLookup.get(normalizeProductLookup(name)) || slugify(name)}`;
 export const getProduct = (slug) => products.find((item) => item.slug === slug);
 export const getIndustry = (slug) => industries.find((item) => item.slug === slug);
