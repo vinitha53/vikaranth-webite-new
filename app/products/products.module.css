@@ -11,3 +11,18 @@
 @media(max-width:620px){.hero h1{font-size:42px}.heroCopy>p{font-size:15px}.heroActions{align-items:stretch;flex-direction:column}.heroActions a{justify-content:center}.cocoaStory{min-height:285px;gap:7px}.cocoaCard{height:225px;padding:10px;border-radius:90px 90px 14px 14px}.cocoaCard:nth-child(2){margin-top:46px}.cocoaCard img{top:25px;height:125px}.cocoaCard strong{font-size:14px}.cocoaCard small{font-size:7px}.cocoaCard div{padding-inline:2px}.guidance{padding:23px 0}.guidance>span{justify-self:start}.catalogue{padding:60px 0 80px}.categorySection{padding:21px 16px}.categoryIntro{grid-template-columns:38px 1fr;gap:12px}.categoryIntro>span{width:36px;height:36px}.productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.productCard{min-height:190px;grid-template-rows:120px 1fr}.productCopy{padding:11px}.productCopy strong{font-size:12px}}
 @media(max-width:480px){.hero{padding-right:16px;padding-left:16px}.hero h1{font-size:clamp(35px,10.5vw,42px)}.cocoaStory{min-height:255px}.cocoaCard{height:205px}.cocoaCard img{height:110px}.guidance,.catalogue{width:calc(100% - 28px)}.categorySection{padding:18px 13px}.productGrid{grid-template-columns:1fr;gap:12px}.productCard{min-height:240px;grid-template-rows:158px 1fr}.productCopy{min-height:82px;padding:13px}.productCopy strong{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.heroCopy>*,.cocoaCard,.categorySection,.productCard,.productImage img{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}.page{scroll-behavior:auto}}
+
+.brandBadge{width:106px;height:46px;background:transparent;opacity:.94;animation:productLogoFloat 3.2s ease-in-out infinite}
+.brandBadge img{filter:brightness(.76) saturate(1.4) contrast(1.3) drop-shadow(0 2px 3px rgba(35,17,8,.22))}
+.compactBarryLogo{width:58px;height:28px;top:12px;right:12px}
+.largeNittaLogo{width:130px;height:48px;top:7px;right:8px}
+.largeNittaLogo img{filter:brightness(.58) contrast(1.5) saturate(1.25) drop-shadow(0 2px 3px rgba(38,22,16,.24))}
+.darkRoquetteLogo img{filter:brightness(.56) saturate(1.8) contrast(1.3) drop-shadow(0 2px 3px rgba(16,34,79,.24))}
+.cleanAnchorLogo{width:98px;height:48px}
+.cleanAnchorLogo img{mix-blend-mode:multiply;filter:brightness(.68) contrast(1.45) saturate(1.45) drop-shadow(0 2px 3px rgba(45,22,10,.2))}
+.wideAmbujaLogo{width:148px;height:52px}
+.wideAmbujaLogo img{filter:brightness(.62) saturate(1.55) contrast(1.45) drop-shadow(0 2px 3px rgba(20,31,72,.24))}
+@keyframes productLogoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.brandBadge{animation:none}}
+
+.productImage .brandBadge{inset:9px 9px auto auto;box-sizing:border-box;align-items:center;justify-items:end;transform-origin:center}

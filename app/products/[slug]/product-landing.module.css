@@ -26,6 +26,26 @@
 @media(max-width:700px){.quickDetails{padding:64px 0}.quickDetails .factGrid{grid-template-columns:1fr 1fr}.quickDetails .factGrid article{min-height:148px;padding:18px}.benefitGrid{grid-template-columns:1fr}.benefitGrid article{min-height:0}.sectionNav>div{gap:20px}.technicalNote{padding:18px}.floatWhatsapp{right:14px;bottom:14px;width:auto;min-width:54px;padding:0 17px;border-radius:999px}.floatWhatsapp:after{content:"Enquire";margin-left:8px;font-size:11px;font-weight:800}.floatWhatsapp svg{width:22px}}
 @media(max-width:460px){.quickDetails .factGrid{grid-template-columns:1fr}.quickDetails .factGrid article{min-height:0}.compactHead h2{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.readingProgress{display:none}.productVisual:before,.orbit,.bulkBadge{animation:none!important}.quickDetails .factGrid article:hover,.benefitGrid article:hover,.stepList article:hover{transform:none}}
+
+.productHeroLogo{position:absolute;z-index:4;top:22px;right:22px;display:grid;width:136px;height:58px;place-items:center;background:transparent;opacity:.94;pointer-events:none;animation:productHeroLogoFloat 3.2s ease-in-out infinite}
+.productHeroLogo img{display:block;max-width:100%;max-height:100%;object-fit:contain;filter:brightness(.76) saturate(1.4) contrast(1.3) drop-shadow(0 3px 5px rgba(31,12,3,.25))}
+.productHeroLogo.compactBarryLogo{width:82px;height:40px;top:25px;right:25px}
+.productHeroLogo.largeNittaLogo{width:165px;height:62px;top:18px;right:20px}
+.productHeroLogo.largeNittaLogo img{filter:brightness(.58) contrast(1.5) saturate(1.25) drop-shadow(0 3px 5px rgba(38,22,16,.28))}
+.productHeroLogo.darkRoquetteLogo img{filter:brightness(.56) saturate(1.8) contrast(1.3) drop-shadow(0 3px 5px rgba(16,34,79,.28))}
+.productHeroLogo.cleanAnchorLogo{width:140px;height:64px}
+.productHeroLogo.cleanAnchorLogo img{mix-blend-mode:multiply;filter:brightness(.68) contrast(1.45) saturate(1.45) drop-shadow(0 3px 5px rgba(45,22,10,.25))}
+.productHeroLogo.wideAmbujaLogo{width:190px;height:68px}
+.productHeroLogo.wideAmbujaLogo img{filter:brightness(.62) saturate(1.55) contrast(1.45) drop-shadow(0 3px 5px rgba(20,31,72,.28))}
+.bulkBadge{right:auto;left:24px}
+@media(max-width:480px){.productHeroLogo{top:12px;right:12px;width:88px;height:40px}.bulkBadge{right:auto;left:13px}}
+@keyframes productHeroLogoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){.productHeroLogo{animation:none}}
+
+/* Keep the floating logo and enquiry badge in separate, stable safe areas. */
+.productVisual .productHeroLogo{inset:20px 20px auto auto;box-sizing:border-box;align-items:center;justify-items:end;transform-origin:center}
+.productVisual .bulkBadge{inset:22px auto auto 22px;width:max-content;max-width:calc(100% - 180px);box-sizing:border-box;white-space:nowrap}
+@media(max-width:480px){.productVisual .productHeroLogo{inset:12px 12px auto auto}.productVisual .bulkBadge{inset:13px auto auto 13px;width:max-content;max-width:calc(100% - 125px)}}
 /* Qualified product enquiry */
 .quoteSection .form{position:relative;display:block;min-height:575px;padding:30px;border:1px solid #6d4730;border-radius:20px;background:linear-gradient(145deg,rgba(61,31,17,.97),rgba(47,22,11,.96));box-shadow:0 28px 65px rgba(0,0,0,.24)}
 .formProgress{display:flex;margin-bottom:26px;align-items:center;gap:14px}.formProgress>div{position:relative;flex:1;height:3px;overflow:hidden;border-radius:4px;background:#684631}.formProgress span{position:absolute;inset:0 auto 0 0;border-radius:4px;background:linear-gradient(90deg,#e67838,#f4b36d);transition:width var(--motion-standard) var(--ease-emphasized)}.formProgress b{flex:0 0 auto;color:#cdb8a9;font-size:9px;letter-spacing:.09em;text-transform:uppercase}
@@ -407,3 +427,8 @@
 /* Branded WhatsApp glyph for every product-page WhatsApp action. */
 .whatsappIcon{fill:currentColor;color:#25a244!important}
 .floatWhatsapp .whatsappIcon{color:#fff!important}
+
+/* Final hero-overlay alignment: override earlier desktop/mobile badge rules. */
+.productVisual .productHeroLogo{inset:20px 20px auto auto;box-sizing:border-box;align-items:center;justify-items:end;transform-origin:center}
+.productVisual .bulkBadge{inset:22px auto auto 22px;width:max-content;max-width:calc(100% - 180px);box-sizing:border-box;white-space:nowrap}
+@media(max-width:480px){.productVisual .productHeroLogo{inset:12px 12px auto auto}.productVisual .bulkBadge{inset:13px auto auto 13px;width:max-content;max-width:calc(100% - 125px)}}
